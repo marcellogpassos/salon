@@ -1,66 +1,91 @@
-@extends('layouts.app')
+@extends('layouts.appm')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
+    <div class="container">
+        <div class="row">
+            <div class="col m8 offset-m2">
+                <div class="card white">
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                        <div class="card-content grey-text text-darken-4">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <h4 class="card-title">Login</h4>
+
+                            <div class="row">
+                                <div class="input-field col s12{{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <input id="emailInput" type="email" class="validate" name="email"
+                                           maxlength="255" required value="{{ old('email') }}">
+                                    <label for="emailInput">E-mail</label>
+
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12{{ $errors->has('password') ? ' has-error' : '' }}">
+                                    <input id="passwordInput" type="password" class="validate" name="password"
+                                           minlength="6" maxlength="32" required>
+                                    <label for="passwordInput">Senha</label>
+
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="row">
+                                <div class="col s12 m6">
+                                    <p>
+                                        <input type="checkbox" name="remember" id="remember">
+                                        <label for="remember">Lembrar minha senha</label>
+                                    </p>
+                                </div>
+                                <div class="col s12 m6">
+                                    <a href="{{ url('/password/reset') }}">
+                                        <p class="right-align">
+                                            Esqueci a senha
+                                        </p>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
+                        </div>
+                        <!-- End card content-->
+
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col s12 m6 grid-example">
+                                    <button type="submit" class="btn btn-block waves-effect waves-light blue">
+                                        Entrar
+                                    </button>
+                                </div>
+
+                                <div class="col s12 m6 grid-example">
+                                    <a class="btn btn-block waves-effect waves-light blue"
+                                       href="{{ url('/register') }}">
+                                        Cadastre-se
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        <!-- End card action -->
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i> Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
                     </form>
                 </div>
+                <!-- End card -->
+
             </div>
         </div>
+        <!-- End row -->
+
     </div>
-</div>
+    <!-- End container -->
+
 @endsection

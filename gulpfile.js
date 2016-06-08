@@ -1,4 +1,4 @@
-var elixir = require('laravel-elixir');
+// var elixir = require('laravel-elixir');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +11,19 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss');
+// elixir(function(mix) {
+//     mix.sass('app.scss');
+// });
+
+var gulp = require('gulp');
+
+gulp.task('default', function () {
+
+    var src_dir = "./bower_components/";
+    var dst_dir = "./public/lib/";
+
+    // gulp.src(src_dir + "angular/angular.min.js")
+    //     .pipe(gulp.dest(dst_dir + "angular"));
+
+
 });

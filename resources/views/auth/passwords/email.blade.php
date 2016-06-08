@@ -1,47 +1,63 @@
-@extends('layouts.app')
+@extends('layouts.appm')
 
-<!-- Main Content -->
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="container">
+        <div class="row">
+
+            <div class="col m8 offset-m2">
+
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <div class="card white">
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                        <div class="card-content grey-text text-darken-4">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <h4 class="card-title">Redefinir a senha</h4>
+
+                            <div class="row">
+                                <div class="input-field col s12{{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <input id="emailInput" type="email" class="validate" name="email"
+                                           maxlength="255" required value="{{ old('email') }}">
+                                    <label for="emailInput">E-mail</label>
+
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End card content-->
+
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col s12 m6 offset-m3 grid-example">
+                                    <button type="submit" class="btn btn-block waves-effect waves-light blue">
+                                        Redefinir senha
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                        <!-- End card action -->
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
                     </form>
                 </div>
+                <!-- End card -->
+
             </div>
         </div>
+        <!-- End row -->
+
     </div>
-</div>
+    <!-- End container -->
 @endsection

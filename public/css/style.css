@@ -1,0 +1,32 @@
+.icon-block {
+    padding: 0 15px;
+}
+
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    padding-top: 60px;
+}
+
+.col.grid-example {
+    margin: 7px 0;
+}
+
+.btn.btn-block {
+    width: 100%;
+}
+
+h4.card-title {
+    background-color: #434343;
+    color: #eeeeee;
+    padding: 8px;
+}
