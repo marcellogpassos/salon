@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,3 +21,4 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
+Route::post('users/dados', 'UsersController@editarDadosUsuario');

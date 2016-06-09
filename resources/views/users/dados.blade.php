@@ -9,6 +9,19 @@
 
         <div class="row">
             <div class="col s12">
+
+                @if ( count($errors) )
+                    <div id="card-alert" class="card red lighten-5">
+                        <div class="card-content red-text text-darken-4">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li><strong>{{ $error }}</strong></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="card white">
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/users/dados') }}">
@@ -22,34 +35,51 @@
 
                                 <div class="input-field col s12 m4">
                                     <input id="nameInput" name="name" type="text" required maxlength="255"
-                                           class="validate" value="{{ $user->name }}">
-                                    <label for="nameInput">Nome</label>
+                                           class="validate" value="{{ old('name') ? old('name') : $user->name }}">
+                                    <label for="nameInput">Nome *</label>
                                 </div>
 
                                 <div class="input-field col s12 m4">
                                     <input id="surnameInput" name="surname" type="text" required maxlength="255"
-                                           class="validate" value="{{ $user->surname }}">
-                                    <label for="surnameInput">Sobrenome</label>
+                                           class="validate"
+                                           value="{{ old('surname') ? old('surname') : $user->surname }}">
+                                    <label for="surnameInput">Sobrenome *</label>
                                 </div>
 
                                 <div class="input-field sexo-div col s12 m4">
                                     <div>
                                         <spam>
-                                            <input name="sexo" type="radio" id="feminino_input" value="F" required
-                                                   checked="{{ $user->sexo == 'F' }}"/>
-                                            <label for="feminino_input">Feminino</label>
+                                            <input name="sexo" type="radio" id="femininoInput" value="F"
+                                                    {!! ($user->sexo == 'F') ? ' checked' : '' !!}>
+                                            <label for="femininoInput">Feminino</label>
                                         </spam>
                                         <spam>
-                                            <input name="sexo" type="radio" id="masculino_input" value="M" required
-                                                   checked="{{ $user->sexo == 'M' }}"/>
-                                            <label for="masculino_input">Masculino</label>
+                                            <input name="sexo" type="radio" id="masculinoInput" value="M"
+                                                    {!! ($user->sexo == 'M') ? ' checked' : '' !!}>
+                                            <label for="masculinoInput">Masculino</label>
                                         </spam>
                                     </div>
-                                    <label class="active">Sexo:</label>
+                                    <label class="active">Sexo *</label>
                                 </div>
 
-                                <div>{{ $user->sexo == 'F' }}</div>
-                                <div>{{ $user->sexo == 'M' }}</div>
+                                <div class="input-field col s12 m4">
+                                    <input id="cpfInput" name="cpf" type="text" class="validate cpf" required
+                                           value="{{ old('cpf') ? old('cpf') : $user->cpf }}">
+                                    <label for="cpfInput">CPF *</label>
+                                </div>
+
+                                <div class="input-field col s12 m4">
+                                    <input id="nascimentoInput" name="data_nascimento" class="dataNascimento" required
+                                           value="{{ $user->data_nascimento ? date("d-m-Y", strtotime($user->data_nascimento)) : '' }}"
+                                           type="text">
+                                    <label for="nascimentoInput">Data de nascimento *</label>
+                                </div>
+
+                                <div class="input-field col s12 m4">
+                                    <input id="telefoneInput" name="telefone" type="text" class="validate telefone"
+                                           value="{{ old('telefone') ? old('telefone') : $user->telefone }}">
+                                    <label for="telefoneInput">Telefone</label>
+                                </div>
 
                             </div>
 
@@ -73,4 +103,6 @@
         </div>
 
     </div>
+
+
 @endsection

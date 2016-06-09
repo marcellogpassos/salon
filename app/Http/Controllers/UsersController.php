@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Http\Requests\UsersRequest;
 use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller {
@@ -13,8 +13,12 @@ class UsersController extends Controller {
         $this->middleware('auth');
     }
 
-    public function mostrarFormEditarDadosUsuario () {
+    public function mostrarFormEditarDadosUsuario() {
         return view('users.dados')->with('user', Auth::user());
+    }
+
+    public function editarDadosUsuario(UsersRequest $request) {
+        return $request->all();
     }
 
 }
