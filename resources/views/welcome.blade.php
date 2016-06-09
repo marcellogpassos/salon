@@ -1,5 +1,9 @@
 @extends('layouts.appm')
 
+@section('title')
+    Bem vindo!
+@endsection
+
 @section('content')
     <div class="container">
 

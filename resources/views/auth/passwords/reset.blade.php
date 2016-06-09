@@ -1,5 +1,9 @@
 @extends('layouts.appm')
 
+@section('title')
+    Redefinir a senha
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -19,43 +23,59 @@
 
                             <div class="row">
 
-                                <div class="input-field s12 m6 offset-m3{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <div class="input-field col s12">
                                     <input id="emailInput" name="email" type="email" required maxlength="255"
                                            class="validate" value="{{ old('email') }}">
                                     <label for="emailInput">E-mail</label>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('email') }}</strong>
-                                            </span>
-                                    @endif
                                 </div>
+
+                            </div>
+
+                            @if ($errors->has('email'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row">
 
                                 <div class="input-field col s12 m6{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <input id="passwordInput" name="password" type="password" required minlength="6"
                                            maxlength="32" class="validate">
                                     <label for="passwordInput">Senha</label>
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                    @endif
                                 </div>
 
                                 <div class="input-field col s12 m6{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                                     <input id="passwordConfirmationInput" name="password_confirmation"
                                            type="password" required minlength="6" maxlength="32" class="validate">
                                     <label for="passwordConfirmationInput">Confirme sua senha</label>
-
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                            </span>
-                                    @endif
                                 </div>
 
                             </div>
+
+                            @if ($errors->has('password'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($errors->has('password_confirmation'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
 
                         </div>
 

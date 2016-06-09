@@ -1,9 +1,14 @@
 @extends('layouts.appm')
 
+@section('title')
+    Login
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col m8 offset-m2">
+
                 <div class="card white">
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
@@ -19,26 +24,34 @@
                                     <input id="emailInput" type="email" class="validate" name="email"
                                            maxlength="255" required value="{{ old('email') }}">
                                     <label for="emailInput">E-mail</label>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
 
                                 <div class="input-field col s12{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <input id="passwordInput" type="password" class="validate" name="password"
                                            minlength="6" maxlength="32" required>
                                     <label for="passwordInput">Senha</label>
+                                </div>
+                            </div>
 
-                                    @if ($errors->has('password'))
+                            @if ($errors->has('email'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($errors->has('password'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
                                         <span class="help-block">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
                             <div class="row">
                                 <div class="col s12 m6">

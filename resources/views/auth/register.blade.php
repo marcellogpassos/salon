@@ -1,5 +1,9 @@
 @extends('layouts.appm')
 
+@section('title')
+    Cadastre-se
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -17,79 +21,111 @@
 
                             <div class="row">
 
-                                <div class="input-field col s12 m6{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <div class="input-field col s12 m6">
                                     <input id="nameInput" name="name" type="text" required maxlength="255"
                                            class="validate" value="{{ old('name') }}">
                                     <label for="nameInput">Nome</label>
-
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
-                                            </span>
-                                    @endif
                                 </div>
 
-                                <div class="input-field col s12 m6{{ $errors->has('surname') ? ' has-error' : '' }}">
+                                <div class="input-field col s12 m6">
                                     <input id="surnameInput" name="surname" type="text" required maxlength="255"
                                            class="validate" value="{{ old('surname') }}">
                                     <label for="surnameInput">Sobrenome</label>
-
-                                    @if ($errors->has('surname'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('surname') }}</strong>
-                                            </span>
-                                    @endif
-                                </div>
-
-                                <div class="input-field col s12 m6{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <input id="emailInput" name="email" type="email" required maxlength="255"
-                                           class="validate" value="{{ old('email') }}">
-                                    <label for="emailInput">E-mail</label>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('email') }}</strong>
-                                            </span>
-                                    @endif
-                                </div>
-
-                                <div class="input-field col s12 m6{{ $errors->has('email_confirmation') ? ' has-error' : '' }}">
-                                    <input id="emailConfirmationInput" name="email_confirmation" type="email"
-                                           required maxlength="255" class="validate">
-                                    <label for="emailConfirmationInput">Confirme seu e-mail</label>
-
-                                    @if ($errors->has('email_confirmation'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('email_confirmation') }}</strong>
-                                            </span>
-                                    @endif
-                                </div>
-
-                                <div class="input-field col s12 m6{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <input id="passwordInput" name="password" type="password" required minlength="6"
-                                           maxlength="32" class="validate">
-                                    <label for="passwordInput">Senha</label>
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                    @endif
-                                </div>
-
-                                <div class="input-field col s12 m6{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                    <input id="passwordConfirmationInput" name="password_confirmation"
-                                           type="password" required minlength="6" maxlength="32" class="validate">
-                                    <label for="passwordConfirmationInput">Confirme sua senha</label>
-
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                            </span>
-                                    @endif
                                 </div>
 
                             </div>
+
+                            @if ($errors->has('name'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($errors->has('surname'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('surname') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row">
+
+                                <div class="input-field col s12 m6">
+                                    <input id="emailInput" name="email" type="email" required maxlength="255"
+                                           class="validate" value="{{ old('email') }}">
+                                    <label for="emailInput">E-mail</label>
+                                </div>
+
+                                <div class="input-field col s12 m6">
+                                    <input id="emailConfirmationInput" name="email_confirmation" type="email"
+                                           required maxlength="255" class="validate">
+                                    <label for="emailConfirmationInput">Confirme seu e-mail</label>
+                                </div>
+
+                            </div>
+
+                            @if ($errors->has('email'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($errors->has('email_confirmation'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email_confirmation') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row">
+
+                                <div class="input-field col s12 m6">
+                                    <input id="passwordInput" name="password" type="password" required minlength="6"
+                                           maxlength="32" class="validate">
+                                    <label for="passwordInput">Senha</label>
+                                </div>
+
+                                <div class="input-field col s12 m6">
+                                    <input id="passwordConfirmationInput" name="password_confirmation"
+                                           type="password" required minlength="6" maxlength="32" class="validate">
+                                    <label for="passwordConfirmationInput">Confirme sua senha</label>
+                                </div>
+
+                            </div>
+
+                            @if ($errors->has('password'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($errors->has('password_confirmation'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
 
                         </div>
 

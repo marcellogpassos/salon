@@ -1,5 +1,9 @@
 @extends('layouts.appm')
 
+@section('title')
+    Redefinir a senha
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -7,8 +11,12 @@
             <div class="col m8 offset-m2">
 
                 @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
+                    <div id="card-alert" class="card blue lighten-5">
+                        <div class="card-content blue-text text-darken-4">
+                            <span class="help-block">
+                                <strong> {{ session('status') }}</strong>
+                            </span>
+                        </div>
                     </div>
                 @endif
 
@@ -27,14 +35,18 @@
                                     <input id="emailInput" type="email" class="validate" name="email"
                                            maxlength="255" required value="{{ old('email') }}">
                                     <label for="emailInput">E-mail</label>
+                                </div>
+                            </div>
 
-                                    @if ($errors->has('email'))
+                            @if ($errors->has('email'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
                                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
                                         </span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
                         </div>
                         <!-- End card content-->
