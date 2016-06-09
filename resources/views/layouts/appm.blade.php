@@ -14,6 +14,8 @@
     <!-- Styles  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>

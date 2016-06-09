@@ -127,6 +127,18 @@
                                 </div>
                             @endif
 
+                            <div class="g-recaptcha" data-sitekey="6LdnIiITAAAAAM9b1tn-bCFSHApXKpJxewkABv_k"></div>
+
+                            @if ($errors->has('g-recaptcha-response'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
                         </div>
 
                         <div class="card-action">
