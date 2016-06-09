@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');

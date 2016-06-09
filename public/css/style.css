@@ -30,3 +30,12 @@ h4.card-title {
     color: #eeeeee;
     padding: 8px;
 }
+
+.sexo-div {
+    margin-bottom: 36px;
+}
+
+.sexo-div .sexo-label {
+    position: relative;
+    top: 12px;
+}
