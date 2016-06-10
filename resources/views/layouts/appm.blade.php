@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" ng-app="blank">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -15,7 +15,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+    <!--  Scripts-->
     <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"
+            integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
+
+    <script src="{{ asset('js/init.js') }}"></script>
+
+    @include('layouts.angular')
+
+    <script src="{{ asset('js/enderecos.js') }}"></script>
 </head>
 
 <body>
@@ -28,14 +42,7 @@
 
 @include('layouts.footer')
 
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"
-        integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
-<script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
-
-<script src="{{ asset('js/init.js') }}"></script>
 
 </body>
 </html>

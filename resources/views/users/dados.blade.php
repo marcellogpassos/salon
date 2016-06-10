@@ -10,21 +10,12 @@
         <div class="row">
             <div class="col s12">
 
-                @if ( count($errors) )
-                    <div id="card-alert" class="card red lighten-5">
-                        <div class="card-content red-text text-darken-4">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li><strong>{{ $error }}</strong></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                @endif
+                @include('errors.messages')
 
                 <div class="card white">
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/users/dados') }}">
+                    <form id="userForm" class="form-horizontal" method="POST" action="{{ url('/users/dados') }}"
+                          role="form">
                         {{ csrf_field() }}
 
                         <div class="card-content gray-text text-darken-4">
@@ -62,6 +53,10 @@
                                     <label class="active">Sexo *</label>
                                 </div>
 
+                            </div>
+
+                            <div class="row">
+
                                 <div class="input-field col s12 m4">
                                     <input id="cpfInput" name="cpf" type="text" class="validate cpf" required
                                            value="{{ old('cpf') ? old('cpf') : $user->cpf }}">
@@ -79,6 +74,71 @@
                                     <input id="telefoneInput" name="telefone" type="text" class="validate telefone"
                                            value="{{ old('telefone') ? old('telefone') : $user->telefone }}">
                                     <label for="telefoneInput">Telefone</label>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="input-field col s12 m4">
+                                    <input id="cepInput" name="cep" type="text" class="validate cep" required
+                                           value="{{ old('cep') ? old('cep') : $user->cep }}"
+                                           onchange="setCep(this.value, '#userForm')">
+                                    <label for="cepInput">CEP *</label>
+                                </div>
+
+                                <div class="col s12 m2">
+                                    <label for="ufInput">UF *</label>
+                                    <select id="ufInput" name="uf" class="browser-default uf" required
+                                            onchange="setUf(this.value, '#userForm')">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col s12 m6">
+                                    <label for="municipioInput">Munic&iacute;pio *</label>
+                                    <select id="municipioInput" name="municipio" class="browser-default municipio"
+                                            required>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="input-field col s12 m8">
+                                    <input id="logradouroInput" name="logradouro" type="text"
+                                           class="validate logradouro"
+                                           value="{{ old('logradouro') ? old('logradouro') : $user->logradouro }}"
+                                           maxlength="255" required>
+                                    <label for="logradouroInput">Logradouro *</label>
+                                </div>
+
+                                <div class="input-field col s12 m4">
+                                    <input id="numeroInput" name="numero" type="text" class="validate numero"
+                                           value="{{ old('numero') ? old('numero') : $user->numero }}"
+                                           maxlength="16" required>
+                                    <label for="numeroInput">N&uacute;mero *</label>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="input-field col s12 m6">
+                                    <input id="bairroInput" name="bairro" type="text" class="validate bairro"
+                                           value="{{ old('bairro') ? old('bairro') : $user->bairro }}"
+                                           maxlength="255" required>
+                                    <label for="bairroInput">Bairro *</label>
+                                </div>
+
+                                <div class="input-field col s12 m6">
+                                    <input id="complementoInput" name="complemento" type="text"
+                                           class="validate complemento"
+                                           value="{{ old('complemento') ? old('complemento') : $user->complemento }}"
+                                           maxlength="255">
+                                    <label for="complementoInput">Complemento</label>
                                 </div>
 
                             </div>
@@ -104,5 +164,8 @@
 
     </div>
 
+<script>
+    initUfs('#userForm');
+</script>
 
 @endsection
