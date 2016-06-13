@@ -22,8 +22,7 @@ gulp.task('default', function () {
     var src_dir = "./bower_components/";
     var dst_dir = "./public/lib/";
 
-    // gulp.src(src_dir + "angular/angular.min.js")
-    //     .pipe(gulp.dest(dst_dir + "angular"));
-
+    gulp.src(src_dir + "jquery.maskedinput/dist/*")
+        .pipe(gulp.dest(dst_dir + "jquery.maskedinput"));
 
 });
