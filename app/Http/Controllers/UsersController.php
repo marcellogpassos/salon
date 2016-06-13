@@ -26,7 +26,7 @@ class UsersController extends Controller {
     public function editarDadosUsuario(UsersRequest $request) {
         $this->usersRepository->update(Auth::user()->id, $request->all());
 
-        Session::put('success', 'Dados atualizados com sucesso!');
+        session()->flash('success', 'Dados atualizados com sucesso!');
 
         return redirect('home');
     }
