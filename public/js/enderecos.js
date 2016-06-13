@@ -28,17 +28,36 @@ var ufs = [
     {id: "53", nome: "DISTRITO FEDERAL", sigla: "DF"}
 ];
 
-var initUfs = function (form) {
+var initUfs = function (form, ufDefault) {
 
-    console.log(ufs);
+    $(form + ' .uf').empty().append('<option selected value=""> -- </option>');
+
+    for (i = 0; i < ufs.length; i++)
+        $(form + ' .uf').append($('<option>', {
+            value: ufs[i].id,
+            text: ufs[i].sigla,
+            selected: (ufs[i].id == ufDefault)
+        }));
+
+};
+
+var initMunicipios = function (municipios, form, municipioDefault) {
+
+    $(form + ' .municipio').empty().append('<option selected value=""> -- </option>');
+
+    if (municipios)
+        for (i = 0; i < municipios.length; i++)
+            $(form + ' .municipio').append($('<option>', {
+                value: municipios[i].id,
+                text: municipios[i].nome,
+                selected: (municipios[i].id == municipioDefault)
+            }));
 
 };
 
 var resetUf = function (form) {
-    $(form + ' .uf').val('');
-    $(form + ' .municipio').val('');
-
-    console.log('UF resetado!');
+    initUfs(form, null);
+    initMunicipios(null, form, null);
 };
 
 var setUfBusy = function (busy, form) {
@@ -46,12 +65,30 @@ var setUfBusy = function (busy, form) {
     $(form + ' .municipio').prop('disabled', busy);
 };
 
-var setUf = function (uf, form) {
+var setUf = function (uf, municipio, form) {
     if (!uf)
         resetUf(form);
 
-    else
-        console.log('UF: ' + uf);
+    else {
+        setUfBusy(true, form);
+
+        enderecosService.listarMunicipios(uf, function (municipios) {
+            if (municipios.erro) {
+                showMessage('Falha ao tentar listar os municípios!');
+                resetUf(form);
+            }
+
+            else {
+                initUfs(form, uf);
+                initMunicipios(municipios, form, municipio);
+            }
+            setUfBusy(false, form);
+        }, function (error) {
+            showMessage('Falha ao tentar listar os municípios!');
+            resetUf(form);
+            setUfBusy(false, form);
+        });
+    }
 };
 
 var resetCep = function (form) {
@@ -61,8 +98,6 @@ var resetCep = function (form) {
     $(form + ' .numero').val('');
     $(form + ' .bairro').val('');
     $(form + ' .complemento').val('');
-
-    console.log('CEP resetado!');
 };
 
 var setCepBusy = function (busy, form) {
@@ -84,16 +119,22 @@ var setCep = function (cep, form) {
         setCepBusy(true, form);
 
         enderecosService.consultarCep(cep, function (endereco) {
-            if (endereco.erro)
-                console.log('Falha ao tentar consultar o CEP');
+            if (endereco.erro) {
+                showMessage('CEP inválido!');
+                resetCep(form);
+            }
+
             else {
                 $(form + ' .logradouro').val(endereco.logradouro);
                 $(form + ' .bairro').val(endereco.bairro);
                 $(form + ' .complemento').val(endereco.complemento);
+
+                setUf(endereco.ibge.substring(0, 2), endereco.ibge.substring(2, 7), form);
             }
             setCepBusy(false, form);
         }, function (error) {
-            console.log('Falha ao tentar consultar o CEP');
+            showMessage('Falha ao tentar recuperar o endereço!');
+            resetCep(form);
             setCepBusy(false, form);
         });
 

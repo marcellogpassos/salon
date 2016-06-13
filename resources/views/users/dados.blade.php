@@ -81,7 +81,7 @@
                             <div class="row">
 
                                 <div class="input-field col s12 m4">
-                                    <input id="cepInput" name="cep" type="text" class="validate cep" required
+                                    <input id="cepInput" name="cep" type="text" class="cep" required
                                            value="{{ old('cep') ? old('cep') : $user->cep }}"
                                            onchange="setCep(this.value, '#userForm')">
                                     <label for="cepInput">CEP *</label>
@@ -90,7 +90,7 @@
                                 <div class="col s12 m2">
                                     <label for="ufInput">UF *</label>
                                     <select id="ufInput" name="uf" class="browser-default uf" required
-                                            onchange="setUf(this.value, '#userForm')">
+                                            onchange="setUf(this.value, null, '#userForm')">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -159,13 +159,30 @@
                     </form>
 
                 </div>
+                <!-- End card -->
+
             </div>
         </div>
+        <!-- End row -->
 
     </div>
 
-<script>
-    initUfs('#userForm');
-</script>
+@endsection
+
+@section('scripts')
+
+    <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
+    @include('layouts.angular')
+    <script src="{{ asset('js/enderecos.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            setUf(
+                    '{{ old('uf') ? old('uf') : $user->uf }}',
+                    '{{ old('municipio') ? old('municipio') : $user->municipio }}',
+                    '#userForm'
+            );
+        });
+    </script>
 
 @endsection

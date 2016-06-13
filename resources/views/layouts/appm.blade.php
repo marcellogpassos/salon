@@ -18,18 +18,6 @@
     <!--  Scripts-->
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"
-            integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw=" crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-
-    <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
-
-    <script src="{{ asset('js/init.js') }}"></script>
-
-    @include('layouts.angular')
-
-    <script src="{{ asset('js/enderecos.js') }}"></script>
 </head>
 
 <body>
@@ -42,7 +30,13 @@
 
 @include('layouts.footer')
 
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"
+        integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="{{ asset('js/init.js') }}"></script>
+<script src="{{ asset('js/messages.js') }}"></script>
 
+@yield('scripts')
 
 </body>
 </html>

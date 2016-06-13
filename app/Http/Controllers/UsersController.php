@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Repositories\UsersRepositoryInterface;
 use App\Http\Requests\UsersRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller {
 
-    public function __construct() {
+    protected $usersRepository;
+
+    public function __construct(UsersRepositoryInterface $repository) {
+        $this->usersRepository = $repository;
+
         $this->middleware('auth');
     }
 
@@ -18,7 +24,11 @@ class UsersController extends Controller {
     }
 
     public function editarDadosUsuario(UsersRequest $request) {
-        return $request->all();
+        $this->usersRepository->update(Auth::user()->id, $request->all());
+
+        Session::put('success', 'Dados atualizados com sucesso!');
+
+        return redirect('home');
     }
 
 }
