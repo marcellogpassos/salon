@@ -37,7 +37,7 @@ $(document).ready(function () {
 
 jQuery(function ($) {
     $(".data").mask("99/99/9999", {placeholder: "dd/mm/yyyy"});
-    $(".telefone").mask("(99) 99999-9999");
+    $(".telefone").mask("(99) 99999999?9");
     $(".cpf").mask("999.999.999-99");
     $(".cnpj").mask("99.999.999/9999-99");
     $(".cep").mask("99.999-999");
