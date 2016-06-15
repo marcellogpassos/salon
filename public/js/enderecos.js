@@ -74,7 +74,7 @@ var setUf = function (uf, municipio, form) {
 
         enderecosService.listarMunicipios(uf, function (municipios) {
             if (municipios.erro) {
-                showMessage('Falha ao tentar listar os municípios!');
+                showMessage(getMessage('error', 2, [uf]));
                 resetUf(form);
             }
 
@@ -84,7 +84,7 @@ var setUf = function (uf, municipio, form) {
             }
             setUfBusy(false, form);
         }, function (error) {
-            showMessage('Falha ao tentar listar os municípios!');
+            showMessage(getMessage('error', 2, [uf]));
             resetUf(form);
             setUfBusy(false, form);
         });
@@ -120,7 +120,7 @@ var setCep = function (cep, form) {
 
         enderecosService.consultarCep(cep, function (endereco) {
             if (endereco.erro) {
-                showMessage('CEP inválido!');
+                showMessage(getMessage('error', 9));
                 resetCep(form);
             }
 
@@ -129,11 +129,11 @@ var setCep = function (cep, form) {
                 $(form + ' .bairro').val(endereco.bairro);
                 $(form + ' .complemento').val(endereco.complemento);
 
-                setUf(endereco.ibge.substring(0, 2), endereco.ibge.substring(2, 7), form);
+                setUf(enderecosService.getUfId(endereco.ibge), enderecosService.getMunicipioId(endereco.ibge), form);
             }
             setCepBusy(false, form);
         }, function (error) {
-            showMessage('Falha ao tentar recuperar o endereço!');
+            showMessage(getMessage('error', 1, [cep]));
             resetCep(form);
             setCepBusy(false, form);
         });

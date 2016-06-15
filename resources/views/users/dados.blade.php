@@ -174,7 +174,6 @@
     <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
     @include('layouts.angular')
     <script src="{{ asset('js/enderecos.js') }}"></script>
-    <script src="{{ asset('js/util.js') }}"></script>
 
     <script>
         $(document).ready(function () {

@@ -35,6 +35,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 <script src="{{ asset('js/init.js') }}"></script>
 <script src="{{ asset('js/messages.js') }}"></script>
+<script src="{{ asset('js/util.js') }}"></script>
 
 @yield('scripts')
 

@@ -24,8 +24,8 @@ var validarCpf = function (cpf) {
 $('.cpf').change(function () {
     var cpf = $(this).val().replace(/\D/g, '');
 
-    if(!validarCpf(cpf)) {
-        showMessage('CPF inválido!');
+    if (!validarCpf(cpf)) {
+        showMessage(getMessage('error', 3));
         $(this).val('');
     }
 });
