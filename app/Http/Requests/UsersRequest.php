@@ -44,7 +44,7 @@ class UsersRequest extends Request
             'sexo' => 'required|in:M,F',
             'cpf' => 'required|size:11',
             'data_nascimento' => 'required|date_format:Y-m-d|before:tomorrow',
-            'telefone' => 'size:11',
+            'telefone' => 'min:10|max:11',
             'cep' => 'required|size:8',
             'uf' => 'required|size:2',
             'municipio' => 'required|size:5',

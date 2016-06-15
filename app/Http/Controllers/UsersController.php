@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\UsersRepositoryInterface;
 use App\Http\Requests\UsersRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -26,7 +27,7 @@ class UsersController extends Controller {
     public function editarDadosUsuario(UsersRequest $request) {
         $this->usersRepository->update(Auth::user()->id, $request->all());
 
-        session()->flash('success', 'Dados atualizados com sucesso!');
+        session()->flash('success', Config::get('messages.success')[0]);
 
         return redirect('home');
     }
