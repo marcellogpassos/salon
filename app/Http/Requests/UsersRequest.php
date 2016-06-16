@@ -42,7 +42,7 @@ class UsersRequest extends Request
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
             'sexo' => 'required|in:M,F',
-            'cpf' => 'required|size:11',
+            'cpf' => 'required|size:11|unique:users,cpf,' . $this->user()->id,
             'data_nascimento' => 'required|date_format:Y-m-d|before:tomorrow',
             'telefone' => 'min:10|max:11',
             'cep' => 'required|size:8',

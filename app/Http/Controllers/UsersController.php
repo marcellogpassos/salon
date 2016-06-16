@@ -2,34 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Repositories\UsersRepositoryInterface;
+use App\Services\UsersServiceInterface;
 use App\Http\Requests\UsersRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller {
 
-    protected $usersRepository;
+	protected $usersService;
 
-    public function __construct(UsersRepositoryInterface $repository) {
-        $this->usersRepository = $repository;
+	public function __construct(UsersServiceInterface $service) {
+		$this->usersService = $service;
 
-        $this->middleware('auth');
-    }
+		$this->middleware('auth');
+	}
 
-    public function mostrarFormEditarDadosUsuario() {
-        return view('users.dados')->with('user', Auth::user());
-    }
+	public function mostrarFormEditarDadosUsuario() {
+		return view('users.dados')->with('user', Auth::user());
+	}
 
-    public function editarDadosUsuario(UsersRequest $request) {
-        $this->usersRepository->update(Auth::user()->id, $request->all());
+	public function editarDadosUsuario(UsersRequest $request) {
+		$usuarioAtualizado = $this->usersService->atualizarPropriosDados($request->all());
 
-        session()->flash('success', Config::get('messages.success')[0]);
+		session()->flash('success', Config::get('messages.success')[0]);
 
-        return redirect('home');
-    }
+		return redirect('home');
+	}
 
 }
