@@ -12,6 +12,8 @@ return [
         'Dados atualizados com sucesso!',                                                                               // 0
     ],
 
-    'warning' => [],
+    'warning' => [
+        'Forneça os seus dados antes de utilizar o sistema!',                                                           // 0
+    ],
 
 ];

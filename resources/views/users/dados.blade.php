@@ -7,10 +7,10 @@
 @section('content')
     <div class="container">
 
+        @include('errors.messages')
+
         <div class="row">
             <div class="col s12">
-
-                @include('errors.messages')
 
                 <div class="card white">
 

@@ -14,6 +14,7 @@
     <!-- Styles  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/alert.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
     <!--  Scripts-->
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -36,6 +37,7 @@
 <script src="{{ asset('js/init.js') }}"></script>
 <script src="{{ asset('js/messages.js') }}"></script>
 <script src="{{ asset('js/util.js') }}"></script>
+<script src="{{ asset('js/alert.js') }}"></script>
 
 @yield('scripts')
 

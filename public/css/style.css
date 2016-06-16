@@ -39,3 +39,7 @@ h4.card-title {
     position: relative;
     top: 12px;
 }
+
+.card .card-content ul {
+    margin: 0 auto;
+}
