@@ -65,7 +65,7 @@
 
                                 <div class="input-field col s12 m4">
                                     <input id="nascimentoInput" name="data_nascimento" class="dataNascimento" required
-                                           value="{{ $user->data_nascimento ? date("d-m-Y", strtotime($user->data_nascimento)) : '' }}"
+                                           value="{{ $user->data_nascimento ? dateToBrFormat($user->data_nascimento) : '' }}"
                                            type="text">
                                     <label for="nascimentoInput">Data de nascimento *</label>
                                 </div>

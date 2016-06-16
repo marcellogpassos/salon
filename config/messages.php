@@ -9,7 +9,7 @@ return [
     'information' => [],
 
     'success' => [
-        'Dados atualizados com sucesso!',                                                                               // 0
+        'Dados de {0} atualizados com sucesso!',                                                                               // 0
     ],
 
     'warning' => [

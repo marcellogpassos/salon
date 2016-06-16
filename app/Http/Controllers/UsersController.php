@@ -9,24 +9,24 @@ use Illuminate\Support\Facades\Config;
 
 class UsersController extends Controller {
 
-	protected $usersService;
+    protected $usersService;
 
-	public function __construct(UsersServiceInterface $service) {
-		$this->usersService = $service;
+    public function __construct(UsersServiceInterface $service) {
+        $this->usersService = $service;
 
-		$this->middleware('auth');
-	}
+        $this->middleware('auth');
+    }
 
-	public function mostrarFormEditarDadosUsuario() {
-		return view('users.dados')->with('user', Auth::user());
-	}
+    public function mostrarFormEditarDadosUsuario() {
+        return view('users.dados')->with('user', Auth::user());
+    }
 
-	public function editarDadosUsuario(UsersRequest $request) {
-		$usuarioAtualizado = $this->usersService->atualizarPropriosDados($request->all());
+    public function editarDadosUsuario(UsersRequest $request) {
+        $usuarioAtualizado = $this->usersService->atualizarPropriosDados($request->all());
 
-		session()->flash('success', Config::get('messages.success')[0]);
+        showMessage('success', 0, [$usuarioAtualizado->name]);
 
-		return redirect('home');
-	}
+        return redirect('home');
+    }
 
 }
