@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersBuscarRequest;
 use App\Services\UsersServiceInterface;
-use App\Http\Requests\UsersRequest;
+use App\Http\Requests\UsersDadosRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 
 class UsersController extends Controller {
 
@@ -17,11 +18,22 @@ class UsersController extends Controller {
         $this->middleware('auth');
     }
 
+    public function mostrarFormBuscarUsuarios(Request $request) {
+        $userId = $request->input('user');
+
+        return view('users.buscar');
+    }
+
+    public function mostrarUsuariosEncontrados(UsersBuscarRequest $request) {
+        $busca = $request->all();
+        dd($busca);
+    }
+
     public function mostrarFormEditarDadosUsuario() {
         return view('users.dados')->with('user', Auth::user());
     }
 
-    public function editarDadosUsuario(UsersRequest $request) {
+    public function editarDadosUsuario(UsersDadosRequest $request) {
         $usuarioAtualizado = $this->usersService->atualizarPropriosDados($request->all());
 
         showMessage('success', 0, [$usuarioAtualizado->name]);

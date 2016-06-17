@@ -18,7 +18,7 @@ class UsersRepository implements UsersRepositoryInterface {
     }
 
     public function getById($id) {
-        return $this->model->findById($id);
+        return $this->model->findOrFail($id);
     }
 
     public function create(array $attributes) {

@@ -13,4 +13,6 @@ interface UsersServiceInterface {
 
 	public function atualizarPropriosDados(array $attributes);
 
+	public function getUser($id);
+
 }

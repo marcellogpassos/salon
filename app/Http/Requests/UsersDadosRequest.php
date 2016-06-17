@@ -4,20 +4,17 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UsersRequest extends Request
-{
+class UsersDadosRequest extends Request {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
-    public function all()
-    {
+    public function all() {
         $attributes = parent::all();
 
         $attributes['cpf'] = preg_replace("/[^0-9]/", '', $attributes['cpf']);
@@ -36,8 +33,7 @@ class UsersRequest extends Request
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             'name' => 'required|max:255',
             'surname' => 'required|max:255',

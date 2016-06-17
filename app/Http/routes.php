@@ -20,5 +20,8 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('users/buscar', 'UsersController@mostrarFormBuscarUsuarios');
+Route::post('users/buscar', 'UsersController@mostrarUsuariosEncontrados');
+
 Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
 Route::post('users/dados', 'UsersController@editarDadosUsuario');

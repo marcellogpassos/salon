@@ -6,6 +6,22 @@
                 <li><a href="{{ url('/login') }}">Entrar</a></li>
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
+                <li><a href="{{ url('/users/buscar') }}">Usu&aacute;rios</a></li>
+
+                <li>
+                    <a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="adminMenuDropdown">
+                        Administra&ccedil;&atilde;o <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+
+                    <ul id="adminMenuDropdown" class="dropdown-content">
+                        <li><a href="">Categorias de Produtos</a></li>
+                        <li><a href="">Marcas de Produtos</a></li>
+                        <li><a href="">Produtos</a></li>
+                        <li><a href="">Categorias de Serviços</a></li>
+                        <li><a href="">Serviços</a></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="userMenuDropdown">
                         {{ Auth::user()->name }} <i class="material-icons right">arrow_drop_down</i>
@@ -25,6 +41,8 @@
                 <li><a href="{{ url('/login') }}">Entrar</a></li>
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
+                <li><a href="{{ url('/users/buscar') }}">Usu&aacute;rios</a></li>
+
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
                         <li>
@@ -35,6 +53,25 @@
                                 <ul>
                                     <li><a href="{{ url('/users/dados') }}">Meus dados</a></li>
                                     <li><a href="{{ url('/logout') }}">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header waves-effect waves-teal">
+                                Administra&ccedil;&atilde;o <i class="material-icons left">arrow_drop_down</i>
+                            </a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="">Categorias de Produtos</a></li>
+                                    <li><a href="">Marcas de Produtos</a></li>
+                                    <li><a href="">Produtos</a></li>
+                                    <li><a href="">Categorias de Serviços</a></li>
+                                    <li><a href="">Serviços</a></li>
                                 </ul>
                             </div>
                         </li>

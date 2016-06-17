@@ -24,4 +24,7 @@ class UsersService implements UsersServiceInterface {
 		return $this->usersRepository->update(Auth::user()->id, $attributes);
 	}
 
+	public function getUser($id) {
+		return $this->usersRepository->getById($id);
+	}
 }
