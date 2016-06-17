@@ -11,6 +11,8 @@ namespace App\Services;
 
 interface UsersServiceInterface {
 
+	public function buscar($criterios);
+
 	public function atualizarPropriosDados(array $attributes);
 
 	public function getUser($id);

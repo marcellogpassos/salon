@@ -13,6 +13,23 @@ class UsersRepository implements UsersRepositoryInterface {
         $this->model = $model;
     }
 
+    public function buscar($criterios) {
+        $found = $this->model;
+
+        if(isset( $criterios['sexo'] ))
+            $found = $found->orWhere('sexo', $criterios['sexo']);
+        if(isset( $criterios['cpf'] ))
+            $found = $found->orWhere('cpf', $criterios['cpf']);
+        if(isset( $criterios['telefone'] ))
+            $found = $found->orWhere('telefone', $criterios['telefone']);
+        if($criterios['email'] && strlen($criterios['email']) > 0)
+            $found = $found->orWhere('email', 'like', '%' . $criterios['email'] . '%');
+        if(isset( $criterios['nome'] ) && strlen($criterios['nome']) > 0)
+            $found = $found->orWhere('nome', 'like', '%' . $criterios['nome'] . '%');
+
+        return $found->get();
+    }
+
     public function getAll() {
         return $this->model->all();
     }

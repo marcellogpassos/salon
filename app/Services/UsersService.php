@@ -20,6 +20,10 @@ class UsersService implements UsersServiceInterface {
 		$this->usersRepository = $repository;
 	}
 
+	public function buscar($criterios) {
+		return $this->usersRepository->buscar($criterios);
+	}
+
 	public function atualizarPropriosDados(array $attributes) {
 		return $this->usersRepository->update(Auth::user()->id, $attributes);
 	}
@@ -27,4 +31,5 @@ class UsersService implements UsersServiceInterface {
 	public function getUser($id) {
 		return $this->usersRepository->getById($id);
 	}
+
 }

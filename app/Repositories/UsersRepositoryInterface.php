@@ -5,14 +5,16 @@ namespace App\Repositories;
 
 interface UsersRepositoryInterface {
 
-	public function getAll();
+    public function buscar($criterios);
 
-	public function getById($id);
+    public function getAll();
 
-	public function create(array $attributes);
+    public function getById($id);
 
-	public function update($id, array $attributes);
+    public function create(array $attributes);
 
-	public function delete($id);
+    public function update($id, array $attributes);
+
+    public function delete($id);
 
 }
