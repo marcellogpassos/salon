@@ -14,22 +14,22 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersService implements UsersServiceInterface {
 
-	protected $usersRepository;
+    protected $usersRepository;
 
-	public function __construct(UsersRepositoryInterface $repository) {
-		$this->usersRepository = $repository;
-	}
+    public function __construct(UsersRepositoryInterface $repository) {
+        $this->usersRepository = $repository;
+    }
 
-	public function buscar($criterios) {
-		return $this->usersRepository->buscar($criterios);
-	}
+    public function buscar($criterios) {
+        return $this->usersRepository->buscar($criterios);
+    }
 
-	public function atualizarPropriosDados(array $attributes) {
-		return $this->usersRepository->update(Auth::user()->id, $attributes);
-	}
+    public function atualizarPropriosDados(array $attributes) {
+        return $this->usersRepository->update(Auth::user()->id, $attributes);
+    }
 
-	public function getUser($id) {
-		return $this->usersRepository->getById($id);
-	}
+    public function getUser($id) {
+        return $this->usersRepository->getById($id);
+    }
 
 }

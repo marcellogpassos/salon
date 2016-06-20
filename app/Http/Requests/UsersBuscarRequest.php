@@ -32,7 +32,7 @@ class UsersBuscarRequest extends Request {
      */
     public function rules() {
         return [
-            'nome_sobrenome' => 'max:255|required_without_all:telefone,cpf,email',
+            'nome_sobrenome' => 'min:3|max:255|required_without_all:telefone,cpf,email',
             'email' => 'max:255|email|required_without_all:telefone,cpf,nome_sobrenome',
             'sexo' => 'in:M,F|required_without_all:telefone,cpf,email,nome_sobrenome',
             'cpf' => 'size:11|required_without_all:telefone,email,nome_sobrenome',

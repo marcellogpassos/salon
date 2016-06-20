@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UsersRepository implements UsersRepositoryInterface {
 
@@ -13,21 +14,45 @@ class UsersRepository implements UsersRepositoryInterface {
         $this->model = $model;
     }
 
+    public function buscarPorCpf($cpf) {
+        return $this->model->where('cpf', $cpf)->get();
+    }
+
+    public function buscarPorEmail($email) {
+        return $this->model->where('email', $email)->get();
+    }
+
     public function buscar($criterios) {
-        $found = $this->model;
+        $buscarPorEmail = (isset($criterios['email']) && strlen($criterios['email']) > 0);
+        $buscarPorCpf = (isset($criterios['cpf']) && strlen($criterios['cpf']) == 11);
+        $buscarPorSexo = isset($criterios['sexo']);
+        $buscarPorTelefone = (isset($criterios['telefone']) && strlen($criterios['telefone']) > 0);
+        $buscarPorNome = (isset($criterios['nome_sobrenome']) && strlen($criterios['nome_sobrenome']) > 0);
+        $buscarPorOutrosCriterios = ($buscarPorSexo || $buscarPorTelefone || $buscarPorNome);
 
-        if(isset( $criterios['sexo'] ))
-            $found = $found->orWhere('sexo', $criterios['sexo']);
-        if(isset( $criterios['cpf'] ))
-            $found = $found->orWhere('cpf', $criterios['cpf']);
-        if(isset( $criterios['telefone'] ))
-            $found = $found->orWhere('telefone', $criterios['telefone']);
-        if($criterios['email'] && strlen($criterios['email']) > 0)
-            $found = $found->orWhere('email', 'like', '%' . $criterios['email'] . '%');
-        if(isset( $criterios['nome'] ) && strlen($criterios['nome']) > 0)
-            $found = $found->orWhere('nome', 'like', '%' . $criterios['nome'] . '%');
+        if ($buscarPorCpf || $buscarPorEmail || $buscarPorOutrosCriterios) {
+            $encontradosPeloEmail = ($buscarPorEmail) ?
+                $this->model->where('email', $criterios['email']) : null;
 
-        return $found->get();
+            $encontradosPeloCpf = ($buscarPorCpf) ?
+                $this->model->orWhere('cpf', $criterios['cpf']) : null;
+
+            $encontrarPorOutrosCriterios = ($buscarPorTelefone) ?
+                $this->model->orWhere('telefone', $criterios['telefone']) : $this->model;
+            $encontrarPorOutrosCriterios = ($buscarPorNome) ?
+                $encontrarPorOutrosCriterios->orWhere(
+                    DB::raw('concat(name, " ", surname)'), 'like', '%' . $criterios['nome_sobrenome'] . '%'
+                ) : $encontrarPorOutrosCriterios;
+            $encontrarPorOutrosCriterios = ($buscarPorSexo) ?
+                $encontrarPorOutrosCriterios->orWhere('sexo', $criterios['sexo']) : $encontrarPorOutrosCriterios;
+
+            $query = $this->montarQuery($encontradosPeloEmail, $encontradosPeloCpf, $buscarPorOutrosCriterios,
+                $encontrarPorOutrosCriterios);
+
+            return $query->get();
+        }
+
+        return null;
     }
 
     public function getAll() {
@@ -51,6 +76,22 @@ class UsersRepository implements UsersRepositoryInterface {
     public function delete($id) {
         return $this->getById($id)->delete();
         return true;
+    }
+
+    private function montarQuery($encontradosPeloEmail, $encontradosPeloCpf, $buscarPorOutrosCriterios,
+                                 $encontrarPorOutrosCriterios) {
+        $query = null;
+        if ($encontradosPeloEmail) {
+            $query = $encontradosPeloEmail;
+            $query = ($encontradosPeloCpf) ? $query->union($encontradosPeloCpf) : $query;
+            $query = ($buscarPorOutrosCriterios) ? $query->union($encontrarPorOutrosCriterios) : $query;
+        } else if ($encontradosPeloCpf) {
+            $query = $encontradosPeloCpf;
+            $query = ($buscarPorOutrosCriterios) ? $query->union($encontrarPorOutrosCriterios) : $query;
+        } else {
+            $query = $encontrarPorOutrosCriterios;
+        }
+        return $query;
     }
 
 }

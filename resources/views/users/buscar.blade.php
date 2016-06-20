@@ -26,13 +26,15 @@
 
                                 <div class="input-field col s12 m6">
                                     <input id="nameInput" name="nome_sobrenome" type="text" maxlength="255"
-                                           class="validate" value="{{ old('nome_sobrenome') }}">
+                                           value="{{ old('nome_sobrenome') ? old('nome_sobrenome') : $buscaPrevia['nome_sobrenome'] }}"
+                                           minlength="3" class="validate">
                                     <label for="nameInput">Nome ou sobrenome</label>
                                 </div>
 
                                 <div class="input-field col s12 m6">
                                     <input id="emailInput" name="email" type="email" maxlength="255"
-                                           class="validate" value="{{ old('email') }}">
+                                           value="{{ old('email') ? old('email') : $buscaPrevia['email'] }}"
+                                           class="validate">
                                     <label for="emailInput">E-mail</label>
                                 </div>
 
@@ -44,12 +46,12 @@
                                     <div>
                                         <spam>
                                             <input name="sexo" type="radio" id="femininoInput" value="F"
-                                                    {!! (old('sexo') == 'F') ? ' checked' : '' !!}>
+                                                    {!! (old('sexo') == 'F' || $buscaPrevia['sexo'] == 'F') ? ' checked' : '' !!}>
                                             <label for="femininoInput">Feminino</label>
                                         </spam>
                                         <spam>
                                             <input name="sexo" type="radio" id="masculinoInput" value="M"
-                                                    {!! (old('sexo') == 'M') ? ' checked' : '' !!}>
+                                                    {!! (old('sexo') == 'M' || $buscaPrevia['sexo'] == 'M') ? ' checked' : '' !!}>
                                             <label for="masculinoInput">Masculino</label>
                                         </spam>
                                     </div>
@@ -58,13 +60,13 @@
 
                                 <div class="input-field col s12 m4">
                                     <input id="cpfInput" name="cpf" type="text" class="validate cpf"
-                                           value="{{ old('cpf') }}">
+                                           value="{{ old('cpf') ? old('cpf') : $buscaPrevia['cpf'] }}">
                                     <label for="cpfInput">CPF</label>
                                 </div>
 
                                 <div class="input-field col s12 m4">
                                     <input id="telefoneInput" name="telefone" type="text" class="validate telefone"
-                                           value="{{ old('telefone') }}">
+                                           value="{{ old('telefone') ? old('telefone') : $buscaPrevia['telefone'] }}">
                                     <label for="telefoneInput">Telefone</label>
                                 </div>
 
@@ -90,6 +92,44 @@
 
             </div>
         </div>
+
+        @if(isset($usersEncontrados) && (count($usersEncontrados) > 0))
+            <div class="row">
+                <div class="col s12">
+
+                    <div class="card white">
+                        <div class="card-content gray-text text-darken-4">
+                            <h4 class="card-title">Usu&aacute;rios encontrados</h4>
+
+                            <ul class="collapsible popout" data-collapsible="accordion">
+
+                                @foreach($usersEncontrados as $us)
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">account_circle</i>{{ $us->name . ' ' . $us->surname }}
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <p>Lorem ipsum dolor sit amet, his ex ubique aperiri, duo invidunt
+                                                deseruisse cu, ei his idque deserunt. Eum te tota sensibus aliquando,
+                                                per eu libris nostro. In ludus corrumpit vis. Eu dicta inermis convenire
+                                                sit, eos inani fierent disputationi cu. Id sea ullum clita expetendis,
+                                                eos in semper tamquam efficiantur.
+                                            </p>
+                                        </div>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+
+                        </div>
+                        <div class="card-action">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        @endif
 
     </div>
 @endsection

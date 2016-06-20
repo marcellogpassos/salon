@@ -25,8 +25,11 @@ class UsersController extends Controller {
     }
 
     public function mostrarUsuariosEncontrados(UsersBuscarRequest $request) {
-        $criterios = $request->all();
-        dd($this->usersService->buscar($criterios));
+        $usersEncontrados = $this->usersService->buscar($request->all());
+
+        return view('users.buscar')
+            ->with('usersEncontrados', $usersEncontrados)
+            ->with('buscaPrevia', $request->all());
     }
 
     public function mostrarFormEditarDadosUsuario() {
