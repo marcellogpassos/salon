@@ -38,13 +38,13 @@ class UsersRepository implements UsersRepositoryInterface {
                 $this->model->orWhere('cpf', $criterios['cpf']) : null;
 
             $encontrarPorOutrosCriterios = ($buscarPorTelefone) ?
-                $this->model->orWhere('telefone', $criterios['telefone']) : $this->model;
+                $this->model->where('telefone', $criterios['telefone']) : $this->model;
             $encontrarPorOutrosCriterios = ($buscarPorNome) ?
-                $encontrarPorOutrosCriterios->orWhere(
+                $encontrarPorOutrosCriterios->where(
                     DB::raw('concat(name, " ", surname)'), 'like', '%' . $criterios['nome_sobrenome'] . '%'
                 ) : $encontrarPorOutrosCriterios;
             $encontrarPorOutrosCriterios = ($buscarPorSexo) ?
-                $encontrarPorOutrosCriterios->orWhere('sexo', $criterios['sexo']) : $encontrarPorOutrosCriterios;
+                $encontrarPorOutrosCriterios->where('sexo', $criterios['sexo']) : $encontrarPorOutrosCriterios;
 
             $query = $this->montarQuery($encontradosPeloEmail, $encontradosPeloCpf, $buscarPorOutrosCriterios,
                 $encontrarPorOutrosCriterios);

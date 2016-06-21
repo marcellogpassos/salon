@@ -144,24 +144,50 @@
             <div class="row">
                 <div class="col s12">
 
-                    <div class="card white">
+                    <div class="card white usuarios-encontrados">
                         <div class="card-content gray-text text-darken-4">
                             <h4 class="card-title">Usu&aacute;rios encontrados</h4>
 
                             <ul class="collapsible popout" data-collapsible="accordion">
 
                                 @foreach($usersEncontrados as $us)
-                                    <li>
-                                        <div class="collapsible-header">
+                                    <li class="usuario-encontrado">
+                                        <div class="collapsible-header{{(count($usersEncontrados) == 1) ? ' active' : ''}}">
                                             <i class="material-icons">account_circle</i>{{ $us->name . ' ' . $us->surname }}
+
+                                            @foreach($us->roles as $role)
+                                                <div class="chip">
+                                                    {{$role->descricao}}
+                                                </div>
+                                            @endforeach
+
                                         </div>
                                         <div class="collapsible-body">
-                                            <p>Lorem ipsum dolor sit amet, his ex ubique aperiri, duo invidunt
-                                                deseruisse cu, ei his idque deserunt. Eum te tota sensibus aliquando,
-                                                per eu libris nostro. In ludus corrumpit vis. Eu dicta inermis convenire
-                                                sit, eos inani fierent disputationi cu. Id sea ullum clita expetendis,
-                                                eos in semper tamquam efficiantur.
-                                            </p>
+
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <div class="col s6 m4">
+                                                        <a class="waves-effect waves-light btn btn-large btn-block"
+                                                           onclick="detalharUsuario({{ $us->id }})">
+                                                            <i class="material-icons left">search</i>Detalhar
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col s6 m4">
+                                                        <a class="waves-effect waves-light btn btn-large btn-block">
+                                                            <i class="material-icons left">verified_user</i>Pap&eacute;is
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col s6 m4">
+                                                        <a class="waves-effect waves-light btn btn-large btn-block">
+                                                            <i class="material-icons left">shopping_cart</i>Caixa
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
                                         </div>
                                     </li>
                                 @endforeach
@@ -169,12 +195,23 @@
                             </ul>
 
                         </div>
-                        <div class="card-action">
-                        </div>
                     </div>
 
                 </div>
 
+            </div>
+
+            <div id="datalharUsuarioModal" class="modal">
+                <div class="modal-content">
+                    <h4 id="detalharNome"></h4>
+                    <p><strong>CPF:</strong>&nbsp;&nbsp;<span id="detalharCpf"></span></p>
+                    <p><strong>Sexo:</strong>&nbsp;&nbsp;<span id="detalharSexo"></span></p>
+                    <p><strong>Data de nascimento:</strong>&nbsp;&nbsp;<span id="detalharDataNascimento"></span></p>
+                    <p><strong>Telefone:</strong>&nbsp;&nbsp;<span id="detalharTelefone"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
             </div>
         @endif
 
@@ -185,5 +222,24 @@
 @section('scripts')
 
     <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
+
+    <script>
+        var detalharUsuario = function (id) {
+            var url = '{{ url('/users/{id}') }}'.replace('{id}', id);
+
+            $.getJSON(url, function(result){
+                console.log(result);
+
+                $('#detalharNome').html(result.name + " " + result.surname);
+                $('#detalharCpf').html(result.cpf);
+                $('#detalharSexo').html(result.sexo == 'F' ? 'Feminino' : (result.sexo == 'M' ? 'Masculino' : ''));
+                $('#detalharDataNascimento').html(dateToBrFormat(result.data_nascimento));
+                $('#detalharTelefone').html(result.telefone);
+
+                $('#datalharUsuarioModal').openModal();
+            });
+
+        };
+    </script>
 
 @endsection

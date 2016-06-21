@@ -21,6 +21,10 @@ main {
     margin: 7px 0;
 }
 
+.btn {
+    margin-top: 10px;
+}
+
 .btn.btn-block {
     width: 100%;
 }
@@ -42,4 +46,11 @@ h4.card-title {
 
 .card .card-content ul {
     margin: 0 auto;
+}
+
+@media all and (min-width: 768px) {
+    .usuarios-encontrados .usuario-encontrado .chip {
+        float: right;
+        margin-top: 6px;
+    }
 }

@@ -44,4 +44,9 @@ class UsersController extends Controller {
         return redirect('home');
     }
 
+    public function recuperarUsuario($id) {
+        $user = $this->usersService->getUser($id);
+        return response()->json($user);
+    }
+
 }
