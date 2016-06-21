@@ -199,6 +199,31 @@ INSERT INTO `produtos` VALUES (2101,'AMPOLAS PARA TRATAR OS FIOS',1,'2016-06-15 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `role_user`
+--
+
+DROP TABLE IF EXISTS `role_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role_user` (
+  `user_id` bigint(20) NOT NULL,
+  `role_id` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`,`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_user`
+--
+
+LOCK TABLES `role_user` WRITE;
+/*!40000 ALTER TABLE `role_user` DISABLE KEYS */;
+INSERT INTO `role_user` VALUES (1,1,'2016-06-15 21:42:34'),(1,7,'2016-06-21 19:12:06'),(2,3,'2016-06-21 19:26:46');
+/*!40000 ALTER TABLE `role_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `roles`
 --
 
@@ -212,7 +237,7 @@ CREATE TABLE `roles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +246,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Administrador(a)','ADMIN','2016-06-15 21:40:51',NULL),(2,'Cabelereiro(a)','CABLR','2016-06-15 21:40:51',NULL),(3,'Maquiador(a)','MAQDR','2016-06-15 21:40:51',NULL),(4,'Esteticista','ESTCT','2016-06-15 21:40:51',NULL),(5,'Manicure / Pedicure','MANPE','2016-06-15 21:40:51',NULL),(6,'Caixa','CAIXA','2016-06-15 21:40:51',NULL);
+INSERT INTO `roles` VALUES (1,'Administrador(a)','ADMIN','2016-06-15 21:40:51',NULL),(2,'Cabelereiro(a)','CABLR','2016-06-15 21:40:51',NULL),(3,'Maquiador(a)','MAQDR','2016-06-15 21:40:51',NULL),(4,'Esteticista','ESTCT','2016-06-15 21:40:51',NULL),(5,'Manicure / Pedicure','MANPE','2016-06-15 21:40:51',NULL),(6,'Caixa','CAIXA','2016-06-15 21:40:51',NULL),(7,'Barbeiro(a)','BARBR','2016-06-21 19:02:54',NULL);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,33 +319,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Marcello','Galdino Passos','marcellogpassos@gmail.com','$2y$10$s2TLmlXVjEP531gPgYIKYOeEuDNn49vTg0l2AwYFCV13NTIYt/G1S','NKXAf6nwD9GU5fRqt1o03s80XpuFgw8vvaxepflTXXI0JkuPSl4zRlHUxItz','M','1990-05-04','08417523464','83996917109','58052120','25','07507','Seringueiras','99','Anatólia',NULL,'2016-06-09 00:49:45','2016-06-15 23:46:11'),(2,'Ana Carolina','Sousa Alves Passos','carolasalves@gmail.com','$2y$10$pnjd09c3zNwQOxxaVSC5/ui.dkduZTInR2p7NLYsjy.F9Ih1zyVjC','0gPdjpmgOw466dn4HmzahqI5yGHr29yunhuHWbTUcu6lgYYSiZhFOksvAOZb','F','1992-11-17','47558223865','83999649598','58434500','25','04009','Avenida Marechal Floriano Peixoto','123','Serrotão','','2016-06-09 00:51:24','2016-06-14 21:58:09'),(4,'Márcio','Galdino Passos','marciogpassos@gmail.com','$2y$10$.jkLRvezxZ2ZIKxLipDVU.ZxJJ.baW3RrrRVa4xFo1/MpmZJjOzDC','8vwSp65mgxRb1OeJGBTunZZ1OtZV8PD6Pl4S79QZT5xARivXCPnxNwktRib7','M','1981-09-22','33834479608','61993086183','71919360','53','00108','Rua 37 Norte','Lote 1','Norte (Águas Claras)','Edifício Cezanne - Apto. 1404','2016-06-09 21:59:40','2016-06-16 00:06:16'),(5,'Luciano','Carvalho de Medeiros Júnior','lucamenor@gmail.com','$2y$10$2UO1zKCEnYpEOWv.VCretO.bNzCIiCXjlQSAihO1Faae4F7IQWSim',NULL,'M','1989-02-05','76371095340','11932834063','07085190','35','18800','Rua Noventa e Dois','40','Parque Continental','','2016-06-13 23:39:12','2016-06-13 23:40:41'),(6,'Tomás','Barbosa Martins','tomasbarbosamartins@inbound.plus','$2y$10$RAaFKDFNT0p3IxtC9A652OjDAerk8k3eDdvlL4NRoONvER5NjT0Yu','zwCBUrZf7Hnkb7NVP8nWrZWXNp9aptGKJF1gXlzHXMMHcM3koHhCjeUwqgVd','M','1969-10-25','36783485307','88985709151','03278030','35','50308','Rua Gustavo Stach','795','Vila Ema','','2016-06-15 23:47:19','2016-06-15 23:48:27'),(7,'Julieta','Sousa Rocha','julietasousarocha@inbound.plus','$2y$10$4Cotcoj1Y1bAL1AgSz2U9u1hTqczg8Ntstmae46.O0gUgVd5iuJ52','TvleZM3FaS3ngQcou8aEnPGYneYdKUjnOkQbjtQisg241557bxEsJtyMrkCc','F','1967-03-04','52343142513','16983142824','14055664','35','43402','Travessa Delelmo Mazzo','329','Ipiranga','','2016-06-15 23:57:46','2016-06-16 00:00:54');
+INSERT INTO `users` VALUES (1,'Marcello','Galdino Passos','marcellogpassos@gmail.com','$2y$10$s2TLmlXVjEP531gPgYIKYOeEuDNn49vTg0l2AwYFCV13NTIYt/G1S','7u5149dFuHLby0eDNpbM9gww2luIAf1IzpOLhqzA69wgEEuEQ1LC9hLl7v50','M','1990-05-04','08417523464','83996917109','58030060','25','07507','Rua Goiás','284','Estados','','2016-06-09 00:49:45','2016-06-21 21:13:14'),(2,'Ana Carolina','Sousa Alves Passos','carolasalves@gmail.com','$2y$10$pnjd09c3zNwQOxxaVSC5/ui.dkduZTInR2p7NLYsjy.F9Ih1zyVjC','fjPKdg6MakZhbJfwCxO7FTuHAoJVhiUZ3IOdRVGeADQT9RvQzx0OOsOLKG9I','F','1992-11-17','60480663092','83999649598','58030060','25','07507','Rua Goiás','284','Estados','até 415/416','2016-06-09 00:51:24','2016-06-21 21:12:12'),(4,'Márcio','Galdino Passos','marciogpassos@gmail.com','$2y$10$.jkLRvezxZ2ZIKxLipDVU.ZxJJ.baW3RrrRVa4xFo1/MpmZJjOzDC','8vwSp65mgxRb1OeJGBTunZZ1OtZV8PD6Pl4S79QZT5xARivXCPnxNwktRib7','M','1981-09-22','33834479608','61993086183','71919360','53','00108','Rua 37 Norte','Lote 1','Norte (Águas Claras)','Edifício Cezanne - Apto. 1404','2016-06-09 21:59:40','2016-06-16 00:06:16'),(5,'Luciano','Carvalho de Medeiros Júnior','lucamenor@gmail.com','$2y$10$2UO1zKCEnYpEOWv.VCretO.bNzCIiCXjlQSAihO1Faae4F7IQWSim',NULL,'M','1989-02-05','76371095340','11932834063','07085190','35','18800','Rua Noventa e Dois','40','Parque Continental','','2016-06-13 23:39:12','2016-06-13 23:40:41'),(6,'Tomás','Barbosa Martins','tomasbarbosamartins@inbound.plus','$2y$10$RAaFKDFNT0p3IxtC9A652OjDAerk8k3eDdvlL4NRoONvER5NjT0Yu','zwCBUrZf7Hnkb7NVP8nWrZWXNp9aptGKJF1gXlzHXMMHcM3koHhCjeUwqgVd','M','1969-10-25','36783485307','88985709151','03278030','35','50308','Rua Gustavo Stach','795','Vila Ema','','2016-06-15 23:47:19','2016-06-15 23:48:27'),(7,'Julieta','Sousa Rocha','julietasousarocha@inbound.plus','$2y$10$4Cotcoj1Y1bAL1AgSz2U9u1hTqczg8Ntstmae46.O0gUgVd5iuJ52','TvleZM3FaS3ngQcou8aEnPGYneYdKUjnOkQbjtQisg241557bxEsJtyMrkCc','F','1967-03-04','52343142513','16983142824','14055664','35','43402','Travessa Delelmo Mazzo','329','Ipiranga','','2016-06-15 23:57:46','2016-06-16 00:00:54');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users_roles`
---
-
-DROP TABLE IF EXISTS `users_roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users_roles` (
-  `user_id` bigint(20) NOT NULL,
-  `role_id` bigint(20) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`,`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users_roles`
---
-
-LOCK TABLES `users_roles` WRITE;
-/*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (1,1,'2016-06-15 21:42:34');
-/*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -332,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-15 19:04:12
+-- Dump completed on 2016-06-21 19:03:29
