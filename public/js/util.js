@@ -31,6 +31,9 @@ $('.cpf').change(function () {
 });
 
 function formatarDataNascimento(input) {
+	if(!input)
+		return null;
+
 	function pad(s) {
 		return (s < 10) ? '0' + s : s;
 	}
@@ -41,13 +44,19 @@ function formatarDataNascimento(input) {
 }
 
 function formatarCPF(input) {
+	if (!input || input.length != 11)
+		return input;
 	return input.substring(0, 3) + '.' + input.substring(3, 6) + '.' + input.substring(6, 9) + '-' + input.substring(9);
 }
 
 function formatarCEP(input) {
+	if (!input || input.length != 8)
+		return input;
 	return input.substring(0, 3) + '.' + input.substring(3, 6) + '-' + input.substring(6);
 }
 
 function formatarTelefone(input) {
+	if (!input || input.length < 10 || input.length > 12)
+		return input;
 	return '(' + input.substring(0, 2) + ') ' + input.substring(2);
 }

@@ -206,7 +206,13 @@
                     <h4 class="nome"></h4>
                     <div class="row">
                         <div class="col s12">
-                            <div class="col s12 m6">
+                            <div id="information-alert" class="card card-alert card-alert-information nao-cadastrado">
+                                <div class="card-content">
+                                    <p>Dados do usu&aacute;rio n&atilde;o fornecidos!</p>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6 dados">
                                 <p><strong>CPF:</strong>&nbsp;&nbsp;<span class="cpf"></span></p>
                                 <p><strong>Sexo:</strong>&nbsp;&nbsp;<span class="sexo"></span></p>
                                 <p>
@@ -214,7 +220,7 @@
                                 </p>
                                 <p><strong>Telefone:</strong>&nbsp;&nbsp;<span class="telefone"></span></p>
                             </div>
-                            <div class="col s12 m6">
+                            <div class="col s12 m6 dados">
                                 <p><strong>Endere&ccedil;o:</strong></p>
                                 <p>
                                     <span class="logradouro"></span>,&nbsp;
