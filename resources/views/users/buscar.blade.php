@@ -168,7 +168,7 @@
                                                 <div class="col s12">
                                                     <div class="col s6 m4">
                                                         <a class="waves-effect waves-light btn btn-large btn-block"
-                                                           onclick="detalharUsuario({{ $us->id }})">
+                                                           onclick="detalharUsuario('#datalharUsuarioModal', '{{ $us->id }}')">
                                                             <i class="material-icons left">search</i>Detalhar
                                                         </a>
                                                     </div>
@@ -203,14 +203,39 @@
 
             <div id="datalharUsuarioModal" class="modal">
                 <div class="modal-content">
-                    <h4 id="detalharNome"></h4>
-                    <p><strong>CPF:</strong>&nbsp;&nbsp;<span id="detalharCpf"></span></p>
-                    <p><strong>Sexo:</strong>&nbsp;&nbsp;<span id="detalharSexo"></span></p>
-                    <p><strong>Data de nascimento:</strong>&nbsp;&nbsp;<span id="detalharDataNascimento"></span></p>
-                    <p><strong>Telefone:</strong>&nbsp;&nbsp;<span id="detalharTelefone"></span></p>
+                    <h4 class="nome"></h4>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="col s12 m6">
+                                <p><strong>CPF:</strong>&nbsp;&nbsp;<span class="cpf"></span></p>
+                                <p><strong>Sexo:</strong>&nbsp;&nbsp;<span class="sexo"></span></p>
+                                <p>
+                                    <strong>Data de nascimento:</strong>&nbsp;&nbsp;<span class="dataNascimento"></span>
+                                </p>
+                                <p><strong>Telefone:</strong>&nbsp;&nbsp;<span class="telefone"></span></p>
+                            </div>
+                            <div class="col s12 m6">
+                                <p><strong>Endere&ccedil;o:</strong></p>
+                                <p>
+                                    <span class="logradouro"></span>,&nbsp;
+                                    <span class="numero"></span>.&nbsp;
+                                    <span class="bairro"></span>
+                                </p>
+                                <p>
+                                    <span class="cep"></span>.&nbsp;
+                                    <span class="municipio"></span>&nbsp;-&nbsp;
+                                    <span class="uf"></span>
+                                </p>
+                                <p>
+                                    <span class="complemento"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
                 </div>
             </div>
         @endif
@@ -223,23 +248,12 @@
 
     <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
 
+    @include('layouts.angular')
+
     <script>
-        var detalharUsuario = function (id) {
-            var url = '{{ url('/users/{id}') }}'.replace('{id}', id);
-
-            $.getJSON(url, function(result){
-                console.log(result);
-
-                $('#detalharNome').html(result.name + " " + result.surname);
-                $('#detalharCpf').html(result.cpf);
-                $('#detalharSexo').html(result.sexo == 'F' ? 'Feminino' : (result.sexo == 'M' ? 'Masculino' : ''));
-                $('#detalharDataNascimento').html(dateToBrFormat(result.data_nascimento));
-                $('#detalharTelefone').html(result.telefone);
-
-                $('#datalharUsuarioModal').openModal();
-            });
-
-        };
+        var urlRecuperarUsuario = '{{ url('/users/{id}') }}';
     </script>
+
+    <script src="{{ asset('js/detalharUsuario.js') }}"></script>
 
 @endsection

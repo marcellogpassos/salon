@@ -13,7 +13,7 @@ var diasSemanaAbrev = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
 
 $(document).ready(function () {
 
-    $('.dataNascimento').pickadate({
+    $('input.dataNascimento').pickadate({
         format: 'dd/mm/yyyy',
         formatSubmit: 'yyyy-mm-dd',
         hiddenName: true,
