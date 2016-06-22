@@ -167,20 +167,21 @@
                                             <div class="row">
                                                 <div class="col s12">
                                                     <div class="col s6 m4">
-                                                        <a class="waves-effect waves-light btn btn-large btn-block"
+                                                        <a class="waves-effect waves-light btn btn-large btn-block blue"
                                                            onclick="detalharUsuario('#datalharUsuarioModal', '{{ $us->id }}')">
                                                             <i class="material-icons left">search</i>Detalhar
                                                         </a>
                                                     </div>
 
                                                     <div class="col s6 m4">
-                                                        <a class="waves-effect waves-light btn btn-large btn-block">
+                                                        <a href="{{ url('users/' . $us->id . '/roles') }}"
+                                                           class="waves-effect waves-light btn btn-large btn-block blue">
                                                             <i class="material-icons left">verified_user</i>Pap&eacute;is
                                                         </a>
                                                     </div>
 
                                                     <div class="col s6 m4">
-                                                        <a class="waves-effect waves-light btn btn-large btn-block">
+                                                        <a class="waves-effect waves-light btn btn-large btn-block blue">
                                                             <i class="material-icons left">shopping_cart</i>Caixa
                                                         </a>
                                                     </div>

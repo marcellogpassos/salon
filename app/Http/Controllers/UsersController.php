@@ -14,19 +14,16 @@ class UsersController extends Controller {
 
     public function __construct(UsersServiceInterface $service) {
         $this->usersService = $service;
-
         $this->middleware('auth');
     }
 
     public function mostrarFormBuscarUsuarios(Request $request) {
         $userId = $request->input('user');
-
         return view('users.buscar');
     }
 
     public function mostrarUsuariosEncontrados(UsersBuscarRequest $request) {
         $usersEncontrados = $this->usersService->buscar($request->all());
-
         return view('users.buscar')
             ->with('usersEncontrados', $usersEncontrados)
             ->with('buscaPrevia', $request->all());
@@ -36,11 +33,14 @@ class UsersController extends Controller {
         return view('users.dados')->with('user', Auth::user());
     }
 
+    public function mostrarFormGerenciarPapeis($id) {
+        $user = $this->usersService->getUser($id);
+        return view('users.roles')->with('user', $user);
+    }
+
     public function editarDadosUsuario(UsersDadosRequest $request) {
         $usuarioAtualizado = $this->usersService->atualizarPropriosDados($request->all());
-
         showMessage('success', 0, [$usuarioAtualizado->name]);
-
         return redirect('home');
     }
 
