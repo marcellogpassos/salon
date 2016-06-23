@@ -14,13 +14,13 @@
 
                 <div class="card white">
 
+                    <h4 class="card-title">Buscar usu&aacute;rio</h4>
+
                     <form id="userForm" class="form-horizontal" method="POST" action="{{ url('/users/buscar') }}"
                           role="form">
                         {{ csrf_field() }}
 
                         <div class="card-content gray-text text-darken-4">
-
-                            <h4 class="card-title">Buscar usu&aacute;rio</h4>
 
                             <div class="row">
 
@@ -145,8 +145,10 @@
                 <div class="col s12">
 
                     <div class="card white usuarios-encontrados">
+
+                        <h4 class="card-title">Usu&aacute;rios encontrados</h4>
+
                         <div class="card-content gray-text text-darken-4">
-                            <h4 class="card-title">Usu&aacute;rios encontrados</h4>
 
                             <ul class="collapsible popout" data-collapsible="accordion">
 

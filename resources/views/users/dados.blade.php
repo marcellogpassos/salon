@@ -14,13 +14,13 @@
 
                 <div class="card white">
 
+                    <h4 class="card-title">Dados do usu&aacute;rio</h4>
+
                     <form id="userForm" class="form-horizontal" method="POST" action="{{ url('/users/dados') }}"
                           role="form">
                         {{ csrf_field() }}
 
                         <div class="card-content gray-text text-darken-4">
-
-                            <h4 class="card-title">Dados do usu&aacute;rio</h4>
 
                             <div class="row">
 

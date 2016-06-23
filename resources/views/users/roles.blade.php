@@ -14,14 +14,14 @@
 
                 <div class="card white">
 
+                    <h4 class="card-title">Gerenciar Pap&eacute;is</h4>
+
                     <form id="userRoleForm" class="form-horizontal" method="POST"
                           action="{{ url('/users/{id}/addRole') }}"
                           role="form">
                         {{ csrf_field() }}
 
                         <div class="card-content gray-text text-darken-4">
-
-                            <h4 class="card-title">Gerenciar Pap&eacute;is</h4>
 
                             <div class="row">
                                 <div class="input-field col s12 offset-m3 m6">
@@ -32,12 +32,15 @@
                             </div>
 
                             <div class="row">
-                                <div class="col s12 offset-m3 m6">
-                                    <label for="roleInput">Papel</label>
-                                    <select id="roleInput" name="role_id" class="browser-default" required>
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Barbeiro</option>
-                                        <option value="3">Caixa</option>
+                                <div class="input-field col s12 offset-m3 m6">
+                                    <label for="roleInput" class="active">Papel</label>
+                                    <select id="roleInput" name="roles" required multiple>
+                                        <option value="" disabled>Selecione os pap&eacute;is do usu&aacute;rio</option>
+                                        @foreach($roles as $role)
+                                            <option value="{{$role->id}}" {{$user->possuiRole($role) ? ' selected' : ''}}>
+                                                {{$role->descricao}}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -48,7 +51,7 @@
                             <div class="row">
                                 <div class="col s12 m4 offset-m4 grid-example">
                                     <button type="submit" class="btn btn-block waves-effect waves-light blue">
-                                        Adicionar
+                                        Salvar
                                     </button>
                                 </div>
                             </div>
