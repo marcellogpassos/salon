@@ -32,4 +32,8 @@ class UsersService implements UsersServiceInterface {
         return $this->usersRepository->getById($id);
     }
 
+    public function sincronizarPapeis($userId, array $roles) {
+        return $this->usersRepository->sincronizarPapeis($userId, $roles);
+    }
+
 }

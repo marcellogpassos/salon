@@ -9,7 +9,8 @@ return [
     'information' => [],
 
     'success' => [
-        'Dados de {0} atualizados com sucesso!',                                                                               // 0
+        'Dados de {0} atualizados com sucesso!',                                                                        // 0
+        'Papéis do usuário definidos com sucesso!',                                                                     // 1
     ],
 
     'warning' => [

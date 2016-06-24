@@ -27,4 +27,5 @@ Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
 Route::post('users/dados', 'UsersController@editarDadosUsuario');
 
 Route::get('users/{id}/roles', 'UsersController@mostrarFormGerenciarPapeis');
+Route::post('users/{id}/roles', 'UsersController@editarPapeis');
 Route::get('users/{id}', 'UsersController@recuperarUsuario');

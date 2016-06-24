@@ -17,7 +17,7 @@
                     <h4 class="card-title">Gerenciar Pap&eacute;is</h4>
 
                     <form id="userRoleForm" class="form-horizontal" method="POST"
-                          action="{{ url('/users/{id}/addRole') }}"
+                          action="{{ url('/users/' . $user->id . '/roles') }}"
                           role="form">
                         {{ csrf_field() }}
 
@@ -33,15 +33,17 @@
 
                             <div class="row">
                                 <div class="input-field col s12 offset-m3 m6">
-                                    <label for="roleInput" class="active">Papel</label>
-                                    <select id="roleInput" name="roles" required multiple>
-                                        <option value="" disabled>Selecione os pap&eacute;is do usu&aacute;rio</option>
-                                        @foreach($roles as $role)
-                                            <option value="{{$role->id}}" {{$user->possuiRole($role) ? ' selected' : ''}}>
-                                                {{$role->descricao}}
-                                            </option>
-                                        @endforeach
-                                    </select>
+
+                                    @foreach($roles as $role)
+                                        <div class="col s12 m6 input-role">
+                                            <p>
+                                                <input id="{{ 'role-' . $role->id }}" name="roles[]" value="{{$role->id}}"
+                                                       {{$user->possuiRole($role) ? ' checked' : ''}} type="checkbox"/>
+                                                <label for="{{ 'role-' . $role->id }}">{{$role->descricao}}</label>
+                                            </p>
+                                        </div>
+                                    @endforeach
+
                                 </div>
                             </div>
 

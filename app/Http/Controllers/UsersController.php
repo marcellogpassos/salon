@@ -50,6 +50,12 @@ class UsersController extends Controller {
 		return redirect('home');
 	}
 
+	public function editarPapeis($id, Request $request) {
+		$this->usersService->sincronizarPapeis($id, $request->input('roles'));
+		showMessage('success', 1);
+		return $this->mostrarFormGerenciarPapeis($id);
+	}
+
 	public function recuperarUsuario($id) {
 		$user = $this->usersService->getUser($id);
 		return response()->json($user);
