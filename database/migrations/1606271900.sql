@@ -103,12 +103,16 @@ DROP TABLE IF EXISTS `marcas_produtos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `marcas_produtos` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(255) NOT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `nome_fornecedor` varchar(255) DEFAULT NULL,
+  `telefone_fornecedor` char(12) DEFAULT NULL,
+  `email_fornecedor` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,6 +121,7 @@ CREATE TABLE `marcas_produtos` (
 
 LOCK TABLES `marcas_produtos` WRITE;
 /*!40000 ALTER TABLE `marcas_produtos` DISABLE KEYS */;
+INSERT INTO `marcas_produtos` VALUES (1,'MIRRA COSMÉTICOS','http://www.mirracosmeticos.com/','Carolline Passos','83987456321','carolline@mirra.com.br','2016-06-27 20:52:28',NULL),(2,'L\'OREAL','http://www.loreal.com.br/','Yasmin Ribeiro Cunha','5441996845','yasmin@loreal.com','2016-06-27 20:56:58',NULL),(3,'AVON PRODUCTS','http://www.avoncompany.com/','Larissa Rocha Araujo','5133632483','larissa@avon.com','2016-06-27 20:56:58',NULL),(4,'CHANEL','http://www.chanel.com/pt_BR/','Amanda Dias Martins','1163687350','amanda@chanel.com','2016-06-27 20:56:58',NULL);
 /*!40000 ALTER TABLE `marcas_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +224,7 @@ CREATE TABLE `role_user` (
 
 LOCK TABLES `role_user` WRITE;
 /*!40000 ALTER TABLE `role_user` DISABLE KEYS */;
-INSERT INTO `role_user` VALUES (1,1,'2016-06-15 21:42:34'),(1,7,'2016-06-21 19:12:06'),(2,3,'2016-06-21 19:26:46');
+INSERT INTO `role_user` VALUES (1,1,'2016-06-15 21:42:34'),(1,6,NULL),(1,7,'2016-06-21 19:12:06'),(2,1,NULL),(2,3,'2016-06-21 19:26:46'),(2,6,NULL);
 /*!40000 ALTER TABLE `role_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,4 +337,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-21 19:03:29
+-- Dump completed on 2016-06-27 19:00:30
