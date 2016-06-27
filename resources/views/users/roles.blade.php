@@ -17,7 +17,7 @@
                     <h4 class="card-title">Gerenciar Pap&eacute;is</h4>
 
                     <form id="userRoleForm" class="form-horizontal" method="POST"
-                          action="{{ url('/users/' . $user->id . '/roles') }}"
+                          action="{{ url('/users/' . $user->id . '/papeis') }}"
                           role="form">
                         {{ csrf_field() }}
 

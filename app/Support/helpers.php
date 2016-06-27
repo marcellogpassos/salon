@@ -28,3 +28,13 @@ if (!function_exists('showMessage')) {
     }
 
 }
+
+if (!function_exists('telefoneFormat')) {
+
+    function telefoneFormat($input) {
+        if(!$input || strlen ( $input ) < 10 || strlen ( $input ) > 12)
+            return $input;
+        return '(' . substr($input, 0, 2) . ') ' . substr($input, 2);
+    }
+
+}
