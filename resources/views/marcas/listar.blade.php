@@ -5,8 +5,10 @@
 @endsection
 
 @section('content')
-
     <div class="container">
+
+        @include('layouts.messages')
+
         <div class="row">
             <div class="col s12">
 
@@ -54,7 +56,7 @@
 
                                         <div class="row">
                                             <div class="col s12">
-                                                <div class="col s12 m4 offset-m2 grid-example">
+                                                <div class="col s12 m4 grid-example">
                                                     <a class="btn btn-block waves-effect waves-light blue" href="#!">
                                                         Ver produtos
                                                     </a>
@@ -62,6 +64,11 @@
                                                 <div class="col s12 m4 grid-example">
                                                     <a class="btn btn-block waves-effect waves-light blue" href="#!">
                                                         Editar
+                                                    </a>
+                                                </div>
+                                                <div class="col s12 m4 grid-example">
+                                                    <a class="btn btn-block waves-effect waves-light blue" href="#!">
+                                                        Excluir
                                                     </a>
                                                 </div>
                                             </div>
@@ -78,7 +85,8 @@
                     <div class="card-action">
                         <div class="row">
                             <div class="col s12 m4 offset-m4 grid-example">
-                                <a class="btn btn-block waves-effect waves-light blue" href="#!">
+                                <a class="btn btn-block waves-effect waves-light blue"
+                                   href="{{ url('/marcas/cadastrar') }}">
                                     Cadastrar nova marca
                                 </a>
                             </div>
@@ -88,8 +96,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 @endsection
 
 @section('scripts')

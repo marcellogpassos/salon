@@ -171,7 +171,6 @@
 
 @section('scripts')
 
-    <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
     @include('layouts.angular')
     <script src="{{ asset('js/enderecos.js') }}"></script>
 

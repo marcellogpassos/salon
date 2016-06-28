@@ -22,4 +22,10 @@ class MarcasProdutosService implements MarcasProdutosServiceInterface {
 	public function listarTodasOrdenarPorDescricao() {
 		return $this->marcasRepository->getAll('descricao');
 	}
+
+	public function cadastrar(array $attributes) {
+		if(!$attributes)
+			abort(400);
+		return $this->marcasRepository->create($attributes);
+	}
 }

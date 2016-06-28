@@ -13,4 +13,6 @@ interface MarcasProdutosRepositoryInterface {
 
 	public function getAll($orderBy);
 
+	public function create(array $attributes);
+
 }

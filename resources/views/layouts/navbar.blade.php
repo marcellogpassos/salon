@@ -1,8 +1,8 @@
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">{{ env('APP_NAME') }}</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/home') }}" class="brand-logo">{{ env('APP_NAME') }}</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="{{ url('/home') }}">Home</a></li>
             @if (Auth::guest())
+                <li><a href="{{ url('/home') }}">Home</a></li>
                 <li><a href="{{ url('/login') }}">Entrar</a></li>
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
@@ -48,8 +48,8 @@
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
-            <li><a href="{{ url('/home') }}">Home</a></li>
             @if (Auth::guest())
+                <li><a href="{{ url('/home') }}">Home</a></li>
                 <li><a href="{{ url('/login') }}">Entrar</a></li>
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
