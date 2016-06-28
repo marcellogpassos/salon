@@ -30,19 +30,19 @@
 
                                         <div class="row">
                                             <div class="col s12">
-                                                <div class="col s6 m4">
+                                                <div class="col s12 m4">
                                                     <p>
                                                         <strong>Fornecedor:</strong>&nbsp;{{ $marca->nome_fornecedor }}
                                                     </p>
                                                 </div>
 
-                                                <div class="col s6 m4">
+                                                <div class="col s12 m4">
                                                     <p>
                                                         <strong>E-mail:</strong>&nbsp;{{ $marca->email_fornecedor }}
                                                     </p>
                                                 </div>
 
-                                                <div class="col s6 m4">
+                                                <div class="col s12 m4">
                                                     <p>
                                                         <strong>Telefone:</strong>&nbsp;
                                                         {{ telefoneFormat($marca->telefone_fornecedor) }}
@@ -53,15 +53,17 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col s12 m4 offset-m2 grid-example">
-                                                <a class="btn btn-block waves-effect waves-light blue" href="#!">
-                                                    Ver produtos
-                                                </a>
-                                            </div>
-                                            <div class="col s12 m4 grid-example">
-                                                <a class="btn btn-block waves-effect waves-light blue" href="#!">
-                                                    Editar
-                                                </a>
+                                            <div class="col s12">
+                                                <div class="col s12 m4 offset-m2 grid-example">
+                                                    <a class="btn btn-block waves-effect waves-light blue" href="#!">
+                                                        Ver produtos
+                                                    </a>
+                                                </div>
+                                                <div class="col s12 m4 grid-example">
+                                                    <a class="btn btn-block waves-effect waves-light blue" href="#!">
+                                                        Editar
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -71,6 +73,16 @@
 
                         </ul>
 
+                    </div>
+
+                    <div class="card-action">
+                        <div class="row">
+                            <div class="col s12 m4 offset-m4 grid-example">
+                                <a class="btn btn-block waves-effect waves-light blue" href="#!">
+                                    Cadastrar nova marca
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

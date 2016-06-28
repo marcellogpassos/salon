@@ -158,6 +158,7 @@ return [
 
 		App\Providers\UsersServiceProvider::class,
 		App\Providers\RolesServiceProvider::class,
+		App\Providers\MarcasProdutosServiceProvider::class,
 
 	],
 
