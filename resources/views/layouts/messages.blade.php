@@ -16,6 +16,15 @@
     </div>
 @endif
 
+@if (session('error'))
+    <div id="error-alert" class="card card-alert card-alert-error">
+        <div class="card-content">
+            <a href="#!" class="close" data-dismiss="#error-alert">&times;</a>
+            <p>{{ session('error') }}</p>
+        </div>
+    </div>
+@endif
+
 @if (session('information'))
     <div id="information-alert" class="card card-alert card-alert-information">
         <div class="card-content">
