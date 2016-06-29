@@ -20,9 +20,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('marcas/listar', 'MarcasProdutosController@mostrarListaMarcasProdutos');
 Route::get('marcas/cadastrar', 'MarcasProdutosController@mostrarFormCadastrarMarcaProduto');
 Route::post('marcas/cadastrar', 'MarcasProdutosController@cadastrarMarcaProduto');
+Route::get('marcas/{id}/excluir', 'MarcasProdutosController@excluirMarcaProduto');
+Route::get('marcas', 'MarcasProdutosController@mostrarListaMarcasProdutos');
 
 Route::get('users/buscar', 'UsersController@mostrarFormBuscarUsuarios');
 Route::post('users/buscar', 'UsersController@mostrarUsuariosEncontrados');

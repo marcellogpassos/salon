@@ -13,20 +13,29 @@ use App\MarcasProdutos;
 
 class MarcasProdutosRepository implements MarcasProdutosRepositoryInterface {
 
-    protected $model;
+	protected $model;
 
-    public function __construct(MarcasProdutos $model) {
-        $this->model = $model;
-    }
+	public function __construct(MarcasProdutos $model) {
+		$this->model = $model;
+	}
 
-    public function getAll($orderBy) {
-        if (!$orderBy)
-            return $this->model->all();
-        return $this->model->orderBy($orderBy)->get();
-    }
+	public function getAll($orderBy) {
+		if (!$orderBy)
+			return $this->model->all();
+		return $this->model->orderBy($orderBy)->get();
+	}
 
-    public function create(array $attributes) {
-        return $this->model->create($attributes);
-    }
-    
+	public function getById($id) {
+		return $this->model->findOrFail($id);
+	}
+
+	public function create(array $attributes) {
+		return $this->model->create($attributes);
+	}
+
+	public function delete($id) {
+		return $this->getById($id)->delete();
+		return true;
+	}
+
 }

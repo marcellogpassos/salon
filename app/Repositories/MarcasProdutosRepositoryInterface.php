@@ -11,7 +11,11 @@ namespace App\Repositories;
 
 interface MarcasProdutosRepositoryInterface {
 
+	public function delete($id);
+
 	public function getAll($orderBy);
+
+	public function getById($id);
 
 	public function create(array $attributes);
 

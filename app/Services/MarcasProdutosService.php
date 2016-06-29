@@ -28,4 +28,12 @@ class MarcasProdutosService implements MarcasProdutosServiceInterface {
 			abort(400);
 		return $this->marcasRepository->create($attributes);
 	}
+
+	public function deletar($id) {
+		return $this->marcasRepository->delete($id);
+	}
+
+	public function getById($id) {
+		return $this->marcasRepository->getById($id);
+	}
 }

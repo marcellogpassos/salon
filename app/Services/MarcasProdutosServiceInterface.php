@@ -15,4 +15,8 @@ interface MarcasProdutosServiceInterface {
 
 	public function cadastrar(array $attributes);
 
+	public function deletar($id);
+
+	public function getById($id);
+
 }
