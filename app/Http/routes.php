@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('marcas/cadastrar', 'MarcasProdutosController@mostrarFormCadastrarMarcaProduto');
 Route::post('marcas/cadastrar', 'MarcasProdutosController@cadastrarMarcaProduto');
+Route::get('marcas/{id}/editar', 'MarcasProdutosController@mostrarFormEditarMarcaProduto');
+Route::post('marcas/{id}/editar', 'MarcasProdutosController@editarMarcaProduto');
 Route::get('marcas/{id}/excluir', 'MarcasProdutosController@excluirMarcaProduto');
 Route::get('marcas', 'MarcasProdutosController@mostrarListaMarcasProdutos');
 

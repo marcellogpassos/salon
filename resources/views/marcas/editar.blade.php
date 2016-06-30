@@ -14,9 +14,10 @@
 
                 <div class="card white">
 
-                    <h4 class="card-title">Cadastrar nova marca de produtos</h4>
+                    <h4 class="card-title">Editar marca de produto</h4>
 
-                    <form id="marcasForm" method="POST" action="{{ url('/marcas/cadastrar') }}" role="form">
+                    <form id="marcasForm" method="POST" action="{{ url('/marcas/'. $marca->id . '/editar') }}"
+                          role="form">
 
                         {{ csrf_field() }}
 

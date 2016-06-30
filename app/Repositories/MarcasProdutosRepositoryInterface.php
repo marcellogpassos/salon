@@ -19,4 +19,6 @@ interface MarcasProdutosRepositoryInterface {
 
 	public function create(array $attributes);
 
+	public function update($id, array $attributes);
+
 }

@@ -15,6 +15,7 @@ return [
 		'Papéis do usuário definidos com sucesso!',                                                                     // 1
 		'Marca {0} cadastrada com sucesso!',                                                                            // 2
 		'Marca {0} deletada com sucesso!',                                                                              // 3
+		'Marca {0} atualizada com sucesso!',                                                                            // 4
 	],
 
 	'warning' => [

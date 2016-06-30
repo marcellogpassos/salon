@@ -33,6 +33,12 @@ class MarcasProdutosRepository implements MarcasProdutosRepositoryInterface {
 		return $this->model->create($attributes);
 	}
 
+	public function update($id, array $attributes) {
+		$marca = $this->model->findOrFail($id);
+		$marca->update($attributes);
+		return $marca;
+	}
+
 	public function delete($id) {
 		return $this->getById($id)->delete();
 		return true;

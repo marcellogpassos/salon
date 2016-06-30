@@ -62,7 +62,8 @@
                                                     </a>
                                                 </div>
                                                 <div class="col s12 m4 grid-example">
-                                                    <a class="btn btn-block waves-effect waves-light blue" href="#!">
+                                                    <a class="btn btn-block waves-effect waves-light blue"
+                                                       href="{{ url('/marcas/' . $marca->id . '/editar') }}">
                                                         Editar
                                                     </a>
                                                 </div>

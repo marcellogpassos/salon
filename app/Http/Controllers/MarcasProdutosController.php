@@ -7,7 +7,7 @@ use App\Services\MarcasProdutosServiceInterface;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\CadastrarMarcasProdutosRequest;
+use App\Http\Requests\MarcasProdutosRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class MarcasProdutosController extends Controller {
@@ -29,9 +29,21 @@ class MarcasProdutosController extends Controller {
         return view('marcas.cadastrar');
     }
 
-    public function cadastrarMarcaProduto(CadastrarMarcasProdutosRequest $request) {
+    public function mostrarFormEditarMarcaProduto($id) {
+        $marca = $this->marcasService->getById($id);
+        return view('marcas.editar')
+            ->with('marca', $marca);
+    }
+
+    public function cadastrarMarcaProduto(MarcasProdutosRequest $request) {
         $marca = $this->marcasService->cadastrar($request->all());
         showMessage('success', 2, [$marca->descricao]);
+        return Redirect::to('/marcas');
+    }
+
+    public function editarMarcaProduto($id, MarcasProdutosRequest $request) {
+        $marca = $this->marcasService->atualizar($id, $request->all());
+        showMessage('success', 4, [$marca->descricao]);
         return Redirect::to('/marcas');
     }
 

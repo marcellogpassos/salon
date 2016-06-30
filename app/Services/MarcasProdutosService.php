@@ -13,27 +13,31 @@ use App\Repositories\MarcasProdutosRepositoryInterface;
 
 class MarcasProdutosService implements MarcasProdutosServiceInterface {
 
-	protected $marcasRepository;
+    protected $marcasRepository;
 
-	public function __construct(MarcasProdutosRepositoryInterface $repository) {
-		$this->marcasRepository = $repository;
-	}
+    public function __construct(MarcasProdutosRepositoryInterface $repository) {
+        $this->marcasRepository = $repository;
+    }
 
-	public function listarTodasOrdenarPorDescricao() {
-		return $this->marcasRepository->getAll('descricao');
-	}
+    public function listarTodasOrdenarPorDescricao() {
+        return $this->marcasRepository->getAll('descricao');
+    }
 
-	public function cadastrar(array $attributes) {
-		if(!$attributes)
-			abort(400);
-		return $this->marcasRepository->create($attributes);
-	}
+    public function atualizar($id, array $attributes) {
+        return $this->marcasRepository->update($id, $attributes);
+    }
 
-	public function deletar($id) {
-		return $this->marcasRepository->delete($id);
-	}
+    public function cadastrar(array $attributes) {
+        if (!$attributes)
+            abort(400);
+        return $this->marcasRepository->create($attributes);
+    }
 
-	public function getById($id) {
-		return $this->marcasRepository->getById($id);
-	}
+    public function deletar($id) {
+        return $this->marcasRepository->delete($id);
+    }
+
+    public function getById($id) {
+        return $this->marcasRepository->getById($id);
+    }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class CadastrarMarcasProdutosRequest extends Request {
+class MarcasProdutosRequest extends Request {
 
     public function authorize() {
         return true;
@@ -23,7 +23,7 @@ class CadastrarMarcasProdutosRequest extends Request {
 
     public function rules() {
         return [
-            'descricao' => 'min:3|max:255|required|unique:marcas_produtos,descricao',
+            'descricao' => 'min:3|max:255|required|unique:marcas_produtos,descricao,' . $this->route('id'),
             'website' => 'max:255|url',
             'nome_fornecedor' => 'max:255',
             'email_fornecedor' => 'max:255|email',

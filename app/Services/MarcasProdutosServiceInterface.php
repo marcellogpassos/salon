@@ -13,6 +13,8 @@ interface MarcasProdutosServiceInterface {
 
 	public function listarTodasOrdenarPorDescricao();
 
+	public function atualizar($id, array $attributes);
+
 	public function cadastrar(array $attributes);
 
 	public function deletar($id);
