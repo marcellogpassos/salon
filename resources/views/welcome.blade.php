@@ -12,9 +12,15 @@
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
                         <span class="card-title">Bem vindo!</span>
-                        <p>Este &eacute; um projeto em branco de Laravel e Materialize CSS. Toda a parte da autentica&ccedil;&atilde;o
-                            est&aacute; implementada para facilitar a constru&ccedil;&atilde;o de projetos futuros. Fa&ccedil;a
-                            bom uso da ferramenta!</p>
+                        <p>
+                            Sistema completo gerenciamento de barbearias / sal&otilde;es de beleza / est&eacute;tica /
+                            manicure e pedicure. Agende hor&aacute;rios para atendimento dos(as) seus(suas) clientes ou
+                            permita-os agendar pela internet. Obtenha estat&iacute;sticas de vendas de produtos ou servi&ccedil;os
+                            oferecidos. Controle a sua rela&ccedil;&atilde;o de funcion&aacute;rios e fornecedores com
+                            facilidade. Registre suas vendas com seguran&ccedil;a. Tenha acesso &agrave; suas informa&ccedil;&otilde;es
+                            gerenciais de qualquer lugar e a qualquer hora. Realize campanhas de e-mail marketing e
+                            divulgue seu neg&oacute;cio pela internet.
+                        </p>
                     </div>
                     <div class="card-action">
                         <a href="#">Saiba mais</a>
