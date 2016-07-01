@@ -127,7 +127,7 @@
                                 </div>
                             @endif
 
-                            <div class="g-recaptcha" data-sitekey="6LdnIiITAAAAAM9b1tn-bCFSHApXKpJxewkABv_k"></div>
+                            <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_KEY') }}"></div>
 
                             @if ($errors->has('g-recaptcha-response'))
                                 <div id="card-alert" class="card red lighten-5">
