@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoriasProdutos;
+use App\MarcasProdutos;
 use App\Produto;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,9 @@ class ProdutosController extends Controller {
 
     public function mostrarListaProdutos() {
         return view('produtos.listar')
-            ->with('produtos', Produto::all());
+            ->with('produtosEncontrados', Produto::all())
+            ->with('categoriasProdutos', CategoriasProdutos::all())
+            ->with('marcasProdutos', MarcasProdutos::all());
     }
 
 }
