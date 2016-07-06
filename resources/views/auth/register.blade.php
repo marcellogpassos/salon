@@ -12,12 +12,12 @@
 
                 <div class="card white">
 
+                    <h4 class="card-title">Cadastre-se</h4>
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
                         <div class="card-content grey-text text-darken-3">
-
-                            <h4 class="card-title">Cadastre-se</h4>
 
                             <div class="row">
 

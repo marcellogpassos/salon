@@ -89,7 +89,7 @@
 
                     <div id="information-alert" class="card card-alert card-alert-information">
                         <div class="card-content">
-                            <p>Consulta realizada com sucesso! {{ count($produtosEncontrados) }} resultado(s) encontrado(s).</p>
+                            <p>Consulta realizada com sucesso! {{ $produtosEncontrados->total() }} resultado(s) encontrado(s).</p>
                         </div>
                     </div>
 
@@ -131,7 +131,7 @@
                                 <div class="card-action">
                                     <div class="row">
                                         <div class="col s12">
-
+                                            {{ $produtosEncontrados }}
                                         </div>
                                     </div>
                                 </div>

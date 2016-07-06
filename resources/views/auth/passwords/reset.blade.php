@@ -12,14 +12,14 @@
 
                 <div class="card white">
 
+                    <h4 class="card-title">Redefinir senha</h4>
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
                         {{ csrf_field() }}
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="card-content grey-text text-darken-3">
-
-                            <h4 class="card-title">Redefinir senha</h4>
 
                             <div class="row">
 
