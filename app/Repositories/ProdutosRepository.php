@@ -31,4 +31,8 @@ class ProdutosRepository implements ProdutosRepositoryInterface {
 			->paginate($this->perPage);
 	}
 
+	public function buscar($criterios) {
+		dd($criterios);
+	}
+
 }

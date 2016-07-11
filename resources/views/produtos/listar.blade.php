@@ -16,7 +16,8 @@
 
                     <h4 class="card-title">Produtos cadastrados</h4>
 
-                    <form id="produtosForm" class="form-horizontal" method="POST" action="" role="form">
+                    <form id="produtosForm" class="form-horizontal" method="POST" action="{{ url('produtos/buscar') }}"
+                          role="form">
                         {{ csrf_field() }}
 
                         <div class="card-content gray-text text-darken-4">
@@ -89,7 +90,8 @@
 
                     <div id="information-alert" class="card card-alert card-alert-information">
                         <div class="card-content">
-                            <p>Consulta realizada com sucesso! {{ $produtosEncontrados->total() }} resultado(s) encontrado(s).</p>
+                            <p>Consulta realizada com sucesso! {{ $produtosEncontrados->total() }} resultado(s)
+                                encontrado(s).</p>
                         </div>
                     </div>
 

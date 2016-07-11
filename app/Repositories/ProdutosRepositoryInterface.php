@@ -12,5 +12,7 @@ namespace App\Repositories;
 interface ProdutosRepositoryInterface {
 
 	public function getAll($orderBy);
+	
+	public function buscar($criterios);
 
 }

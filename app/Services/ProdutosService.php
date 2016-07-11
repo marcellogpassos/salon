@@ -23,4 +23,8 @@ class ProdutosService implements ProdutosServiceInterface {
 		return $this->produtosRepository->getAll('descricao');
 	}
 
+	public function buscar($criterios) {
+		return $this->produtosRepository->buscar($criterios);
+	}
+
 }

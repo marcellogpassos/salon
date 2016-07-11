@@ -13,4 +13,6 @@ interface ProdutosServiceInterface {
 
 	public function listarTodasOrdenarPorDescricao();
 
+	public function buscar($criterios);
+
 }
