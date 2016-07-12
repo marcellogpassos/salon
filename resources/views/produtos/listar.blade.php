@@ -16,15 +16,26 @@
 
                     <h4 class="card-title">Produtos cadastrados</h4>
 
-                    <form id="produtosForm" class="form-horizontal" method="POST" action="{{ url('produtos/buscar') }}"
+                    <form id="produtosForm" class="form-horizontal" method="GET" action="{{ url('produtos/buscar') }}"
                           role="form">
-                        {{ csrf_field() }}
 
                         <div class="card-content gray-text text-darken-4">
 
                             <div class="row">
 
-                                <div class="input-field col s12 offset-m2 m8">
+                                <div class="input-field col s12 offset-m2 m2">
+                                    <input id="codigoInput" name="id" type="text" maxlength="16"
+                                           value="{{
+
+                                                old('id') ?
+                                                    old('id') : isset($buscaPrevia) ?
+                                                        $buscaPrevia['id'] : ""
+
+                                           }}" class="validate">
+                                    <label for="codigoInput">C&oacute;digo</label>
+                                </div>
+
+                                <div class="input-field col s12 m6">
                                     <input id="descricaoInput" name="descricao" type="text" maxlength="255"
                                            value="{{
 
@@ -40,24 +51,30 @@
 
                             <div class="row">
 
-                                <div class="input-field col offset-m2 s12 m4">
-                                    <select id="categoriaProdutoInput" name="categoria_id">
+                                <div class="col offset-m2 s12 m4">
+                                    <label for="categoriaProdutoInput" class="active">Categoria</label>
+                                    <select id="categoriaProdutoInput" name="categoria_id" class="browser-default">
                                         <option value="" selected></option>
                                         @foreach($categoriasProdutos as $categoria)
-                                            <option value="{{ $categoria->id }}">{{ $categoria->descricao }}</option>
+                                            <option value="{{ $categoria->id }}"
+                                                    {!! (old('categoria_id') == $categoria->id || (isset($buscaPrevia['categoria_id']) && $buscaPrevia['categoria_id'] == $categoria->id)) ? ' selected' : '' !!}>
+                                                {{ $categoria->descricao }}
+                                            </option>
                                         @endforeach
                                     </select>
-                                    <label for="categoriaProdutoInput">Categoria</label>
                                 </div>
 
-                                <div class="input-field col s12 m4">
-                                    <select id="marcaProdutoInput" name="marca_id">
+                                <div class="col s12 m4">
+                                    <label for="marcaProdutoInput" class="active">Marca</label>
+                                    <select id="marcaProdutoInput" name="marca_id" class="browser-default">
                                         <option value="" selected></option>
                                         @foreach($marcasProdutos as $marca)
-                                            <option value="{{ $marca->id }}">{{ $marca->descricao }}</option>
+                                            <option value="{{ $marca->id }}"
+                                                    {!! (old('marca_id') == $marca->id || (isset($buscaPrevia['marca_id']) && $buscaPrevia['marca_id'] == $marca->id)) ? ' selected' : '' !!}>
+                                                {{ $marca->descricao }}
+                                            </option>
                                         @endforeach
                                     </select>
-                                    <label for="marcaProdutoInput">Marca</label>
                                 </div>
 
                             </div>
@@ -90,7 +107,9 @@
 
                     <div id="information-alert" class="card card-alert card-alert-information">
                         <div class="card-content">
-                            <p>Consulta realizada com sucesso! {{ $produtosEncontrados->total() }} resultado(s)
+                            <p>Consulta realizada com sucesso!
+                                {{ $resultadosPaginados ? $produtosEncontrados->total() : count($produtosEncontrados)}}
+                                resultado(s)
                                 encontrado(s).</p>
                         </div>
                     </div>
@@ -133,7 +152,9 @@
                                 <div class="card-action">
                                     <div class="row">
                                         <div class="col s12">
-                                            {{ $produtosEncontrados }}
+                                            @if($resultadosPaginados)
+                                                {{ $produtosEncontrados }}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

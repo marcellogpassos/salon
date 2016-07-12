@@ -27,8 +27,7 @@ Route::post('marcas/{id}/editar', 'MarcasProdutosController@editarMarcaProduto')
 Route::get('marcas/{id}/excluir', 'MarcasProdutosController@excluirMarcaProduto');
 Route::get('marcas', 'MarcasProdutosController@mostrarListaMarcasProdutos');
 
-Route::get('produtos', 'ProdutosController@mostrarFormBuscarProdutos');
-Route::post('produtos/buscar', 'ProdutosController@mostrarProdutosEncontrados');
+Route::get('produtos/buscar', 'ProdutosController@mostrarProdutosEncontrados');
 
 Route::get('users/buscar', 'UsersController@mostrarFormBuscarUsuarios');
 Route::post('users/buscar', 'UsersController@mostrarUsuariosEncontrados');

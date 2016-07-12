@@ -29,16 +29,23 @@ class ProdutosController extends Controller {
         $this->middleware('auth');
     }
 
-    public function mostrarFormBuscarProdutos() {
-        $produtos = $this->produtosService->listarTodasOrdenarPorDescricao();
-        return view('produtos.listar')
-            ->with('produtosEncontrados', $produtos)
-            ->with('categoriasProdutos', $this->categoriasProdutosService->listarTodasOrdenarPorDescricao())
-            ->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
+    public function mostrarProdutosEncontrados(ProdutosBuscarRequest $request) {
+        if(!$request->all() || (count($request->all()) == 1 && $request->all()['page'])){
+            $produtos = $this->produtosService->listarTodasOrdenarPorDescricao();
+            return $this->returnViewProdutosListar($produtos, true);
+        } else {
+            $produtos = $this->produtosService->buscar($request->all());
+            return $this->returnViewProdutosListar($produtos, false, $request->all());
+        }
     }
 
-    public function mostrarProdutosEncontrados(ProdutosBuscarRequest $request) {
-        $produtos = $this->produtosService->buscar($request->all());
+    public function returnViewProdutosListar($produtos, $resultadosPaginados, $buscaPrevia = null) {
+        return view('produtos.listar')
+            ->with('produtosEncontrados', $produtos)
+            ->with('resultadosPaginados', $resultadosPaginados)
+            ->with('buscaPrevia', $buscaPrevia)
+            ->with('categoriasProdutos', $this->categoriasProdutosService->listarTodasOrdenarPorDescricao())
+            ->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
     }
 
 }

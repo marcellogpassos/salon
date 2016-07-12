@@ -32,9 +32,20 @@ if (!function_exists('showMessage')) {
 if (!function_exists('telefoneFormat')) {
 
     function telefoneFormat($input) {
-        if(!$input || strlen ( $input ) < 10 || strlen ( $input ) > 12)
+        if (!$input || strlen($input) < 10 || strlen($input) > 12)
             return $input;
         return '(' . substr($input, 0, 2) . ') ' . substr($input, 2);
+    }
+
+}
+
+
+if (!function_exists('filtroFornecido')) {
+
+    function filtroFornecido($criterios, $nomeFiltro, $tamanho = 0) {
+        if ($tamanho)
+            return (isset($criterios[$nomeFiltro]) && strlen($criterios[$nomeFiltro]) == $tamanho);
+        return (isset($criterios[$nomeFiltro]) && strlen($criterios[$nomeFiltro]) > 0);
     }
 
 }
