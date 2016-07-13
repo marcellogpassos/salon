@@ -15,4 +15,8 @@ interface ProdutosRepositoryInterface {
 	
 	public function buscar($criterios);
 
+	public function getById($id);
+
+	public function delete($id);
+
 }

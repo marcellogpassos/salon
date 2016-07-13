@@ -13,18 +13,25 @@ use App\Repositories\ProdutosRepositoryInterface;
 
 class ProdutosService implements ProdutosServiceInterface {
 
-	protected $produtosRepository;
+    protected $produtosRepository;
 
-	public function __construct(ProdutosRepositoryInterface $repository) {
-		$this->produtosRepository = $repository;
-	}
+    public function __construct(ProdutosRepositoryInterface $repository) {
+        $this->produtosRepository = $repository;
+    }
 
-	public function listarTodasOrdenarPorDescricao(){
-		return $this->produtosRepository->getAll('descricao');
-	}
+    public function listarTodasOrdenarPorDescricao() {
+        return $this->produtosRepository->getAll('descricao');
+    }
 
-	public function buscar($criterios) {
-		return $this->produtosRepository->buscar($criterios);
-	}
+    public function buscar($criterios) {
+        return $this->produtosRepository->buscar($criterios);
+    }
 
+    public function deletar($id) {
+        return $this->produtosRepository->delete($id);
+    }
+
+    public function getById($id) {
+        return $this->produtosRepository->getById($id);
+    }
 }

@@ -14,6 +14,7 @@ use App\Services\ProdutosServiceInterface;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\ProdutosBuscarRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class ProdutosController extends Controller {
 
@@ -45,6 +46,17 @@ class ProdutosController extends Controller {
             ->with('buscaPrevia', $buscaPrevia)
             ->with('categoriasProdutos', $this->categoriasProdutosService->listarTodasOrdenarPorDescricao())
             ->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
+    }
+
+    public function excluirProduto($id, Request $request) {
+        $produto = $this->produtosService->getById($id);
+        $result = false;
+        try {
+            $result = $this->produtosService->deletar($id);
+        } catch (QueryException $ex) {
+        }
+        $result ? showMessage('success', 5, [$produto->descricao]) : showMessage('error', 1, [$produto->descricao]);
+        return Redirect::to('/produtos/buscar');
     }
 
 }

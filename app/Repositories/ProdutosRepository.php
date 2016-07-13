@@ -22,6 +22,15 @@ class ProdutosRepository implements ProdutosRepositoryInterface {
         $this->model = $model;
     }
 
+    public function getById($id) {
+        return $this->model->findOrFail($id);
+    }
+
+    public function delete($id) {
+        return $this->getById($id)->delete();
+        return true;
+    }
+
     public function getAll($orderBy) {
         if (!$orderBy)
             return $this->model

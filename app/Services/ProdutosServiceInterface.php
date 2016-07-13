@@ -15,4 +15,8 @@ interface ProdutosServiceInterface {
 
 	public function buscar($criterios);
 
+	public function deletar($id);
+
+	public function getById($id);
+
 }

@@ -14,7 +14,7 @@
 
                 <div class="card white">
 
-                    <h4 class="card-title">Buscar usu&aacute;rio</h4>
+                    <h4 class="card-title">Buscar usu&aacute;rios</h4>
 
                     <form id="userForm" class="form-horizontal" method="POST" action="{{ url('/users/buscar') }}"
                           role="form">

@@ -28,6 +28,7 @@ Route::get('marcas/{id}/excluir', 'MarcasProdutosController@excluirMarcaProduto'
 Route::get('marcas', 'MarcasProdutosController@mostrarListaMarcasProdutos');
 
 Route::get('produtos/buscar', 'ProdutosController@mostrarProdutosEncontrados');
+Route::get('produtos/{id}/excluir', 'ProdutosController@excluirProduto');
 
 Route::get('users/buscar', 'UsersController@mostrarFormBuscarUsuarios');
 Route::post('users/buscar', 'UsersController@mostrarUsuariosEncontrados');

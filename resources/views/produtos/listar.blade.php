@@ -14,7 +14,7 @@
 
                 <div class="card white">
 
-                    <h4 class="card-title">Produtos cadastrados</h4>
+                    <h4 class="card-title">Buscar produtos</h4>
 
                     <form id="produtosForm" class="form-horizontal" method="GET" action="{{ url('produtos/buscar') }}"
                           role="form">
@@ -143,7 +143,9 @@
                                                 <td>
                                                     <a href="#!"><i class="material-icons">mode_edit</i></a>
                                                     &nbsp;
-                                                    <a href="#!"><i class="material-icons">delete</i></a>
+                                                    <a href="{{ url('produtos/' . $produto->id . '/excluir') }}">
+                                                        <i class="material-icons">delete</i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
