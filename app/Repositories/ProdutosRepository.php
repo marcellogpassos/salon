@@ -38,7 +38,7 @@ class ProdutosRepository implements ProdutosRepositoryInterface {
         $query = filtroFornecido($criterios, 'categoria_id') ? $query->where('categoria_id', $criterios['categoria_id']) : $query;
         $query = filtroFornecido($criterios, 'marca_id') ? $query->where('marca_id', $criterios['marca_id']) : $query;
 
-        return $query->orderBy('descricao')->get();
+        return $query->orderBy('descricao')->paginate($this->perPage);
     }
 
 }

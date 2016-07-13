@@ -49,3 +49,12 @@ if (!function_exists('filtroFornecido')) {
     }
 
 }
+
+
+if (!function_exists('buscaPadrao')) {
+
+    function buscaPadrao($input) {
+        return (!$input || (count($input) == 1 && isset($input['page'])));
+    }
+
+}

@@ -57,7 +57,8 @@
                                         <div class="row">
                                             <div class="col s12">
                                                 <div class="col s12 m4 grid-example">
-                                                    <a class="btn btn-block waves-effect waves-light blue" href="#!">
+                                                    <a class="btn btn-block waves-effect waves-light blue"
+                                                       href="{{ url('/produtos/buscar?marca_id=' . $marca->id) }}">
                                                         Ver produtos
                                                     </a>
                                                 </div>

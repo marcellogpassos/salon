@@ -28,7 +28,7 @@
                                            value="{{
 
                                                 old('id') ?
-                                                    old('id') : isset($buscaPrevia) ?
+                                                    old('id') : isset($buscaPrevia['id']) ?
                                                         $buscaPrevia['id'] : ""
 
                                            }}" class="validate">
@@ -40,7 +40,7 @@
                                            value="{{
 
                                                 old('descricao') ?
-                                                    old('descricao') : isset($buscaPrevia) ?
+                                                    old('descricao') : isset($buscaPrevia['descricao']) ?
                                                         $buscaPrevia['descricao'] : ""
 
                                            }}" minlength="3" class="validate">
@@ -107,9 +107,7 @@
 
                     <div id="information-alert" class="card card-alert card-alert-information">
                         <div class="card-content">
-                            <p>Consulta realizada com sucesso!
-                                {{ $resultadosPaginados ? $produtosEncontrados->total() : count($produtosEncontrados)}}
-                                resultado(s)
+                            <p>Consulta realizada com sucesso! {{ $produtosEncontrados->total()}} resultado(s)
                                 encontrado(s).</p>
                         </div>
                     </div>
@@ -131,6 +129,7 @@
                                             <th data-field="descricao">Descri&ccedil;&atilde;o</th>
                                             <th data-field="categoria_id">Categoria</th>
                                             <th data-field="marca_id">Marca</th>
+                                            <th>Op&ccedil;&otilde;es</th>
                                         </tr>
                                         </thead>
 
@@ -141,6 +140,11 @@
                                                 <td>{{$produto->descricao}}</td>
                                                 <td>{{$produto->categoria ? $produto->categoria->descricao : '-'}}</td>
                                                 <td>{{$produto->marca ? $produto->marca->descricao : '-'}}</td>
+                                                <td>
+                                                    <a href="#!"><i class="material-icons">mode_edit</i></a>
+                                                    &nbsp;
+                                                    <a href="#!"><i class="material-icons">delete</i></a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -152,9 +156,7 @@
                                 <div class="card-action">
                                     <div class="row">
                                         <div class="col s12">
-                                            @if($resultadosPaginados)
-                                                {{ $produtosEncontrados }}
-                                            @endif
+                                            {!! $produtosEncontrados->appends($buscaPrevia)->render() !!}
                                         </div>
                                     </div>
                                 </div>

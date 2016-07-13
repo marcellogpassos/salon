@@ -30,19 +30,18 @@ class ProdutosController extends Controller {
     }
 
     public function mostrarProdutosEncontrados(ProdutosBuscarRequest $request) {
-        if(!$request->all() || (count($request->all()) == 1 && $request->all()['page'])){
+        if (buscaPadrao($request->all())) {
             $produtos = $this->produtosService->listarTodasOrdenarPorDescricao();
-            return $this->returnViewProdutosListar($produtos, true);
+            return $this->returnViewProdutosListar($produtos);
         } else {
             $produtos = $this->produtosService->buscar($request->all());
-            return $this->returnViewProdutosListar($produtos, false, $request->all());
+            return $this->returnViewProdutosListar($produtos, $request->all());
         }
     }
 
-    public function returnViewProdutosListar($produtos, $resultadosPaginados, $buscaPrevia = null) {
+    public function returnViewProdutosListar($produtos, $buscaPrevia = null) {
         return view('produtos.listar')
             ->with('produtosEncontrados', $produtos)
-            ->with('resultadosPaginados', $resultadosPaginados)
             ->with('buscaPrevia', $buscaPrevia)
             ->with('categoriasProdutos', $this->categoriasProdutosService->listarTodasOrdenarPorDescricao())
             ->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
