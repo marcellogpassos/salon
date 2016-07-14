@@ -42,8 +42,11 @@ class MarcasProdutosController extends Controller {
     }
 
     public function editarMarcaProduto($id, MarcasProdutosRequest $request) {
-        $marca = $this->marcasService->atualizar($id, $request->all());
-        showMessage('success', 4, [$marca->descricao]);
+        $nomeMarca = $this->marcasService->getById($id)->descricao;
+        if ($this->marcasService->atualizar($id, $request->all()))
+            showMessage('success', 4, [$nomeMarca]);
+        else
+            showMessage('error', 2, [$nomeMarca]);
         return Redirect::to('/marcas');
     }
 

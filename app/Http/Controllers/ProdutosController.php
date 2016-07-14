@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\CategoriasProdutos;
-use App\MarcasProdutos;
-use App\Produto;
 use App\Repositories\CategoriasProdutosRepository;
-use App\Services\CategoriasProdutosService;
 use App\Services\CategoriasProdutosServiceInterface;
-use App\Services\MarcasProdutosService;
 use App\Services\MarcasProdutosServiceInterface;
 use App\Services\ProdutosServiceInterface;
 use Illuminate\Http\Request;
@@ -44,7 +39,7 @@ class ProdutosController extends Controller {
         return view('produtos.listar')
             ->with('produtosEncontrados', $produtos)
             ->with('buscaPrevia', $buscaPrevia)
-            ->with('categoriasProdutos', $this->categoriasProdutosService->listarTodasOrdenarPorDescricao())
+            ->with('categoriasProdutos', $this->categoriasProdutosService->listarTodos())
             ->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
     }
 

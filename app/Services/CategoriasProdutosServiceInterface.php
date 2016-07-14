@@ -11,6 +11,6 @@ namespace App\Services;
 
 interface CategoriasProdutosServiceInterface {
 
-    public function listarTodasOrdenarPorDescricao();
+    public function listarTodos();
 
 }

@@ -8,19 +8,18 @@
 
 namespace App\Services;
 
-
-use App\Repositories\CategoriasProdutosRepositoryInterface;
+use App\Repositories\CategoriasProdutosRepository as CatProdutos;
 
 class CategoriasProdutosService implements CategoriasProdutosServiceInterface {
 
-    protected $categoriasProdutosRepository;
+    protected $catProdutos;
 
-    public function __construct(CategoriasProdutosRepositoryInterface $repository) {
-        $this->categoriasProdutosRepository = $repository;
+    public function __construct(CatProdutos $repository) {
+        $this->catProdutos = $repository;
     }
 
-    public function listarTodasOrdenarPorDescricao() {
-        return $this->categoriasProdutosRepository->getAll('descricao');
+    public function listarTodos() {
+        return $this->catProdutos->all();
     }
 
 }

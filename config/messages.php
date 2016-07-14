@@ -7,6 +7,7 @@ return [
 	'error' => [
 		'Não foi possível excluir a marca {0}. Verifique se há produtos cadastrados desta marca.',                      // 0
 		'Não foi possível excluir o produto {0}.',                 													    // 1
+		'Não foi possível editar a marca {0}.',                 													    // 2
 	],
 
 	'information' => [],

@@ -8,36 +8,37 @@
 
 namespace App\Services;
 
-
-use App\Repositories\MarcasProdutosRepositoryInterface;
+use App\Repositories\MarcaProdutoRepository as MrcProdutos;
 
 class MarcasProdutosService implements MarcasProdutosServiceInterface {
 
-    protected $marcasRepository;
+    protected $mrcProdutos;
 
-    public function __construct(MarcasProdutosRepositoryInterface $repository) {
-        $this->marcasRepository = $repository;
+    public function __construct(MrcProdutos $repository) {
+        $this->mrcProdutos = $repository;
     }
 
     public function listarTodasOrdenarPorDescricao() {
-        return $this->marcasRepository->getAll('descricao');
+        return $this->mrcProdutos->all();
     }
 
     public function atualizar($id, array $attributes) {
-        return $this->marcasRepository->update($id, $attributes);
+        if (!$attributes)
+            abort(400);
+        return $this->mrcProdutos->updateRich($attributes, $id);
     }
 
     public function cadastrar(array $attributes) {
         if (!$attributes)
             abort(400);
-        return $this->marcasRepository->create($attributes);
+        return $this->mrcProdutos->create($attributes);
     }
 
     public function deletar($id) {
-        return $this->marcasRepository->delete($id);
+        return $this->mrcProdutos->delete($id);
     }
 
     public function getById($id) {
-        return $this->marcasRepository->getById($id);
+        return $this->mrcProdutos->find($id);
     }
 }

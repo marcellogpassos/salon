@@ -1,28 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: 08417523464
- * Date: 11/07/2016
- * Time: 15:59
- */
+<?php namespace App\Repositories;
 
-namespace App\Repositories;
+use App\Repositories\Eloquent\Repository;
 
+class CategoriasProdutosRepository extends Repository {
 
-use App\CategoriasProdutos;
-
-class CategoriasProdutosRepository implements CategoriasProdutosRepositoryInterface {
-
-    protected $model;
-
-    public function __construct(CategoriasProdutos $model) {
-        $this->model = $model;
+    public function model() {
+        return 'App\CategoriasProdutos';
     }
-
-    public function getAll($orderBy) {
-        if (!$orderBy)
-            return $this->model->all();
-        return $this->model->orderBy($orderBy)->get();
-    }
-
 }

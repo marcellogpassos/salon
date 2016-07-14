@@ -16,7 +16,6 @@ class MarcasProdutosServiceProvider extends ServiceProvider {
 
 	public function register() {
 
-		$this->app->singleton(MarcasProdutosRepositoryInterface::class, MarcasProdutosRepository::class);
 		$this->app->singleton(MarcasProdutosServiceInterface::class, MarcasProdutosService::class);
 
 	}

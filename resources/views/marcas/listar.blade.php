@@ -24,9 +24,12 @@
                                 <li class="usuario-encontrado">
                                     <div class="collapsible-header{{(count($marcas) == 1) ? ' active' : ''}}">
                                         <i class="fa fa-archive"></i>&nbsp;
-                                        <a href="{{ $marca->website }}" target="_blank">
-                                            {{ $marca->descricao }}
+
+                                        <a href="{{ $marca->website }}" target="_blank" class="right">
+                                            <i class="material-icons">link</i>
                                         </a>
+
+                                        {{ $marca->descricao }}&nbsp;
                                     </div>
                                     <div class="collapsible-body">
 
