@@ -11,7 +11,7 @@ namespace App\Repositories;
 
 use App\Repositories\Eloquent\Repository;
 
-class MarcaProdutoRepository extends Repository{
+class MarcasProdutosRepository extends Repository{
 
     public function model() {
         return 'App\MarcasProdutos';

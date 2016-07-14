@@ -9,18 +9,18 @@
 namespace App\Services;
 
 
-use App\Repositories\RolesRepositoryInterface;
+use App\Repositories\RolesRepository as Roles;
 
 class RolesService implements RolesServiceInterface {
 
-	protected $rolesRepository;
+    protected $roles;
 
-	public function __construct(RolesRepositoryInterface $repository) {
-		$this->rolesRepository = $repository;
-	}
+    public function __construct(Roles $repository) {
+        $this->roles = $repository;
+    }
 
-	public function listarTodos() {
-		return $this->rolesRepository->getAll();
-	}
+    public function listarTodos() {
+        return $this->roles->all();
+    }
 
 }

@@ -8,7 +8,7 @@
 
 namespace App\Services;
 
-use App\Repositories\MarcaProdutoRepository as MrcProdutos;
+use App\Repositories\MarcasProdutosRepository as MrcProdutos;
 
 class MarcasProdutosService implements MarcasProdutosServiceInterface {
 

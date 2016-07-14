@@ -1,26 +1,20 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: asus
- * Date: 23/06/2016
- * Time: 08:27
+ * User: 08417523464
+ * Date: 14/07/2016
+ * Time: 17:52
  */
 
 namespace App\Repositories;
 
 
-use App\Role;
+use App\Repositories\Eloquent\Repository;
 
-class RolesRepository implements RolesRepositoryInterface {
+class RolesRepository extends Repository {
 
-	protected $model;
-
-	public function __construct(Role $model) {
-		$this->model = $model;
-	}
-
-	public function getAll() {
-		return $this->model->all();
-	}
+    public function model() {
+        return 'App\Role';
+    }
 
 }
