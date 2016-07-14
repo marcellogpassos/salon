@@ -57,19 +57,19 @@
                                         <div class="row">
                                             <div class="col s12">
                                                 <div class="col s12 m4 grid-example">
-                                                    <a class="btn btn-block waves-effect waves-light blue"
+                                                    <a class="btn btn-block waves-effect waves-light secondary"
                                                        href="{{ url('/produtos/buscar?marca_id=' . $marca->id) }}">
                                                         Ver produtos
                                                     </a>
                                                 </div>
                                                 <div class="col s12 m4 grid-example">
-                                                    <a class="btn btn-block waves-effect waves-light blue"
+                                                    <a class="btn btn-block waves-effect waves-light secondary"
                                                        href="{{ url('/marcas/' . $marca->id . '/editar') }}">
                                                         Editar
                                                     </a>
                                                 </div>
                                                 <div class="col s12 m4 grid-example">
-                                                    <a class="btn btn-block waves-effect waves-light blue"
+                                                    <a class="btn btn-block waves-effect waves-light secondary"
                                                        href="{{ url('/marcas/' . $marca->id . '/excluir') }}">
                                                         Excluir
                                                     </a>
@@ -88,7 +88,7 @@
                     <div class="card-action">
                         <div class="row">
                             <div class="col s12 m4 offset-m4 grid-example">
-                                <a class="btn btn-block waves-effect waves-light blue"
+                                <a class="btn btn-block waves-effect waves-light primary"
                                    href="{{ url('/marcas/cadastrar') }}">
                                     Cadastrar nova marca
                                 </a>

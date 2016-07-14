@@ -75,13 +75,13 @@
                         <div class="card-action">
                             <div class="row">
                                 <div class="col s12 m6 grid-example">
-                                    <button type="submit" class="btn btn-block waves-effect waves-light blue">
+                                    <button type="submit" class="btn btn-block waves-effect waves-light primary">
                                         Entrar
                                     </button>
                                 </div>
 
                                 <div class="col s12 m6 grid-example">
-                                    <a class="btn btn-block waves-effect waves-light blue"
+                                    <a class="btn btn-block waves-effect waves-light secondary"
                                        href="{{ url('/register') }}">
                                         Cadastre-se
                                     </a>

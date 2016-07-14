@@ -10,11 +10,33 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: url('../img/bkg.png');
+    background-position: 50% 0;
+    background-repeat: repeat-y;
 }
 
 main {
     flex: 1 0 auto;
     padding-top: 60px;
+}
+
+nav {
+    background-color: #A34B5B !important;
+    color: #EEEEEE;
+}
+
+footer.page-footer {
+    margin-top: auto;
+    padding-top: 0;
+    background-color: #D1E6C8 !important;
+}
+
+footer.page-footer p {
+    color: #212121;
+}
+
+footer.page-footer .footer-copyright {
+    margin-bottom: 20px;
 }
 
 .col.grid-example {
@@ -29,9 +51,23 @@ main {
     width: 100%;
 }
 
+.btn.primary {
+    background-color: #347162 !important;
+    color: #EEEEEE;
+}
+
+.btn.secondary {
+    background-color: #54887B !important;
+    color: #EEEEEE;
+}
+
+a {
+    color: #212121;
+}
+
 h4.card-title {
-    background-color: #434343;
-    color: #eeeeee;
+    background-color: #A34B5B;
+    color: #EEEEEE;
     padding: 8px;
 }
 

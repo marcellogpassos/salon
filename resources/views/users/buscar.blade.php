@@ -109,7 +109,7 @@
                         <div class="card-action">
                             <div class="row">
                                 <div class="col s12 m4 offset-m4 grid-example">
-                                    <button type="submit" class="btn btn-block waves-effect waves-light blue">
+                                    <button type="submit" class="btn btn-block waves-effect waves-light primary">
                                         Buscar
                                     </button>
                                 </div>
@@ -169,7 +169,7 @@
                                             <div class="row">
                                                 <div class="col s12">
                                                     <div class="col s6 m4">
-                                                        <a class="waves-effect waves-light btn btn-large btn-block blue"
+                                                        <a class="waves-effect waves-light btn btn-large btn-block secondary"
                                                            onclick="detalharUsuario('#datalharUsuarioModal', '{{ $us->id }}')">
                                                             <i class="material-icons left">search</i>Detalhar
                                                         </a>
@@ -177,13 +177,13 @@
 
                                                     <div class="col s6 m4">
                                                         <a href="{{ url('users/' . $us->id . '/papeis') }}"
-                                                           class="waves-effect waves-light btn btn-large btn-block blue">
+                                                           class="waves-effect waves-light btn btn-large btn-block secondary">
                                                             <i class="material-icons left">verified_user</i>Pap&eacute;is
                                                         </a>
                                                     </div>
 
                                                     <div class="col s6 m4">
-                                                        <a class="waves-effect waves-light btn btn-large btn-block blue">
+                                                        <a class="waves-effect waves-light btn btn-large btn-block secondary">
                                                             <i class="material-icons left">shopping_cart</i>Caixa
                                                         </a>
                                                     </div>

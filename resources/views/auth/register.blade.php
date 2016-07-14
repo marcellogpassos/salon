@@ -144,7 +144,7 @@
                         <div class="card-action">
                             <div class="row">
                                 <div class="col s12 m6 offset-m3 grid-example">
-                                    <button type="submit" class="btn btn-block waves-effect waves-light blue">
+                                    <button type="submit" class="btn btn-block waves-effect waves-light primary">
                                         Cadastrar
                                     </button>
                                 </div>
