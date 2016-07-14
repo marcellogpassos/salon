@@ -31,11 +31,14 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
 
     protected $preventCriteriaOverwriting = true;
 
+    protected $defaultPerPage;
+
     public function __construct(App $app, Collection $collection) {
         $this->app = $app;
         $this->criteria = $collection;
         $this->resetScope();
         $this->makeModel();
+        $this->defaultPerPage = env('DEFAULT_PER_PAGE');
     }
 
     public abstract function model();
@@ -59,7 +62,8 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
         return $lists->all();
     }
 
-    public function paginate($perPage = 25, $columns = array('*')) {
+    public function paginate($perPage = 0, $columns = array('*')) {
+        $perPage = $perPage ? $perPage : $this->defaultPerPage;
         $this->applyCriteria();
         return $this->model->paginate($perPage, $columns);
     }

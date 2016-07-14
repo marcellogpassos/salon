@@ -16,7 +16,6 @@ class ProdutosServiceProvider extends ServiceProvider {
 
 	public function register() {
 
-		$this->app->singleton(ProdutosRepositoryInterface::class, ProdutosRepository::class);
 		$this->app->singleton(ProdutosServiceInterface::class, ProdutosService::class);
 
 	}

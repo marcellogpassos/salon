@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\CategoriasProdutosRepository;
+use App\Repositories\Criteria\BuscarPorDescricao;
+use App\Repositories\ProdutoRepository;
+use App\Repositories\ProdutosRepository;
 use App\Services\CategoriasProdutosServiceInterface;
 use App\Services\MarcasProdutosServiceInterface;
 use App\Services\ProdutosServiceInterface;

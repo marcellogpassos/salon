@@ -13,7 +13,7 @@ interface RepositoryInterface {
 
     public function all($columns = array('*'));
 
-    public function paginate($perPage = 1, $columns = array('*'));
+    public function paginate($perPage = 0, $columns = array('*'));
 
     public function create(array $data);
 

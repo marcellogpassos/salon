@@ -9,29 +9,42 @@
 namespace App\Services;
 
 
-use App\Repositories\ProdutosRepositoryInterface;
+use App\Repositories\Criteria\BuscarChaveValor;
+use App\Repositories\Criteria\BuscarPorDescricao;
+use App\Repositories\Criteria\OrdenarPorDescricao;
+use App\Repositories\Criteria\Produto\BuscarPorCategoria;
+use App\Repositories\Criteria\Produto\BuscarPorMarca;
+use App\Repositories\ProdutosRepository as Produtos;
 
 class ProdutosService implements ProdutosServiceInterface {
 
-    protected $produtosRepository;
+    protected $produtos;
 
-    public function __construct(ProdutosRepositoryInterface $repository) {
-        $this->produtosRepository = $repository;
+    public function __construct(Produtos $repository) {
+        $this->produtos = $repository;
     }
 
     public function listarTodasOrdenarPorDescricao() {
-        return $this->produtosRepository->getAll('descricao');
+        return $this->produtos->getByCriteria(new OrdenarPorDescricao())->paginate();
     }
 
     public function buscar($criterios) {
-        return $this->produtosRepository->buscar($criterios);
+        if (filtroFornecido($criterios, 'id'))
+            return $this->produtos->pushCriteria(new BuscarChaveValor('id', $criterios['id']))->paginate();
+        if (filtroFornecido($criterios, 'descricao'))
+            $this->produtos->pushCriteria(new BuscarPorDescricao($criterios['descricao']));
+        if (filtroFornecido($criterios, 'categoria_id'))
+            $this->produtos->pushCriteria(new BuscarPorCategoria($criterios['categoria_id']));
+        if (filtroFornecido($criterios, 'marca_id'))
+            $this->produtos->pushCriteria(new BuscarPorMarca($criterios['marca_id']));
+        return $this->produtos->pushCriteria(new OrdenarPorDescricao())->paginate();
     }
 
     public function deletar($id) {
-        return $this->produtosRepository->delete($id);
+        return $this->produtos->delete($id);
     }
 
     public function getById($id) {
-        return $this->produtosRepository->getById($id);
+        return $this->produtos->find($id);
     }
 }
