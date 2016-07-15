@@ -83,10 +83,16 @@
 
                         <div class="card-action">
                             <div class="row">
-                                <div class="col s12 m4 offset-m4 grid-example">
+                                <div class="col s12 m4 offset-m2 grid-example">
                                     <button type="submit" class="btn btn-block waves-effect waves-light primary">
                                         Buscar
                                     </button>
+                                </div>
+                                <div class="col s12 m4 grid-example">
+                                    <a class="btn btn-block waves-effect waves-light secondary"
+                                       href="{{ url('produtos/cadastrar') }}">
+                                        Cadastrar Produto
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -96,11 +102,7 @@
                 </div>
 
                 @if (isset($produtosEncontrados) && (count($produtosEncontrados) == 0))
-                    <div id="information-alert" class="card card-alert card-alert-information">
-                        <div class="card-content">
-                            <p>Consulta realizada com sucesso! Nenhum resultado encontrado.</p>
-                        </div>
-                    </div>
+                    @include('partials.nenhumResultadoEncontrado')
                 @endif
 
                 @if(isset($produtosEncontrados) && (count($produtosEncontrados) > 0))

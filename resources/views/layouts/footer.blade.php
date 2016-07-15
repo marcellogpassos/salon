@@ -5,6 +5,6 @@
     {{--</div>--}}
     {{--</div>--}}
     <div class="container center">
-        <p><strong>Salon Project</strong>© Copyright 2016-2016 :: Marcello Galdino Passos</p>
+        <p><strong>Salon Project</strong>&nbsp;© Copyright 2016-2016&nbsp;::&nbsp;Marcello Galdino Passos</p>
     </div>
 </footer>

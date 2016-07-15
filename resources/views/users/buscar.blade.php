@@ -16,9 +16,8 @@
 
                     <h4 class="card-title">Buscar usu&aacute;rios</h4>
 
-                    <form id="userForm" class="form-horizontal" method="POST" action="{{ url('/users/buscar') }}"
+                    <form id="userForm" class="form-horizontal" method="GET" action="{{ url('/users/buscar') }}"
                           role="form">
-                        {{ csrf_field() }}
 
                         <div class="card-content gray-text text-darken-4">
 
@@ -29,7 +28,7 @@
                                            value="{{
 
                                             old('nome_sobrenome') ?
-                                                old('nome_sobrenome') : isset($buscaPrevia) ?
+                                                old('nome_sobrenome') : isset($buscaPrevia['nome_sobrenome']) ?
                                                     $buscaPrevia['nome_sobrenome'] : ""
 
                                            }}" minlength="3" class="validate">
@@ -41,7 +40,7 @@
                                            value="{{
 
                                             old('email') ?
-                                                old('email') : isset($buscaPrevia) ?
+                                                old('email') : isset($buscaPrevia['email']) ?
                                                     $buscaPrevia['email'] : ""
 
                                             }}">
@@ -83,7 +82,7 @@
                                            value="{{
 
                                             old('cpf') ?
-                                                old('cpf') : isset($buscaPrevia) ?
+                                                old('cpf') : isset($buscaPrevia['cpf']) ?
                                                     $buscaPrevia['cpf'] : ""
 
                                             }}">
@@ -95,7 +94,7 @@
                                            value="{{
 
                                             old('telefone') ?
-                                                old('telefone') : isset($buscaPrevia) ?
+                                                old('telefone') : isset($buscaPrevia['telefone']) ?
                                                     $buscaPrevia['telefone'] : ""
 
                                             }}">
@@ -126,20 +125,12 @@
         </div>
 
         @if (isset($usersEncontrados) && (count($usersEncontrados) == 0))
-            <div id="information-alert" class="card card-alert card-alert-information">
-                <div class="card-content">
-                    <p>Consulta realizada com sucesso! Nenhum resultado encontrado.</p>
-                </div>
-            </div>
+            @include('partials.nenhumResultadoEncontrado')
         @endif
 
         @if(isset($usersEncontrados) && (count($usersEncontrados) > 0))
 
-            <div id="information-alert" class="card card-alert card-alert-information">
-                <div class="card-content">
-                    <p>Consulta realizada com sucesso! {{ count($usersEncontrados) }} resultado(s) encontrado(s).</p>
-                </div>
-            </div>
+            @include('partials.resultadosEncontrados', ['total' => $usersEncontrados->total()])
 
             <div class="row">
                 <div class="col s12">
@@ -198,6 +189,15 @@
                             </ul>
 
                         </div>
+
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col s12">
+                                    {!! $usersEncontrados->appends($buscaPrevia)->render() !!}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>

@@ -57,4 +57,8 @@ class ProdutosController extends Controller {
         return Redirect::to('/produtos/buscar');
     }
 
+    public function mostrarFormCadastrarProduto() {
+        return view('produtos.cadastrar');
+    }
+
 }

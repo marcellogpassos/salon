@@ -13,8 +13,10 @@ class UsersBuscarRequest extends Request {
     public function all() {
         $attributes = parent::all();
 
-        $attributes['cpf'] = preg_replace("/[^0-9]/", '', $attributes['cpf']);
-        $attributes['telefone'] = preg_replace("/[^0-9]/", '', $attributes['telefone']);
+        if (isset($attributes['cpf']))
+            $attributes['cpf'] = preg_replace("/[^0-9]/", '', $attributes['cpf']);
+        if (isset($attributes['telefone']))
+            $attributes['telefone'] = preg_replace("/[^0-9]/", '', $attributes['telefone']);
 
         $this->replace($attributes);
 
@@ -23,11 +25,11 @@ class UsersBuscarRequest extends Request {
 
     public function rules() {
         return [
-            'nome_sobrenome' => 'min:3|max:255|required_without_all:telefone,cpf,email',
-            'email' => 'max:255|email|required_without_all:telefone,cpf,nome_sobrenome',
-            'sexo' => 'in:M,F|required_without_all:telefone,cpf,email,nome_sobrenome',
-            'cpf' => 'size:11|required_without_all:telefone,email,nome_sobrenome',
-            'telefone' => 'min:10|max:11|required_without_all:cpf,email,nome_sobrenome',
+            'nome_sobrenome' => 'min:3|max:255',
+            'email' => 'max:255|email',
+            'sexo' => 'in:M,F',
+            'cpf' => 'size:11',
+            'telefone' => 'min:10|max:11',
         ];
     }
 }

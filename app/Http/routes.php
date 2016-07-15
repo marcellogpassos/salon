@@ -28,10 +28,10 @@ Route::get('marcas/{id}/excluir', 'MarcasProdutosController@excluirMarcaProduto'
 Route::get('marcas', 'MarcasProdutosController@mostrarListaMarcasProdutos');
 
 Route::get('produtos/buscar', 'ProdutosController@mostrarProdutosEncontrados');
+Route::get('produtos/cadastrar', 'ProdutosController@mostrarFormCadastrarProduto');
 Route::get('produtos/{id}/excluir', 'ProdutosController@excluirProduto');
 
-Route::get('users/buscar', 'UsersController@mostrarFormBuscarUsuarios');
-Route::post('users/buscar', 'UsersController@mostrarUsuariosEncontrados');
+Route::get('users/buscar', 'UsersController@mostrarUsuariosEncontrados');
 Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
 Route::post('users/dados', 'UsersController@editarDadosUsuario');
 Route::get('users/{id}/papeis', 'UsersController@mostrarFormGerenciarPapeis');

@@ -26,6 +26,8 @@ class UsersController extends Controller {
 	}
 
 	public function mostrarUsuariosEncontrados(UsersBuscarRequest $request) {
+		if(!count($request->all()))
+			return view('users.buscar');
 		$usersEncontrados = $this->usersService->buscar($request->all());
 		return view('users.buscar')
 			->with('usersEncontrados', $usersEncontrados)
