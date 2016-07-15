@@ -13,6 +13,7 @@ use App\Repositories\Criteria\BuscarChaveValor;
 use App\Repositories\Criteria\BuscarPorDescricao;
 use App\Repositories\Criteria\OrdenarPorDescricao;
 use App\Repositories\Criteria\Produto\BuscarPorCategoria;
+use App\Repositories\Criteria\Produto\BuscarPorId;
 use App\Repositories\Criteria\Produto\BuscarPorMarca;
 use App\Repositories\ProdutosRepository as Produtos;
 
@@ -30,13 +31,15 @@ class ProdutosService implements ProdutosServiceInterface {
 
     public function buscar($criterios) {
         if (filtroFornecido($criterios, 'id'))
-            return $this->produtos->pushCriteria(new BuscarChaveValor('id', $criterios['id']))->paginate();
-        if (filtroFornecido($criterios, 'descricao'))
-            $this->produtos->pushCriteria(new BuscarPorDescricao($criterios['descricao']));
-        if (filtroFornecido($criterios, 'categoria_id'))
-            $this->produtos->pushCriteria(new BuscarPorCategoria($criterios['categoria_id']));
-        if (filtroFornecido($criterios, 'marca_id'))
-            $this->produtos->pushCriteria(new BuscarPorMarca($criterios['marca_id']));
+            $this->produtos->pushCriteria(new BuscarPorId($criterios['id']))->paginate();
+        else {
+            if (filtroFornecido($criterios, 'descricao'))
+                $this->produtos->pushCriteria(new BuscarPorDescricao($criterios['descricao']));
+            if (filtroFornecido($criterios, 'categoria_id'))
+                $this->produtos->pushCriteria(new BuscarPorCategoria($criterios['categoria_id']));
+            if (filtroFornecido($criterios, 'marca_id'))
+                $this->produtos->pushCriteria(new BuscarPorMarca($criterios['marca_id']));
+        }
         return $this->produtos->pushCriteria(new OrdenarPorDescricao())->paginate();
     }
 

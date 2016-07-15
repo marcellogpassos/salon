@@ -16,7 +16,6 @@ class UsersServiceProvider extends ServiceProvider {
 
 	public function register() {
 
-		$this->app->singleton(UsersRepositoryInterface::class, UsersRepository::class);
 		$this->app->singleton(UsersServiceInterface::class, UsersService::class);
 
 	}

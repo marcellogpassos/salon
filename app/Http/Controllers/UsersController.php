@@ -45,8 +45,11 @@ class UsersController extends Controller {
 	}
 
 	public function editarDadosUsuario(UsersDadosRequest $request) {
-		$usuarioAtualizado = $this->usersService->atualizarPropriosDados($request->all());
-		showMessage('success', 0, [$usuarioAtualizado->name]);
+		$sucesso = $this->usersService->atualizarPropriosDados($request->all());
+		if($sucesso)
+			showMessage('success', 0);
+		else
+			showMessage('error', 3);
 		return redirect('home');
 	}
 
