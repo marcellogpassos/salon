@@ -25,4 +25,7 @@ gulp.task('default', function () {
     gulp.src(src_dir + "jquery.maskedinput/dist/*")
         .pipe(gulp.dest(dst_dir + "jquery.maskedinput"));
 
+    gulp.src(src_dir + "jquery-maskmoney/dist/jquery.maskMoney.min.js")
+        .pipe(gulp.dest(dst_dir + "jquery-maskmoney"));
+
 });

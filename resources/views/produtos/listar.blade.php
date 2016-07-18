@@ -127,21 +127,29 @@
 
                                         <thead>
                                         <tr>
-                                            <th data-field="id">C&oacute;digo</th>
+                                            <th data-field="id">C&oacute;d.</th>
                                             <th data-field="descricao">Descri&ccedil;&atilde;o</th>
                                             <th data-field="categoria_id">Categoria</th>
                                             <th data-field="marca_id">Marca</th>
+                                            <th data-field="quantidade">Quant.</th>
+                                            <th data-field="valor">Valor</th>
                                             <th>Op&ccedil;&otilde;es</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
                                         @foreach($produtosEncontrados as $produto)
-                                            <tr>
+                                            <tr {!! !$produto->ativo ? 'class="produtoInativo"' : '' !!}}>
                                                 <td>{{$produto->id}}</td>
                                                 <td>{{$produto->descricao}}</td>
                                                 <td>{{$produto->categoria ? $produto->categoria->descricao : '-'}}</td>
-                                                <td>{{$produto->marca ? $produto->marca->descricao : '-'}}</td>
+                                                <td>
+                                                    <a href="{{ url('marcas/' . $produto->marca->id . '/editar') }}">
+                                                        {{$produto->marca ? $produto->marca->descricao : '-'}}
+                                                    </a>
+                                                </td>
+                                                <td>{{$produto->quantidade}}</td>
+                                                <td>{{moneyFormat($produto->valor)}}</td>
                                                 <td>
                                                     <a href="#!"><i class="material-icons">mode_edit</i></a>
                                                     &nbsp;

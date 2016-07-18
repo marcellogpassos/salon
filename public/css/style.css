@@ -96,6 +96,15 @@ h4.card-title {
     margin-right: 20px;
 }
 
+tr.produtoInativo {
+    background-color: #e0e0e0;
+    color: #757575;
+}
+
+tr.produtoInativo a {
+    color: #757575;
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;

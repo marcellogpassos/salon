@@ -58,3 +58,11 @@ if (!function_exists('buscaPadrao')) {
     }
 
 }
+
+if (!function_exists('moneyFormat')) {
+
+    function moneyFormat($valor) {
+        return 'R$' . number_format($valor, 2, ',', '.');
+    }
+
+}

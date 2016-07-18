@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutosCadastrarRequest;
 use App\Repositories\CategoriasProdutosRepository;
 use App\Repositories\Criteria\BuscarPorDescricao;
 use App\Repositories\ProdutoRepository;
@@ -58,7 +59,13 @@ class ProdutosController extends Controller {
     }
 
     public function mostrarFormCadastrarProduto() {
-        return view('produtos.cadastrar');
+        return view('produtos.cadastrar')
+            ->with('categoriasProdutos', $this->categoriasProdutosService->listarTodos())
+            ->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
+    }
+
+    public function cadastrarProduto(ProdutosCadastrarRequest $request) {
+        dd($request->all());
     }
 
 }
