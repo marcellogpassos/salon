@@ -19,4 +19,6 @@ interface ProdutosServiceInterface {
 
 	public function getById($id);
 
+	public function cadastrar(array $produtoAttr, array $itemVendaAttr);
+
 }

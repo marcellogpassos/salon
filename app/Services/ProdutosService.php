@@ -9,6 +9,8 @@
 namespace App\Services;
 
 
+use App\ItemVenda;
+use App\Produto;
 use App\Repositories\Criteria\BuscarChaveValor;
 use App\Repositories\Criteria\BuscarPorDescricao;
 use App\Repositories\Criteria\OrdenarPorDescricao;
@@ -16,13 +18,17 @@ use App\Repositories\Criteria\Produto\BuscarPorCategoria;
 use App\Repositories\Criteria\Produto\BuscarPorId;
 use App\Repositories\Criteria\Produto\BuscarPorMarca;
 use App\Repositories\ProdutosRepository as Produtos;
+use App\Repositories\ItemVendaRepository as ItensVenda;
 
 class ProdutosService implements ProdutosServiceInterface {
 
     protected $produtos;
 
-    public function __construct(Produtos $repository) {
+    protected $itensVenda;
+
+    public function __construct(Produtos $repository, ItensVenda $itemVendaRepository) {
         $this->produtos = $repository;
+        $this->itensVenda = $itemVendaRepository;
     }
 
     public function listarTodasOrdenarPorDescricao() {
@@ -44,10 +50,17 @@ class ProdutosService implements ProdutosServiceInterface {
     }
 
     public function deletar($id) {
-        return $this->produtos->delete($id);
+        return $this->itensVenda->delete($id);
     }
 
     public function getById($id) {
         return $this->produtos->find($id);
     }
+
+    public function cadastrar(array $produtoAttr, array $itemVendaAttr) {
+        $itemVenda = $this->itensVenda->create($itemVendaAttr);
+        $produto = new Produto($produtoAttr);
+        return $itemVenda->produto()->save($produto);
+    }
+
 }

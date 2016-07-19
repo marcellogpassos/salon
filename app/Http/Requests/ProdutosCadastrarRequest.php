@@ -32,7 +32,7 @@ class ProdutosCadastrarRequest extends Request {
 
     public function rules() {
         return [
-            'id' => 'unique:produtos,id',
+            'id' => 'unique:itens_venda,id',
             'descricao' => 'required|min:3|max:255',
             'categoria_id' => 'required|exists:categorias_produtos,id',
             'marca_id' => 'exists:marcas_produtos,id',

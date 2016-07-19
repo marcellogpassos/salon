@@ -139,7 +139,7 @@
 
                                         <tbody>
                                         @foreach($produtosEncontrados as $produto)
-                                            <tr {!! !$produto->ativo ? 'class="produtoInativo"' : '' !!}}>
+                                            <tr {!! !$produto->itemVenda->ativo ? 'class="produtoInativo"' : '' !!}}>
                                                 <td>{{$produto->id}}</td>
                                                 <td>{{$produto->descricao}}</td>
                                                 <td>{{$produto->categoria ? $produto->categoria->descricao : '-'}}</td>
@@ -149,7 +149,7 @@
                                                     </a>
                                                 </td>
                                                 <td>{{$produto->quantidade}}</td>
-                                                <td>{{moneyFormat($produto->valor)}}</td>
+                                                <td>{{moneyFormat($produto->itemVenda->valor)}}</td>
                                                 <td>
                                                     <a href="#!"><i class="material-icons">mode_edit</i></a>
                                                     &nbsp;
