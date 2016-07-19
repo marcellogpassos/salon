@@ -30,6 +30,8 @@ Route::get('marcas', 'MarcasProdutosController@mostrarListaMarcasProdutos');
 Route::get('produtos/buscar', 'ProdutosController@mostrarProdutosEncontrados');
 Route::get('produtos/cadastrar', 'ProdutosController@mostrarFormCadastrarProduto');
 Route::post('produtos/cadastrar', 'ProdutosController@cadastrarProduto');
+Route::get('produtos/{id}/editar', 'ProdutosController@mostrarFormEditarProduto');
+Route::post('produtos/{id}/editar', 'ProdutosController@editarProduto');
 Route::get('produtos/{id}/excluir', 'ProdutosController@excluirProduto');
 
 Route::get('users/buscar', 'UsersController@mostrarUsuariosEncontrados');

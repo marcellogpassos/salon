@@ -61,8 +61,8 @@ if (!function_exists('buscaPadrao')) {
 
 if (!function_exists('moneyFormat')) {
 
-    function moneyFormat($valor) {
-        return 'R$' . number_format($valor, 2, ',', '.');
+    function moneyFormat($valor, $prefix = true) {
+        return ($prefix ? 'R$ ' : '') . number_format($valor, 2, ',', '.');
     }
 
 }

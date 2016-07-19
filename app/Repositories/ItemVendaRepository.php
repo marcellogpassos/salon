@@ -16,4 +16,18 @@ class ItemVendaRepository extends Repository {
 	public function model() {
 		return 'App\ItemVenda';
 	}
+
+	public function updateItemVendaProduto (array $produtoAttr, array $itemVendaAttr, $id) {
+		$parent = $this->find($id);
+		$parent->fill($itemVendaAttr);
+		$parent->save();
+		$child = $parent->produto;
+		$child->descricao = $produtoAttr['descricao'];
+		$child->categoria_id = $produtoAttr['categoria_id'];
+		$child->marca_id = $produtoAttr['marca_id'];
+		$child->quantidade = $produtoAttr['quantidade'];
+		$parent->produto()->save($child);
+		return $parent;
+	}
+
 }

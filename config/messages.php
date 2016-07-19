@@ -10,6 +10,7 @@ return [
 		'Não foi possível editar a marca {0}.',                 													    // 2
 		'Não foi possível atualizar seus dados. Tente novamente mais tarde.',                 							// 3
 		'Falha ao tentar cadastrar o produto {0}.',						 												// 4
+		'Falha ao tentar alterar o produto {0}.',						 												// 5
 	],
 
 	'information' => [],
@@ -22,6 +23,7 @@ return [
 		'Marca {0} atualizada com sucesso!',                                                                            // 4
 		'Produto {0} deletado com sucesso!',                                                                            // 5
 		'Produto {0} cadastrado com sucesso!',                                                                          // 6
+		'Produto {0} alterado com sucesso!',                                                                     	    // 7
 	],
 
 	'warning' => [

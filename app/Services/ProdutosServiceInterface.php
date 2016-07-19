@@ -21,4 +21,6 @@ interface ProdutosServiceInterface {
 
 	public function cadastrar(array $produtoAttr, array $itemVendaAttr);
 
+	public function editar($id, array $produtoAttr, array $itemVendaAttr);
+
 }

@@ -1,7 +1,7 @@
 @extends('layouts.appm')
 
 @section('title')
-    Cadastar produto
+    Editar produto
 @endsection
 
 @section('content')
@@ -14,9 +14,10 @@
 
                 <div class="card white">
 
-                    <h4 class="card-title">Cadastrar novo produto</h4>
+                    <h4 class="card-title">Editar produto</h4>
 
-                    <form id="cadastrarProdutoForm" method="POST" action="{{ url('/produtos/cadastrar') }}" role="form">
+                    <form id="editarProdutoForm" method="POST" action="{{ url('/produtos/' . $produto->id . '/editar') }}"
+                          role="form">
 
                         {{ csrf_field() }}
 
@@ -34,12 +35,12 @@
 @section('scripts')
     <script src="{{ asset('lib/jquery-maskmoney/jquery.maskMoney.min.js') }}"></script>
     <script>
-        $(function() {
+        $(function () {
             $(".moeda").maskMoney({
-                prefix:'R$ ',
+                prefix: 'R$ ',
                 allowNegative: true,
-                thousands:'.',
-                decimal:',',
+                thousands: '.',
+                decimal: ',',
                 affixesStay: false
             });
         })

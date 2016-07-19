@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProdutosCadastrarRequest;
+use App\Http\Requests\ProdutosRequest;
 use App\Produto;
 use App\Repositories\CategoriasProdutosRepository;
 use App\Repositories\Criteria\BuscarPorDescricao;
@@ -66,7 +66,7 @@ class ProdutosController extends Controller {
 			->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
 	}
 
-	public function cadastrarProduto(ProdutosCadastrarRequest $request) {
+	public function cadastrarProduto(ProdutosRequest $request) {
 		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade');
 		$itemVendaAttr = $request->only('id', 'ativo', 'valor');
 		$produto = false;
@@ -74,7 +74,27 @@ class ProdutosController extends Controller {
 			$produto = $this->produtosService->cadastrar($produtoAttr, $itemVendaAttr);
 		} catch (QueryException $ex) {
 		}
-		$produto ? showMessage('success', 6, [$produto->descricao]) : showMessage('error', 4, $produtoAttr['descricao']);
+		$produto ? showMessage('success', 6, [$produto->descricao]) : showMessage('error', 4, [$produtoAttr['descricao']]);
+		return Redirect::to('/produtos/buscar?id=' . $produto->id);
+	}
+
+	public function mostrarFormEditarProduto($id) {
+		$produto = $this->produtosService->getById($id);
+		return view('produtos.editar')
+			->with('produto', $produto)
+			->with('categoriasProdutos', $this->categoriasProdutosService->listarTodos())
+			->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
+	}
+
+	public function editarProduto($id, ProdutosRequest $request) {
+		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade');
+		$itemVendaAttr = $request->only('ativo', 'valor');
+		$produto = false;
+		try {
+			$produto = $this->produtosService->editar($id, $produtoAttr, $itemVendaAttr);
+		} catch (QueryException $ex) {
+		}
+		$produto ? showMessage('success', 7, [$produto->descricao]) : showMessage('error', 5, [$produtoAttr['descricao']]);
 		return Redirect::to('/produtos/buscar?id=' . $produto->id);
 	}
 

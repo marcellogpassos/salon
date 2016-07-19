@@ -63,4 +63,8 @@ class ProdutosService implements ProdutosServiceInterface {
         return $itemVenda->produto()->save($produto);
     }
 
+    public function editar($id, array $produtoAttr, array $itemVendaAttr) {
+        return $this->itensVenda->updateItemVendaProduto($produtoAttr, $itemVendaAttr, $id);
+    }
+
 }

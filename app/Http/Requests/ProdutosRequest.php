@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ProdutosCadastrarRequest extends Request {
+class ProdutosRequest extends Request {
 
     protected $sanitized = false;
 
@@ -32,7 +32,7 @@ class ProdutosCadastrarRequest extends Request {
 
     public function rules() {
         return [
-            'id' => 'unique:itens_venda,id',
+            'id' => 'integer|unique:itens_venda,id,' . $this->getProdutoId(),
             'descricao' => 'required|min:3|max:255',
             'categoria_id' => 'required|exists:categorias_produtos,id',
             'marca_id' => 'exists:marcas_produtos,id',
@@ -40,5 +40,9 @@ class ProdutosCadastrarRequest extends Request {
             'valor' => 'required|numeric',
             'ativo' => 'required|in:1,0'
         ];
+    }
+
+    public function getProdutoId() {
+        return $this->route('id');
     }
 }

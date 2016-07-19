@@ -151,7 +151,9 @@
                                                 <td>{{$produto->quantidade}}</td>
                                                 <td>{{moneyFormat($produto->itemVenda->valor)}}</td>
                                                 <td>
-                                                    <a href="#!"><i class="material-icons">mode_edit</i></a>
+                                                    <a href="{{ url('produtos/' . $produto->    id . '/editar') }}">
+                                                        <i class="material-icons">mode_edit</i>
+                                                    </a>
                                                     &nbsp;
                                                     <a href="{{ url('produtos/' . $produto->id . '/excluir') }}">
                                                         <i class="material-icons">delete</i>

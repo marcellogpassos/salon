@@ -16,4 +16,5 @@ class ProdutosRepository extends Repository{
     public function model() {
         return 'App\Produto';
     }
+
 }
