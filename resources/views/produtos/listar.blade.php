@@ -139,7 +139,8 @@
 
                                         <tbody>
                                         @foreach($produtosEncontrados as $produto)
-                                            <tr {!! !$produto->itemVenda->ativo ? 'class="produtoInativo"' : '' !!}}>
+                                            <tr {!! (!$produto->itemVenda->ativo || !$produto->quantidade)
+                                                ? 'class="produtoInativo"' : '' !!}}>
                                                 <td>{{$produto->id}}</td>
                                                 <td>{{$produto->descricao}}</td>
                                                 <td>{{$produto->categoria ? $produto->categoria->descricao : '-'}}</td>

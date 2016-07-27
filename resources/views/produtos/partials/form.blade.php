@@ -61,24 +61,23 @@
 
         <div class="input-field col s12 m2">
             <input id="valorInput" name="valor" type="text" maxlength="16" class="validate moeda"
-                   value="{{ old('valor') ? old('valor') : (isset($produto->itemVenda->valor) ? moneyFormat($produto->itemVenda->valor, false) : '') }}">
+                   value="{{ old('valor') ? old('valor') : (isset($produto->itemVenda->valor) ?
+                        moneyFormat($produto->itemVenda->valor, false) : '') }}">
             <label for="valorInput">Valor (R$) *</label>
         </div>
 
         <div class="input-field col s12 m4">
             <div class="col s6 right">
                 <input name="ativo" type="radio" id="ativoInput" value="1"
-                        {!! (old('ativo') == '1' ||
-                                 (isset($produto->itemVenda->ativo) && $produto->itemVenda->ativo == '1')) ?
+                        {!! (old('ativo') == '1' || (isset($produto->itemVenda->ativo) && $produto->itemVenda->ativo == '1')) ?
                                   ' checked' : '' !!}>
-                <label for="ativoInput">Item ativo</label>
+                <label for="ativoInput">Produto ativo</label>
             </div>
             <div class="col s6 right">
                 <input name="ativo" type="radio" id="inativoInput" value="0"
-                        {!! (old('ativo') == '0' ||
-                                 (isset($produto->itemVenda->ativo) && $produto->itemVenda->ativo == '0')) ?
+                        {!! (old('ativo') == '0' || (isset($produto->itemVenda->ativo) && $produto->itemVenda->ativo == '0')) ?
                                   ' checked' : '' !!}>
-                <label for="inativoInput">Item inativo</label>
+                <label for="inativoInput">Produto inativo</label>
             </div>
         </div>
 

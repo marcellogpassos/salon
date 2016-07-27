@@ -161,6 +161,7 @@ return [
 		App\Providers\MarcasProdutosServiceProvider::class,
 		App\Providers\ProdutosServiceProvider::class,
 		App\Providers\CategoriasProdutosServiceProvider::class,
+		App\Providers\ServicosServiceProvider::class,
 
 	],
 

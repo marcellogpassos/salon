@@ -16,4 +16,8 @@ class ItemVenda extends Model {
 		return $this->hasOne('App\Produto', 'id');
 	}
 
+	public function servico() {
+		return $this->hasOne('App\Servico', 'id');
+	}
+
 }
