@@ -7,4 +7,5 @@ class CategoriasProdutosRepository extends Repository {
     public function model() {
         return 'App\CategoriasProdutos';
     }
+    
 }

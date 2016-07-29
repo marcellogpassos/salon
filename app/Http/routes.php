@@ -34,6 +34,7 @@ Route::get('produtos/{id}/editar', 'ProdutosController@mostrarFormEditarProduto'
 Route::post('produtos/{id}/editar', 'ProdutosController@editarProduto');
 Route::get('produtos/{id}/excluir', 'ProdutosController@excluirProduto');
 
+Route::get('servicos/buscar', 'ServicosController@mostrarServicosEncontrados');
 Route::get('servicos/cadastrar', 'ServicosController@mostrarFormCadastrarServico');
 Route::post('servicos/cadastrar', 'ServicosController@cadastrarServico');
 

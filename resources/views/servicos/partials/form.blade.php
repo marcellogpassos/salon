@@ -36,12 +36,12 @@
 
         <div class="input-field col s12 m4">
             <div class="col s6 right">
-                <input name="masculino" type="checkbox" id="masculinoInput" value="M"
+                <input name="masculino" type="checkbox" id="masculinoInput" value="1"
                         {!! (old('masculino') || (isset($servico->masculino) && $servico->masculino)) ? ' checked' : '' !!}>
                 <label for="masculinoInput">Para homens</label>
             </div>
             <div class="col s6 right">
-                <input name="feminino" type="checkbox" id="femininoInput"
+                <input name="feminino" type="checkbox" id="femininoInput" value="1"
                         {!! (old('feminino') || (isset($servico->feminino) && $servico->feminino)) ? ' checked' : '' !!}>
                 <label for="femininoInput">Para mulheres</label>
             </div>
