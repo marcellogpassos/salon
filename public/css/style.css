@@ -105,6 +105,18 @@ tr.produtoInativo a {
     color: #757575;
 }
 
+.funcionarios-habilitados label {
+    color: #212121;
+}
+
+.funcionarios-habilitados .collapsible-header {
+    background-color: #F4D4DA;
+}
+
+.funcionarios-habilitados .collapsible-body {
+    background-color: #FAEFF1;
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;

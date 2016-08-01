@@ -34,9 +34,10 @@ class ServicosController extends Controller {
     }
 
     public function cadastrarServico(ServicosRequest $request) {
-        dd($request->all());
         $servicoAttr = $request->only('descricao', 'categoria_id', 'masculino', 'feminino');
         $itemVendaAttr = $request->only('id', 'ativo', 'valor');
+        $funcionariosHabilitadosAttr = $request->only('funcionarios');
+        dd($funcionariosHabilitadosAttr);
         $servico = false;
         try {
             $servico = $this->servicosService->cadastrar($servicoAttr, $itemVendaAttr);

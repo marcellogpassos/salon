@@ -58,14 +58,14 @@
             <label for="valorInput">Valor (R$) *</label>
         </div>
 
-        <div class="input-field offset-m2 col s12 m4">
-            <div class="col s6 right">
+        <div class="input-field col s12 m6">
+            <div class="col s12 m6 center">
                 <input name="ativo" type="radio" id="ativoInput" value="1"
                         {!! (old('ativo') == '1' || (isset($servico->itemVenda->ativo) && $servico->itemVenda->ativo == '1')) ?
                                   ' checked' : '' !!}>
                 <label for="ativoInput">Servi&ccedil;o ativo</label>
             </div>
-            <div class="col s6 right">
+            <div class="col s12 m6 center">
                 <input name="ativo" type="radio" id="inativoInput" value="0"
                         {!! (old('ativo') == '0' || (isset($servico->itemVenda->ativo) && $servico->itemVenda->ativo == '0')) ?
                                   ' checked' : '' !!}>
@@ -75,24 +75,28 @@
 
     </div>
 
-    <div class="row">
-        <div class="col s12 offset-m2 m8">
+    <div class="row funcionarios-habilitados">
+        <div class="col s12 offset-m1 m10">
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
                     <div class="collapsible-header">
-                        <i class="material-icons">people</i>Funcion&aacute;rios habilitados
+                        <i class="material-icons">people</i>
+                        Funcion&aacute;rios habilitados
+                        <i class="material-icons right">arrow_drop_down</i>
                     </div>
                     <div class="collapsible-body">
                         <div class="row">
-                            @foreach($funcionarios as $func)
-                                <div class="col s12 m6">
-                                    <p>
-                                        <input type="checkbox" name="funcionarios[]" value="{{$func->id}}"
-                                               id="{{'funcionario-' . $func->id}}"/>
-                                        <label for="{{'funcionario-' . $func->id}}">{{$func->name . ' ' . $func->surname}}</label>
-                                    </p>
-                                </div>
-                            @endforeach
+                            <div class="col s12">
+                                @foreach($funcionarios as $func)
+                                    <div class="col s12 m6">
+                                        <p>
+                                            <input type="checkbox" name="funcionarios[]" value="{{$func->id}}"
+                                                   id="{{'funcionario-' . $func->id}}"/>
+                                            <label for="{{'funcionario-' . $func->id}}">{{$func->name . ' ' . $func->surname}}</label>
+                                        </p>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </li>
