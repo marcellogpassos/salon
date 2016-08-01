@@ -20,6 +20,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/teste', function (){
+    return null;
+});
+
 Route::get('marcas/cadastrar', 'MarcasProdutosController@mostrarFormCadastrarMarcaProduto');
 Route::post('marcas/cadastrar', 'MarcasProdutosController@cadastrarMarcaProduto');
 Route::get('marcas/{id}/editar', 'MarcasProdutosController@mostrarFormEditarMarcaProduto');

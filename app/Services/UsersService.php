@@ -16,7 +16,9 @@ use App\Repositories\Criteria\User\BuscarPorSexo;
 use App\Repositories\Criteria\User\BuscarPorTelefone;
 use App\Repositories\Criteria\User\OrdenarPorNomeSobrenome;
 use App\Repositories\UsersRepository as Users;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsersService implements UsersServiceInterface {
 
@@ -53,6 +55,10 @@ class UsersService implements UsersServiceInterface {
 
     public function sincronizarPapeis($userId, array $roles) {
         return $this->users->sincronizarPapeis($userId, $roles);
+    }
+
+    public function listarFuncionarios() {
+        return $this->users->listarFuncionarios();
     }
 
 }

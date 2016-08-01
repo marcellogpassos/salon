@@ -19,4 +19,6 @@ interface UsersServiceInterface {
 
 	public function sincronizarPapeis($userId, array $roles);
 
+	public function listarFuncionarios();
+
 }

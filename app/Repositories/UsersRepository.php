@@ -10,6 +10,8 @@ namespace App\Repositories;
 
 
 use App\Repositories\Eloquent\Repository;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UsersRepository extends Repository {
 
@@ -20,6 +22,16 @@ class UsersRepository extends Repository {
     public function sincronizarPapeis($id, array $roles) {
         $user = $this->find($id);
         return $user->roles()->sync($roles);
+    }
+
+    public function listarFuncionarios() {
+        $funcionarios = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->orderBy(DB::raw('concat(name, " ", surname)'))
+            ->select('users.*')
+            ->distinct()
+            ->get();
+        return User::hydrate($funcionarios);
     }
 
 }

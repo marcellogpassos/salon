@@ -75,6 +75,31 @@
 
     </div>
 
+    <div class="row">
+        <div class="col s12 offset-m2 m8">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">people</i>Funcion&aacute;rios habilitados
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="row">
+                            @foreach($funcionarios as $func)
+                                <div class="col s12 m6">
+                                    <p>
+                                        <input type="checkbox" name="funcionarios[]" value="{{$func->id}}"
+                                               id="{{'funcionario-' . $func->id}}"/>
+                                        <label for="{{'funcionario-' . $func->id}}">{{$func->name . ' ' . $func->surname}}</label>
+                                    </p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </div>
 
 <div class="card-action">

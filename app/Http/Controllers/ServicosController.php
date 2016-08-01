@@ -6,15 +6,19 @@ use App\CategoriasServicos;
 use App\Http\Requests\ServicosRequest;
 use App\Services\CategoriasServicosServiceInterface;
 use App\Services\ServicoServiceInterface;
+use App\Services\UsersServiceInterface;
 use Illuminate\Support\Facades\Redirect;
 
 class ServicosController extends Controller {
 
     protected $servicosService;
     protected $categoriasServicosService;
+    protected $usersService;
 
-    public function __construct(ServicoServiceInterface $service, CategoriasServicosServiceInterface $categoriasServicosService) {
+    public function __construct(ServicoServiceInterface $service, UsersServiceInterface $usersService,
+                                CategoriasServicosServiceInterface $categoriasServicosService) {
         $this->servicosService = $service;
+        $this->usersService = $usersService;
         $this->categoriasServicosService = $categoriasServicosService;
         $this->middleware('auth');
     }
@@ -25,10 +29,12 @@ class ServicosController extends Controller {
 
     public function mostrarFormCadastrarServico() {
         return view('servicos.cadastrar')
-            ->with('categoriasServicos', $this->categoriasServicosService->listarTodos());
+            ->with('categoriasServicos', $this->categoriasServicosService->listarTodos())
+            ->with('funcionarios', $this->usersService->listarFuncionarios());
     }
 
     public function cadastrarServico(ServicosRequest $request) {
+        dd($request->all());
         $servicoAttr = $request->only('descricao', 'categoria_id', 'masculino', 'feminino');
         $itemVendaAttr = $request->only('id', 'ativo', 'valor');
         $servico = false;
