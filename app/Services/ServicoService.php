@@ -29,4 +29,8 @@ class ServicoService implements ServicoServiceInterface {
 		return $itemVenda->servico()->save($servico);
 	}
 
+	public function definirFuncionariosHabilitados($id, array $funcionarios) {
+		return $this->servicos->sincronizarFuncionarios($id, $funcionarios);
+	}
+
 }

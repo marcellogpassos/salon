@@ -18,4 +18,8 @@ class Servico extends Model {
 		return $this->belongsTo('App\ItemVenda', 'id');
 	}
 
+	public function funcionariosHabilitados() {
+		return $this->belongsToMany('App\User');
+	}
+
 }

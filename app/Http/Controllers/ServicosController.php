@@ -36,14 +36,17 @@ class ServicosController extends Controller {
     public function cadastrarServico(ServicosRequest $request) {
         $servicoAttr = $request->only('descricao', 'categoria_id', 'masculino', 'feminino');
         $itemVendaAttr = $request->only('id', 'ativo', 'valor');
-        $funcionariosHabilitadosAttr = $request->only('funcionarios');
-        dd($funcionariosHabilitadosAttr);
+        $funcionariosHabilitadosAttr = $request->input('funcionarios');
         $servico = false;
         try {
             $servico = $this->servicosService->cadastrar($servicoAttr, $itemVendaAttr);
         } catch (QueryException $ex) {
         }
-        $servico ? showMessage('success', 8, [$servico->descricao]) : showMessage('error', 6, [$servicoAttr['descricao']]);
+        if ($servico) {
+            showMessage('success', 8, [$servico->descricao]);
+            $this->servicosService->definirFuncionariosHabilitados($servico->id, $funcionariosHabilitadosAttr);
+        } else
+            showMessage('error', 6, [$servicoAttr['descricao']]);
         return Redirect::to('/servicos/buscar?id=' . $servico->id);
     }
 

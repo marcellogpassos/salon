@@ -20,9 +20,13 @@ class User extends Authenticatable {
         return $this->belongsToMany('App\Role');
     }
 
+    public function servicos() {
+        return $this->belongsToMany('App\Servico');
+    }
+
     public function possuiRole($roleProcurado) {
-        foreach($this->roles as $role)
-            if($role->id == $roleProcurado->id)
+        foreach ($this->roles as $role)
+            if ($role->id == $roleProcurado->id)
                 return true;
         return false;
     }

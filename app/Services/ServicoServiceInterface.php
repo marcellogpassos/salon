@@ -13,4 +13,6 @@ interface ServicoServiceInterface {
 
 	public function cadastrar(array $servicoAttr, array $itemVendaAttr);
 
+	public function definirFuncionariosHabilitados($id, array $funcionarios);
+
 }

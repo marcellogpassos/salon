@@ -17,4 +17,9 @@ class ServicosRepository extends Repository {
 		return 'App\Servico';
 	}
 
+	public function sincronizarFuncionarios($id, array $funcionarios) {
+		$servico = $this->find($id);
+		return $servico->funcionariosHabilitados()->sync($funcionarios);
+	}
+
 }
