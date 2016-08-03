@@ -24,7 +24,14 @@ class ServicosController extends Controller {
     }
 
     public function mostrarServicosEncontrados() {
-        return view('servicos.listar');
+        return $this->returnViewServicosListar();
+    }
+
+    public function returnViewServicosListar($servicos = null, $buscaPrevia = null) {
+        return view('servicos.listar')
+            ->with('servicosEncontrados', $servicos)
+            ->with('buscaPrevia', $buscaPrevia)
+            ->with('categoriasServicos', $this->categoriasServicosService->listarTodos());
     }
 
     public function mostrarFormCadastrarServico() {
