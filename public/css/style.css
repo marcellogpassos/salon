@@ -96,12 +96,12 @@ h4.card-title {
     margin-right: 20px;
 }
 
-tr.produtoInativo {
+.itens-encontrados tr.itemInativo {
     background-color: #e0e0e0;
     color: #757575;
 }
 
-tr.produtoInativo a {
+.itens-encontrados tr.itemInativo a {
     color: #757575;
 }
 

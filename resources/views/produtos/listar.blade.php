@@ -117,7 +117,7 @@
                     <div class="row">
                         <div class="col s12">
 
-                            <div class="card white produtos-encontrados">
+                            <div class="card white itens-encontrados">
 
                                 <h4 class="card-title">Produtos encontrados</h4>
 
@@ -140,7 +140,7 @@
                                         <tbody>
                                         @foreach($produtosEncontrados as $produto)
                                             <tr {!! (!$produto->itemVenda->ativo || !$produto->quantidade)
-                                                ? 'class="produtoInativo"' : '' !!}}>
+                                                ? 'class="itemInativo"' : '' !!}}>
                                                 <td>{{$produto->id}}</td>
                                                 <td>{{$produto->descricao}}</td>
                                                 <td>{{$produto->categoria ? $produto->categoria->descricao : '-'}}</td>
@@ -152,7 +152,7 @@
                                                 <td>{{$produto->quantidade}}</td>
                                                 <td>{{moneyFormat($produto->itemVenda->valor)}}</td>
                                                 <td>
-                                                    <a href="{{ url('produtos/' . $produto->    id . '/editar') }}">
+                                                    <a href="{{ url('produtos/' . $produto->id . '/editar') }}">
                                                         <i class="material-icons">mode_edit</i>
                                                     </a>
                                                     &nbsp;

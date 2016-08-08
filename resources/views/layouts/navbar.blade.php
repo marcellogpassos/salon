@@ -26,11 +26,9 @@
                     </a>
 
                     <ul id="adminMenuDropdown" class="dropdown-content">
-                        <li><a href="">Categorias de Produtos</a></li>
                         <li><a href="{{ url('/marcas') }}">Marcas de Produtos</a></li>
                         <li><a href="{{ url('/produtos/buscar') }}">Produtos</a></li>
-                        <li><a href="">Categorias de Serviços</a></li>
-                        <li><a href="">Serviços</a></li>
+                        <li><a href="{{ url('servicos/buscar') }}">Serviços</a></li>
                     </ul>
                 </li>
 
@@ -96,11 +94,9 @@
                             </a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="">Categorias de Produtos</a></li>
                                     <li><a href="{{ url('/marcas') }}">Marcas de Produtos</a></li>
                                     <li><a href="{{ url('/produtos/buscar') }}">Produtos</a></li>
-                                    <li><a href="">Categorias de Serviços</a></li>
-                                    <li><a href="">Serviços</a></li>
+                                    <li><a href="{{ url('servicos/buscar') }}">Serviços</a></li>
                                 </ul>
                             </div>
                         </li>

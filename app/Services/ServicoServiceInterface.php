@@ -11,8 +11,12 @@ namespace App\Services;
 
 interface ServicoServiceInterface {
 
-	public function cadastrar(array $servicoAttr, array $itemVendaAttr);
+    public function cadastrar(array $servicoAttr, array $itemVendaAttr);
 
-	public function definirFuncionariosHabilitados($id, array $funcionarios);
+    public function definirFuncionariosHabilitados($id, array $funcionarios);
+
+    public function buscar($criterios);
+
+    public function listarTodasOrdenarPorDescricao();
 
 }

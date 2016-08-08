@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CategoriasServicos;
+use App\Http\Requests\ServicosBuscarRequest;
 use App\Http\Requests\ServicosRequest;
 use App\Services\CategoriasServicosServiceInterface;
 use App\Services\ServicoServiceInterface;
@@ -23,8 +24,14 @@ class ServicosController extends Controller {
         $this->middleware('auth');
     }
 
-    public function mostrarServicosEncontrados() {
-        return $this->returnViewServicosListar();
+    public function mostrarServicosEncontrados(ServicosBuscarRequest $request) {
+        if (buscaPadrao($request->all())) {
+            $servicos = $this->servicosService->listarTodasOrdenarPorDescricao();
+            return $this->returnViewServicosListar($servicos);
+        } else {
+            $servicos = $this->servicosService->buscar($request->all());
+            return $this->returnViewServicosListar($servicos, $request->all());
+        }
     }
 
     public function returnViewServicosListar($servicos = null, $buscaPrevia = null) {

@@ -101,6 +101,82 @@
 
                 </div>
 
+                @if (isset($servicosEncontrados) && (count($servicosEncontrados) == 0))
+                    @include('partials.nenhumResultadoEncontrado')
+                @endif
+
+                @if(isset($servicosEncontrados) && (count($servicosEncontrados) > 0))
+
+                    <div id="information-alert" class="card card-alert card-alert-information">
+                        <div class="card-content">
+                            <p>Consulta realizada com sucesso! {{ $servicosEncontrados->total()}} resultado(s)
+                                encontrado(s).</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+
+                            <div class="card white itens-encontrados">
+
+                                <h4 class="card-title">Servi&ccedil;os encontrados</h4>
+
+                                <div class="card-content gray-text text-darken-4">
+
+                                    <table class="bordered highlight responsive-table">
+
+                                        <thead>
+                                        <tr>
+                                            <th data-field="id">C&oacute;d.</th>
+                                            <th data-field="descricao">Descri&ccedil;&atilde;o</th>
+                                            <th data-field="categoria_id">Categoria</th>
+                                            <th data-field="sexo">Sexo</th>
+                                            <th data-field="valor">Valor</th>
+                                            <th>Op&ccedil;&otilde;es</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        @foreach($servicosEncontrados as $servico)
+                                            <tr {!! (!$servico->itemVenda->ativo ? 'class="itemInativo"' : '') !!}}>
+                                                <td>{{$servico->id}}</td>
+                                                <td>{{$servico->descricao}}</td>
+                                                <td>{{$servico->categoria ? $servico->categoria->descricao : '-'}}</td>
+                                                <td>
+                                                    {{ resolverGeneroServico($servico->masculino, $servico->feminino) }}
+                                                </td>
+                                                <td>{{moneyFormat($servico->itemVenda->valor)}}</td>
+                                                <td>
+                                                    <a href="{{ url('servicos/' . $servico->id . '/editar') }}">
+                                                        <i class="material-icons">mode_edit</i>
+                                                    </a>
+                                                    &nbsp;
+                                                    <a href="{{ url('servicos/' . $servico->id . '/excluir') }}">
+                                                        <i class="material-icons">delete</i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                                <div class="card-action">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            {!! $servicosEncontrados->appends($buscaPrevia)->render() !!}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                @endif
+
             </div>
         </div>
     </div>

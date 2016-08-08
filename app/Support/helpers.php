@@ -66,3 +66,17 @@ if (!function_exists('moneyFormat')) {
     }
 
 }
+
+if (!function_exists('resolverGeneroServico')) {
+
+    function resolverGeneroServico($masculino, $feminino) {
+        if ($masculino && $feminino)
+            return 'AMBOS OS SEXOS';
+        if ($masculino && !$feminino)
+            return 'HOMENS';
+        if (!$masculino && $feminino)
+            return 'MULHERES';
+        return null;
+    }
+
+}
