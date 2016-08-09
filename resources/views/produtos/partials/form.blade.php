@@ -3,7 +3,8 @@
     <div class="row">
 
         <div class="input-field col s12 offset-m2 m2">
-            <input id="codigoInput" name="id" type="text" maxlength="16" class="validate"
+            <input id="codigoInput" name="id" type="text" maxlength="16"
+                   {!! isset($produto) ? ' readonly ' : ' name="id" ' !!}
                    value="{{ old('id') ? old('id') : (isset($produto->id) ? $produto->id : '') }}">
             <label for="codigoInput">C&oacute;digo</label>
         </div>
@@ -11,7 +12,7 @@
         <div class="input-field col s12 m6">
             <input id="descricaoInput" name="descricao" type="text" maxlength="255" minlength="3" class="validate"
                    value="{{ old('descricao') ? old('descricao') : (isset($produto->descricao) ? $produto->descricao : '') }}">
-            <label for="descricaoInput">Descri&ccedil;&atilde;o do produto</label>
+            <label for="descricaoInput">Descri&ccedil;&atilde;o do produto *</label>
         </div>
 
     </div>
@@ -19,7 +20,7 @@
     <div class="row">
 
         <div class="col offset-m2 s12 m4">
-            <label for="categoriaProdutoInput" class="active">Categoria</label>
+            <label for="categoriaProdutoInput" class="active">Categoria *</label>
             <select id="categoriaProdutoInput" name="categoria_id" class="browser-default">
                 <option value="" selected></option>
 

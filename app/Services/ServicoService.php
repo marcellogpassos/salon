@@ -57,4 +57,8 @@ class ServicoService implements ServicoServiceInterface {
     public function listarTodasOrdenarPorDescricao() {
         return $this->servicos->getByCriteria(new OrdenarPorDescricao())->paginate();
     }
+
+    public function getById($id) {
+        return $this->servicos->find($id);
+    }
 }

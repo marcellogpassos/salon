@@ -16,7 +16,7 @@
 
                     <h4 class="card-title">Cadastrar novo servi&ccedil;o</h4>
 
-                    <form id="cadastrarProdutoForm" method="POST" action="{{ url('/servicos/cadastrar') }}" role="form">
+                    <form id="cadastrarServicoForm" method="POST" action="{{ url('/servicos/cadastrar') }}" role="form">
 
                         {{ csrf_field() }}
 
@@ -33,15 +33,5 @@
 
 @section('scripts')
     <script src="{{ asset('lib/jquery-maskmoney/jquery.maskMoney.min.js') }}"></script>
-    <script>
-        $(function() {
-            $(".moeda").maskMoney({
-                prefix:'R$ ',
-                allowNegative: true,
-                thousands:'.',
-                decimal:',',
-                affixesStay: false
-            });
-        })
-    </script>
+    <script src="{{ asset('js/money.js') }}"></script>
 @endsection

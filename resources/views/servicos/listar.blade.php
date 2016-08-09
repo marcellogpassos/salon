@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col s12 m4 grid-example">
                                     <a class="btn btn-block waves-effect waves-light secondary"
-                                       href="{{ url('produtos/cadastrar') }}">
+                                       href="{{ url('servicos/cadastrar') }}">
                                         Cadastrar servi&ccedil;o
                                     </a>
                                 </div>

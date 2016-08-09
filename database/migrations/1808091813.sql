@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: blank
 -- ------------------------------------------------------
--- Server version	5.6.30
+-- Server version	5.6.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -88,7 +88,7 @@ CREATE TABLE `db_info` (
 
 LOCK TABLES `db_info` WRITE;
 /*!40000 ALTER TABLE `db_info` DISABLE KEYS */;
-INSERT INTO `db_info` VALUES (1,'1608091007','2016-08-09 13:07:35');
+INSERT INTO `db_info` VALUES (1,'1608091813','2016-08-09 21:13:54');
 /*!40000 ALTER TABLE `db_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,6 +232,35 @@ INSERT INTO `produtos` VALUES (2102,'ANTIFRIZZ',1,2,0,'2016-06-15 21:40:06','201
 UNLOCK TABLES;
 
 --
+-- Table structure for table `role_user`
+--
+
+DROP TABLE IF EXISTS `role_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role_user` (
+  `role_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`role_id`,`user_id`),
+  KEY `fk_role_user_idx` (`role_id`),
+  KEY `fk_user_role_idx` (`user_id`),
+  CONSTRAINT `fk_role_user` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_role` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_user`
+--
+
+LOCK TABLES `role_user` WRITE;
+/*!40000 ALTER TABLE `role_user` DISABLE KEYS */;
+INSERT INTO `role_user` VALUES (1,1,'2016-08-01 16:32:53'),(2,3,'2016-08-01 16:32:53'),(3,2,'2016-08-01 16:32:53'),(4,2,'2016-08-01 16:32:53'),(6,7,NULL),(7,1,'2016-08-01 16:32:53'),(7,3,'2016-08-01 16:32:53');
+/*!40000 ALTER TABLE `role_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `roles`
 --
 
@@ -259,6 +288,33 @@ INSERT INTO `roles` VALUES (1,'Administrador(a)','ADMIN','2016-06-15 21:40:51',N
 UNLOCK TABLES;
 
 --
+-- Table structure for table `servico_user`
+--
+
+DROP TABLE IF EXISTS `servico_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `servico_user` (
+  `servico_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`servico_id`,`user_id`),
+  KEY `fk_user_servico_idx` (`user_id`),
+  CONSTRAINT `fk_servico_user` FOREIGN KEY (`servico_id`) REFERENCES `servicos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_servico` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `servico_user`
+--
+
+LOCK TABLES `servico_user` WRITE;
+/*!40000 ALTER TABLE `servico_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `servico_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `servicos`
 --
 
@@ -269,15 +325,15 @@ CREATE TABLE `servicos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(255) NOT NULL,
   `categoria_id` bigint(20) NOT NULL,
-  `masculino` char(1) NOT NULL DEFAULT '1',
-  `feminino` char(1) NOT NULL DEFAULT '1',
+  `masculino` char(1) NOT NULL DEFAULT '0',
+  `feminino` char(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_categoria_servico_idx` (`categoria_id`),
   CONSTRAINT `fk_categoria_servico` FOREIGN KEY (`categoria_id`) REFERENCES `categorias_servicos` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_item_venda_servico` FOREIGN KEY (`id`) REFERENCES `itens_venda` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1604 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159160 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,7 +342,7 @@ CREATE TABLE `servicos` (
 
 LOCK TABLES `servicos` WRITE;
 /*!40000 ALTER TABLE `servicos` DISABLE KEYS */;
-INSERT INTO `servicos` VALUES (1100,'CORTE MASCULINO BÁSICO',1,'1','0','2016-06-15 21:41:31',NULL),(1101,'CORTE MASCULINO COM MÁQUINA',1,'1','0','2016-06-15 21:41:31',NULL),(1102,'CORTE FEMININO DEGRADÊ',1,'0','1','2016-06-15 21:41:31',NULL),(1103,'CORTE FEMININO DESFIADO',1,'0','1','2016-06-15 21:41:31',NULL),(1104,'CORTE FEMININO REPICADO',1,'0','1','2016-06-15 21:41:31',NULL),(1105,'CORTE FEMININO RETO (BÁSICO)',1,'0','1','2016-06-15 21:41:31',NULL),(1106,'CORTE CHANEL',1,'1','1','2016-06-15 21:41:31',NULL),(1107,'CORTE DE FRANJA',1,'1','1','2016-06-15 21:41:31',NULL),(1200,'ALISAMENTO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1201,'HIDRATAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1202,'COLORAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1203,'ONDULAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1204,'CAUTERIZAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1205,'QUERATINIZAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1300,'MANICURE',3,'1','1','2016-06-15 21:41:31',NULL),(1301,'PEDICURE',3,'1','1','2016-06-15 21:41:31',NULL),(1302,'PODOLOGIA',3,'1','1','2016-06-15 21:41:31',NULL),(1400,'DEPILAÇÃO À CERA',4,'0','1','2016-06-15 21:41:31',NULL),(1401,'DEPILAÇÃO À LASER',4,'0','1','2016-06-15 21:41:31',NULL),(1402,'DEPILAÇÃO COM LINHA',4,'0','1','2016-06-15 21:41:31',NULL),(1403,'DEPILAÇÃO ARTÍSTICA',4,'0','1','2016-06-15 21:41:31',NULL),(1404,'DEPILAÇÃO DAS PERNAS',4,'0','1','2016-06-15 21:41:31',NULL),(1405,'DEPILAÇÃO DA VIRILHA',4,'0','1','2016-06-15 21:41:31',NULL),(1406,'DEPILAÇÃO DAS AXILAS',4,'0','1','2016-06-15 21:41:31',NULL),(1407,'DEPILAÇÃO DE BUÇO',4,'0','1','2016-06-15 21:41:31',NULL),(1500,'MAQUIAGEM',5,'1','1','2016-06-15 21:41:31',NULL),(1501,'DESIGN DE SOBRANCELHAS',5,'1','1','2016-06-15 21:41:31',NULL),(1502,'LIMPEZA DE PELE',5,'1','1','2016-06-15 21:41:31',NULL),(1503,'PEELING FACIAL',5,'1','1','2016-06-15 21:41:31',NULL),(1504,'DRENAGEM LINFÁTICA FACIAL',5,'1','1','2016-06-15 21:41:31',NULL),(1505,'LASER FACIAL',5,'1','1','2016-06-15 21:41:31',NULL),(1600,'DRENAGEM LINFÁTICA CORPORAL',6,'0','1','2016-06-15 21:41:31',NULL),(1601,'MASSAGEM REDUTORA',6,'0','1','2016-06-15 21:41:31',NULL),(1602,'BRONZEAMENTO ARTIFICIAL',6,'0','1','2016-06-15 21:41:31',NULL),(1603,'BARBA E BIGODE',1,'1','0','2016-07-26 13:29:58',NULL);
+INSERT INTO `servicos` VALUES (1100,'CORTE MASCULINO BÁSICO',1,'1','0','2016-06-15 21:41:31',NULL),(1101,'CORTE MASCULINO COM MÁQUINA',1,'1','0','2016-06-15 21:41:31',NULL),(1102,'CORTE FEMININO DEGRADÊ',1,'0','1','2016-06-15 21:41:31',NULL),(1103,'CORTE FEMININO DESFIADO',1,'0','1','2016-06-15 21:41:31',NULL),(1104,'CORTE FEMININO REPICADO',1,'0','1','2016-06-15 21:41:31',NULL),(1105,'CORTE FEMININO RETO (BÁSICO)',1,'0','1','2016-06-15 21:41:31',NULL),(1106,'CORTE CHANEL',1,'1','1','2016-06-15 21:41:31',NULL),(1107,'CORTE DE FRANJA',1,'1','1','2016-06-15 21:41:31',NULL),(1200,'ALISAMENTO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1201,'HIDRATAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1202,'COLORAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1203,'ONDULAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1204,'CAUTERIZAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1205,'QUERATINIZAÇÃO CAPILAR',2,'1','1','2016-06-15 21:41:31',NULL),(1206,'CAPIM CUBANO',2,'1','0','2016-07-29 17:53:26','2016-07-29 17:53:26'),(1207,'MEIA TONTA',2,'0','1','2016-07-29 18:01:08','2016-07-29 18:01:08'),(1300,'MANICURE',3,'1','1','2016-06-15 21:41:31',NULL),(1301,'PEDICURE',3,'1','1','2016-06-15 21:41:31',NULL),(1302,'PODOLOGIA',3,'1','1','2016-06-15 21:41:31',NULL),(1400,'DEPILAÇÃO À CERA',4,'0','1','2016-06-15 21:41:31',NULL),(1401,'DEPILAÇÃO À LASER',4,'0','1','2016-06-15 21:41:31',NULL),(1402,'DEPILAÇÃO COM LINHA',4,'0','1','2016-06-15 21:41:31',NULL),(1403,'DEPILAÇÃO ARTÍSTICA',4,'0','1','2016-06-15 21:41:31',NULL),(1404,'DEPILAÇÃO DAS PERNAS',4,'0','1','2016-06-15 21:41:31',NULL),(1405,'DEPILAÇÃO DA VIRILHA',4,'0','1','2016-06-15 21:41:31',NULL),(1406,'DEPILAÇÃO DAS AXILAS',4,'0','1','2016-06-15 21:41:31',NULL),(1407,'DEPILAÇÃO DE BUÇO',4,'0','1','2016-06-15 21:41:31',NULL),(1500,'MAQUIAGEM',5,'1','1','2016-06-15 21:41:31',NULL),(1501,'DESIGN DE SOBRANCELHAS',5,'1','1','2016-06-15 21:41:31',NULL),(1502,'LIMPEZA DE PELE',5,'1','1','2016-06-15 21:41:31',NULL),(1503,'PEELING FACIAL',5,'1','1','2016-06-15 21:41:31',NULL),(1504,'DRENAGEM LINFÁTICA FACIAL',5,'1','1','2016-06-15 21:41:31',NULL),(1505,'LASER FACIAL',5,'1','1','2016-06-15 21:41:31',NULL),(1600,'DRENAGEM LINFÁTICA CORPORAL',6,'0','1','2016-06-15 21:41:31',NULL),(1601,'MASSAGEM REDUTORA',6,'0','1','2016-06-15 21:41:31',NULL),(1602,'BRONZEAMENTO ARTIFICIAL',6,'0','1','2016-06-15 21:41:31',NULL),(1603,'BARBA E BIGODE',1,'1','0','2016-07-26 13:29:58',NULL);
 /*!40000 ALTER TABLE `servicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +354,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `surname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -329,7 +385,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Marcello','Galdino Passos','marcellogpassos@gmail.com','$2y$10$s2TLmlXVjEP531gPgYIKYOeEuDNn49vTg0l2AwYFCV13NTIYt/G1S','M0mE5Ul38HAthphpitu4hPTbq2dca4DAK21u4g6lDUqDqSh2lMS3uEuHkeNE','M','1990-05-04','08417523464','83996917109','58030060','25','07507','Rua Goiás','284','Estados','Apartamento 1703','2016-06-09 00:49:45','2016-07-15 16:01:38'),(2,'Ana Carolina','Sousa Alves Passos','carolasalves@gmail.com','$2y$10$pnjd09c3zNwQOxxaVSC5/ui.dkduZTInR2p7NLYsjy.F9Ih1zyVjC','fjPKdg6MakZhbJfwCxO7FTuHAoJVhiUZ3IOdRVGeADQT9RvQzx0OOsOLKG9I','F','1992-11-17','60480663092','83999649598','58030060','25','07507','Rua Goiás','284','Estados','até 415/416','2016-06-09 00:51:24','2016-06-21 21:12:12'),(4,'Márcio','Galdino Passos','marciogpassos@gmail.com','$2y$10$.jkLRvezxZ2ZIKxLipDVU.ZxJJ.baW3RrrRVa4xFo1/MpmZJjOzDC','8vwSp65mgxRb1OeJGBTunZZ1OtZV8PD6Pl4S79QZT5xARivXCPnxNwktRib7','M','1981-09-22','33834479608','61993086183','71919360','53','00108','Rua 37 Norte','Lote 1','Norte (Águas Claras)','Edifício Cezanne - Apto. 1404','2016-06-09 21:59:40','2016-06-16 00:06:16'),(5,'Luciano','Carvalho de Medeiros Júnior','lucamenor@gmail.com','$2y$10$2UO1zKCEnYpEOWv.VCretO.bNzCIiCXjlQSAihO1Faae4F7IQWSim',NULL,'M','1989-02-05','76371095340','11932834063','07085190','35','18800','Rua Noventa e Dois','40','Parque Continental','','2016-06-13 23:39:12','2016-06-13 23:40:41'),(6,'Tomás','Barbosa Martins','tomasbarbosamartins@inbound.plus','$2y$10$RAaFKDFNT0p3IxtC9A652OjDAerk8k3eDdvlL4NRoONvER5NjT0Yu','zwCBUrZf7Hnkb7NVP8nWrZWXNp9aptGKJF1gXlzHXMMHcM3koHhCjeUwqgVd','M','1969-10-25','36783485307','88985709151','03278030','35','50308','Rua Gustavo Stach','795','Vila Ema','','2016-06-15 23:47:19','2016-06-15 23:48:27'),(7,'Julieta','Sousa Rocha','julietasousarocha@inbound.plus','$2y$10$4Cotcoj1Y1bAL1AgSz2U9u1hTqczg8Ntstmae46.O0gUgVd5iuJ52','TvleZM3FaS3ngQcou8aEnPGYneYdKUjnOkQbjtQisg241557bxEsJtyMrkCc','F','1967-03-04','52343142513','16983142824','14055664','35','43402','Travessa Delelmo Mazzo','329','Ipiranga','','2016-06-15 23:57:46','2016-06-16 00:00:54');
+INSERT INTO `users` VALUES (1,'Marcello','Galdino Passos','marcellogpassos@gmail.com','$2y$10$s2TLmlXVjEP531gPgYIKYOeEuDNn49vTg0l2AwYFCV13NTIYt/G1S','racwi4A1rDsh8ArlfAKdzbp5k5wEbjuSM5S8fpweSAc8vteExrLXrjGwo57c','M','1990-05-04','08417523464','83996917109','58030060','25','07507','Rua Goiás','284','Estados','Apartamento 1703','2016-06-09 00:49:45','2016-08-01 19:38:01'),(2,'Ana Carolina','Sousa Alves Passos','carolasalves@gmail.com','$2y$10$pnjd09c3zNwQOxxaVSC5/ui.dkduZTInR2p7NLYsjy.F9Ih1zyVjC','fjPKdg6MakZhbJfwCxO7FTuHAoJVhiUZ3IOdRVGeADQT9RvQzx0OOsOLKG9I','F','1992-11-17','60480663092','83999649598','58030060','25','07507','Rua Goiás','284','Estados','até 415/416','2016-06-09 00:51:24','2016-06-21 21:12:12'),(3,'Márcio','Galdino Passos','marciogpassos@gmail.com','$2y$10$.jkLRvezxZ2ZIKxLipDVU.ZxJJ.baW3RrrRVa4xFo1/MpmZJjOzDC','8vwSp65mgxRb1OeJGBTunZZ1OtZV8PD6Pl4S79QZT5xARivXCPnxNwktRib7','M','1981-09-22','33834479608','61993086183','71919360','53','00108','Rua 37 Norte','Lote 1','Norte (Águas Claras)','Edifício Cezanne - Apto. 1404','2016-06-09 21:59:40','2016-06-16 00:06:16'),(4,'Luciano','Carvalho de Medeiros Júnior','lucamenor@gmail.com','$2y$10$2UO1zKCEnYpEOWv.VCretO.bNzCIiCXjlQSAihO1Faae4F7IQWSim',NULL,'M','1989-02-05','76371095340','11932834063','07085190','35','18800','Rua Noventa e Dois','40','Parque Continental','','2016-06-13 23:39:12','2016-06-13 23:40:41'),(5,'Tomás','Barbosa Martins','tomasbarbosamartins@inbound.plus','$2y$10$RAaFKDFNT0p3IxtC9A652OjDAerk8k3eDdvlL4NRoONvER5NjT0Yu','zwCBUrZf7Hnkb7NVP8nWrZWXNp9aptGKJF1gXlzHXMMHcM3koHhCjeUwqgVd','M','1969-10-25','36783485307','88985709151','03278030','35','50308','Rua Gustavo Stach','795','Vila Ema','','2016-06-15 23:47:19','2016-06-15 23:48:27'),(6,'Julieta','Sousa Rocha','julietasousarocha@inbound.plus','$2y$10$4Cotcoj1Y1bAL1AgSz2U9u1hTqczg8Ntstmae46.O0gUgVd5iuJ52','TvleZM3FaS3ngQcou8aEnPGYneYdKUjnOkQbjtQisg241557bxEsJtyMrkCc','F','1967-03-04','52343142513','16983142824','14055664','35','43402','Travessa Delelmo Mazzo','329','Ipiranga','','2016-06-15 23:57:46','2016-06-16 00:00:54'),(7,'João','Barbosa Cardoso','joaobarbosacardoso@armyspy.com','$2y$10$lqF/WKinrkykCvICbVi6heHQwW9fLiejfcCoOcqj/GTb0TF0yI5Xq',NULL,'M','1970-07-22','79327361962','2479289860','27520175','33','04201','Avenida General Afonseca','1039','Manejo','de 1140 ao fim - lado par','2016-08-01 19:42:21','2016-08-01 19:43:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -342,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-09 10:25:45
+-- Dump completed on 2016-08-09 18:14:30

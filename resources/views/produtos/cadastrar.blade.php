@@ -33,15 +33,5 @@
 
 @section('scripts')
     <script src="{{ asset('lib/jquery-maskmoney/jquery.maskMoney.min.js') }}"></script>
-    <script>
-        $(function() {
-            $(".moeda").maskMoney({
-                prefix:'R$ ',
-                allowNegative: true,
-                thousands:'.',
-                decimal:',',
-                affixesStay: false
-            });
-        })
-    </script>
+    <script src="{{ asset('js/money.js') }}"></script>
 @endsection

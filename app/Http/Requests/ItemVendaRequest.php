@@ -12,7 +12,7 @@ abstract class ItemVendaRequest extends Request {
 
     public function __construct() {
         $parentRules = [
-            'id' => 'integer|unique:itens_venda,id,' . $this->getItemId(),
+            'id' => 'integer|unique:itens_venda,id',
             'descricao' => 'required|min:3|max:255',
             'valor' => 'required|numeric',
             'ativo' => 'required|in:1,0'
@@ -47,10 +47,6 @@ abstract class ItemVendaRequest extends Request {
 
     public function rules() {
         return $this->rules;
-    }
-
-    public function getItemId() {
-        return $this->route('id');
     }
 
     public abstract function subclassAll($attributes);

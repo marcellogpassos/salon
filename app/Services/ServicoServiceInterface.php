@@ -11,6 +11,8 @@ namespace App\Services;
 
 interface ServicoServiceInterface {
 
+    public function getById($id);
+
     public function cadastrar(array $servicoAttr, array $itemVendaAttr);
 
     public function definirFuncionariosHabilitados($id, array $funcionarios);

@@ -80,3 +80,14 @@ if (!function_exists('resolverGeneroServico')) {
     }
 
 }
+
+if (!function_exists('funcionarioHabilitado')) {
+
+    function funcionarioHabilitado($servico, $funcionarioProcurado) {
+        foreach ($servico->funcionariosHabilitados as $funcionario)
+            if($funcionario->id == $funcionarioProcurado->id)
+                return true;
+        return false;
+    }
+
+}

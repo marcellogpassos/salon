@@ -3,7 +3,8 @@
     <div class="row">
 
         <div class="input-field col s12 offset-m2 m2">
-            <input id="codigoInput" name="id" type="text" maxlength="16" class="validate"
+            <input id="codigoInput" type="text" maxlength="16"
+                   {!! isset($servico) ? ' readonly ' : ' name="id" ' !!}
                    value="{{ old('id') ? old('id') : (isset($servico->id) ? $servico->id : '') }}">
             <label for="codigoInput">C&oacute;digo</label>
         </div>
@@ -11,7 +12,7 @@
         <div class="input-field col s12 m6">
             <input id="descricaoInput" name="descricao" type="text" maxlength="255" minlength="3" class="validate"
                    value="{{ old('descricao') ? old('descricao') : (isset($servico->descricao) ? $servico->descricao : '') }}">
-            <label for="descricaoInput">Descri&ccedil;&atilde;o do servi&ccedil;o</label>
+            <label for="descricaoInput">Descri&ccedil;&atilde;o do servi&ccedil;o *</label>
         </div>
 
     </div>
@@ -19,7 +20,7 @@
     <div class="row">
 
         <div class="col offset-m2 s12 m4">
-            <label for="categoriaServicoInput" class="active">Categoria</label>
+            <label for="categoriaServicoInput" class="active">Categoria *</label>
             <select id="categoriaServicoInput" name="categoria_id" class="browser-default">
                 <option value="" selected></option>
 
@@ -91,6 +92,7 @@
                                     <div class="col s12 m6">
                                         <p>
                                             <input type="checkbox" name="funcionarios[]" value="{{$func->id}}"
+                                                   {!! isset($servico) && funcionarioHabilitado($servico, $func) ? ' checked ' : '' !!}
                                                    id="{{'funcionario-' . $func->id}}"/>
                                             <label for="{{'funcionario-' . $func->id}}">{{$func->name . ' ' . $func->surname}}</label>
                                         </p>

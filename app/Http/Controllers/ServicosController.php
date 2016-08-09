@@ -8,6 +8,7 @@ use App\Http\Requests\ServicosRequest;
 use App\Services\CategoriasServicosServiceInterface;
 use App\Services\ServicoServiceInterface;
 use App\Services\UsersServiceInterface;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class ServicosController extends Controller {
@@ -62,6 +63,22 @@ class ServicosController extends Controller {
         } else
             showMessage('error', 6, [$servicoAttr['descricao']]);
         return Redirect::to('/servicos/buscar?id=' . $servico->id);
+    }
+
+    public function mostrarFormEditarServico($id) {
+        $servico = $this->servicosService->getById($id);
+        return view('servicos.editar')
+            ->with('servico', $servico)
+            ->with('categoriasServicos', $this->categoriasServicosService->listarTodos())
+            ->with('funcionarios', $this->usersService->listarFuncionarios());
+    }
+
+    public function editarServico($id, ServicosRequest $request) {
+        dd($request->all());
+    }
+
+    public function excluirServico() {
+
     }
 
 }
