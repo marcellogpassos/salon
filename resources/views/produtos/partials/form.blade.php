@@ -3,7 +3,7 @@
     <div class="row">
 
         <div class="input-field col s12 offset-m2 m2">
-            <input id="codigoInput" name="id" type="text" maxlength="16"
+            <input id="codigoInput" type="text" maxlength="16"
                    {!! isset($produto) ? ' readonly ' : ' name="id" ' !!}
                    value="{{ old('id') ? old('id') : (isset($produto->id) ? $produto->id : '') }}">
             <label for="codigoInput">C&oacute;digo</label>

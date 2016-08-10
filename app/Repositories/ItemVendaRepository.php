@@ -30,4 +30,17 @@ class ItemVendaRepository extends Repository {
 		return $parent;
 	}
 
+	public function updateItemVendaServico(array $servicoAttr, array $itemVendaAttr, $id) {
+		$parent = $this->find($id);
+		$parent->fill($itemVendaAttr);
+		$parent->save();
+		$child = $parent->servico;
+		$child->descricao = $servicoAttr['descricao'];
+		$child->categoria_id = $servicoAttr['categoria_id'];
+		$child->masculino = $servicoAttr['masculino'];
+		$child->feminino = $servicoAttr['feminino'];
+		$parent->servico()->save($child);
+		return $parent;
+	}
+
 }

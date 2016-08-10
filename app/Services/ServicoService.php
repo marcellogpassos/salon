@@ -61,4 +61,9 @@ class ServicoService implements ServicoServiceInterface {
     public function getById($id) {
         return $this->servicos->find($id);
     }
+
+    public function editar($id, array $servicoAttr, array $itemVendaAttr) {
+        return $this->itensVenda->updateItemVendaServico($servicoAttr, $itemVendaAttr, $id);
+    }
+
 }

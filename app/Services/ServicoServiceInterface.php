@@ -21,4 +21,6 @@ interface ServicoServiceInterface {
 
     public function listarTodasOrdenarPorDescricao();
 
+    public function editar($id, array $servicoAttr, array $itemVendaAttr);
+
 }

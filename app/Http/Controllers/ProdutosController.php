@@ -89,13 +89,13 @@ class ProdutosController extends Controller {
 	public function editarProduto($id, ProdutosRequest $request) {
 		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade');
 		$itemVendaAttr = $request->only('ativo', 'valor');
-		$produto = false;
+		$itemVenda = false;
 		try {
-			$produto = $this->produtosService->editar($id, $produtoAttr, $itemVendaAttr);
+			$itemVenda = $this->produtosService->editar($id, $produtoAttr, $itemVendaAttr);
 		} catch (QueryException $ex) {
 		}
-		$produto ? showMessage('success', 7, [$produto->descricao]) : showMessage('error', 5, [$produtoAttr['descricao']]);
-		return Redirect::to('/produtos/buscar?id=' . $produto->id);
+		$itemVenda ? showMessage('success', 7, [$itemVenda->produto->descricao]) : showMessage('error', 5, [$produtoAttr['descricao']]);
+		return Redirect::to('/produtos/buscar?id=' . $itemVenda->id);
 	}
 
 }

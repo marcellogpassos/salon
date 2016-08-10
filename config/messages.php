@@ -12,6 +12,7 @@ return [
 		'Falha ao tentar cadastrar o produto {0}.',						 												// 4
 		'Falha ao tentar alterar o produto {0}.',						 												// 5
 		'Falha ao tentar cadastrar o serviço {0}.',						 												// 6
+		'Falha ao tentar alterar o servico {0}.',						 												// 7
 	],
 
 	'information' => [],
@@ -26,6 +27,7 @@ return [
 		'Produto {0} cadastrado com sucesso!',                                                                          // 6
 		'Produto {0} alterado com sucesso!',                                                                     	    // 7
 		'Serviço {0} cadastrado com sucesso!',                                                                          // 8
+		'Serviço {0} alterado com sucesso!',                                                                          	// 9
 	],
 
 	'warning' => [
