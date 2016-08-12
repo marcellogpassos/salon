@@ -66,4 +66,11 @@ class ServicoService implements ServicoServiceInterface {
         return $this->itensVenda->updateItemVendaServico($servicoAttr, $itemVendaAttr, $id);
     }
 
+    public function deletar($id) {
+        $servico = $this->servicos->find($id);
+        if($servico)
+            return $this->itensVenda->delete($id);
+        return false;
+    }
+
 }

@@ -22,49 +22,52 @@ use App\Repositories\ItemVendaRepository as ItensVenda;
 
 class ProdutosService implements ProdutosServiceInterface {
 
-    protected $produtos;
+	protected $produtos;
 
-    protected $itensVenda;
+	protected $itensVenda;
 
-    public function __construct(Produtos $repository, ItensVenda $itemVendaRepository) {
-        $this->produtos = $repository;
-        $this->itensVenda = $itemVendaRepository;
-    }
+	public function __construct(Produtos $repository, ItensVenda $itemVendaRepository) {
+		$this->produtos = $repository;
+		$this->itensVenda = $itemVendaRepository;
+	}
 
-    public function listarTodasOrdenarPorDescricao() {
-        return $this->produtos->getByCriteria(new OrdenarPorDescricao())->paginate();
-    }
+	public function listarTodasOrdenarPorDescricao() {
+		return $this->produtos->getByCriteria(new OrdenarPorDescricao())->paginate();
+	}
 
-    public function buscar($criterios) {
-        if (filtroFornecido($criterios, 'id'))
-            $this->produtos->pushCriteria(new BuscarPorId($criterios['id']))->paginate();
-        else {
-            if (filtroFornecido($criterios, 'descricao'))
-                $this->produtos->pushCriteria(new BuscarPorDescricao($criterios['descricao']));
-            if (filtroFornecido($criterios, 'categoria_id'))
-                $this->produtos->pushCriteria(new BuscarPorCategoria($criterios['categoria_id']));
-            if (filtroFornecido($criterios, 'marca_id'))
-                $this->produtos->pushCriteria(new BuscarPorMarca($criterios['marca_id']));
-        }
-        return $this->produtos->pushCriteria(new OrdenarPorDescricao())->paginate();
-    }
+	public function buscar($criterios) {
+		if (filtroFornecido($criterios, 'id'))
+			$this->produtos->pushCriteria(new BuscarPorId($criterios['id']))->paginate();
+		else {
+			if (filtroFornecido($criterios, 'descricao'))
+				$this->produtos->pushCriteria(new BuscarPorDescricao($criterios['descricao']));
+			if (filtroFornecido($criterios, 'categoria_id'))
+				$this->produtos->pushCriteria(new BuscarPorCategoria($criterios['categoria_id']));
+			if (filtroFornecido($criterios, 'marca_id'))
+				$this->produtos->pushCriteria(new BuscarPorMarca($criterios['marca_id']));
+		}
+		return $this->produtos->pushCriteria(new OrdenarPorDescricao())->paginate();
+	}
 
-    public function deletar($id) {
-        return $this->itensVenda->delete($id);
-    }
+	public function deletar($id) {
+		$produto = $this->produtos->find($id);
+		if ($produto)
+			return $this->itensVenda->delete($id);
+		return false;
+	}
 
-    public function getById($id) {
-        return $this->produtos->find($id);
-    }
+	public function getById($id) {
+		return $this->produtos->find($id);
+	}
 
-    public function cadastrar(array $produtoAttr, array $itemVendaAttr) {
-        $itemVenda = $this->itensVenda->create($itemVendaAttr);
-        $produto = new Produto($produtoAttr);
-        return $itemVenda->produto()->save($produto);
-    }
+	public function cadastrar(array $produtoAttr, array $itemVendaAttr) {
+		$itemVenda = $this->itensVenda->create($itemVendaAttr);
+		$produto = new Produto($produtoAttr);
+		return $itemVenda->produto()->save($produto);
+	}
 
-    public function editar($id, array $produtoAttr, array $itemVendaAttr) {
-        return $this->itensVenda->updateItemVendaProduto($produtoAttr, $itemVendaAttr, $id);
-    }
+	public function editar($id, array $produtoAttr, array $itemVendaAttr) {
+		return $this->itensVenda->updateItemVendaProduto($produtoAttr, $itemVendaAttr, $id);
+	}
 
 }

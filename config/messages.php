@@ -13,6 +13,7 @@ return [
 		'Falha ao tentar alterar o produto {0}.',						 												// 5
 		'Falha ao tentar cadastrar o serviço {0}.',						 												// 6
 		'Falha ao tentar alterar o servico {0}.',						 												// 7
+		'Não foi possível excluir o serviço {0}.',                 													    // 8
 	],
 
 	'information' => [],
@@ -28,6 +29,7 @@ return [
 		'Produto {0} alterado com sucesso!',                                                                     	    // 7
 		'Serviço {0} cadastrado com sucesso!',                                                                          // 8
 		'Serviço {0} alterado com sucesso!',                                                                          	// 9
+		'Serviço {0} deletado com sucesso!',                                                                          	// 10
 	],
 
 	'warning' => [

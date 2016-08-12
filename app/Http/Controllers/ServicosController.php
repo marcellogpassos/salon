@@ -91,8 +91,15 @@ class ServicosController extends Controller {
 		return Redirect::to('/servicos/buscar?id=' . $itemVenda->id);
 	}
 
-	public function excluirServico() {
-
+	public function excluirServico($id) {
+		$servico = $this->servicosService->getById($id);
+		$result = false;
+		try {
+			$result = $this->servicosService->deletar($id);
+		} catch (QueryException $ex) {
+		}
+		$result ? showMessage('success', 10, [$servico->descricao]) : showMessage('error', 8, [$servico->descricao]);
+		return Redirect::to('/servicos/buscar');
 	}
 
 }
