@@ -50,4 +50,5 @@ Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
 Route::post('users/dados', 'UsersController@editarDadosUsuario');
 Route::get('users/{id}/papeis', 'UsersController@mostrarFormGerenciarPapeis');
 Route::post('users/{id}/papeis', 'UsersController@editarPapeis');
+Route::get('users/{id}/registrarCompra', 'ComprasController@mostrarFormRegistrarCompra');
 Route::get('users/{id}', 'UsersController@recuperarUsuario');
