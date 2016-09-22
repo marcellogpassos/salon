@@ -1,3 +1,4 @@
+
 @extends('layouts.appm')
 
 @section('title')
@@ -51,7 +52,7 @@
 
                             <div class="row">
 
-                                <div class="input-field sexo-div col s12 m4">
+                                <div class="input-field horizontal-radio col s12 m4">
                                     <div>
                                         <spam>
                                             <input name="sexo" type="radio" id="femininoInput" value="F"

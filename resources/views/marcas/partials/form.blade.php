@@ -1,20 +1,20 @@
 <div class="card-content gray-text text-darken-4">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="input-field col s12 m6">
-            <input id="descricaoMarcaInput" name="descricao" type="text" required maxlength="255" class="validate"
-                   value="{{ old('descricao') ? old('descricao') : (isset($marca->descricao)) ? $marca->descricao : '' }}">
-            <label for="descricaoMarcaInput">Nome da marca *</label>
+            <div class="input-field col s12 m6">
+                <input id="descricaoMarcaInput" name="descricao" type="text" required maxlength="255" class="validate"
+                       value="{{ old('descricao') ? old('descricao') : (isset($marca->descricao)) ? $marca->descricao : '' }}">
+                <label for="descricaoMarcaInput">Nome da marca *</label>
+            </div>
+
+            <div class="input-field col s12 m6">
+                <input id="websiteInput" name="website" type="url" maxlength="255" class="validate"
+                       value="{{ old('website') ? old('website') : (isset($marca->website)) ? $marca->website : '' }}">
+                <label for="websiteInput">Website da marca*</label>
+            </div>
+
         </div>
-
-        <div class="input-field col s12 m6">
-            <input id="websiteInput" name="website" type="url" maxlength="255" class="validate"
-                   value="{{ old('website') ? old('website') : (isset($marca->website)) ? $marca->website : '' }}">
-            <label for="websiteInput">Website da marca*</label>
-        </div>
-
-    </div>
 
     <div class="row">
 
