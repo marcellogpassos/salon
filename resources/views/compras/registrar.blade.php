@@ -186,11 +186,9 @@
                                                 <select id="formaPagamentoInput" name="formaPagamento"
                                                         class="browser-default" required>
                                                     <option value=""></option>
-                                                    <option value="1" selected>Dinheiro</option>
-                                                    <option value="2">Cartão de débito</option>
-                                                    <option value="3">Cartão de crédito</option>
-                                                    <option value="4">Transferência bancária</option>
-                                                    <option value="5">Cheque</option>
+                                                    @foreach($formasPagamento as $forma)
+                                                        <option value="{{$forma->id}}">{{$forma->descricao}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
 
