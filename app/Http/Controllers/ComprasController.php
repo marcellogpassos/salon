@@ -41,4 +41,4 @@ class ComprasController extends Controller {
 			->with('formasPagamento', $formasPagamento);
 	}
 
-}
+} 
