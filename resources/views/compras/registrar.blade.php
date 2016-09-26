@@ -45,7 +45,7 @@
 
                                             <div class="input-field col s9">
                                                 <input id="buscarItemInput" name="item" maxlength="255" type="text"
-                                                       class="autocomplete" required>
+                                                       required>
                                                 <label for="buscarItemInput">Nome ou c&oacute;digo do item *</label>
                                             </div>
 
@@ -237,12 +237,23 @@
 
 @section('scripts')
     <script>
-        $('input.autocomplete').autocomplete({
-            data: {
-                "Apple": null,
-                "Microsoft": null,
-                "Google": 'http://placehold.it/250x250'
-            }
+        $(function () {
+            $("#buscarItemInput").autocomplete({
+                source: '{{url("/compras/buscarItem")}}',
+                minLength: 2,
+                focus: function (event, ui) {
+                    $("#buscarItemInput").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $("#buscarItemInput").val(ui.item.label);
+                    return false;
+                },
+                change: function (event, ui) {
+                    if (!ui.item)
+                        $("#buscarItemInput").val("");
+                }
+            });
         });
     </script>
 @endsection

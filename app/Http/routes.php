@@ -13,16 +13,18 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/teste', function (){
-    return null;
+Route::get('/teste', function () {
+	return null;
 });
+
+Route::get('compras/buscarItem', 'ComprasController@buscarItem');
 
 Route::get('marcas/cadastrar', 'MarcasProdutosController@mostrarFormCadastrarMarcaProduto');
 Route::post('marcas/cadastrar', 'MarcasProdutosController@cadastrarMarcaProduto');
