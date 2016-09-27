@@ -43,15 +43,16 @@
 
                                         <div class="row">
 
-                                            <div class="input-field col s9">
+                                            <div class="input-field col s12 m9">
                                                 <input id="buscarItemInput" name="item" maxlength="255" type="text"
-                                                       required>
+                                                       required class="autocomplete highlight-matching">
                                                 <label for="buscarItemInput">Nome ou c&oacute;digo do item *</label>
                                             </div>
 
-                                            <div class="input-field col s3">
+                                            <div class="input-field col s12 m3">
                                                 <button class="btn btn-block waves-effect waves-light primary"
-                                                        id="adicionarItem" type="button"> Adicionar item
+                                                        onclick="adicionarItem()" id="adicionarItem" type="button">
+                                                    Adicionar item
                                                 </button>
                                             </div>
 
@@ -69,53 +70,8 @@
                                                     </tr>
                                                     </thead>
 
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>2205 - BASE MINERAL
-                                                            <span class="remover">
-                                                                (<a class="special-link" href="">Remover item</a>)
-                                                            </span>
-                                                        </td>
-                                                        <td>R$ 15,00</td>
-                                                        <td>
-                                                            <div class="input-field">
-                                                                <input id="quantidade-01" class="validate quantidade"
-                                                                       type="number" value="1">
-                                                                <label for="quantidade-01"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>R$ 15,00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1107 - CORTE DE FRANJA
-                                                            <span class="remover">
-                                                                (<a class="special-link" href="">Remover item</a>)
-                                                            </span>
-                                                        </td>
-                                                        <td>R$ 50,00</td>
-                                                        <td>
-                                                            <div class="input-field">
-                                                                <input id="quantidade-02" class="validate quantidade"
-                                                                       type="number" value="1">
-                                                                <label for="quantidade-02"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>R$ 50,00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1400 - DEPILAÇÃO À CERA
-                                                            <span class="remover">
-                                                                (<a class="special-link" href="">Remover item</a>)
-                                                            </span>
-                                                        </td>
-                                                        <td>R$ 20,00</td>
-                                                        <td>
-                                                            <input id="quantidade-03" class="validate quantidade"
-                                                                   type="number" value="2">
-                                                            <label for="quantidade-03"></label>
-                                                        </td>
-                                                        <td>R$ 40,00</td>
-                                                    </tr>
+                                                    <tbody id="itensTableBody">
+
                                                     </tbody>
 
                                                 </table>
@@ -142,7 +98,7 @@
                                             <div class="input-field col s12">
                                                 <input id="valorTotalInput" name="valorTotal" maxlength="255"
                                                        type="text" required readonly>
-                                                <label for="valorTotalInput">Valor total</label>
+                                                <label id="valorTotalLabel" for="valorTotalInput">Valor total</label>
                                             </div>
 
                                             <div class="input-field col s12">
@@ -247,13 +203,76 @@
                 },
                 select: function (event, ui) {
                     $("#buscarItemInput").val(ui.item.label);
+                    itemSelecionado = ui.item;
                     return false;
                 },
                 change: function (event, ui) {
                     if (!ui.item)
-                        $("#buscarItemInput").val("");
+                        estadoInicial();
                 }
             });
         });
+
+        var itens = [];
+
+        var itemSelecionado = null;
+
+        var atualizarListaItens = function () {
+            $("#itensTableBody").empty();
+            html = "";
+            for (i = 0; i < itens.length; i++) {
+                html += '<tr><td>' + itens[i].item.label;
+                html += '<span class="remover">(<a class="special-link" onclick="removerItem(';
+                html += itens[i].item.value + ')">Remover item</a>)</span></td><td>' + itens[i].item.valor + '</td><td>';
+                html += '<div class="input-field"><input class="validate quantidade" type="number" onchange="setQuantidade(';
+                html += itens[i].item.value + ', this.value)" value="' + itens[i].quantidade + '" min="1" max="';
+                html += itens[i].item.quantidade + '"></div></td><td>' + itens[i].quantidade * itens[i].item.valor + '</td></tr>';
+            }
+            $("#itensTableBody").html(html);
+            calcularValorTotal();
+        };
+
+        var adicionarItem = function () {
+            itens.push({
+                item: itemSelecionado,
+                quantidade: 1
+            });
+            atualizarListaItens();
+            estadoInicial();
+        };
+
+        var calcularValorTotal = function () {
+            total = 0;
+            for (i = 0; i < itens.length; i++)
+                total += itens[i].quantidade * itens[i].item.valor;
+            $("#valorTotalLabel").addClass('active');
+            $("#valorTotalInput").val(total);
+        };
+
+        var estadoInicial = function () {
+            $("#buscarItemInput").val('');
+            $("#buscarItemInput").focus();
+        };
+
+        var getItemIndex = function (itemValue) {
+            for (i = 0; i < itens.length; i++)
+                if (itens[i].item.value == itemValue)
+                    return i;
+        };
+
+        var removerItem = function (item) {
+            index = getItemIndex(item);
+            itens.splice(index, 1);
+            atualizarListaItens();
+            estadoInicial();
+        };
+
+        var setQuantidade = function (itemValue, novaQuantidade) {
+            for (i = 0; i < itens.length; i++)
+                if (itens[i].item.value == itemValue)
+                    itens[i].quantidade = novaQuantidade;
+            atualizarListaItens();
+        };
+
     </script>
 @endsection

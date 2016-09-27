@@ -175,7 +175,8 @@
                                                     </div>
 
                                                     <div class="col s6 m4">
-                                                        <a class="waves-effect waves-light btn btn-large btn-block secondary">
+                                                        <a href="{{ url('users/' . $us->id . '/registrarCompra') }}"
+                                                           class="waves-effect waves-light btn btn-large btn-block secondary">
                                                             <i class="material-icons left">shopping_cart</i>Caixa
                                                         </a>
                                                     </div>

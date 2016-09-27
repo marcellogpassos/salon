@@ -5,7 +5,7 @@ return [
 	buscarItem =>
 		'SELECT' .
 			' itve.id AS "value",' .
-			' ifnull(serv.descricao, concat(prod.descricao, " - ", mapr.descricao)) AS "label",' .
+			' ifnull(concat(itve.id, " - ", serv.descricao), concat(itve.id, " - ", prod.descricao, " (", mapr.descricao, ")")) AS "label",' .
 			' if(serv.descricao IS NULL, "P", "S") AS "tipoItem",' .
 			' if(serv.descricao IS NULL, prod.quantidade, NULL) AS "quantidade",' .
 			' itve.valor AS "valor" ' .

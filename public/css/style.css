@@ -72,6 +72,7 @@ a {
 
 a.special-link {
     color: #2e6da4;
+    cursor: pointer;
 }
 
 h4.card-title {
@@ -128,6 +129,27 @@ h4.card-title {
 
 .quantidade {
     width: 100px !important;
+}
+
+.ui-autocomplete {
+    background-color: #fff;
+    position: absolute;
+}
+
+.ui-autocomplete li {
+    font-size: 1.2rem;
+    color: #26a69a;
+    line-height: 1.5rem;
+    padding: 1rem 1rem;
+}
+
+.ui-autocomplete li:hover {
+    background: #eee;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+    visibility: hidden;
 }
 
 tr td span.remover {
