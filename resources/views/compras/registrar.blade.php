@@ -119,21 +119,21 @@
 
                                             <div class="input-field col s12 m6">
                                                 <div>
-                                                    <spam>
+                                                    <span>
                                                         <input name="tipoDesconto" type="radio" value="P"
                                                                id="descontoPorcentoRadio">
                                                         <label for="descontoPorcentoRadio">Porcento</label>
-                                                    </spam>
+                                                    </span>
                                                 </div>
                                             </div>
 
                                             <div class="input-field col horizontal-radio s12 m6">
                                                 <div>
-                                                    <spam>
+                                                    <span>
                                                         <input name="tipoDesconto" type="radio" value="R" checked
                                                                id="descontoReaisRadio">
                                                         <label for="descontoReaisRadio">Reais</label>
-                                                    </spam>
+                                                    </span>
                                                 </div>
                                             </div>
 
@@ -225,11 +225,12 @@
         });
 
         $('input[name=tipoDesconto]').on('change', function () {
-            if ($('input[name=tipoDesconto]:checked').val() == 'P') {
+            var tipoDescontoSelecionado = $('input[name=tipoDesconto]:checked');
+            if (tipoDescontoSelecionado.val() == 'P') {
                 $('#descontoPorcentoDiv').removeClass('hide');
                 $('#descontoReaisDiv').addClass('hide');
             }
-            if ($('input[name=tipoDesconto]:checked').val() == 'R') {
+            if (tipoDescontoSelecionado.val() == 'R') {
                 $('#descontoReaisDiv').removeClass('hide');
                 $('#descontoPorcentoDiv').addClass('hide');
             }
@@ -244,7 +245,8 @@
         var descontoReais = 0;
 
         var atualizarListaItens = function () {
-            $("#itensTableBody").empty();
+            var tableBody = $("#itensTableBody");
+            tableBody.empty();
             var html = "";
             for (i = 0; i < itens.length; i++) {
                 var valorTotal = itens[i].quantidade * itens[i].item.valor;
@@ -257,7 +259,7 @@
                 html += itens[i].item.value + ', this.value)" value="' + itens[i].quantidade + '" min="1" max="';
                 html += itens[i].item.quantidade + '"></div></td><td>' + valorTotal.formatMoney(2, ',', '.') + '</td></tr>';
             }
-            $("#itensTableBody").html(html);
+            tableBody.html(html);
             setValorTotalInput(calcularValorTotal());
         };
 
@@ -286,8 +288,9 @@
         };
 
         var buscarItemEstadoInicial = function () {
-            $("#buscarItemInput").val('');
-            $("#buscarItemInput").focus();
+            var input = $("#buscarItemInput");
+            input.val('');
+            input.focus();
         };
 
         var getItemIndex = function (itemValue) {
@@ -358,12 +361,12 @@
         var setValorTotalInput = function (valorTotal) {
             $("#valorTotalLabel").addClass('active');
             $("#valorTotalInput").val(valorTotal.formatMoney(2, ',', '.'));
-        }
+        };
 
         var setValorFinalInput = function (valorFinal) {
             $("#valorFinalLabel").addClass('active');
             $("#valorFinalInput").val(valorFinal.formatMoney(2, ',', '.'));
-        }
+        };
 
     </script>
 
