@@ -96,22 +96,33 @@
                                         <div class="row">
 
                                             <div class="input-field col s12">
-                                                <input id="valorTotalInput" name="valorTotal" maxlength="255"
-                                                       type="text" required readonly>
+                                                <input id="valorTotalInput" name="valorTotal" maxlength="32"
+                                                       class="moeda" type="text" required readonly>
                                                 <label id="valorTotalLabel" for="valorTotalInput">Valor total</label>
                                             </div>
 
-                                            <div class="input-field col s12">
-                                                <input id="descontoInput" name="desconto" maxlength="255" type="text">
-                                                <label for="descontoInput">Desconto</label>
+                                            <div id="descontoPorcentoDiv" class="input-field col s12 hide">
+                                                <input id="descontoPorcentoInput" name="descontoPorcento"
+                                                       onchange="setDescontoPorcento(this.value)"
+                                                       class="porcento" maxlength="32" type="text">
+                                                <label id="descontoPorcentoLabel" for="descontoPorcentoInput">Desconto
+                                                    em Porcento</label>
+                                            </div>
+
+                                            <div id="descontoReaisDiv" class="input-field col s12">
+                                                <input id="descontoReaisInput" name="descontoReais" class="moeda"
+                                                       onchange="setDescontoReais(this.value)"
+                                                       maxlength="32" type="text">
+                                                <label id="descontoReaisLabel" for="descontoReaisInput">Desconto em
+                                                    Reais</label>
                                             </div>
 
                                             <div class="input-field col s12 m6">
                                                 <div>
                                                     <spam>
                                                         <input name="tipoDesconto" type="radio" value="P"
-                                                               id="descontoPorcentoInput">
-                                                        <label for="descontoPorcentoInput">Porcento</label>
+                                                               id="descontoPorcentoRadio">
+                                                        <label for="descontoPorcentoRadio">Porcento</label>
                                                     </spam>
                                                 </div>
                                             </div>
@@ -119,17 +130,17 @@
                                             <div class="input-field col horizontal-radio s12 m6">
                                                 <div>
                                                     <spam>
-                                                        <input name="tipoDesconto" type="radio" id="descontoReaisInput"
-                                                               value="R" checked>
-                                                        <label for="descontoReaisInput">Reais</label>
+                                                        <input name="tipoDesconto" type="radio" value="R" checked
+                                                               id="descontoReaisRadio">
+                                                        <label for="descontoReaisRadio">Reais</label>
                                                     </spam>
                                                 </div>
                                             </div>
 
                                             <div class="input-field col s12">
-                                                <input id="valorFinalInput" name="valorFinal" maxlength="255"
+                                                <input id="valorFinalInput" name="valorFinal" maxlength="32"
                                                        type="text" required readonly>
-                                                <label for="valorFinalInput">Valor final</label>
+                                                <label id="valorFinalLabel" for="valorFinalInput">Valor final</label>
                                             </div>
 
                                         </div>
@@ -208,28 +219,46 @@
                 },
                 change: function (event, ui) {
                     if (!ui.item)
-                        estadoInicial();
+                        buscarItemEstadoInicial();
                 }
             });
+        });
+
+        $('input[name=tipoDesconto]').on('change', function () {
+            if ($('input[name=tipoDesconto]:checked').val() == 'P') {
+                $('#descontoPorcentoDiv').removeClass('hide');
+                $('#descontoReaisDiv').addClass('hide');
+            }
+            if ($('input[name=tipoDesconto]:checked').val() == 'R') {
+                $('#descontoReaisDiv').removeClass('hide');
+                $('#descontoPorcentoDiv').addClass('hide');
+            }
         });
 
         var itens = [];
 
         var itemSelecionado = null;
 
+        var descontoPorcento = 0;
+
+        var descontoReais = 0;
+
         var atualizarListaItens = function () {
             $("#itensTableBody").empty();
-            html = "";
+            var html = "";
             for (i = 0; i < itens.length; i++) {
+                var valorTotal = itens[i].quantidade * itens[i].item.valor;
+
                 html += '<tr><td>' + itens[i].item.label;
                 html += '<span class="remover">(<a class="special-link" onclick="removerItem(';
-                html += itens[i].item.value + ')">Remover item</a>)</span></td><td>' + itens[i].item.valor + '</td><td>';
+                html += itens[i].item.value + ')">Remover item</a>)</span></td><td>';
+                html += itens[i].item.valor.formatMoney(2, ',', '.') + '</td><td>';
                 html += '<div class="input-field"><input class="validate quantidade" type="number" onchange="setQuantidade(';
                 html += itens[i].item.value + ', this.value)" value="' + itens[i].quantidade + '" min="1" max="';
-                html += itens[i].item.quantidade + '"></div></td><td>' + itens[i].quantidade * itens[i].item.valor + '</td></tr>';
+                html += itens[i].item.quantidade + '"></div></td><td>' + valorTotal.formatMoney(2, ',', '.') + '</td></tr>';
             }
             $("#itensTableBody").html(html);
-            calcularValorTotal();
+            setValorTotalInput(calcularValorTotal());
         };
 
         var adicionarItem = function () {
@@ -238,18 +267,25 @@
                 quantidade: 1
             });
             atualizarListaItens();
-            estadoInicial();
+            buscarItemEstadoInicial();
+        };
+
+        var calcularDescontoPorcento = function (descontoReais, valorTotal) {
+            return Math.round((descontoReais / valorTotal) * 100);
+        };
+
+        var calcularDescontoReais = function (descontoPorcento, valorTotal) {
+            return (descontoPorcento / 100) * valorTotal;
         };
 
         var calcularValorTotal = function () {
-            total = 0;
+            var total = 0;
             for (i = 0; i < itens.length; i++)
                 total += itens[i].quantidade * itens[i].item.valor;
-            $("#valorTotalLabel").addClass('active');
-            $("#valorTotalInput").val(total);
+            return total;
         };
 
-        var estadoInicial = function () {
+        var buscarItemEstadoInicial = function () {
             $("#buscarItemInput").val('');
             $("#buscarItemInput").focus();
         };
@@ -261,10 +297,55 @@
         };
 
         var removerItem = function (item) {
-            index = getItemIndex(item);
+            var index = getItemIndex(item);
             itens.splice(index, 1);
             atualizarListaItens();
-            estadoInicial();
+            buscarItemEstadoInicial();
+        };
+
+        var setDescontoPorcento = function (desconto) {
+            descontoPorcento = desconto;
+            setDescontoPorcentoInput(descontoPorcento);
+            var valorTotal = calcularValorTotal();
+            descontoReais = calcularDescontoReais(descontoPorcento, valorTotal);
+            setDescontoReaisInput(descontoReais);
+            setValorFinalInput(valorTotal - descontoReais);
+        };
+
+        var setDescontoReais = function (desconto) {
+            desconto = getMoney(desconto) / 100;
+            var valorTotal = calcularValorTotal();
+            if (desconto < 0 || desconto > valorTotal) {
+                showMessage('O desconto concedido é inválido!');
+                setDescontoReaisInput(null);
+                setDescontoPorcentoInput(null);
+            } else {
+                descontoReais = desconto;
+                setDescontoReaisInput(descontoReais);
+                descontoPorcento = calcularDescontoPorcento(descontoReais, valorTotal);
+                setDescontoPorcentoInput(descontoPorcento);
+                setValorFinalInput(valorTotal - descontoReais);
+            }
+        };
+
+        var setDescontoReaisInput = function (desconto) {
+            if (desconto == null) {
+                $("#descontoReaisLabel").removeClass('active');
+                $('#descontoReaisInput').val('');
+            } else {
+                $("#descontoReaisLabel").addClass('active');
+                $('#descontoReaisInput').val(desconto.formatMoney(2, ',', '.'));
+            }
+        };
+
+        var setDescontoPorcentoInput = function (desconto) {
+            if (desconto == null) {
+                $("#descontoPorcentoLabel").removeClass('active');
+                $('#descontoPorcentoInput').val('');
+            } else {
+                $("#descontoPorcentoLabel").addClass('active');
+                $('#descontoPorcentoInput').val(desconto + ' %');
+            }
         };
 
         var setQuantidade = function (itemValue, novaQuantidade) {
@@ -274,5 +355,18 @@
             atualizarListaItens();
         };
 
+        var setValorTotalInput = function (valorTotal) {
+            $("#valorTotalLabel").addClass('active');
+            $("#valorTotalInput").val(valorTotal.formatMoney(2, ',', '.'));
+        }
+
+        var setValorFinalInput = function (valorFinal) {
+            $("#valorFinalLabel").addClass('active');
+            $("#valorFinalInput").val(valorFinal.formatMoney(2, ',', '.'));
+        }
+
     </script>
+
+    <script src="{{ asset('lib/jquery-maskmoney/jquery.maskMoney.min.js') }}"></script>
+    <script src="{{ asset('js/money.js') }}"></script>
 @endsection
