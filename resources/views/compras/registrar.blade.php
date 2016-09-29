@@ -220,7 +220,7 @@
                 change: function (event, ui) {
                     if (!ui.item)
                         buscarItemEstadoInicial();
-                }
+                },
             });
         });
 
@@ -249,21 +249,27 @@
             tableBody.empty();
             var html = "";
             for (i = 0; i < itens.length; i++) {
-                var valorTotal = itens[i].quantidade * itens[i].item.valor;
-
+                var valorItem = itens[i].quantidade * itens[i].item.valor;
                 html += '<tr><td>' + itens[i].item.label;
                 html += '<span class="remover">(<a class="special-link" onclick="removerItem(';
-                html += itens[i].item.value + ')">Remover item</a>)</span></td><td>';
+                html += itens[i].item.id + ')">Remover item</a>)</span></td><td>';
                 html += itens[i].item.valor.formatMoney(2, ',', '.') + '</td><td>';
                 html += '<div class="input-field"><input class="validate quantidade" type="number" onchange="setQuantidade(';
-                html += itens[i].item.value + ', this.value)" value="' + itens[i].quantidade + '" min="1" max="';
-                html += itens[i].item.quantidade + '"></div></td><td>' + valorTotal.formatMoney(2, ',', '.') + '</td></tr>';
+                html += itens[i].item.id + ', this.value)" value="' + itens[i].quantidade + '" min="1" max="';
+                html += itens[i].item.quantidadeDisponivel + '"></div></td><td>' + valorItem.formatMoney(2, ',', '.') + '</td></tr>';
             }
             tableBody.html(html);
-            setValorTotalInput(calcularValorTotal());
+            var valorTotal = calcularValorTotal();
+            setValorTotalInput(valorTotal);
+            setValorFinalInput(valorTotal - descontoReais);
         };
 
         var adicionarItem = function () {
+            if (getItemIndex(itemSelecionado.id) != -1) {
+                showMessage('Item já adicionado!');
+                buscarItemEstadoInicial();
+                return;
+            }
             itens.push({
                 item: itemSelecionado,
                 quantidade: 1
@@ -293,10 +299,11 @@
             input.focus();
         };
 
-        var getItemIndex = function (itemValue) {
+        var getItemIndex = function (itemId) {
             for (i = 0; i < itens.length; i++)
-                if (itens[i].item.value == itemValue)
+                if (itens[i].item.id == itemId)
                     return i;
+            return -1;
         };
 
         var removerItem = function (item) {
@@ -351,9 +358,9 @@
             }
         };
 
-        var setQuantidade = function (itemValue, novaQuantidade) {
+        var setQuantidade = function (itemId, novaQuantidade) {
             for (i = 0; i < itens.length; i++)
-                if (itens[i].item.value == itemValue)
+                if (itens[i].item.id == itemId)
                     itens[i].quantidade = novaQuantidade;
             atualizarListaItens();
         };

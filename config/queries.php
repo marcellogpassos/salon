@@ -4,10 +4,10 @@ return [
 
 	buscarItem =>
 		'SELECT' .
-			' itve.id AS "value",' .
+			' itve.id AS "id",' .
 			' ifnull(concat(itve.id, " - ", serv.descricao), concat(itve.id, " - ", prod.descricao, " (", mapr.descricao, ")")) AS "label",' .
 			' if(serv.descricao IS NULL, "P", "S") AS "tipoItem",' .
-			' if(serv.descricao IS NULL, prod.quantidade, NULL) AS "quantidade",' .
+			' if(serv.descricao IS NULL, prod.quantidade, NULL) AS "quantidadeDisponivel",' .
 			' itve.valor AS "valor" ' .
 		' FROM' .
 			' itens_venda itve' .
