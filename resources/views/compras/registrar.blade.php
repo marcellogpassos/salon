@@ -159,16 +159,16 @@
                                                 </select>
                                             </div>
 
-                                            <div class="input-field col s12">
+                                            <div class="input-field col s12 dinheiro hide">
                                                 <input id="valorPagoInput" name="valorPago" maxlength="255"
-                                                       type="text" required>
-                                                <label for="valorPagoInput">Valor pago</label>
+                                                       type="text" class="moeda" onchange="setValorPago(this.value)">
+                                                <label id="valorPagoLabel" for="valorPagoInput">Valor pago</label>
                                             </div>
 
-                                            <div class="input-field col s12 troco">
+                                            <div class="input-field col s12 troco dinheiro hide">
                                                 <input id="trocoInput" name="troco" maxlength="255"
-                                                       type="text" required>
-                                                <label for="trocoInput">Troco</label>
+                                                       type="text" readonly>
+                                                <label id="trocoLabel" for="trocoInput">Troco</label>
                                             </div>
 
                                         </div>
@@ -220,7 +220,7 @@
                 change: function (event, ui) {
                     if (!ui.item)
                         buscarItemEstadoInicial();
-                },
+                }
             });
         });
 
@@ -233,6 +233,17 @@
             if (tipoDescontoSelecionado.val() == 'R') {
                 $('#descontoReaisDiv').removeClass('hide');
                 $('#descontoPorcentoDiv').addClass('hide');
+            }
+        });
+
+        $('select[name=formaPagamento]').on('change', function () {
+            var formaPagamento = $('select[name=formaPagamento]').val();
+            if (formaPagamento == 1) {
+                $('.dinheiro').removeClass('hide');
+                $('#valorPagoInput').prop('required', true);
+            } else {
+                $('.dinheiro').addClass('hide');
+                $('#valorPagoInput').prop('required', false);
             }
         });
 
@@ -250,18 +261,21 @@
             var html = "";
             for (i = 0; i < itens.length; i++) {
                 var valorItem = itens[i].quantidade * itens[i].item.valor;
-                html += '<tr><td>' + itens[i].item.label;
-                html += '<span class="remover">(<a class="special-link" onclick="removerItem(';
-                html += itens[i].item.id + ')">Remover item</a>)</span></td><td>';
-                html += itens[i].item.valor.formatMoney(2, ',', '.') + '</td><td>';
-                html += '<div class="input-field"><input class="validate quantidade" type="number" onchange="setQuantidade(';
-                html += itens[i].item.id + ', this.value)" value="' + itens[i].quantidade + '" min="1" max="';
-                html += itens[i].item.quantidadeDisponivel + '"></div></td><td>' + valorItem.formatMoney(2, ',', '.') + '</td></tr>';
+                var descricaoItem = itens[i].item.label;
+                var removerItem = '<span class="remover">(<a class="special-link" onclick="removerItem('
+                        + itens[i].item.id + ')">Remover item</a>)</span>';
+                var colItem = '<td>' + descricaoItem + removerItem + '</td>';
+                var colValorUnitario = '<td>' + itens[i].item.valor.formatMoney(2, ',', '.') + '</td>';
+                var colQuantidade = '<td><div class="input-field"><input class="validate quantidade" type="number" ' +
+                        'onchange="setQuantidade(' + itens[i].item.id + ', this.value)" value="' + itens[i].quantidade
+                        + '" min="1" max="' + itens[i].item.quantidadeDisponivel + '"></div></td>';
+                var colValorTotalItem = '<td>' + valorItem.formatMoney(2, ',', '.') + '</td>';
+                html += '<tr>' + colItem + colValorUnitario + colQuantidade + colValorTotalItem + '</tr>';
             }
             tableBody.html(html);
             var valorTotal = calcularValorTotal();
-            setValorTotalInput(valorTotal);
-            setValorFinalInput(valorTotal - descontoReais);
+            defineInput('#valorTotalInput', '#valorTotalLabel', valorTotal, 'M');
+            defineInput('#valorFinalInput', '#valorFinalLabel', valorTotal - descontoReais, 'M');
         };
 
         var adicionarItem = function () {
@@ -275,6 +289,9 @@
                 quantidade: 1
             });
             atualizarListaItens();
+            resetDesconto();
+            resetValorPago();
+            showMessage('Item adicionado!');
             buscarItemEstadoInicial();
         };
 
@@ -293,6 +310,14 @@
             return total;
         };
 
+        var defineInput = function (inputSelector, labelSelector, valor, formato) {
+            $(labelSelector).addClass('active');
+            if (formato == 'M')
+                $(inputSelector).val(valor.formatMoney(2, ',', '.'));
+            if (formato == 'P')
+                $(inputSelector).val(valor + ' %');
+        };
+
         var buscarItemEstadoInicial = function () {
             var input = $("#buscarItemInput");
             input.val('');
@@ -306,55 +331,52 @@
             return -1;
         };
 
+        var resetDesconto = function () {
+            resetInput('#descontoReaisInput', '#descontoReaisLabel');
+            resetInput('#descontoPorcentoInput', '#descontoPorcentoLabel');
+            defineInput('#valorFinalInput', '#valorFinalLabel', calcularValorTotal(), 'M');
+        };
+
+        var resetInput = function (inputSelector, labelSelector) {
+            $(labelSelector).removeClass('active');
+            $(inputSelector).val('');
+        };
+
+        var resetValorPago = function () {
+            resetInput('#valorPagoInput', '#valorPagoLabel');
+            resetInput('#trocoInput', '#trocoLabel');
+        };
+
         var removerItem = function (item) {
             var index = getItemIndex(item);
             itens.splice(index, 1);
             atualizarListaItens();
+            resetDesconto();
+            resetValorPago();
+            showMessage('Item removido!');
             buscarItemEstadoInicial();
         };
 
         var setDescontoPorcento = function (desconto) {
             descontoPorcento = desconto;
-            setDescontoPorcentoInput(descontoPorcento);
             var valorTotal = calcularValorTotal();
             descontoReais = calcularDescontoReais(descontoPorcento, valorTotal);
-            setDescontoReaisInput(descontoReais);
-            setValorFinalInput(valorTotal - descontoReais);
+            defineInput('#descontoPorcentoInput', '#descontoPorcentoLabel', descontoPorcento, 'P');
+            defineInput('#descontoReaisInput', '#descontoReaisLabel', valorTotal - descontoReais, 'M');
+            defineInput('#valorFinalInput', '#valorFinalLabel', valorTotal - descontoReais, 'M');
+            $('#formaPagamentoInput').focus();
         };
 
         var setDescontoReais = function (desconto) {
             desconto = getMoney(desconto) / 100;
             var valorTotal = calcularValorTotal();
-            if (desconto < 0 || desconto > valorTotal) {
-                showMessage('O desconto concedido é inválido!');
-                setDescontoReaisInput(null);
-                setDescontoPorcentoInput(null);
-            } else {
+            if (validarDesconto(desconto, valorTotal)) {
                 descontoReais = desconto;
-                setDescontoReaisInput(descontoReais);
                 descontoPorcento = calcularDescontoPorcento(descontoReais, valorTotal);
-                setDescontoPorcentoInput(descontoPorcento);
-                setValorFinalInput(valorTotal - descontoReais);
-            }
-        };
-
-        var setDescontoReaisInput = function (desconto) {
-            if (desconto == null) {
-                $("#descontoReaisLabel").removeClass('active');
-                $('#descontoReaisInput').val('');
-            } else {
-                $("#descontoReaisLabel").addClass('active');
-                $('#descontoReaisInput').val(desconto.formatMoney(2, ',', '.'));
-            }
-        };
-
-        var setDescontoPorcentoInput = function (desconto) {
-            if (desconto == null) {
-                $("#descontoPorcentoLabel").removeClass('active');
-                $('#descontoPorcentoInput').val('');
-            } else {
-                $("#descontoPorcentoLabel").addClass('active');
-                $('#descontoPorcentoInput').val(desconto + ' %');
+                defineInput('#descontoReaisInput', '#descontoReaisLabel', descontoReais, 'M');
+                defineInput('#descontoPorcentoInput', '#descontoPorcentoLabel', descontoPorcento, 'P');
+                defineInput('#valorFinalInput', '#valorFinalLabel', valorTotal - descontoReais, 'M');
+                $('#formaPagamentoInput').focus();
             }
         };
 
@@ -363,16 +385,37 @@
                 if (itens[i].item.id == itemId)
                     itens[i].quantidade = novaQuantidade;
             atualizarListaItens();
+            resetDesconto();
+            resetValorPago();
+            showMessage('Quantidade alterada!');
         };
 
-        var setValorTotalInput = function (valorTotal) {
-            $("#valorTotalLabel").addClass('active');
-            $("#valorTotalInput").val(valorTotal.formatMoney(2, ',', '.'));
+        var setValorPago = function (valor) {
+            var valorPago = getMoney(valor) / 100;
+            var valorFinal = calcularValorTotal() - descontoReais;
+            if (validarValorPago(valorPago, valorFinal)) {
+                var troco = valorPago - valorFinal;
+                defineInput('#valorPagoInput', '#valorPagoLabel', valorPago, 'M');
+                defineInput('#trocoInput', '#trocoLabel', troco, 'M');
+            }
         };
 
-        var setValorFinalInput = function (valorFinal) {
-            $("#valorFinalLabel").addClass('active');
-            $("#valorFinalInput").val(valorFinal.formatMoney(2, ',', '.'));
+        var validarDesconto = function (desconto, valorTotal) {
+            if (desconto > 0 && desconto < valorTotal)
+                return true;
+            showMessage('O desconto concedido é inválido!');
+            resetDesconto();
+            $('#descontoReaisInput').focus();
+            return false;
+        };
+
+        var validarValorPago = function (valorPago, valorFinal) {
+            if (valorPago >= valorFinal)
+                return true;
+            showMessage('O valor pago deve ser maior que o valor final!');
+            resetValorPago();
+            $("#valorPagoInput").focus();
+            return false;
         };
 
     </script>
