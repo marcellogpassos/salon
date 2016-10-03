@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-	return view('welcome');
+    return view('welcome');
 });
 
 Route::auth();
@@ -21,11 +21,10 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/teste', function () {
-	return null;
+    return null;
 });
 
 Route::get('compras/buscarItem', 'ComprasController@buscarItem');
-Route::post('compras/registrar', 'ComprasController@registrarCompra');
 
 Route::get('marcas/cadastrar', 'MarcasProdutosController@mostrarFormCadastrarMarcaProduto');
 Route::post('marcas/cadastrar', 'MarcasProdutosController@cadastrarMarcaProduto');
@@ -54,4 +53,5 @@ Route::post('users/dados', 'UsersController@editarDadosUsuario');
 Route::get('users/{id}/papeis', 'UsersController@mostrarFormGerenciarPapeis');
 Route::post('users/{id}/papeis', 'UsersController@editarPapeis');
 Route::get('users/{id}/registrarCompra', 'ComprasController@mostrarFormRegistrarCompra');
+Route::post('users/{id}/registrarCompra', 'ComprasController@registrarCompra');
 Route::get('users/{id}', 'UsersController@recuperarUsuario');

@@ -32,8 +32,8 @@
                             </div>
                         </div>
 
-                        <form id="registrarCompraForm" method="POST"
-                              action="{{ url('/compras/registrar') }}" role="form">
+                        <form id="registrarCompraForm" method="POST" onsubmit="return validarForm()"
+                              action="{{ url('users/' . $cliente->id . '/registrarCompra') }}" role="form">
 
                             {{ csrf_field() }}
 
@@ -169,17 +169,30 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="input-field col s12 dinheiro hide">
-                                                    <input id="valorPagoInput" maxlength="255"
-                                                           type="text" class="moeda"
-                                                           onchange="setValorPago(this.value)">
+                                                <div class="input-field col s12 formaPagamento dinheiro hide">
+                                                    <input id="valorPagoInput" maxlength="255" type="text"
+                                                           onchange="setValorPago(this.value)"
+                                                           class="moeda formaPagamentoField">
                                                     <label id="valorPagoLabel" for="valorPagoInput">Valor pago</label>
                                                 </div>
 
-                                                <div class="input-field col s12 troco dinheiro hide">
-                                                    <input id="trocoInput" maxlength="255"
-                                                           type="text" readonly>
+                                                <div class="input-field col s12 troco formaPagamento dinheiro hide">
+                                                    <input id="trocoInput" maxlength="255" type="text"
+                                                           class="formaPagamentoField" readonly>
                                                     <label id="trocoLabel" for="trocoInput">Troco</label>
+                                                </div>
+
+                                                <div class="col s12 formaPagamento cartao hide"
+                                                     style="margin-top: 24px">
+                                                    <label for="bandeiraCartaoSelect" class="active">
+                                                        Bandeira do cart&atilde;o</label>
+                                                    <select id="bandeiraCartaoSelect" name="bandeiraCartao"
+                                                            class="browser-default formaPagamentoField">
+                                                        <option value=""></option>
+                                                        @foreach($bandeirasCartoes as $bandeira)
+                                                            <option value="{{$bandeira->id}}">{{$bandeira->descricao}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
 
                                             </div>

@@ -2,7 +2,7 @@
 
 return [
 
-	buscarItem =>
+	'buscarItem' =>
 		'SELECT' .
 			' itve.id AS "id",' .
 			' ifnull(concat(itve.id, " - ", serv.descricao), concat(itve.id, " - ", prod.descricao, " (", mapr.descricao, ")")) AS "label",' .
