@@ -61,8 +61,18 @@ footer.page-footer .footer-copyright {
     color: #D9E4E1;
 }
 
+.btn.primary:focus {
+    background-color: #0D4537 !important;
+    color: #D9E4E1;
+}
+
 .btn.secondary {
     background-color: #D9E4E1 !important;
+    color: #347162;
+}
+
+.btn.secondary {
+    background-color: #7BA599 !important;
     color: #347162;
 }
 

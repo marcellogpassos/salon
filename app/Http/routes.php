@@ -25,6 +25,7 @@ Route::get('/teste', function () {
 });
 
 Route::get('compras/buscarItem', 'ComprasController@buscarItem');
+Route::post('compras/registrar', 'ComprasController@registrarCompra');
 
 Route::get('marcas/cadastrar', 'MarcasProdutosController@mostrarFormCadastrarMarcaProduto');
 Route::post('marcas/cadastrar', 'MarcasProdutosController@cadastrarMarcaProduto');

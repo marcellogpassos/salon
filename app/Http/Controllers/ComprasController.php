@@ -41,4 +41,8 @@ class ComprasController extends Controller {
 			->with('formasPagamento', $formasPagamento);
 	}
 
+	public function registrarCompra(Request $request) {
+		return $request->all();
+	}
+
 } 
