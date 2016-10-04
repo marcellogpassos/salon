@@ -13,4 +13,6 @@ interface BandeirasCartoesServiceInterface {
 
     public function listarTodos();
 
+    public function getBandeiraCartao($id);
+
 }

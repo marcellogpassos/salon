@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Fortaleza',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +166,7 @@ return [
         App\Providers\FormasPagamentoServiceProvider::class,
         App\Providers\BandeirasCartoesServiceProvider::class,
         App\Providers\ItensVendaServiceProvider::class,
+        App\Providers\ComprasServiceProvider::class,
 
     ],
 

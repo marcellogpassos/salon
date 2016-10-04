@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\BandeirasCartoesServiceInterface;
+use App\Services\ComprasServiceInterface;
 use App\Services\FormasPagamentoServiceInterface;
 use App\Services\ItensVendaServiceInterface;
 use App\Services\UsersServiceInterface;
@@ -14,20 +15,22 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ComprasController extends Controller {
 
     protected $bandeirasCartoesService;
+    protected $comprasService;
     protected $formasPagamentoService;
-    protected $itensVendaService;
     protected $usersService;
 
     public function __construct(UsersServiceInterface $usersService, ItensVendaServiceInterface $itensVendaService,
+                                BandeirasCartoesServiceInterface $bandeirasCartoesService,
                                 FormasPagamentoServiceInterface $formasPagamentoService,
-                                BandeirasCartoesServiceInterface $bandeirasCartoesService) {
+                                ComprasServiceInterface $comprasService) {
         $this->bandeirasCartoesService = $bandeirasCartoesService;
+        $this->comprasService = $comprasService;
         $this->formasPagamentoService = $formasPagamentoService;
-        $this->itensVendaService = $itensVendaService;
         $this->usersService = $usersService;
         $this->middleware('auth');
     }
@@ -52,17 +55,10 @@ class ComprasController extends Controller {
     }
 
     public function registrarCompra($id, Request $request) {
-        $cliente = $this->usersService->getUser($id);
-        $caixa = Auth::user();
-        $compra['data_compra'] = date('Y-m-d H:i:s');
-        $compra['desconto'] = (float) $request->input('desconto');
-        $compra['valor_total'] = 0;
-        foreach ($request->input('itens') as $item) {
-            $item = $this->itensVendaService->getItemVenda($item['id']);
-            $compra['valor_total'] += $item->valor;
-        }
-        return $compra;
-        // return $request->all();
+        $array = $this->comprasService->criarCompra($id, $request->user()->id, $request->all());
+        $compra = $this->comprasService->cadastrar($array);
+        showMessage('success', 11, [$compra->codigo_validacao]);
+        return Redirect::to('/home');
     }
 
 } 

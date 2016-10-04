@@ -13,4 +13,6 @@ interface FormasPagamentoServiceInterface {
 
 	public function listarTodos();
 
+	public function getFormaPagamento($id);
+
 }

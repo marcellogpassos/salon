@@ -22,4 +22,7 @@ class FormasPagamentoService implements FormasPagamentoServiceInterface {
 		return $this->formasPagamento->all();
 	}
 
+	public function getFormaPagamento($id) {
+		return $this->formasPagamento->find($id);
+	}
 }

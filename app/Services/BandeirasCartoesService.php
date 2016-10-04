@@ -22,4 +22,8 @@ class BandeirasCartoesService implements BandeirasCartoesServiceInterface {
         return $this->bandeiras->all();
     }
 
+    public function getBandeiraCartao($id) {
+        return $this->bandeiras->find($id);
+    }
+
 }
