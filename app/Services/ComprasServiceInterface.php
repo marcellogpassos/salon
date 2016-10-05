@@ -11,7 +11,7 @@ namespace App\Services;
 
 interface ComprasServiceInterface {
 
-    public function cadastrar(array $attributes);
+    public function cadastrar(array $compra);
 
     public function criarCompra($clienteId, $caixaId, array $attributes);
 

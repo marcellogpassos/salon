@@ -31,10 +31,11 @@ class ComprasService implements ComprasServiceInterface {
         $this->comprasRepository = $repository;
     }
 
-    public function cadastrar(array $attributes) {
-        if (!$attributes)
+    public function cadastrar(array $compra) {
+        if (!$compra)
             abort(400);
-        return $this->comprasRepository->create($attributes);
+        $itensCompra = array_pull($compra, 'itens_compra');
+        return $this->comprasRepository->createAndPersistItens($compra, $itensCompra);
     }
 
     public function criarCompra($clienteId, $caixaId, array $attributes) {
@@ -46,7 +47,8 @@ class ComprasService implements ComprasServiceInterface {
         $compra['data_compra'] = date('Y-m-d H:i:s');
         $compra['cliente_id'] = $cliente->id;
         $compra['caixa_id'] = $caixaId;
-        $compra['valor_total'] = $this->calcularValorTotal($attributes['itens']);
+        $compra['itens_compra'] = $this->getItensCompra($attributes['itens']);
+        $compra['valor_total'] = $this->calcularValorTotal($compra['itens_compra']);
         $compra['desconto'] = (float)$attributes['desconto'];
         $compra['forma_pagamento_id'] = $formaPagamento->id;
         if ($bandeiraCartao)
@@ -56,13 +58,25 @@ class ComprasService implements ComprasServiceInterface {
         return $compra;
     }
 
-    private function calcularValorTotal($itens) {
+    private function calcularValorTotal(array $itensCompra) {
         $valorTotal = 0;
-        foreach ($itens as $item) {
-            $itemEncontrado = $this->itensVendaService->getItemVenda($item['id']);
-            $valorTotal += $itemEncontrado->valor * ((int)$item['quantidade']);
-        }
+        foreach ($itensCompra as $item)
+            $valorTotal += $item['quantidade'] * $item['valor_unitario_corrente'];
         return $valorTotal;
+    }
+
+    private function getItensCompra(array $itensArray) {
+        $itensCompra = [];
+        foreach ($itensArray as $item) {
+            $itemEncontrado = $this->itensVendaService->getItemVenda($item['id']);
+            $itemCompra = [
+                'item_id' => $itemEncontrado->id,
+                'quantidade' => (int)$item['quantidade'],
+                'valor_unitario_corrente' => $itemEncontrado->valor,
+            ];
+            array_push($itensCompra, $itemCompra);
+        }
+        return $itensCompra;
     }
 
     public function gerarCodigoValidacao($compra) {

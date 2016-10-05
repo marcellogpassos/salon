@@ -29,4 +29,8 @@ class Compra extends Model {
         return $this->belongsTo('App\BandeiraCartao', 'bandeira_cartao_id');
     }
 
+    public function itensCompra() {
+        return $this->hasMany('App\ItemCompra', 'compra_id');
+    }
+
 }
