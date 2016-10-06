@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Repositories\ComprasRepository;
+use App\Repositories\Criteria\Compra\BuscarPorCodigoValidacao;
 
 class ComprasService implements ComprasServiceInterface {
 
@@ -81,5 +82,10 @@ class ComprasService implements ComprasServiceInterface {
 
     public function gerarCodigoValidacao($compra) {
         return strtoupper(substr(md5($compra['data_compra']), 0, 6));
+    }
+
+    public function getByCodigoValidacao($codigoValidacao) {
+        $compra = $this->comprasRepository->findBy('codigo_validacao', $codigoValidacao);
+        return $compra;
     }
 }

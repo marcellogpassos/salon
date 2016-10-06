@@ -17,4 +17,6 @@ interface ComprasServiceInterface {
 
     public function gerarCodigoValidacao($compra);
 
+    public function getByCodigoValidacao($codigoValidacao);
+
 }

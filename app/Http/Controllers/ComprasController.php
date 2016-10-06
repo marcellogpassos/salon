@@ -61,4 +61,10 @@ class ComprasController extends Controller {
         return Redirect::to('/home');
     }
 
+    public function emitirComprovanteCompra($codigoValidacao) {
+        $compra = $this->comprasService->getByCodigoValidacao($codigoValidacao);
+        return view('compras.comprovante')
+            ->with('compra', $compra);
+    }
+
 } 
