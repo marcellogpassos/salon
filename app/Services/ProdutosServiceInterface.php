@@ -11,16 +11,20 @@ namespace App\Services;
 
 interface ProdutosServiceInterface {
 
-	public function listarTodasOrdenarPorDescricao();
+    public function listarTodasOrdenarPorDescricao();
 
-	public function buscar($criterios);
+    public function buscar($criterios);
 
-	public function deletar($id);
+    public function buscarPeloId($id);
 
-	public function getById($id);
+    public function deletar($id);
 
-	public function cadastrar(array $produtoAttr, array $itemVendaAttr);
+    public function getById($id);
 
-	public function editar($id, array $produtoAttr, array $itemVendaAttr);
+    public function cadastrar(array $produtoAttr, array $itemVendaAttr);
+
+    public function editar($id, array $produtoAttr, array $itemVendaAttr);
+
+    public function decrementarQuantidade($id, $quantidade);
 
 }

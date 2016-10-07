@@ -10,7 +10,7 @@ namespace App\Services;
 
 
 use App\Repositories\ComprasRepository;
-use App\Repositories\Criteria\Compra\BuscarPorCodigoValidacao;
+use Illuminate\Support\Facades\DB;
 
 class ComprasService implements ComprasServiceInterface {
 
@@ -19,14 +19,16 @@ class ComprasService implements ComprasServiceInterface {
     protected $bandeirasCartoesService;
     protected $formasPagamentoService;
     protected $itensVendaService;
+    protected $produtosService;
     protected $usersService;
 
     public function __construct(UsersServiceInterface $usersService, ItensVendaServiceInterface $itensVendaService,
                                 FormasPagamentoServiceInterface $formasPagamentoService, ComprasRepository $repository,
-                                BandeirasCartoesServiceInterface $bandeirasCartoesService) {
+                                BandeirasCartoesServiceInterface $bandeirasCartoesService, ProdutosServiceInterface $produtosService) {
         $this->bandeirasCartoesService = $bandeirasCartoesService;
         $this->formasPagamentoService = $formasPagamentoService;
         $this->itensVendaService = $itensVendaService;
+        $this->produtosService = $produtosService;
         $this->usersService = $usersService;
 
         $this->comprasRepository = $repository;
@@ -36,7 +38,21 @@ class ComprasService implements ComprasServiceInterface {
         if (!$compra)
             abort(400);
         $itensCompra = array_pull($compra, 'itens_compra');
-        return $this->comprasRepository->createAndPersistItens($compra, $itensCompra);
+        $novaCompra = null;
+        DB::beginTransaction();
+        try {
+            foreach ($itensCompra as $itemCompra) {
+                $produto = $this->produtosService->buscarPeloId($itemCompra['item_id']);
+                if (isset($produto))
+                    $this->produtosService->decrementarQuantidade($produto, $itemCompra['quantidade']);
+            }
+            $novaCompra = $this->comprasRepository->createAndPersistItens($compra, $itensCompra);
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
+        DB::commit();
+        return $novaCompra;
     }
 
     public function criarCompra($clienteId, $caixaId, array $attributes) {

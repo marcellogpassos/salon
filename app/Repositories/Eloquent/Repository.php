@@ -84,9 +84,8 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
     }
 
     public function updateRich(array $data, $id) {
-        if (!($model = $this->model->findOrFail($id))) {
+        if (!($model = $this->model->findOrFail($id)))
             return false;
-        }
         return $model->fill($data)->save();
     }
 
