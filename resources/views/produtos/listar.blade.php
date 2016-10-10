@@ -145,9 +145,11 @@
                                                 <td>{{$produto->descricao}}</td>
                                                 <td>{{$produto->categoria ? $produto->categoria->descricao : '-'}}</td>
                                                 <td>
-                                                    <a href="{{ url('marcas/' . $produto->marca->id . '/editar') }}">
-                                                        {{$produto->marca ? $produto->marca->descricao : '-'}}
-                                                    </a>
+                                                    @if($produto->marca)
+                                                        <a href="{{ url('marcas/' . $produto->marca->id . '/editar') }}">
+                                                            {{$produto->marca->descricao}}
+                                                        </a>
+                                                    @endif
                                                 </td>
                                                 <td>{{$produto->quantidade}}</td>
                                                 <td>{{moneyFormat($produto->itemVenda->valor)}}</td>
