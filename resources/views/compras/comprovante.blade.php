@@ -20,7 +20,7 @@
     </style>
 </head>
 
-<body>
+<body onload="window.print()">
 <div class="main">
     <p>___________________________________________________________</p>
     <p><br></p>
@@ -48,7 +48,9 @@
     <p>-----------------------------------------------------------</p>
     <p><br></p>
     <pre>FORMA DE PAGAMENTO:{{mb_str_pad(strtoupper($compra->formaPagamento->descricao), 39, ' ', STR_PAD_LEFT)}}</pre>
-    <pre>CLIENTE:{{ mb_str_pad(strtoupper($compra->cliente->name . ' ' . $compra->cliente->surname), 50, ' ', STR_PAD_LEFT ) }}</pre>
+    @if(isset($compra->cliente))
+        <pre>CLIENTE:{{ mb_str_pad(strtoupper($compra->cliente->name . ' ' . $compra->cliente->surname), 50, ' ', STR_PAD_LEFT ) }}</pre>
+    @endif
     <pre>CAIXA:{{mb_str_pad(strtoupper($compra->caixa->name . ' ' . $compra->caixa->surname), 52, ' ', STR_PAD_LEFT)}}</pre>
     <pre>DATA E HORA:{{mb_str_pad($compra->data_compra, 46, ' ', STR_PAD_LEFT)}}</pre>
     <p><br></p>

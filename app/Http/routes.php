@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-	return view('welcome');
+    return view('welcome');
 });
 
 Route::auth();
@@ -21,11 +21,13 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/teste', function () {
-	return null;
+    return null;
 });
 
 Route::get('compras/buscarItem', 'ComprasController@buscarItem');
-Route::get('compras/{codigoValidacao}/compraFinalizada', 'ComprasController@compraFinalizada');
+Route::get('compras/registrar', 'ComprasController@mostrarFormRegistrarCompraAnonima');
+Route::post('compras/registrar', 'ComprasController@registrarCompraAnonima');
+Route::get('compras/{codigoValidacao}/detalhar', 'ComprasController@detalharCompra');
 Route::get('compras/{codigoValidacao}/emitirComprovante', 'ComprasController@emitirComprovanteCompra');
 
 Route::get('marcas/cadastrar', 'MarcasProdutosController@mostrarFormCadastrarMarcaProduto');

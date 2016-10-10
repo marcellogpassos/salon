@@ -20,7 +20,11 @@
                     <div class="card-content">
                         <div class="row">
                             <div class="col s12 m4">
-                                <strong>Cliente:</strong> {{ $cliente->name . ' ' . $cliente->surname }}
+                                @if(isset($cliente))
+                                    <strong>Cliente:</strong> {{ $cliente->name . ' ' . $cliente->surname }}
+                                @else
+                                    <strong>Cliente:</strong> -
+                                @endif
                             </div>
 
                             <div class="col s12 m4">
@@ -33,7 +37,11 @@
                         </div>
 
                         <form id="registrarCompraForm" method="POST" onsubmit="return validarForm()"
-                              action="{{ url('users/' . $cliente->id . '/registrarCompra') }}" role="form">
+                              action="{{
+                                isset($cliente) ?
+                                    url('users/' . $cliente->id . '/registrarCompra') :
+                                    url('compras/registrar')
+                              }}" role="form">
 
                             {{ csrf_field() }}
 

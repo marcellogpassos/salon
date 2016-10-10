@@ -55,14 +55,14 @@ class ComprasService implements ComprasServiceInterface {
         return $novaCompra;
     }
 
-    public function criarCompra($clienteId, $caixaId, array $attributes) {
-        $cliente = $this->usersService->getUser($clienteId);
+    public function criarCompra($caixaId, array $attributes, $clienteId = null) {
         $formaPagamento = $this->formasPagamentoService->getFormaPagamento($attributes['formaPagamento']);
         $bandeiraCartao = $formaPagamento->pede_bandeira_cartao ?
             $this->bandeirasCartoesService->getBandeiraCartao($attributes['bandeiraCartao']) : null;
 
         $compra['data_compra'] = date('Y-m-d H:i:s');
-        $compra['cliente_id'] = $cliente->id;
+        if ($clienteId)
+            $compra['cliente_id'] = $clienteId;
         $compra['caixa_id'] = $caixaId;
         $compra['itens_compra'] = $this->getItensCompra($attributes['itens']);
         $compra['valor_total'] = $this->calcularValorTotal($compra['itens_compra']);

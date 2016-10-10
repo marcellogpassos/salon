@@ -1,5 +1,6 @@
 <nav role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/home') }}" class="brand-logo">{{ env('APP_NAME') }}</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/home') }}"
+                                          class="brand-logo">{{ env('APP_NAME') }}</a>
         <ul class="right hide-on-med-and-down">
             @if (Auth::guest())
                 <li><a href="{{ url('/home') }}">Home</a></li>
@@ -7,6 +8,17 @@
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
                 <li><a href="{{ url('/users/buscar') }}">Usu&aacute;rios</a></li>
+
+                <li>
+                    <a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="comprasMenuDropdown">
+                        Compras <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+
+                    <ul id="comprasMenuDropdown" class="dropdown-content">
+                        <li><a href="{{ url('/compras/registrar') }}">Registrar compra</a></li>
+                        <li><a href="">Compras realizadas</a></li>
+                    </ul>
+                </li>
 
                 <li>
                     <a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="agendaMenuDropdown">

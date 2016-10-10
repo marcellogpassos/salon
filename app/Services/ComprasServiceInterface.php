@@ -13,7 +13,7 @@ interface ComprasServiceInterface {
 
     public function cadastrar(array $compra);
 
-    public function criarCompra($clienteId, $caixaId, array $attributes);
+    public function criarCompra($caixaId, array $attributes, $clienteId = null);
 
     public function gerarCodigoValidacao($compra);
 

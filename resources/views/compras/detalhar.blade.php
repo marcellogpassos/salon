@@ -1,7 +1,7 @@
 @extends('layouts.appm')
 
 @section('title')
-    Compra finalizada
+    Detalhar compra
 @endsection
 
 @section('content')
@@ -21,7 +21,11 @@
                         <div class="row">
                             <div class="col s12 m4 offset-m2">
                                 <p class="dl">
-                                    <strong>Cliente:</strong>{{$compra->cliente->name . ' ' . $compra->cliente->surname}}
+                                    @if(isset($compra->cliente))
+                                        <strong>Cliente:</strong> {{ $compra->cliente->name . ' ' . $compra->cliente->surname }}
+                                    @else
+                                        <strong>Cliente:</strong> -
+                                    @endif
                                 </p>
                                 <p class="dl">
                                     <strong>Caixa:</strong>{{$compra->caixa->name . ' ' . $compra->caixa->surname}}
@@ -103,8 +107,10 @@
                     <div class="card-action">
                         <div class="row">
                             <div class="col s12 m4 offset-m4 grid-example">
-
-
+                                <a href="{{ url('compras/' . $compra->codigo_validacao . '/emitirComprovante') }}"
+                                   class="waves-effect waves-light btn btn-large btn-block primary" target="_blank">
+                                    <i class="material-icons left">print</i>Emitir comprovante
+                                </a>
                             </div>
                         </div>
                     </div>
