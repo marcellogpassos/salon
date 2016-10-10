@@ -44,29 +44,30 @@ class ComprasController extends Controller {
 
     public function mostrarFormRegistrarCompra($id) {
         $cliente = $this->usersService->getUser($id);
+        return $this->mostrarFormRegistrarCompraAnonima()
+            ->with('cliente', $cliente);
+    }
+
+    public function mostrarFormRegistrarCompraAnonima() {
         $caixa = Auth::user();
         $formasPagamento = $this->formasPagamentoService->listarTodos();
         $bandeirasCartoes = $this->bandeirasCartoesService->listarTodos();
         return view('compras.registrar')
-            ->with('cliente', $cliente)
             ->with('caixa', $caixa)
             ->with('formasPagamento', $formasPagamento)
             ->with('bandeirasCartoes', $bandeirasCartoes);
     }
 
     public function registrarCompra($id, Request $request) {
-        $cliente = $this->usersService->getUser($id);
-        $array = $this->comprasService->criarCompra($request->user()->id, $request->all(), $cliente->id);
+        $cliente = $id ? $this->usersService->getUser($id) : null;
+        $array = $this->comprasService->criarCompra($request->user()->id, $request->all(), $cliente ? $cliente : null);
         $compra = $this->comprasService->cadastrar($array);
         showMessage('success', 11, [$compra->codigo_validacao]);
         return Redirect::to('compras/' . $compra->codigo_validacao . '/detalhar');
     }
 
     public function registrarCompraAnonima(Request $request) {
-        $array = $this->comprasService->criarCompra($request->user()->id, $request->all());
-        $compra = $this->comprasService->cadastrar($array);
-        showMessage('success', 11, [$compra->codigo_validacao]);
-        return Redirect::to('compras/' . $compra->codigo_validacao . '/detalhar');
+        return $this->registrarCompra(null, $request);
     }
 
     public function emitirComprovanteCompra($codigoValidacao) {
@@ -81,14 +82,4 @@ class ComprasController extends Controller {
             ->with('compra', $compra);
     }
 
-    public function mostrarFormRegistrarCompraAnonima() {
-        $caixa = Auth::user();
-        $formasPagamento = $this->formasPagamentoService->listarTodos();
-        $bandeirasCartoes = $this->bandeirasCartoesService->listarTodos();
-        return view('compras.registrar')
-            ->with('caixa', $caixa)
-            ->with('formasPagamento', $formasPagamento)
-            ->with('bandeirasCartoes', $bandeirasCartoes);
-    }
-
-} 
+}
