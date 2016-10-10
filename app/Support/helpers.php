@@ -2,8 +2,11 @@
 
 if (!function_exists('dateToBrFormat')) {
 
-    function dateToBrFormat($date) {
-        return date("d/m/Y", strtotime($date));
+    function dateToBrFormat($date, $hms = false) {
+        if($hms)
+            return date("d/m/Y H:i:s", strtotime($date));
+        else
+            return date("d/m/Y", strtotime($date));
     }
 
 }

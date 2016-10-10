@@ -167,6 +167,14 @@ tr td span.remover {
     margin-right: 24px;
 }
 
+p.dl {
+    margin-bottom: 16px !important;
+}
+
+p.dl strong {
+    margin-right: 8px !important;
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;
