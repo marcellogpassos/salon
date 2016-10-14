@@ -16,7 +16,7 @@
 
                     <ul id="comprasMenuDropdown" class="dropdown-content">
                         <li><a href="{{ url('/compras/registrar') }}">Registrar compra</a></li>
-                        <li><a href="">Compras realizadas</a></li>
+                        <li><a href="{{ url('/compras/buscar') }}">Relat&oacute;rio de compras</a></li>
                     </ul>
                 </li>
 
@@ -64,6 +64,22 @@
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
                 <li><a href="{{ url('/users/buscar') }}">Usu&aacute;rios</a></li>
+
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header waves-effect waves-teal">
+                                Compras <i class="material-icons left">arrow_drop_down</i>
+                            </a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{{ url('/compras/registrar') }}">Registrar compra</a></li>
+                                    <li><a href="{{ url('/compras/buscar') }}">Relat&oacute;rio de compras</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
 
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
