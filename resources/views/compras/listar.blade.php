@@ -25,22 +25,22 @@
 
                                 <div class="input-field col s12 m3">
                                     <input id="dataInicialInput" name="data_inicial" class="data" required type="text">
-                                    <label for="dataInicialInput">Data inicial *</label>
+                                    <label for="dataInicialInput">Data inicial</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
                                     <input id="dataFinalInput" name="data_final" class="data" required type="text">
-                                    <label for="dataFinalInput">Data final *</label>
+                                    <label for="dataFinalInput">Data final</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
                                     <input id="valorMinimoInput" name="valor_minimo" class="moeda" required type="text">
-                                    <label for="valorMinimoInput">Valor m&iacute;nimo *</label>
+                                    <label for="valorMinimoInput">Valor m&iacute;nimo</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
                                     <input id="valorMaximoInput" name="valor_maximo" class="moeda" required type="text">
-                                    <label for="valorMaximoInput">Valor m&aacute;ximo *</label>
+                                    <label for="valorMaximoInput">Valor m&aacute;ximo</label>
                                 </div>
 
                             </div>
@@ -48,14 +48,20 @@
                             <div class="row">
 
                                 <div class="input-field col s12 m6">
-                                    <input id="itemInput" name="item" required type="text">
-                                    <label for="itemInput">Item espec&iacute;fico *</label>
+                                    <input id="itemInput" class="autocomplete highlight-matching item" maxlength="255"
+                                           type="text">
+                                    <label for="itemInput">Nome ou c&oacute;digo do item</label>
                                 </div>
 
+                                <input id="itemHiddenInput" name="item" type="hidden" value="">
+
                                 <div class="input-field col s12 m6">
-                                    <input id="clienteInput" name="cliente" required type="text">
-                                    <label for="clienteInput">Cliente espec&iacute;fico *</label>
+                                    <input id="clienteInput" class="autocomplete highlight-matching cliente"
+                                           maxlength="255" type="text">
+                                    <label for="clienteInput">Nome do cliente</label>
                                 </div>
+
+                                <input id="clienteHiddenInput" name="cliente" type="hidden" value="">
 
                             </div>
 
@@ -83,4 +89,33 @@
 @section('scripts')
     <script src="{{ asset('lib/jquery-maskmoney/jquery.maskMoney.min.js') }}"></script>
     <script src="{{ asset('js/money.js') }}"></script>
+    <script>
+        var itemAutocompleteSelector = '.autocomplete.item';
+        var itemHiddenInputSelector = '#itemHiddenInput';
+        var clienteAutocompleteSelector = '.autocomplete.cliente';
+        var clienteHiddenInputSelector = '#clienteHiddenInput';
+
+        var buscarItemSrc = '{{url("/compras/buscarItem")}}';
+        var buscarClienteSrc = '{{url("/compras/buscarCliente")}}';
+
+        $(itemAutocompleteSelector).autocomplete({
+            source: buscarItemSrc,
+            minLength: 2,
+            focus: function (event, ui) {
+                $(itemAutocompleteSelector).val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $(itemAutocompleteSelector).val(ui.item.label);
+                $(itemHiddenInputSelector).val(ui.item.id);
+                return false;
+            },
+            change: function (event, ui) {
+                if (!ui.item) {
+                    $(itemAutocompleteSelector).val('');
+                    $(itemHiddenInputSelector).val('');
+                }
+            }
+        });
+    </script>
 @endsection

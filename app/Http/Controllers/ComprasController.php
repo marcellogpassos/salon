@@ -64,7 +64,7 @@ class ComprasController extends Controller {
 
 	public function registrarCompra($id, Request $request) {
 		$cliente = $id ? $this->usersService->getUser($id) : null;
-		$array = $this->comprasService->criarCompra($request->user()->id, $request->all(), $cliente ? $cliente : null);
+		$array = $this->comprasService->criarCompra($request->user()->id, $request->all(), $cliente ? $cliente->id : null);
 		$compra = $this->comprasService->cadastrar($array);
 		showMessage('success', 11, [$compra->codigo_validacao]);
 		return Redirect::to('compras/' . $compra->codigo_validacao . '/detalhar');
