@@ -52,7 +52,7 @@ class ComprasController extends Controller {
 	public function buscarCompras(Request $request) {
 		if (!count($request->all()))
 			return $this->mostrarComprasEncontradas();
-		return $request->all();
+		return $this->comprasService->buscar($request->all());
 	}
 
 	public function mostrarComprasEncontradas() {

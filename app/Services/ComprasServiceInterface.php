@@ -11,12 +11,14 @@ namespace App\Services;
 
 interface ComprasServiceInterface {
 
-    public function cadastrar(array $compra);
+	public function buscar($criterios);
 
-    public function criarCompra($caixaId, array $attributes, $clienteId = null);
+	public function cadastrar(array $compra);
 
-    public function gerarCodigoValidacao($compra);
+	public function criarCompra($caixaId, array $attributes, $clienteId = null);
 
-    public function getByCodigoValidacao($codigoValidacao);
+	public function gerarCodigoValidacao($compra);
+
+	public function getByCodigoValidacao($codigoValidacao);
 
 }

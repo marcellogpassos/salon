@@ -24,22 +24,22 @@
                             <div class="row">
 
                                 <div class="input-field col s12 m3">
-                                    <input id="dataInicialInput" name="data_inicial" class="data" required type="text">
+                                    <input id="dataInicialInput" name="data_inicial" class="data" type="text">
                                     <label for="dataInicialInput">Data inicial</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
-                                    <input id="dataFinalInput" name="data_final" class="data" required type="text">
+                                    <input id="dataFinalInput" name="data_final" class="data" type="text">
                                     <label for="dataFinalInput">Data final</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
-                                    <input id="valorMinimoInput" name="valor_minimo" class="moeda" required type="text">
+                                    <input id="valorMinimoInput" name="valor_minimo" class="moeda" type="text">
                                     <label for="valorMinimoInput">Valor m&iacute;nimo</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
-                                    <input id="valorMaximoInput" name="valor_maximo" class="moeda" required type="text">
+                                    <input id="valorMaximoInput" name="valor_maximo" class="moeda" type="text">
                                     <label for="valorMaximoInput">Valor m&aacute;ximo</label>
                                 </div>
 
