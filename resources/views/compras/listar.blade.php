@@ -58,7 +58,7 @@
                                 <div class="input-field col s12 m6">
                                     <input id="clienteInput" class="autocomplete highlight-matching cliente"
                                            maxlength="255" type="text">
-                                    <label for="clienteInput">Nome do cliente</label>
+                                    <label for="clienteInput">Nome ou cpf do cliente</label>
                                 </div>
 
                                 <input id="clienteHiddenInput" name="cliente" type="hidden" value="">
@@ -114,6 +114,26 @@
                 if (!ui.item) {
                     $(itemAutocompleteSelector).val('');
                     $(itemHiddenInputSelector).val('');
+                }
+            }
+        });
+
+        $(clienteAutocompleteSelector).autocomplete({
+            source: buscarClienteSrc,
+            minLength: 2,
+            focus: function (event, ui) {
+                $(clienteAutocompleteSelector).val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $(clienteAutocompleteSelector).val(ui.item.label);
+                $(clienteHiddenInputSelector).val(ui.item.id);
+                return false;
+            },
+            change: function (event, ui) {
+                if (!ui.item) {
+                    $(clienteAutocompleteSelector).val('');
+                    $(clienteHiddenInputSelector).val('');
                 }
             }
         });

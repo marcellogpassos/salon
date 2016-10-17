@@ -26,4 +26,18 @@ return [
 				' )' .
 			')',
 
+	'buscarCliente' =>
+		'SELECT' .
+			' user.id AS "id",' .
+			' concat(user.name, " ", user.surname) AS "label"' .
+		' FROM' .
+			' users user' .
+		' WHERE' .
+			' user.ativo = "1"' .
+			' AND (' .
+				' upper(concat(user.name, " ", user.surname)) LIKE concat("%", upper(?), "%")' .
+				' OR' .
+					' user.cpf LIKE concat("%", ?, "%")' .
+			' )',
+
 ];

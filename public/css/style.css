@@ -139,6 +139,7 @@ h4.card-title {
 .ui-autocomplete {
     background-color: #fff;
     position: absolute;
+    z-index: 999;
 }
 
 .ui-autocomplete li {

@@ -42,6 +42,19 @@ class ComprasController extends Controller {
 		return response()->json($itensEncontrados);
 	}
 
+	public function buscarCliente(Request $request) {
+		$termo = $request->get('term');
+		$query = Config::get('queries.buscarCliente');
+		$clientesEncontrados = DB::select($query, [$termo, $termo]);
+		return response()->json($clientesEncontrados);
+	}
+
+	public function buscarCompras(Request $request) {
+		if (!count($request->all()))
+			return $this->mostrarComprasEncontradas();
+		return $request->all();
+	}
+
 	public function mostrarComprasEncontradas() {
 		return view('compras.listar');
 	}

@@ -25,7 +25,8 @@ Route::get('/teste', function () {
 });
 
 Route::get('compras/buscarItem', 'ComprasController@buscarItem');
-Route::get('compras/buscar', 'ComprasController@mostrarComprasEncontradas');
+Route::get('compras/buscarCliente', 'ComprasController@buscarCliente');
+Route::get('compras/buscar', 'ComprasController@buscarCompras');
 Route::get('compras/registrar', 'ComprasController@mostrarFormRegistrarCompraAnonima');
 Route::post('compras/registrar', 'ComprasController@registrarCompraAnonima');
 Route::get('compras/{codigoValidacao}/detalhar', 'ComprasController@detalharCompra');
