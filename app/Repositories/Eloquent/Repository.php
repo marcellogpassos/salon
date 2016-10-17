@@ -108,7 +108,7 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
         return $this->model->where($attribute, '=', $value)->get($columns);
     }
 
-    public function findWhere($where, $columns = ['*'], $or = false) {
+    public function findWhere($where, $paginate = false, $perPage = 0, $columns = ['*'], $or = false) {
         $this->applyCriteria();
         $model = $this->model;
         foreach ($where as $field => $value) {
@@ -134,7 +134,7 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
                     : $model->orWhere($field, '=', $value);
             }
         }
-        return $model->get($columns);
+        return $paginate ? $model->paginate($perPage, $columns) : $model->get($columns);
     }
 
     public function makeModel() {

@@ -49,7 +49,7 @@
 
                                 <div class="input-field col s12 m6">
                                     <input id="itemInput" class="autocomplete highlight-matching item" maxlength="255"
-                                           type="text">
+                                           type="text" value="">
                                     <label for="itemInput">Nome ou c&oacute;digo do item</label>
                                 </div>
 
@@ -57,7 +57,7 @@
 
                                 <div class="input-field col s12 m6">
                                     <input id="clienteInput" class="autocomplete highlight-matching cliente"
-                                           maxlength="255" type="text">
+                                           maxlength="255" type="text" value="">
                                     <label for="clienteInput">Nome ou cpf do cliente</label>
                                 </div>
 
@@ -80,6 +80,82 @@
                     </form>
 
                 </div>
+
+                @if (isset($comprasEncontradas) && (count($comprasEncontradas) == 0))
+                    @include('partials.nenhumResultadoEncontrado')
+                @endif
+
+                @if(isset($comprasEncontradas) && (count($comprasEncontradas) > 0))
+
+                    @include('partials.resultadosEncontrados', ['total' => $comprasEncontradas->total()])
+
+                    <div class="row">
+                        <div class="col s12">
+
+                            <div class="card white compras-encontradas">
+
+                                <h4 class="card-title">Compras encontradas</h4>
+
+                                <div class="card-content gray-text text-darken-4">
+
+                                    <table class="bordered highlight responsive-table">
+
+                                        <thead>
+                                        <tr>
+                                            <th data-field="codigo_validacao">C&oacute;d.</th>
+                                            <th data-field="cliente_id">Cliente</th>
+                                            <th data-field="data_compra">Data da compra</th>
+                                            <th data-field="valor_total">Valor total</th>
+                                            <th data-field="desconto">Desconto</th>
+                                            <th data-field="valor_final">Valor final</th>
+                                            <th>Op&ccedil;&otilde;es</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        @foreach($comprasEncontradas as $compra)
+                                            <tr>
+                                                <td>{{$compra->codigo_validacao}}</td>
+                                                <td>{{
+                                                    isset($compra->cliente) ?
+                                                        ($compra->cliente->name . ' ' . $compra->cliente->surname) :
+                                                        ' - '
+                                                }}</td>
+                                                <td>{{dateToBrFormat($compra->data_compra, true)}}</td>
+                                                <td>{{moneyFormat($compra->valor_total, true)}}</td>
+                                                <td>{{
+                                                    $compra->desconto ?
+                                                    moneyFormat($compra->desconto, true) :
+                                                    ' - '
+                                                }}</td>
+                                                <td>{{moneyFormat($compra->valor_total - $compra->desconto, true)}}</td>
+                                                <td>
+                                                    <a class="special-link">
+                                                        <i class="material-icons">search</i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                                <div class="card-action">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            {!! $comprasEncontradas->appends($buscaPrevia)->render() !!}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                @endif
 
             </div>
         </div>

@@ -20,6 +20,28 @@ class ComprasRepository extends Repository {
         return 'App\Compra';
     }
 
+    public function buscar($criterios, $perPage = null) {
+        $perPage = $perPage ? $perPage : env('DEFAULT_PER_PAGE');
+        $where = $this->montarWhere($criterios);
+        $compras = $this->model->select('compras.*')
+            ->join('item_compra', 'compras.id', '=', 'item_compra.compra_id')
+            ->where($where)
+            ->groupBy('compras.id')
+            ->paginate($perPage);
+        return $compras;
+    }
+
+    private function montarWhere($criterios) {
+        $where = [];
+        $where = filtrar($criterios, $where, 'compras.data_compra', 'data_inicial', '>=');
+        $where = filtrar($criterios, $where, 'compras.data_compra', 'data_final', '<=');
+        $where = filtrar($criterios, $where, 'compras.valor_total', 'valor_minimo', '>=');
+        $where = filtrar($criterios, $where, 'compras.valor_total', 'valor_maximo', '<=');
+        $where = filtrar($criterios, $where, 'compras.cliente_id', 'cliente');
+        $where = filtrar($criterios, $where, 'item_compra.item_id', 'item');
+        return $where;
+    }
+
     public function createAndPersistItens(array $compra, array $itensCompraArray) {
         $itensCompra = $this->getItensCompra($itensCompraArray);
         $compraSalva = null;
