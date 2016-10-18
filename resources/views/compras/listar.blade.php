@@ -23,6 +23,32 @@
 
                             <div class="row">
 
+                                <div class="input-field col s12 m2">
+                                    <input id="codigoValidacaoInput" class="codigo-validacao" maxlength="6" min="6"
+                                           type="text" value="" name="codigo_validacao">
+                                    <label for="codigoValidacaoInput">C&oacute;digo de valida&ccedil;&atilde;o</label>
+                                </div>
+
+                                <div class="input-field col s12 m5">
+                                    <input id="clienteInput" class="autocomplete highlight-matching cliente"
+                                           maxlength="255" type="text" value="">
+                                    <label for="clienteInput">Nome ou cpf do cliente</label>
+                                </div>
+
+                                <input id="clienteHiddenInput" name="cliente" type="hidden" value="">
+
+                                <div class="input-field col s12 m5">
+                                    <input id="itemInput" class="autocomplete highlight-matching item" maxlength="255"
+                                           type="text" value="">
+                                    <label for="itemInput">Nome ou c&oacute;digo do item</label>
+                                </div>
+
+                                <input id="itemHiddenInput" name="item" type="hidden" value="">
+
+                            </div>
+
+                            <div class="row">
+
                                 <div class="input-field col s12 m3">
                                     <input id="dataInicialInput" name="data_inicial" class="data" type="text">
                                     <label for="dataInicialInput">Data inicial</label>
@@ -42,26 +68,6 @@
                                     <input id="valorMaximoInput" name="valor_maximo" class="moeda" type="text">
                                     <label for="valorMaximoInput">Valor m&aacute;ximo</label>
                                 </div>
-
-                            </div>
-
-                            <div class="row">
-
-                                <div class="input-field col s12 m6">
-                                    <input id="itemInput" class="autocomplete highlight-matching item" maxlength="255"
-                                           type="text" value="">
-                                    <label for="itemInput">Nome ou c&oacute;digo do item</label>
-                                </div>
-
-                                <input id="itemHiddenInput" name="item" type="hidden" value="">
-
-                                <div class="input-field col s12 m6">
-                                    <input id="clienteInput" class="autocomplete highlight-matching cliente"
-                                           maxlength="255" type="text" value="">
-                                    <label for="clienteInput">Nome ou cpf do cliente</label>
-                                </div>
-
-                                <input id="clienteHiddenInput" name="cliente" type="hidden" value="">
 
                             </div>
 
