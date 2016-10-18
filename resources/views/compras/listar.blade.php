@@ -140,7 +140,8 @@
                                                 }}</td>
                                                 <td>{{moneyFormat($compra->valor_total - $compra->desconto, true)}}</td>
                                                 <td>
-                                                    <a class="special-link">
+                                                    <a class="special-link" target="_blank"
+                                                       href="{{url('/compras/' . $compra->codigo_validacao . '/detalhar')}}">
                                                         <i class="material-icons">search</i>
                                                     </a>
                                                 </td>
@@ -170,6 +171,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('scripts')
