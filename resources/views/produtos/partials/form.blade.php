@@ -61,6 +61,7 @@
         </div>
 
         <div class="input-field col s12 m2">
+            <i class="material-icons prefix">attach_money</i>
             <input id="valorInput" name="valor" type="text" maxlength="16" class="validate moeda"
                    value="{{ old('valor') ? old('valor') : (isset($produto->itemVenda->valor) ?
                         moneyFormat($produto->itemVenda->valor, false) : '') }}">

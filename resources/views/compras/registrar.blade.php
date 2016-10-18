@@ -110,6 +110,7 @@
                                             <div class="row">
 
                                                 <div class="input-field col s12">
+                                                    <i class="material-icons prefix">attach_money</i>
                                                     <input id="valorTotalInput" maxlength="32" tabindex="3"
                                                            class="moeda" type="text" required readonly>
                                                     <label id="valorTotalLabel" for="valorTotalInput">Valor
@@ -117,6 +118,7 @@
                                                 </div>
 
                                                 <div id="descontoPorcentoDiv" class="input-field col s12 hide">
+                                                    <i class="fa fa-percent material-icons prefix" aria-hidden="true"></i>
                                                     <input id="descontoPorcentoInput"
                                                            onchange="setDescontoPorcento(this.value)"
                                                            class="porcento" maxlength="32" type="text">
@@ -125,6 +127,7 @@
                                                 </div>
 
                                                 <div id="descontoReaisDiv" class="input-field col s12">
+                                                    <i class="material-icons prefix">attach_money</i>
                                                     <input id="descontoReaisInput" class="moeda"
                                                            onchange="setDescontoReais(this.value)"
                                                            maxlength="32" type="text">
@@ -155,6 +158,7 @@
                                                 </div>
 
                                                 <div class="input-field col s12">
+                                                    <i class="material-icons prefix">attach_money</i>
                                                     <input id="valorFinalInput" maxlength="32"
                                                            type="text" required readonly>
                                                     <label id="valorFinalLabel" for="valorFinalInput">Valor
@@ -178,6 +182,7 @@
                                                 </div>
 
                                                 <div class="input-field col s12 formaPagamento dinheiro hide">
+                                                    <i class="material-icons prefix">attach_money</i>
                                                     <input id="valorPagoInput" maxlength="255" type="text"
                                                            onchange="setValorPago(this.value)"
                                                            class="moeda formaPagamentoField">
@@ -185,6 +190,7 @@
                                                 </div>
 
                                                 <div class="input-field col s12 troco formaPagamento dinheiro hide">
+                                                    <i class="material-icons prefix">attach_money</i>
                                                     <input id="trocoInput" maxlength="255" type="text"
                                                            class="formaPagamentoField" readonly>
                                                     <label id="trocoLabel" for="trocoInput">Troco</label>

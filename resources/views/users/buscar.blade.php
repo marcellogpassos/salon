@@ -37,6 +37,7 @@
                                 </div>
 
                                 <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">email</i>
                                     <input id="emailInput" name="email" type="email" maxlength="255" class="validate"
                                            value="{{
 
@@ -91,6 +92,7 @@
                                 </div>
 
                                 <div class="input-field col s12 m4">
+                                    <i class="material-icons prefix">phone</i>
                                     <input id="telefoneInput" name="telefone" type="text" class="validate telefone"
                                            value="{{
 

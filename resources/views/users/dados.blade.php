@@ -64,6 +64,7 @@
                                 </div>
 
                                 <div class="input-field col s12 m4">
+                                    <i class="material-icons prefix">date_range</i>
                                     <input id="nascimentoInput" name="data_nascimento" class="data" required
                                            value="{{ $user->data_nascimento ? dateToBrFormat($user->data_nascimento) : '' }}"
                                            type="text">
@@ -71,6 +72,7 @@
                                 </div>
 
                                 <div class="input-field col s12 m4">
+                                    <i class="material-icons prefix">phone</i>
                                     <input id="telefoneInput" name="telefone" type="text" class="validate telefone"
                                            value="{{ old('telefone') ? old('telefone') : $user->telefone }}">
                                     <label for="telefoneInput">Telefone</label>
@@ -81,6 +83,7 @@
                             <div class="row">
 
                                 <div class="input-field col s12 m4">
+                                    <i class="material-icons prefix">location_on</i>
                                     <input id="cepInput" name="cep" type="text" class="cep" required
                                            value="{{ old('cep') ? old('cep') : $user->cep }}"
                                            onchange="setCep(this.value, '#userForm')">

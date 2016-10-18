@@ -171,6 +171,10 @@ p.dl strong {
     margin-right: 8px !important;
 }
 
+i.fa.fa-percent.material-icons.prefix {
+    font-size: 1.5rem;
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;

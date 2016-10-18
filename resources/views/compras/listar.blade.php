@@ -50,21 +50,25 @@
                             <div class="row">
 
                                 <div class="input-field col s12 m3">
+                                    <i class="material-icons prefix">date_range</i>
                                     <input id="dataInicialInput" name="data_inicial" class="data" type="text">
                                     <label for="dataInicialInput">Data inicial</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
+                                    <i class="material-icons prefix">date_range</i>
                                     <input id="dataFinalInput" name="data_final" class="data" type="text">
                                     <label for="dataFinalInput">Data final</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
+                                    <i class="material-icons prefix">attach_money</i>
                                     <input id="valorMinimoInput" name="valor_minimo" class="moeda" type="text">
                                     <label for="valorMinimoInput">Valor m&iacute;nimo</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
+                                    <i class="material-icons prefix">attach_money</i>
                                     <input id="valorMaximoInput" name="valor_maximo" class="moeda" type="text">
                                     <label for="valorMaximoInput">Valor m&aacute;ximo</label>
                                 </div>
@@ -180,6 +184,8 @@
         var buscarItemSrc = '{{url("/compras/buscarItem")}}';
         var buscarClienteSrc = '{{url("/compras/buscarCliente")}}';
 
+        var codigoValidacaoInput = '#codigoValidacaoInput';
+
         $(itemAutocompleteSelector).autocomplete({
             source: buscarItemSrc,
             minLength: 2,
@@ -218,6 +224,15 @@
                     $(clienteHiddenInputSelector).val('');
                 }
             }
+        });
+
+        $(codigoValidacaoInput).change(function () {
+            var codigoFornecido = $(codigoValidacaoInput).val();
+            if (!validarCodigo(codigoFornecido)) {
+                $(codigoValidacaoInput).val('');
+                showMessage('O código deve conter 6 caracteres apenas letras e números');
+            } else
+                $(codigoValidacaoInput).val(codigoFornecido.toUpperCase());
         });
     </script>
 @endsection
