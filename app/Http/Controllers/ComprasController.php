@@ -51,7 +51,7 @@ class ComprasController extends Controller {
 		return response()->json($clientesEncontrados);
 	}
 
-	public function buscarCompras(Request $request) {
+	public function buscarCompras(Requests\RelatorioCompraRequest $request) {
 		if (!count($request->all()))
 			return $this->mostrarComprasEncontradas();
 		$compras = $this->comprasService->buscar($request->all());

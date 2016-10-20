@@ -34,10 +34,7 @@ abstract class ItemVendaRequest extends Request {
 
         $attributes = $this->subclassAll($attributes);
         $attributes['descricao'] = strtoupper($attributes['descricao']);
-        $valor = str_replace('R$ ', '', $attributes['valor']);
-        $valor = str_replace('.', '', $valor);
-        $valor = str_replace(',', '.', $valor);
-        $attributes['valor'] = round($valor, 2);
+        $attributes['valor'] = tratarInputValoresMonetarios($attributes['valor'], 2);
 
         $this->replace($attributes);
         $this->sanitized = true;

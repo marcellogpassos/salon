@@ -126,6 +126,17 @@ if (!function_exists('itemComprovanteCompra')) {
 
 }
 
+if (!function_exists('tratarInputValoresMonetarios')) {
+
+    function tratarInputValoresMonetarios($valorOriginal) {
+        $valor = str_replace('R$ ', '', $valorOriginal);
+        $valor = str_replace('.', '', $valor);
+        $valor = str_replace(',', '.', $valor);
+        return round($valor, 2);
+    }
+
+}
+
 if (!function_exists('mb_str_pad')) {
 
     function mb_str_pad($str, $pad_len, $pad_str = ' ', $dir = STR_PAD_RIGHT, $encoding = NULL) {
