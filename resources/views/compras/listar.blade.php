@@ -16,8 +16,8 @@
 
                     <h4 class="card-title">Relat&oacute;rio de compras</h4>
 
-                    <form id="servicosForm" class="form-horizontal" method="GET" action="{{ url('compras/buscar') }}"
-                          role="form">
+                    <form name="relatorioComprasForm" class="form-horizontal" method="GET" role="form"
+                          action="{{ url('compras/buscar') }}" onsubmit="return validateForm()">
 
                         <div class="card-content gray-text text-darken-4">
 
@@ -182,64 +182,5 @@
 @section('scripts')
     <script src="{{ asset('lib/jquery-maskmoney/jquery.maskMoney.min.js') }}"></script>
     <script src="{{ asset('js/money.js') }}"></script>
-    <script>
-        var itemAutocompleteSelector = '.autocomplete.item';
-        var itemHiddenInputSelector = '#itemHiddenInput';
-        var clienteAutocompleteSelector = '.autocomplete.cliente';
-        var clienteHiddenInputSelector = '#clienteHiddenInput';
-
-        var buscarItemSrc = '{{url("/compras/buscarItem")}}';
-        var buscarClienteSrc = '{{url("/compras/buscarCliente")}}';
-
-        var codigoValidacaoInput = '#codigoValidacaoInput';
-
-        $(itemAutocompleteSelector).autocomplete({
-            source: buscarItemSrc,
-            minLength: 2,
-            focus: function (event, ui) {
-                $(itemAutocompleteSelector).val(ui.item.label);
-                return false;
-            },
-            select: function (event, ui) {
-                $(itemAutocompleteSelector).val(ui.item.label);
-                $(itemHiddenInputSelector).val(ui.item.id);
-                return false;
-            },
-            change: function (event, ui) {
-                if (!ui.item) {
-                    $(itemAutocompleteSelector).val('');
-                    $(itemHiddenInputSelector).val('');
-                }
-            }
-        });
-
-        $(clienteAutocompleteSelector).autocomplete({
-            source: buscarClienteSrc,
-            minLength: 2,
-            focus: function (event, ui) {
-                $(clienteAutocompleteSelector).val(ui.item.label);
-                return false;
-            },
-            select: function (event, ui) {
-                $(clienteAutocompleteSelector).val(ui.item.label);
-                $(clienteHiddenInputSelector).val(ui.item.id);
-                return false;
-            },
-            change: function (event, ui) {
-                if (!ui.item) {
-                    $(clienteAutocompleteSelector).val('');
-                    $(clienteHiddenInputSelector).val('');
-                }
-            }
-        });
-
-        $(codigoValidacaoInput).change(function () {
-            var codigoFornecido = $(codigoValidacaoInput).val();
-            if (!validarCodigo(codigoFornecido)) {
-                $(codigoValidacaoInput).val('');
-                showMessage('O código deve conter 6 caracteres apenas letras e números');
-            } else
-                $(codigoValidacaoInput).val(codigoFornecido.toUpperCase());
-        });
-    </script>
+    <script src="{{ asset('js/relatorioCompra.js') }}"></script>
 @endsection
