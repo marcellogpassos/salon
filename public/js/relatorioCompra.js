@@ -3,9 +3,6 @@ var itemHiddenInputSelector = '#itemHiddenInput';
 var clienteAutocompleteSelector = '.autocomplete.cliente';
 var clienteHiddenInputSelector = '#clienteHiddenInput';
 
-var buscarItemSrc = '{{url("/compras/buscarItem")}}';
-var buscarClienteSrc = '{{url("/compras/buscarCliente")}}';
-
 var codigoValidacaoInput = '#codigoValidacaoInput';
 
 var form = document.forms["relatorioComprasForm"];
