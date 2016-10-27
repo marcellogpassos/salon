@@ -14,66 +14,69 @@ use Illuminate\Support\Facades\DB;
 
 class EstatisticasService implements EstatisticasServiceInterface {
 
-	public function clientesMaisRentaveis() {
-		$query = Config::get('queries.clientesMaisRentaveis');
-		$result = DB::select($query);
-		return response()->json($result);
-	}
+    protected $faixaEtariaAnos;
 
-	public function clientesMaisFrequentes() {
-		$query = Config::get('queries.clientesMaisFrequentes');
-		$result = DB::select($query);
-		return response()->json($result);
-	}
+    protected $faixaEtariaQuantidade;
 
-	public function produtosMaisVendidos() {
-		$query = Config::get('queries.produtosMaisVendidos');
-		$result = DB::select($query);
-		return response()->json($result);
-	}
+    public function __construct() {
+        $this->faixaEtariaAnos = env('FAIXA_ETARIA_ANOS');
+        $this->faixaEtariaQuantidade = env('FAIXA_ETARIA_QUANTIDADE');
+    }
 
-	public function servicosMaisVendidos() {
-		$query = Config::get('queries.servicosMaisVendidos');
-		$result = DB::select($query);
-		return response()->json($result);
-	}
+    protected function getResult($queryName) {
+        $query = Config::get($queryName);
+        return DB::select($query);
+    }
 
-	public function movimentoSemanal() {
-		$query = Config::get('queries.movimentoSemanal');
-		$result = DB::select($query);
-		return response()->json($result);
-	}
+    public function clientesMaisRentaveis() {
+        return $this->getResult('queries.clientesMaisRentaveis');
+    }
 
-	public function movimentoMensal() {
-		$query = Config::get('queries.movimentoMensal');
-		$result = DB::select($query);
-		return response()->json($result);
-	}
+    public function clientesMaisFrequentes() {
+        return $this->getResult('queries.clientesMaisFrequentes');
+    }
 
-	public function movimentoAnual() {
-		// TODO: Implement movimentoAnual() method.
-	}
+    public function produtosMaisVendidos() {
+        return $this->getResult('queries.produtosMaisVendidos');
+    }
 
-	public function clientesPorSexo() {
-		$query = Config::get('queries.clientesPorSexo');
-		$result = DB::select($query);
-		return response()->json($result);
-	}
+    public function servicosMaisVendidos() {
+        return $this->getResult('queries.servicosMaisVendidos');
+    }
 
-	public function clientesPorFaixaEtaria() {
-		$query = Config::get('queries.clientesPorFaixaEtaria');
-		$faixasEtarias = [];
-		$faixaAnos = 7;
-		$faixaQuantidade = 10;
-		for ($i = 0; $i <= 10; $i++) {
-			$faixaLabel = 'de ' . ($i * $faixaAnos) . ' a ' . (($i + 1) * $faixaAnos) . ' anos';
-			$faixaQuantidade = DB::select($query, [($i * $faixaAnos), (($i + 1) * $faixaAnos)])[0]->quantidade;
-			$faixasEtarias = array_add($faixasEtarias, $faixaLabel, $faixaQuantidade);
-		}
-		return response()->json($faixasEtarias);
-	}
+    public function movimentoSemanal() {
+        return $this->getResult('queries.movimentoSemanal');
+    }
 
-	public function clientesPorBairro() {
-		// TODO: Implement clientesPorBairro() method.
-	}
+    public function movimentoMensal() {
+        return $this->getResult('queries.movimentoMensal');
+    }
+
+    public function movimentoAnual() {
+        return $this->getResult('queries.movimentoAnual');
+    }
+
+    public function clientesPorSexo() {
+        return $this->getResult('queries.clientesPorSexo');
+    }
+
+    public function clientesPorBairro() {
+        return $this->getResult('queries.clientesPorBairro');
+    }
+
+    public function clientesPorFaixaEtaria() {
+        $query = Config::get('queries.clientesPorFaixaEtaria');
+        $faixasEtarias = [];
+        for ($i = 0; $i <= $this->faixaEtariaQuantidade; $i++) {
+            $min = $i * $this->faixaEtariaAnos;
+            $max = ($i < $this->faixaEtariaQuantidade)
+                ? ($i + 1) * $this->faixaEtariaAnos : 999;
+            $faixaLabel = ($i < $this->faixaEtariaQuantidade)
+                ? 'DE ' . $min . ' A ' . $max . ' ANOS' : 'MAIS DE ' . $min . ' ANOS';
+            $quantidade = DB::select($query, [$min, $max])[0]->quantidade;
+            $faixasEtarias = array_add($faixasEtarias, $faixaLabel, $quantidade);
+        }
+        return $faixasEtarias;
+    }
+
 }

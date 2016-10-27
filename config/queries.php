@@ -42,23 +42,25 @@ return [
 
 	'clientesMaisRentaveis' =>
 		'SELECT' .
+        	' user.id AS "id",' .
 			' concat(user.name, " ", user.surname) AS "nome",' .
 			' sum(comp.valor_total) AS "lucro"' .
 		' FROM' .
 			' compras comp' .
 			' INNER JOIN users user ON (comp.cliente_id = user.id)' .
 		' GROUP BY user.id' .
-		' ORDER BY 2 DESC',
+		' ORDER BY 3 DESC',
 
 	'clientesMaisFrequentes' =>
 		'SELECT' .
+        	' user.id AS "id",' .
 			' concat(user.name, " ", user.surname) AS "nome",' .
 			' count(user.id) as "frequencia"' .
 		' FROM' .
 			' compras comp' .
 			' INNER JOIN users user ON (comp.cliente_id = user.id)' .
 		' GROUP BY user.id' .
-		' ORDER BY 2 DESC',
+		' ORDER BY 3 DESC',
 
 	'produtosMaisVendidos' =>
 		'SELECT ' .
@@ -70,7 +72,7 @@ return [
 			' INNER JOIN item_compra itco ON (comp.id = itco.compra_id)' .
 			' INNER JOIN produtos prod ON (itco.item_id = prod.id)' .
 		' GROUP BY prod.id' .
-		' ORDER BY 2 DESC',
+		' ORDER BY 3 DESC',
 
 	'servicosMaisVendidos' =>
 		'SELECT ' .
@@ -82,7 +84,7 @@ return [
 			' INNER JOIN item_compra itco ON (comp.id = itco.compra_id)' .
 			' INNER JOIN servicos serv ON (itco.item_id = serv.id)' .
 		' GROUP BY serv.id' .
-		' ORDER BY 2 DESC',
+		' ORDER BY 3 DESC',
 
 	'movimentoSemanal' =>
 		'SELECT' .
@@ -96,6 +98,15 @@ return [
 	'movimentoMensal' =>
 		'SELECT' .
 			' dayofmonth(comp.data_compra) AS "dia",' .
+			' count(comp.id) AS "frequencia"' .
+		' FROM' .
+			' compras comp' .
+		' GROUP BY 1' .
+		' ORDER BY 2 DESC',
+
+	'movimentoAnual' =>
+		'SELECT' .
+			' dayofyear(comp.data_compra) AS "dia",' .
 			' count(comp.id) AS "frequencia"' .
 		' FROM' .
 			' compras comp' .
@@ -117,5 +128,15 @@ return [
 			' users user' .
 		' WHERE' .
 			' timestampdiff(year, user.data_nascimento, now()) BETWEEN ? AND ?',
+
+	'clientesPorBairro' =>
+		'SELECT' .
+			' user.municipio AS "municipio",' .
+			' user.bairro AS "bairro",' .
+			' count(*) AS "quantidade"' .
+		' FROM' .
+			' users user' .
+		' GROUP BY user.municipio, user.bairro' .
+		' ORDER BY 3 DESC',
 
 ];
