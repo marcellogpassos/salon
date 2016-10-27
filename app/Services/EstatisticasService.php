@@ -64,11 +64,11 @@ class EstatisticasService implements EstatisticasServiceInterface {
 		$query = Config::get('queries.clientesPorFaixaEtaria');
 		$faixasEtarias = [];
 		$faixaAnos = 7;
-		$faixaQuantidade = 7;
-		for ($i = 0; $i <= $faixaQuantidade; $i++) {
+		$faixaQuantidade = 10;
+		for ($i = 0; $i <= 10; $i++) {
 			$faixaLabel = 'de ' . ($i * $faixaAnos) . ' a ' . (($i + 1) * $faixaAnos) . ' anos';
 			$faixaQuantidade = DB::select($query, [($i * $faixaAnos), (($i + 1) * $faixaAnos)])[0]->quantidade;
-			array_add($faixasEtarias, $faixaLabel, $faixaQuantidade);
+			$faixasEtarias = array_add($faixasEtarias, $faixaLabel, $faixaQuantidade);
 		}
 		return response()->json($faixasEtarias);
 	}
