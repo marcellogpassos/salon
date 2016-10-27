@@ -3,9 +3,6 @@ var itemHiddenInputSelector = '#itemHiddenInput';
 var clienteAutocompleteSelector = '.autocomplete.cliente';
 var clienteHiddenInputSelector = '#clienteHiddenInput';
 
-var buscarItemSrc = '{{url("/compras/buscarItem")}}';
-var buscarClienteSrc = '{{url("/compras/buscarCliente")}}';
-
 var codigoValidacaoInput = '#codigoValidacaoInput';
 
 var form = document.forms["relatorioComprasForm"];
@@ -32,7 +29,7 @@ function validateForm() {
         validarRangeValores(form['valor_minimo'].value, form['valor_maximo'].value, function () {
             showMessage('O valor mínimo deve ser menor que o valor máximo!');
             $('#valorMinimoInput').val('');
-            $('#valorMaximoinput').val('');
+            $('#valorMaximoInput').val('');
         })
     );
 }
@@ -46,7 +43,7 @@ var validarNenhumCampoFornecido = function (campos, errorCallback) {
 };
 
 var validarPrecedenciaDatas = function (dataInicialString, dataFinalString, errorCallback) {
-    if (!dataFinalString || !dataFinalString)
+    if (!dataInicialString || !dataFinalString)
         return true;
     var dataInicial = new Date(dataInicialString);
     var dataFinal = new Date(dataFinalString);

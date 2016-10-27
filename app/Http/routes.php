@@ -61,3 +61,5 @@ Route::post('users/{id}/papeis', 'UsersController@editarPapeis');
 Route::get('users/{id}/registrarCompra', 'ComprasController@mostrarFormRegistrarCompra');
 Route::post('users/{id}/registrarCompra', 'ComprasController@registrarCompra');
 Route::get('users/{id}', 'UsersController@recuperarUsuario');
+
+Route::get('estatisticas/', 'EstatisticasController@mostrarEstatisticas');

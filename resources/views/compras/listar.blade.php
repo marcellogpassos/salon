@@ -182,5 +182,11 @@
 @section('scripts')
     <script src="{{ asset('lib/jquery-maskmoney/jquery.maskMoney.min.js') }}"></script>
     <script src="{{ asset('js/money.js') }}"></script>
+
+    <script>
+        var buscarItemSrc = '{{url("/compras/buscarItem")}}';
+        var buscarClienteSrc = '{{url("/compras/buscarCliente")}}';
+    </script>
+
     <script src="{{ asset('js/relatorioCompra.js') }}"></script>
 @endsection

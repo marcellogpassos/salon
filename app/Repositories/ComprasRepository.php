@@ -24,12 +24,17 @@ class ComprasRepository extends Repository {
 		if (filtroFornecido($criterios, 'codigo_validacao'))
 			return $this->findBy('codigo_validacao', $criterios['codigo_validacao']);
 		$perPage = $perPage ? $perPage : env('DEFAULT_PER_PAGE');
+
+		if (filtroFornecido($criterios, 'data_final'))
+			$criterios['data_final'] = fimDoDia($criterios['data_final']);
 		$where = $this->montarWhere($criterios);
+
 		$compras = $this->model->select('compras.*')
 			->join('item_compra', 'compras.id', '=', 'item_compra.compra_id')
 			->where($where)
 			->groupBy('compras.id')
 			->paginate($perPage);
+
 		return $compras;
 	}
 
