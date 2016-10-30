@@ -19,13 +19,18 @@ var gulp = require('gulp');
 
 gulp.task('default', function () {
 
-    var src_dir = "./bower_components/";
-    var dst_dir = "./public/lib/";
+	var src_dir = "./bower_components/";
+	var dst_dir = "./public/lib/";
 
-    gulp.src(src_dir + "jquery.maskedinput/dist/*")
-        .pipe(gulp.dest(dst_dir + "jquery.maskedinput"));
+	gulp.src(src_dir + "jquery.maskedinput/dist/*")
+		.pipe(gulp.dest(dst_dir + "jquery.maskedinput"));
 
-    gulp.src(src_dir + "jquery-maskmoney/dist/jquery.maskMoney.min.js")
-        .pipe(gulp.dest(dst_dir + "jquery-maskmoney"));
+	gulp.src(src_dir + "jquery-maskmoney/dist/jquery.maskMoney.min.js")
+		.pipe(gulp.dest(dst_dir + "jquery-maskmoney"));
+
+	gulp.src(src_dir + "chart.js/dist/Chart.min.js")
+		.pipe(gulp.dest(dst_dir + "chart.js"));
+	gulp.src(src_dir + "chart.js/dist/Chart.bundle.min.js")
+		.pipe(gulp.dest(dst_dir + "chart.js"));
 
 });

@@ -18,6 +18,7 @@
   "dependencies": {
     "Materialize": "materialize#^0.97.6",
     "jquery.maskedinput": "^1.4.1",
-    "jquery-maskmoney": "^3.0.2"
+    "jquery-maskmoney": "^3.0.2",
+    "chart.js": "^2.3.0"
   }
 }
