@@ -21,17 +21,17 @@ class EstatisticasController extends Controller {
 			'clientesMaisFrequentes' => $this->estatisticasService->clientesMaisFrequentes(),
 			'produtosMaisVendidos' => $this->estatisticasService->produtosMaisVendidos(),
 			'servicosMaisVendidos' => $this->estatisticasService->servicosMaisVendidos(),
-			'movimentoSemanal' => $this->estatisticasService->movimentoSemanal(),
 			'movimentoMensal' => $this->estatisticasService->movimentoMensal(),
 			'movimentoAnual' => $this->estatisticasService->movimentoAnual(),
-			'clientesPorSexo' => $this->estatisticasService->clientesPorSexo(),
 			'clientesPorBairro' => $this->estatisticasService->clientesPorBairro(),
-			'clientesPorFaixaEtaria' => $this->estatisticasService->clientesPorFaixaEtaria(),
 		];
+
+//		dd($this->estatisticasService->movimentoSemanal());
 
 		return view('estatisticas.estatisticas')
 			->with('clientesPorSexo', $this->estatisticasService->clientesPorSexo())
-			->with('clientesPorFaixaEtaria', $this->estatisticasService->clientesPorFaixaEtaria());
+			->with('clientesPorFaixaEtaria', $this->estatisticasService->clientesPorFaixaEtaria())
+			->with('movimentoSemanal', $this->estatisticasService->movimentoSemanal());
 	}
 
 }

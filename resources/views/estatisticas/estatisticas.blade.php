@@ -18,7 +18,7 @@
 
                     <div class="card-content gray-text text-darken-4">
                         <div class="row">
-                            <div class="col offset-s1 s10">
+                            <div class="col offset-m1 m10 s12">
                                 <canvas id="clientesPorSexoChart" width="100%" height="100%"></canvas>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
 
                     <div class="card-content gray-text text-darken-4">
                         <div class="row">
-                            <div class="col offset-s1 s10">
+                            <div class="col offset-m1 m10 s12">
                                 <canvas id="clientesPorFaixaEtariaChart" width="100%" height="100%"></canvas>
                             </div>
                         </div>
@@ -51,6 +51,28 @@
                 </div>
 
             </div>
+
+            <div class="col s6">
+
+                <div class="card white">
+
+                    <h4 class="card-title">Movimento semanal</h4>
+
+                    <div class="card-content gray-text text-darken-4">
+                        <div class="row">
+                            <div class="col offset-m1 m10 s12">
+                                <canvas id="movimentoSemanalChart" width="100%" height="100%"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
@@ -62,33 +84,11 @@
     <script src="{{ asset('lib/chart.js/Chart.bundle.min.js') }}"></script>
 
     <script>
-        var clientesPorSexoLabels = ['Feminino', 'Masculino'];
-        var clientesPorSexoData = [
-            {{ $clientesPorSexo[0]->quantidade }},
-            {{ $clientesPorSexo[1]->quantidade }}
-        ];
+        // clientes por sexo
+        var clientesSexoFeminino = {{ $clientesPorSexo[0]->quantidade }};
+        var clientesSexoMasculino = {{ $clientesPorSexo[1]->quantidade }};
 
-        var clientesPorSexoCtx = document.getElementById("clientesPorSexoChart");
-        var clientesPorSexoChart = new Chart(clientesPorSexoCtx, {
-            type: 'pie',
-            data: {
-                labels: ["Feminino", "Masculino"],
-                datasets: [{
-                    label: 'Clientes por Sexo',
-                    data: clientesPorSexoData,
-                    backgroundColor: [
-                        'rgb(255, 205, 210)',
-                        'rgb(197, 202, 233)',
-                    ],
-                    borderColor: [
-                        'rgb(211, 47, 47)',
-                        'rgb(48, 63, 159)',
-                    ],
-                    borderWidth: 1
-                }]
-            }
-        });
-
+        // clientes por faixa etaria
         var clientesPorFaixaEtariaLabels = [];
         var clientesPorFaixaEtariaData = [];
         @foreach($clientesPorFaixaEtaria as $item)
@@ -96,19 +96,14 @@
             clientesPorFaixaEtariaData.push('{{ $item->quantidade }}');
         @endforeach
 
-        var clientesPorFaixaEtariaCtx = document.getElementById("clientesPorFaixaEtariaChart");
-        var clientesPorFaixaEtariaChart = new Chart(clientesPorFaixaEtariaCtx, {
-            type: 'horizontalBar',
-            data: {
-                labels: clientesPorFaixaEtariaLabels,
-                datasets:[{
-                    label: 'Número de clientes',
-                    data: clientesPorFaixaEtariaData,
-                    backgroundColor: 'rgb(197, 202, 233)',
-                    borderColor: 'rgb(48, 63, 159)',
-                    borderWidth: 1
-                }]
-            }
-        });
+        // movimento semanal
+        var movimentoSemanalData = [0, 0, 0, 0, 0, 0, 0];
+        @foreach($movimentoSemanal as $item)
+            movimentoSemanalData[{{ $item->dia }}] = {{ $item->frequencia }};
+        @endforeach
     </script>
+
+    <script src="{{ asset('js/estatisticas/clientesPorSexo.js') }}"></script>
+    <script src="{{ asset('js/estatisticas/clientesPorFaixaEtaria.js') }}"></script>
+    <script src="{{ asset('js/estatisticas/movimentoSemanal.js') }}"></script>
 @endsection
