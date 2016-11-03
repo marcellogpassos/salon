@@ -9,7 +9,7 @@ var movimentoSemanalChart = new Chart(movimentoSemanalCtx, {
 			data: movimentoSemanalData,
 			backgroundColor: 'rgb(197, 202, 233)',
 			borderColor: 'rgb(48, 63, 159)',
-			borderWidth: 1
+			borderWidth: 0.5
 		}]
 	}
 });

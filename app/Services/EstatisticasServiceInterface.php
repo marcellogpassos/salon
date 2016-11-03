@@ -11,13 +11,13 @@ namespace App\Services;
 
 interface EstatisticasServiceInterface {
 
-	public function clientesMaisRentaveis();
+	public function clientesMaisRentaveis($limit = null);
 
-	public function clientesMaisFrequentes();
+	public function clientesMaisFrequentes($limit = null);
 
-	public function produtosMaisVendidos();
+	public function produtosMaisVendidos($limit = null);
 
-	public function servicosMaisVendidos();
+	public function servicosMaisVendidos($limit = null);
 
 	public function movimentoSemanal();
 

@@ -13,7 +13,7 @@ var clientesPorSexoChart = new Chart(clientesPorSexoCtx, {
 			data: clientesPorSexoData,
 			backgroundColor: clientesPorSexoBGColor,
 			borderColor: clientesPorSexoBorderColor,
-			borderWidth: 1
+			borderWidth: 0.5
 		}]
 	}
 });
