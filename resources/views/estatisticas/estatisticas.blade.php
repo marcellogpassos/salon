@@ -117,6 +117,10 @@
                         </div>
                     </div>
 
+                    <div class="card-action">
+                        <a href="#">Ver todos</a>
+                    </div>
+
                 </div>
 
             </div>
@@ -154,6 +158,10 @@
                                 </table>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="card-action">
+                        <a href="#">Ver todos</a>
                     </div>
 
                 </div>

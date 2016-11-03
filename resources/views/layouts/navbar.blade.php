@@ -41,6 +41,7 @@
                         <li><a href="{{ url('/marcas') }}">Marcas de Produtos</a></li>
                         <li><a href="{{ url('/produtos/buscar') }}">Produtos</a></li>
                         <li><a href="{{ url('servicos/buscar') }}">Serviços</a></li>
+                        <li><a href="{{ url('estatisticas') }}">Estat&iacute;sticas</a></li>
                     </ul>
                 </li>
 
@@ -125,6 +126,7 @@
                                     <li><a href="{{ url('/marcas') }}">Marcas de Produtos</a></li>
                                     <li><a href="{{ url('/produtos/buscar') }}">Produtos</a></li>
                                     <li><a href="{{ url('servicos/buscar') }}">Serviços</a></li>
+                                    <li><a href="{{ url('estatisticas') }}">Estat&iacute;sticas</a></li>
                                 </ul>
                             </div>
                         </li>
