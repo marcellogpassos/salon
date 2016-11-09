@@ -75,7 +75,7 @@ class EstatisticasService implements EstatisticasServiceInterface {
 		$outrosBairros = (object)[
 			'municipio' => ' - ',
 			'bairro' => 'Outros',
-			'quantidade' => $outrosBairrosQuantidade
+			'quantidade' => $outrosBairrosQuantidade[0]->quantidade
 		];
 		array_push($bairros, $outrosBairros);
 		return $bairros;

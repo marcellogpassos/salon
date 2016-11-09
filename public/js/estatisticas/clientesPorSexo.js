@@ -15,5 +15,10 @@ var clientesPorSexoChart = new Chart(clientesPorSexoCtx, {
 			borderColor: clientesPorSexoBorderColor,
 			borderWidth: 0.5
 		}]
+	},
+	options: {
+		legend: {
+			position: 'bottom'
+		}
 	}
 });

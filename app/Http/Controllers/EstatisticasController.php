@@ -13,6 +13,7 @@ class EstatisticasController extends Controller {
 
 	public function __construct(EstatisticasServiceInterface $serviceInterface) {
 		$this->estatisticasService = $serviceInterface;
+		$this->middleware('auth');
 	}
 
 	public function mostrarEstatisticas() {
@@ -20,8 +21,6 @@ class EstatisticasController extends Controller {
 			'clientesMaisRentaveis' => $this->estatisticasService->clientesMaisRentaveis(),
 			'clientesMaisFrequentes' => $this->estatisticasService->clientesMaisFrequentes(),
 		];
-
-		dd($this->estatisticasService->clientesPorBairro(true));
 
 		return view('estatisticas.estatisticas')
 			->with('clientesPorSexo', $this->estatisticasService->clientesPorSexo())
