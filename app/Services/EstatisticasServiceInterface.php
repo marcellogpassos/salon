@@ -29,6 +29,6 @@ interface EstatisticasServiceInterface {
 
 	public function clientesPorFaixaEtaria();
 
-	public function clientesPorBairro();
+	public function clientesPorBairro($limit = null);
 
 }

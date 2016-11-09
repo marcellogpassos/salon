@@ -9,6 +9,7 @@
 namespace App\Services;
 
 
+use App\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
@@ -67,8 +68,32 @@ class EstatisticasService implements EstatisticasServiceInterface {
 		return $this->getResult('queries.clientesPorSexo');
 	}
 
-	public function clientesPorBairro() {
-		return $this->getResult('queries.clientesPorBairro');
+	public function clientesPorBairro($limit = null) {
+		$bairros = $this->getResult('queries.clientesPorBairro', $limit);
+		$notInClause = $this->getNotInClause($bairros);
+		$outrosBairrosQuantidade = $this->getGetOutrosBairrosQuantidade($notInClause);
+		$outrosBairros = (object)[
+			'municipio' => ' - ',
+			'bairro' => 'Outros',
+			'quantidade' => $outrosBairrosQuantidade
+		];
+		array_push($bairros, $outrosBairros);
+		return $bairros;
+	}
+
+	private function getNotInClause($bairros) {
+		$notInClause = [];
+		for ($i = 0; $i < count($bairros); $i++)
+			array_push($notInClause, $bairros[$i]->municipio . $bairros[$i]->bairro);
+		return $notInClause;
+	}
+
+	private function getGetOutrosBairrosQuantidade($notInClause) {
+		return DB::table('users')
+			->select(DB::raw('count(*) as quantidade'))
+			->whereNotIn(DB::raw('concat(municipio, bairro)'), $notInClause)
+			->groupBy(['municipio', 'bairro'])
+			->get();
 	}
 
 	public function clientesPorFaixaEtaria() {
@@ -81,7 +106,10 @@ class EstatisticasService implements EstatisticasServiceInterface {
 			$faixaLabel = ($i < $this->faixaEtariaQuantidade)
 				? 'DE ' . $min . ' A ' . $max . ' ANOS' : 'MAIS DE ' . $min . ' ANOS';
 			$quantidade = DB::select($query, [$min, $max])[0]->quantidade;
-			$data = (object)['faixaEtaria' => $faixaLabel, 'quantidade' => $quantidade];
+			$data = (object)[
+				'faixaEtaria' => $faixaLabel,
+				'quantidade' => $quantidade
+			];
 			array_push($faixasEtarias, $data);
 		}
 		return $faixasEtarias;
