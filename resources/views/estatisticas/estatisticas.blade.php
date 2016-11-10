@@ -37,8 +37,17 @@
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
-                                                    <div class="progress">
-                                                        <div class="determinate" style="width: 70%"></div>
+                                                    <div class="col s12 offset-m1 m10">
+                                                        <div class="progress clientes-por-sexo">
+                                                            <div class="determinate"
+                                                                 style="width: {{ 100 * $clientesPorSexo[1]->quantidade / ($clientesPorSexo[1]->quantidade + $clientesPorSexo[0]->quantidade) }}%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col s6 offset-m1 m5">
+                                                        <p>Masculino: {{ $clientesPorSexo[1]->quantidade }}</p>
+                                                    </div>
+                                                    <div class="col s6 m5" style="text-align: right">
+                                                        <p>Feminino: {{ $clientesPorSexo[0]->quantidade }}</p>
                                                     </div>
                                                 </div>
                                             </div>

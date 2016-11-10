@@ -175,6 +175,14 @@ i.fa.fa-percent.material-icons.prefix {
     font-size: 1.5rem;
 }
 
+.progress.clientes-por-sexo {
+    background-color: #FF5252;
+}
+
+.progress.clientes-por-sexo .determinate {
+    background-color: #536DFE;
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;
