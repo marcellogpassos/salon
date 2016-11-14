@@ -24,7 +24,9 @@
                                 <ul class="tabs tabs-fixed-width">
                                     <li class="tab col s3"><a class="active" href="#clientesTab">Clientes</a></li>
                                     <li class="tab col s3"><a href="#movimentoTab">Movimento</a></li>
-                                    <li class="tab col s3"><a href="#produtosServicosTab">Produtos e Servi&ccedil;os</a></li>
+                                    <li class="tab col s3"><a href="#produtosServicosTab">Produtos e Servi&ccedil;os</a>
+                                    <li class="tab col s3"><a href="#comprasTab">Compras</a>
+                                    </li>
                                 </ul>
                             </div>
                             <div id="clientesTab" class="col s12">
@@ -65,7 +67,8 @@
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
                                                     <div class="col offset-m1 m10 s12">
-                                                        <canvas id="clientesPorBairroChart" width="100%" height="100%"></canvas>
+                                                        <canvas id="clientesPorBairroChart" width="100%"
+                                                                height="100%"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,7 +86,8 @@
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
                                                     <div class="col offset-m1 m10 s12">
-                                                        <canvas id="clientesPorFaixaEtariaChart" width="100%" height="100%"></canvas>
+                                                        <canvas id="clientesPorFaixaEtariaChart" width="100%"
+                                                                height="100%"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,7 +108,8 @@
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
                                                     <div class="col offset-m1 m10 s12">
-                                                        <canvas id="movimentoSemanalChart" width="100%" height="100%"></canvas>
+                                                        <canvas id="movimentoSemanalChart" width="100%"
+                                                                height="100%"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,7 +127,8 @@
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
                                                     <div class="col offset-m1 m10 s12">
-                                                        <canvas id="movimentoMensalChart" width="100%" height="100%"></canvas>
+                                                        <canvas id="movimentoMensalChart" width="100%"
+                                                                height="100%"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -221,6 +227,45 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="comprasTab" class="col s12">
+                                <div class="row">
+                                    <div class="col s12 m6">
+
+                                        <div class="card white">
+
+                                            <h4 class="card-title"> ... </h4>
+
+                                            <div class="card-content gray-text text-darken-4">
+                                                <div class="row">
+                                                    <div class="col offset-m1 m10 s12">
+                                                        <canvas width="100%" height="100%"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col s12 m6">
+
+                                        <div class="card white">
+
+                                            <h4 class="card-title"> ... </h4>
+
+                                            <div class="card-content gray-text text-darken-4">
+                                                <div class="row">
+                                                    <div class="col offset-m1 m10 s12">
+                                                        <canvas width="100%" height="100%"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -239,7 +284,7 @@
     <script src="{{ asset('lib/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('lib/chart.js/Chart.bundle.min.js') }}"></script>
 
-    <script>
+    <script type="text/javascript" charset="UTF-8">
         // clientes por sexo
         var clientesSexoFeminino = {{ $clientesPorSexo[0]->quantidade }};
         var clientesSexoMasculino = {{ $clientesPorSexo[1]->quantidade }};
@@ -256,7 +301,9 @@
         var clientesPorBairroLabels = [];
         var clientesPorBairroData = [];
         @foreach($clientesPorBairro as $item)
-            clientesPorBairroLabels.push('{{ $item->bairro }}');
+            clientesPorBairroLabels.push(
+                $('<div />').html('{{ $item->bairro }}').text()
+            );
             clientesPorBairroData.push('{{ $item->quantidade }}');
         @endforeach
 
@@ -270,13 +317,14 @@
         var movimentoMensalData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0];
         @foreach($movimentoMensal as $item)
-                movimentoMensalData[{{ $item->dia - 1 }}] = {{ $item->frequencia }};
+            movimentoMensalData[{{ $item->dia - 1 }}] = {{ $item->frequencia }};
         @endforeach
     </script>
 
-    <script src="{{ asset('js/estatisticas/clientesPorSexo.js') }}"></script>
-    <script src="{{ asset('js/estatisticas/clientesPorBairro.js') }}"></script>
-    <script src="{{ asset('js/estatisticas/clientesPorFaixaEtaria.js') }}"></script>
-    <script src="{{ asset('js/estatisticas/movimentoSemanal.js') }}"></script>
-    <script src="{{ asset('js/estatisticas/movimentoMensal.js') }}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{{ asset('js/estatisticas/clientesPorSexo.js') }}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{{ asset('js/estatisticas/clientesPorBairro.js') }}"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="{{ asset('js/estatisticas/clientesPorFaixaEtaria.js') }}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{{ asset('js/estatisticas/movimentoSemanal.js') }}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{{ asset('js/estatisticas/movimentoMensal.js') }}"></script>
 @endsection

@@ -83,7 +83,7 @@ a.special-link {
 h4.card-title {
     background-color: #A34B5B;
     color: #EEEEEE;
-    padding: 8px;
+    padding: 8px 16px;
 }
 
 .horizontal-radio {
@@ -176,11 +176,12 @@ i.fa.fa-percent.material-icons.prefix {
 }
 
 .progress.clientes-por-sexo {
-    background-color: #FF5252;
+    background-color: #E1BEE7;
+    height: 9px;
 }
 
 .progress.clientes-por-sexo .determinate {
-    background-color: #536DFE;
+    background-color: #512DA8;
 }
 
 @media all and (min-width: 768px) {

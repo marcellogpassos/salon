@@ -1,4 +1,4 @@
-var movimentoSemanalLabels = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'];
+var movimentoSemanalLabels = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
 var movimentoSemanalCtx = document.getElementById("movimentoSemanalChart");
 var movimentoSemanalChart = new Chart(movimentoSemanalCtx, {
 	type: 'bar',
