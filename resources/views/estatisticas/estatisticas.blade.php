@@ -229,41 +229,133 @@
                             </div>
                             <div id="comprasTab" class="col s12">
                                 <div class="row">
-                                    <div class="col s12 m6">
+                                    <div class="col s12 offset-m2 m8">
 
                                         <div class="card white">
 
-                                            <h4 class="card-title"> ... </h4>
+                                            <h4 class="card-title">Resultados</h4>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
-                                                    <div class="col offset-m1 m10 s12">
-                                                        <canvas width="100%" height="100%"></canvas>
+                                                    <div class="col s4" style="text-align: center">
+                                                        <p>
+                                                            <input name="periodo" type="radio" id="semana" checked
+                                                                   value="S" onchange="alterarPeriodo(this.value)"/>
+                                                            <label for="semana">Semana</label>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col s4 center" style="text-align: center">
+                                                        <p>
+                                                            <input name="periodo" type="radio" id="mes"
+                                                                   value="M" onchange="alterarPeriodo(this.value)"/>
+                                                            <label for="mes">M&ecirc;s</label>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col s4" style="text-align: center">
+                                                        <p>
+                                                            <input name="periodo" type="radio" id="ano"
+                                                                   value="A" onchange="alterarPeriodo(this.value)"/>
+                                                            <label for="ano">Ano</label>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col s12">
+                                                        <ul class="collection">
+                                                            <li class="collection-item dismissable">
+                                                                <div>
+                                                                    Quantidade de compras
+                                                                    <p class="secondary-content periodo semana"
+                                                                       style="display: block;">
+                                                                        10
+                                                                    </p>
+                                                                    <p class="secondary-content periodo mes"
+                                                                       style="display: none;">
+                                                                        20
+                                                                    </p>
+                                                                    <p class="secondary-content periodo ano"
+                                                                       style="display: none;">
+                                                                        30
+                                                                    </p>
+                                                                </div>
+                                                            </li>
+                                                            <li class="collection-item dismissable">
+                                                                <div>
+                                                                    Receitas totais
+                                                                    <p class="secondary-content periodo semana"
+                                                                       style="display: block;">
+                                                                        10
+                                                                    </p>
+                                                                    <p class="secondary-content periodo mes"
+                                                                       style="display: none;">
+                                                                        20
+                                                                    </p>
+                                                                    <p class="secondary-content periodo ano"
+                                                                       style="display: none;">
+                                                                        30
+                                                                    </p>
+                                                                </div>
+                                                            </li>
+                                                            <li class="collection-item dismissable">
+                                                                <div>
+                                                                    Novos clientes
+                                                                    <p class="secondary-content periodo semana"
+                                                                       style="display: block;">
+                                                                        10
+                                                                    </p>
+                                                                    <p class="secondary-content periodo mes"
+                                                                       style="display: none;">
+                                                                        20
+                                                                    </p>
+                                                                    <p class="secondary-content periodo ano"
+                                                                       style="display: none;">
+                                                                        30
+                                                                    </p>
+                                                                </div>
+                                                            </li>
+                                                            <li class="collection-item dismissable">
+                                                                <div>
+                                                                    Serviços vendidos
+                                                                    <p class="secondary-content periodo semana"
+                                                                       style="display: block;">
+                                                                        10
+                                                                    </p>
+                                                                    <p class="secondary-content periodo mes"
+                                                                       style="display: none;">
+                                                                        20
+                                                                    </p>
+                                                                    <p class="secondary-content periodo ano"
+                                                                       style="display: none;">
+                                                                        30
+                                                                    </p>
+                                                                </div>
+                                                            </li>
+                                                            <li class="collection-item dismissable">
+                                                                <div>
+                                                                    Produtos vendidos
+                                                                    <p class="secondary-content periodo semana"
+                                                                       style="display: block;">
+                                                                        10
+                                                                    </p>
+                                                                    <p class="secondary-content periodo mes"
+                                                                       style="display: none;">
+                                                                        20
+                                                                    </p>
+                                                                    <p class="secondary-content periodo ano"
+                                                                       style="display: none;">
+                                                                        30
+                                                                    </p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                     </div>
 
-                                    <div class="col s12 m6">
-
-                                        <div class="card white">
-
-                                            <h4 class="card-title"> ... </h4>
-
-                                            <div class="card-content gray-text text-darken-4">
-                                                <div class="row">
-                                                    <div class="col offset-m1 m10 s12">
-                                                        <canvas width="100%" height="100%"></canvas>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -310,15 +402,32 @@
         // movimento semanal
         var movimentoSemanalData = [0, 0, 0, 0, 0, 0, 0];
         @foreach($movimentoSemanal as $item)
-            movimentoSemanalData[{{ $item->dia }}] = {{ $item->frequencia }};
+                movimentoSemanalData[{{ $item->dia }}] = {{ $item->frequencia }};
         @endforeach
 
         // movimento mensal
         var movimentoMensalData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0];
         @foreach($movimentoMensal as $item)
-            movimentoMensalData[{{ $item->dia - 1 }}] = {{ $item->frequencia }};
+                movimentoMensalData[{{ $item->dia - 1 }}] = {{ $item->frequencia }};
         @endforeach
+
+        function alterarPeriodo(value) {
+            switch (value) {
+                case 'S':
+                    $('.periodo').hide();
+                    $('.semana').show();
+                    break;
+                case 'M':
+                    $('.periodo').hide();
+                    $('.mes').show();
+                    break;
+                case 'A':
+                    $('.periodo').hide();
+                    $('.ano').show();
+                    break;
+            }
+        }
     </script>
 
     <script type="text/javascript" charset="UTF-8" src="{{ asset('js/estatisticas/clientesPorSexo.js') }}"></script>
