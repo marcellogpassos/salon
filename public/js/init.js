@@ -37,6 +37,18 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('select').material_select();
+    try {
+        $('.dropify').dropify({
+            messages: {
+                default: 'Arraste um arquivo ou clique aqui',
+                replace: 'Arraste um arquivo ou clique para substituir',
+                remove: 'Remover',
+                error: 'Desculpe, o arquivo é muito grande!'
+            }
+        });
+    }
+    catch(err) {
+    }
 });
 
 jQuery(function ($) {

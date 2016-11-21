@@ -18,6 +18,8 @@
     <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('css/alert.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+    @yield('styles')
+
     <!--  Scripts-->
     <script src='https://www.google.com/recaptcha/api.js'></script>
 

@@ -4,6 +4,10 @@
     Dados do usu&aacute;rio
 @endsection
 
+@section('styles')
+    <link href="{{ asset('lib/dropify/css/dropify.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+@endsection
+
 @section('content')
     <div class="container">
 
@@ -21,6 +25,8 @@
                         {{ csrf_field() }}
 
                         <div class="card-content gray-text text-darken-4">
+
+
 
                             <div class="row">
 
@@ -146,6 +152,12 @@
 
                             </div>
 
+                            <div class="row">
+                                <div class="input-field col offset-m3 m6 s12">
+                                    <input type="file" name="foto" class="dropify" data-max-file-size="2M" />
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="card-action">
@@ -186,5 +198,7 @@
             );
         });
     </script>
+
+    <script src="{{ asset('lib/dropify/js/dropify.min.js') }}"></script>
 
 @endsection

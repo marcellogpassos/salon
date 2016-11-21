@@ -33,4 +33,7 @@ gulp.task('default', function () {
 	gulp.src(src_dir + "chart.js/dist/Chart.bundle.min.js")
 		.pipe(gulp.dest(dst_dir + "chart.js"));
 
+	gulp.src(src_dir + "dropify/dist/**")
+		.pipe(gulp.dest(dst_dir + "dropify"));
+
 });
