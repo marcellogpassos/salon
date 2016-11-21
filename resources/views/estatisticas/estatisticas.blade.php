@@ -95,6 +95,85 @@
                                         </div>
 
                                     </div>
+
+                                    <div class="col s12 m6">
+
+                                        <div class="card white">
+
+                                            <h4 class="card-title">Clientes mais frequentes</h4>
+
+                                            <div class="card-content gray-text text-darken-4">
+                                                <div class="row">
+                                                    <div class="col s12">
+                                                        <table class="highlight bordered">
+                                                            <thead>
+                                                            <tr>
+                                                                <th data-field="id">Nome do cliente</th>
+                                                                <th data-field="name">Frequ&ecirc;ncia</th>
+                                                            </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                            @foreach($clientesMaisFrequentes as $cliente)
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="{{ url('/users/buscar?id=' . $cliente->id) }}"
+                                                                           class="special-link" target="_blank">
+                                                                            {{ $cliente->nome }}
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>{{ $cliente->frequencia }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col s12 m6">
+
+                                        <div class="card white">
+
+                                            <h4 class="card-title">Clientes mais lucrativos</h4>
+
+                                            <div class="card-content gray-text text-darken-4">
+                                                <div class="row">
+                                                    <div class="col s12">
+                                                        <table class="highlight bordered">
+                                                            <thead>
+                                                            <tr>
+                                                                <th data-field="id">Nome do cliente</th>
+                                                                <th data-field="name">Total consumido</th>
+                                                            </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                            @foreach($clientesMaisRentaveis as $cliente)
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="{{ url('/users/buscar?id=' . $cliente->id) }}"
+                                                                           class="special-link" target="_blank">
+                                                                            {{ $cliente->nome }}
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>{{ moneyFormat( $cliente->lucro ) }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
                             <div id="movimentoTab" class="col s12">
@@ -175,10 +254,6 @@
                                                 </div>
                                             </div>
 
-                                            <div class="card-action">
-                                                <a href="#">Ver todos</a>
-                                            </div>
-
                                         </div>
 
                                     </div>
@@ -216,10 +291,6 @@
                                                         </table>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="card-action">
-                                                <a href="#">Ver todos</a>
                                             </div>
 
                                         </div>
@@ -265,35 +336,35 @@
                                                         <ul class="collection">
                                                             <li class="collection-item dismissable">
                                                                 <div>
-                                                                    Quantidade de compras
+                                                                    Vendas
                                                                     <p class="secondary-content periodo semana"
                                                                        style="display: block;">
-                                                                        10
+                                                                        {{ $vendas->semana }}
                                                                     </p>
                                                                     <p class="secondary-content periodo mes"
                                                                        style="display: none;">
-                                                                        20
+                                                                        {{ $vendas->mes }}
                                                                     </p>
                                                                     <p class="secondary-content periodo ano"
                                                                        style="display: none;">
-                                                                        30
+                                                                        {{ $vendas->ano }}
                                                                     </p>
                                                                 </div>
                                                             </li>
                                                             <li class="collection-item dismissable">
                                                                 <div>
-                                                                    Receitas totais
+                                                                    Receitas
                                                                     <p class="secondary-content periodo semana"
                                                                        style="display: block;">
-                                                                        10
+                                                                        {{ moneyFormat($receita->semana) }}
                                                                     </p>
                                                                     <p class="secondary-content periodo mes"
                                                                        style="display: none;">
-                                                                        20
+                                                                        {{ moneyFormat($receita->mes) }}
                                                                     </p>
                                                                     <p class="secondary-content periodo ano"
                                                                        style="display: none;">
-                                                                        30
+                                                                        {{ moneyFormat($receita->ano) }}
                                                                     </p>
                                                                 </div>
                                                             </li>
@@ -302,15 +373,15 @@
                                                                     Novos clientes
                                                                     <p class="secondary-content periodo semana"
                                                                        style="display: block;">
-                                                                        10
+                                                                        {{ $novosClientes->semana }}
                                                                     </p>
                                                                     <p class="secondary-content periodo mes"
                                                                        style="display: none;">
-                                                                        20
+                                                                        {{ $novosClientes->mes }}
                                                                     </p>
                                                                     <p class="secondary-content periodo ano"
                                                                        style="display: none;">
-                                                                        30
+                                                                        {{ $novosClientes->ano }}
                                                                     </p>
                                                                 </div>
                                                             </li>
@@ -319,15 +390,15 @@
                                                                     Serviços vendidos
                                                                     <p class="secondary-content periodo semana"
                                                                        style="display: block;">
-                                                                        10
+                                                                        {{ $servicosVendidos->semana }}
                                                                     </p>
                                                                     <p class="secondary-content periodo mes"
                                                                        style="display: none;">
-                                                                        20
+                                                                        {{ $servicosVendidos->mes }}
                                                                     </p>
                                                                     <p class="secondary-content periodo ano"
                                                                        style="display: none;">
-                                                                        30
+                                                                        {{ $servicosVendidos->ano }}
                                                                     </p>
                                                                 </div>
                                                             </li>
@@ -336,15 +407,15 @@
                                                                     Produtos vendidos
                                                                     <p class="secondary-content periodo semana"
                                                                        style="display: block;">
-                                                                        10
+                                                                        {{ $produtosVendidos->semana }}
                                                                     </p>
                                                                     <p class="secondary-content periodo mes"
                                                                        style="display: none;">
-                                                                        20
+                                                                        {{ $produtosVendidos->mes }}
                                                                     </p>
                                                                     <p class="secondary-content periodo ano"
                                                                        style="display: none;">
-                                                                        30
+                                                                        {{ $produtosVendidos->ano }}
                                                                     </p>
                                                                 </div>
                                                             </li>

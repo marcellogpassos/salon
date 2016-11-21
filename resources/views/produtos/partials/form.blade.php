@@ -10,6 +10,17 @@
         </div>
 
         <div class="input-field col s12 m6">
+            <input id="codigoBarrasInput" name="codigo_barras" type="text" maxlength="13" minlength="8"
+                   value="{{ old('codigo_barras') ? old('codigo_barras') : (isset($produto->codigo_barras) ? $produto->codigo_barras : '') }}"
+                   class="validate">
+            <label for="codigoBarrasInput">C&oacute;digo de barras</label>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="input-field col s12 offset-m2 m8">
             <input id="descricaoInput" name="descricao" type="text" maxlength="255" minlength="3" class="validate"
                    value="{{ old('descricao') ? old('descricao') : (isset($produto->descricao) ? $produto->descricao : '') }}">
             <label for="descricaoInput">Descri&ccedil;&atilde;o do produto *</label>

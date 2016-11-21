@@ -33,6 +33,8 @@ class UsersService implements UsersServiceInterface {
             $this->users->pushCriteria(new BuscarPorEmail($criterios['email']));
         else if (filtroFornecido($criterios, 'cpf', 11))
             $this->users->pushCriteria(new BuscarPorCPF($criterios['cpf']));
+        else if (filtroFornecido($criterios, 'id'))
+            return $this->users->findWhere(['id' => $criterios['id']], true);
         else {
             if (filtroFornecido($criterios, 'nome_sobrenome'))
                 $this->users->pushCriteria(new BuscarPorNomeSobrenome($criterios['nome_sobrenome']));

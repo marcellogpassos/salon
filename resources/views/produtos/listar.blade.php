@@ -36,6 +36,22 @@
                                 </div>
 
                                 <div class="input-field col s12 m6">
+                                    <input id="codigoBarrasInput" name="codigo_barras"  maxlength="13"
+                                           value="{{
+
+                                                old('codigo_barras') ?
+                                                    old('codigo_barras') : isset($buscaPrevia['codigo_barras']) ?
+                                                        $buscaPrevia['codigo_barras'] : ""
+
+                                           }}" minlength="8" class="validate">
+                                    <label for="codigoBarrasInput">C&oacute;digo de barras</label>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="input-field col s12 offset-m2 m8">
                                     <input id="descricaoInput" name="descricao" type="text" maxlength="255"
                                            value="{{
 

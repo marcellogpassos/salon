@@ -38,6 +38,8 @@ class ProdutosService implements ProdutosServiceInterface {
     public function buscar($criterios) {
         if (filtroFornecido($criterios, 'id'))
             $this->produtos->pushCriteria(new BuscarPorId($criterios['id']))->paginate();
+        if (filtroFornecido($criterios, 'codigo_barras'))
+            return $this->produtos->findWhere(['codigo_barras' => $criterios['codigo_barras']], true);
         else {
             if (filtroFornecido($criterios, 'descricao'))
                 $this->produtos->pushCriteria(new BuscarPorDescricao($criterios['descricao']));

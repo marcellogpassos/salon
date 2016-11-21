@@ -6,6 +6,8 @@ use App\Services\EstatisticasServiceInterface;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 
 class EstatisticasController extends Controller {
 
@@ -17,19 +19,21 @@ class EstatisticasController extends Controller {
 	}
 
 	public function mostrarEstatisticas() {
-		$estatisticas = [
-			'clientesMaisRentaveis' => $this->estatisticasService->clientesMaisRentaveis(),
-			'clientesMaisFrequentes' => $this->estatisticasService->clientesMaisFrequentes(),
-		];
-
 		return view('estatisticas.estatisticas')
+			->with('clientesMaisRentaveis', $this->estatisticasService->clientesMaisRentaveis())
+			->with('clientesMaisFrequentes', $this->estatisticasService->clientesMaisFrequentes())
 			->with('clientesPorSexo', $this->estatisticasService->clientesPorSexo())
 			->with('clientesPorFaixaEtaria', $this->estatisticasService->clientesPorFaixaEtaria())
 			->with('clientesPorBairro', $this->estatisticasService->clientesPorBairro(true))
 			->with('movimentoSemanal', $this->estatisticasService->movimentoSemanal())
 			->with('movimentoMensal', $this->estatisticasService->movimentoMensal())
 			->with('produtosMaisVendidos', $this->estatisticasService->produtosMaisVendidos(true))
-			->with('servicosMaisVendidos', $this->estatisticasService->servicosMaisVendidos(true));
+			->with('servicosMaisVendidos', $this->estatisticasService->servicosMaisVendidos(true))
+			->with('vendas', $this->estatisticasService->vendas())
+			->with('receita', $this->estatisticasService->receita())
+			->with('novosClientes', $this->estatisticasService->novosClientes())
+			->with('servicosVendidos', $this->estatisticasService->servicosVendidos())
+			->with('produtosVendidos', $this->estatisticasService->produtosVendidos());
 	}
 
 }

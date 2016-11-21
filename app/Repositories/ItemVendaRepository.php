@@ -26,6 +26,7 @@ class ItemVendaRepository extends Repository {
 		$child->categoria_id = $produtoAttr['categoria_id'];
 		$child->marca_id = $produtoAttr['marca_id'];
 		$child->quantidade = $produtoAttr['quantidade'];
+		$child->codigo_barras = $produtoAttr['codigo_barras'];
 		$parent->produto()->save($child);
 		return $parent;
 	}

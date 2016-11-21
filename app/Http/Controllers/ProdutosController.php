@@ -67,7 +67,7 @@ class ProdutosController extends Controller {
 	}
 
 	public function cadastrarProduto(ProdutosRequest $request) {
-		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade');
+		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade', 'codigo_barras');
 		$itemVendaAttr = $request->only('id', 'ativo', 'valor');
 		$produto = false;
 		try {
@@ -87,7 +87,7 @@ class ProdutosController extends Controller {
 	}
 
 	public function editarProduto($id, ProdutosRequest $request) {
-		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade');
+		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade', 'codigo_barras');
 		$itemVendaAttr = $request->only('ativo', 'valor');
 		$itemVenda = false;
 		try {

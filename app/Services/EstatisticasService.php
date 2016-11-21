@@ -16,15 +16,21 @@ use Illuminate\Support\Facades\DB;
 class EstatisticasService implements EstatisticasServiceInterface {
 
 	protected $faixaEtariaAnos;
-
 	protected $faixaEtariaQuantidade;
-
 	protected $defaultLimit;
+
+	protected $fimSemanaPassada;
+	protected $fimMesPassado;
+	protected $fimAnoPassado;
 
 	public function __construct() {
 		$this->faixaEtariaAnos = env('FAIXA_ETARIA_ANOS');
 		$this->faixaEtariaQuantidade = env('FAIXA_ETARIA_QUANTIDADE');
 		$this->defaultLimit = env('DEFAULT_LIMIT');
+
+		$this->fimSemanaPassada = date("Y-m-d", strtotime('monday this week') - 86400);
+		$this->fimMesPassado = date("Y-m-d", strtotime('first day of') - 86400);
+		$this->fimAnoPassado = date("Y-m-d", strtotime(date('Y-01-01')) - 86400);
 	}
 
 	protected function getResult($queryName, $limit = null) {
@@ -94,6 +100,38 @@ class EstatisticasService implements EstatisticasServiceInterface {
 			->whereNotIn(DB::raw('concat(municipio, bairro)'), $notInClause)
 			->groupBy(['municipio', 'bairro'])
 			->get();
+	}
+
+	private function getEstatisticaSemanaMesAno($queryName) {
+		$query = Config::get($queryName);
+		$resultSemana = DB::select($query, [$this->fimSemanaPassada]);
+		$resultMes = DB::select($query, [$this->fimMesPassado]);
+		$resultAno = DB::select($query, [$this->fimAnoPassado]);
+		return (object)[
+			'semana' => $resultSemana[0]->total,
+			'mes' => $resultMes[0]->total,
+			'ano' => $resultAno[0]->total
+		];
+	}
+
+	public function vendas() {
+		return $this->getEstatisticaSemanaMesAno('queries.vendas');
+	}
+
+	public function receita() {
+		return $this->getEstatisticaSemanaMesAno('queries.receita');
+	}
+
+	public function novosClientes() {
+		return $this->getEstatisticaSemanaMesAno('queries.novosClientes');
+	}
+
+	public function servicosVendidos() {
+		return $this->getEstatisticaSemanaMesAno('queries.servicosVendidos');
+	}
+
+	public function produtosVendidos() {
+		return $this->getEstatisticaSemanaMesAno('queries.produtosVendidos');
 	}
 
 	public function clientesPorFaixaEtaria() {

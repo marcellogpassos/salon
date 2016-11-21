@@ -31,4 +31,14 @@ interface EstatisticasServiceInterface {
 
 	public function clientesPorBairro($limit = null);
 
+	public function vendas();
+
+	public function receita();
+
+	public function novosClientes();
+
+	public function servicosVendidos();
+
+	public function produtosVendidos();
+
 }

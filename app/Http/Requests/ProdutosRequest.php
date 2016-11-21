@@ -15,6 +15,7 @@ class ProdutosRequest extends ItemVendaRequest {
             'categoria_id' => 'required|exists:categorias_produtos,id',
             'marca_id' => 'exists:marcas_produtos,id',
             'quantidade' => 'required|integer',
+            'codigo_barras' => 'min:8|max:13|alpha_num'
         ];
     }
 }

@@ -20,7 +20,7 @@ return [
 				' itve.id LIKE concat(?, "%")' .
 				' OR upper(serv.descricao) LIKE concat("%", upper(?), "%")' .
 				' OR (' .
-					' upper(concat(prod.descricao, " - ", mapr.descricao)) LIKE concat("%", upper(?), "%")' .
+					' upper(concat(prod.descricao, " - ", mapr.descricao, " - ", prod.codigo_barras)) LIKE concat("%", upper(?), "%")' .
 					' AND' .
 						' prod.quantidade > 0' .
 				' )' .
@@ -139,4 +139,46 @@ return [
 		' GROUP BY user.municipio, user.bairro' .
 		' ORDER BY 3 DESC',
 
+	'vendas' =>
+		'SELECT' .
+			' count(comp.id) AS "total"' .
+		' FROM' .
+			' compras comp' .
+		' WHERE' .
+			' comp.data_compra > ?',
+
+	'receita' =>
+		'SELECT' .
+			' sum(comp.valor_total) - sum(comp.desconto) AS "total"' .
+		' FROM' .
+			' compras comp' .
+		' WHERE' .
+			' comp.data_compra > ?',
+
+	'novosClientes' =>
+		'SELECT' .
+			' count(user.id) AS "total"' .
+		' FROM' .
+			' users user' .
+		' WHERE' .
+			' user.created_at > ?',
+
+	'servicosVendidos' =>
+		'SELECT' .
+			' count(itco.item_id) AS "total"' .
+		' FROM' .
+			' item_compra itco' .
+			' INNER JOIN compras comp ON (comp.id = itco.compra_id)' .
+			' INNER JOIN servicos serv ON (serv.id = itco.item_id)' .
+		' WHERE' .
+			' comp.data_compra > ?',
+
+	'produtosVendidos' =>
+		'SELECT' .
+			' count(itco.item_id) AS "total"' .
+		' FROM' .
+			' item_compra itco' .
+			' INNER JOIN compras comp ON (comp.id = itco.compra_id)' .
+			' INNER JOIN produtos prod ON (prod.id = itco.item_id)' .
+		' WHERE comp.data_compra > ?',
 ];
