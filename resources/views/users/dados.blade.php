@@ -26,8 +26,6 @@
 
                         <div class="card-content gray-text text-darken-4">
 
-
-
                             <div class="row">
 
                                 <div class="input-field col s12 m4">
@@ -154,7 +152,15 @@
 
                             <div class="row">
                                 <div class="input-field col offset-m3 m6 s12">
-                                    <input type="file" name="foto" class="dropify" data-max-file-size="2M" />
+                                    <div class="card white">
+                                        <h4 class="card-title">Foto do usu&aacute;rio</h4>
+
+                                            <div class="card-content gray-text text-darken-4">
+
+                                                <input type="file" name="foto" class="dropify" data-max-file-size="2M" />
+
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
 
