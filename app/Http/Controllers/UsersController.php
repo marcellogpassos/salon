@@ -6,6 +6,7 @@ use App\Http\Requests\UsersBuscarRequest;
 use App\Services\RolesServiceInterface;
 use App\Services\UsersServiceInterface;
 use App\Http\Requests\UsersDadosRequest;
+use App\Uf;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,9 @@ class UsersController extends Controller {
     }
 
     public function mostrarFormEditarDadosUsuario() {
-        return view('users.dados')->with('user', Auth::user());
+        return view('users.dados')
+            ->with('user', Auth::user())
+            ->with('ufs', Uf::all());
     }
 
     public function mostrarFormGerenciarPapeis($id) {

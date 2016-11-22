@@ -64,3 +64,6 @@ Route::get('users/{id}', 'UsersController@recuperarUsuario');
 
 Route::get('estatisticas/', 'EstatisticasController@mostrarEstatisticas');
 Route::get('estatisticas/teste', 'EstatisticasController@teste');
+
+Route::get('ufs/{uf}/municipios', 'EnderecosController@listarMunicipios');
+Route::get('ufs/{uf}/municipios/{municipio}', 'EnderecosController@getMunicipio');

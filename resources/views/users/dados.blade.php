@@ -5,7 +5,8 @@
 @endsection
 
 @section('styles')
-    <link href="{{ asset('lib/dropify/css/dropify.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('lib/dropify/css/dropify.min.css') }}" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
 @endsection
 
 @section('content')
@@ -96,9 +97,12 @@
 
                                 <div class="col s12 m2">
                                     <label for="ufInput">UF *</label>
-                                    <select id="ufInput" name="uf" class="browser-default uf" required
+                                    <select id="ufInput" name="uf_id" class="browser-default uf" required
                                             onchange="setUf(this.value, null, '#userForm')">
                                         <option value=""></option>
+                                        @foreach($ufs as $uf)
+                                            <option value="{{$uf->if}}">{{$uf->nome}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -155,11 +159,11 @@
                                     <div class="card white">
                                         <h4 class="card-title">Foto do usu&aacute;rio</h4>
 
-                                            <div class="card-content gray-text text-darken-4">
+                                        <div class="card-content gray-text text-darken-4">
 
-                                                <input type="file" name="foto" class="dropify" data-max-file-size="2M" />
+                                            <input type="file" name="foto" class="dropify" data-max-file-size="2M"/>
 
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -193,6 +197,10 @@
 @section('scripts')
 
     @include('layouts.angular')
+    <script>
+        var urlGetMunicipio = "{{ url('/ufs/:uf/municipios/:municipio') }}";
+        var urlListarMunicipios = "{{ url('/ufs/:uf/municipios') }}";
+    </script>
     <script src="{{ asset('js/enderecos.js') }}"></script>
 
     <script>
