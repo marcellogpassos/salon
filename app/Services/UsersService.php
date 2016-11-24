@@ -76,6 +76,18 @@ class UsersService implements UsersServiceInterface {
 		return $user;
 	}
 
+	public function apagarFoto($user) {
+		$fotoAnterior = $user->foto;
+
+		$user->foto = null;
+		$user->save();
+
+		if ($fotoAnterior)
+			$this->deletarFoto($fotoAnterior);
+
+		return $user;
+	}
+
 	private function getDirName() {
 		return env('USER_FOTO_BASE_DIR') . md5(time() % 97);
 	}

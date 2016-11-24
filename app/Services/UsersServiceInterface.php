@@ -19,6 +19,8 @@ interface UsersServiceInterface {
 
 	public function deletarFoto($filename);
 
+	public function apagarFoto($user);
+
 	public function atualizarFoto($user, $foto);
 
 	public function getUser($id);

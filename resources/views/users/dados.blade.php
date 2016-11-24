@@ -190,8 +190,14 @@
 
                                     <div class="card-content gray-text text-darken-4">
 
-                                        <input type="file" name="foto" class="dropify" data-max-file-size="2M"
-                                               data-default-file="{{ url( $user->foto ) }}"/>
+                                        @if($user->foto)
+                                            <input type="file" name="foto" class="dropify" data-max-file-size="2M"
+                                                   data-default-file="{{ url( $user->foto ) }}"/>
+                                        @else
+                                            <input type="file" name="foto" class="dropify" data-max-file-size="2M"/>
+                                        @endif
+
+                                        <input type="hidden" name="foto_anterior" value="{{ $user->foto }}">
 
                                     </div>
                                 </div>
