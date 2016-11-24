@@ -176,47 +176,7 @@
 
                                 </div>
                             </div>
-                            <div id="movimentoTab" class="col s12">
-                                <div class="row">
-                                    <div class="col s12 m6">
 
-                                        <div class="card white">
-
-                                            <h4 class="card-title">Movimento semanal</h4>
-
-                                            <div class="card-content gray-text text-darken-4">
-                                                <div class="row">
-                                                    <div class="col offset-m1 m10 s12">
-                                                        <canvas id="movimentoSemanalChart" width="100%"
-                                                                height="100%"></canvas>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col s12 m6">
-
-                                        <div class="card white">
-
-                                            <h4 class="card-title">Movimento mensal</h4>
-
-                                            <div class="card-content gray-text text-darken-4">
-                                                <div class="row">
-                                                    <div class="col offset-m1 m10 s12">
-                                                        <canvas id="movimentoMensalChart" width="100%"
-                                                                height="100%"></canvas>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
                             <div id="produtosServicosTab" class="col s12">
                                 <div class="row">
                                     <div class="col s12 m6">
@@ -429,6 +389,48 @@
 
                                 </div>
                             </div>
+                            <div id="movimentoTab" class="col s12">
+                                <div class="row">
+                                    <div class="col s12 m6">
+
+                                        <div class="card white">
+
+                                            <h4 class="card-title">Movimento semanal</h4>
+
+                                            <div class="card-content gray-text text-darken-4">
+                                                <div class="row">
+                                                    <div class="col offset-m1 m10 s12">
+                                                        <canvas id="movimentoSemanalChart" width="100%"
+                                                                height="100%"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col s12 m6">
+
+                                        <div class="card white">
+
+                                            <h4 class="card-title">Movimento mensal</h4>
+
+                                            <div class="card-content gray-text text-darken-4">
+                                                <div class="row">
+                                                    <div class="col offset-m1 m10 s12">
+                                                        <canvas id="movimentoMensalChart" width="100%"
+                                                                height="100%"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
@@ -457,7 +459,7 @@
         var clientesPorFaixaEtariaData = [];
         @foreach($clientesPorFaixaEtaria as $item)
             clientesPorFaixaEtariaLabels.push('{{ $item->faixaEtaria }}');
-            clientesPorFaixaEtariaData.push('{{ $item->quantidade }}');
+        clientesPorFaixaEtariaData.push('{{ $item->quantidade }}');
         @endforeach
 
         // clientes por bairro
@@ -466,8 +468,8 @@
         @foreach($clientesPorBairro as $item)
             clientesPorBairroLabels.push(
                 $('<div />').html('{{ $item->bairro }}').text()
-            );
-            clientesPorBairroData.push('{{ $item->quantidade }}');
+        );
+        clientesPorBairroData.push('{{ $item->quantidade }}');
         @endforeach
 
         // movimento semanal

@@ -18,8 +18,9 @@ class EnderecosController extends Controller {
         return response()->json($municipios);
     }
 
-    public function getMunicipio($uf, $municipio) {
-        $municipio = Municipio::where('uf_id', $uf)->where('id', $municipio)->firstOrFail();
+    public function getMunicipio($municipio) {
+        $municipio = Municipio::findOrFail($municipio);
+        $uf = $municipio->uf;
         return response()->json($municipio);
     }
 

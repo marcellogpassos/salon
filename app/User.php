@@ -20,10 +20,6 @@ class User extends Authenticatable {
         return $this->belongsToMany('App\Role');
     }
 
-    public function uf() {
-        return $this->belongsTo('App\Uf', 'uf_id');
-    }
-
     public function municipio() {
         return $this->belongsTo('App\Municipio', 'municipio_id');
     }

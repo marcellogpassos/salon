@@ -131,12 +131,12 @@ return [
 
 	'clientesPorBairro' =>
 		'SELECT' .
-			' user.municipio AS "municipio",' .
+			' user.municipio_id AS "municipio",' .
 			' user.bairro AS "bairro",' .
 			' count(*) AS "quantidade"' .
 		' FROM' .
 			' users user' .
-		' GROUP BY user.municipio, user.bairro' .
+		' GROUP BY user.municipio_id, user.bairro' .
 		' ORDER BY 3 DESC',
 
 	'vendas' =>

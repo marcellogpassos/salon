@@ -20,8 +20,7 @@ class UsersDadosRequest extends Request {
         $attributes['cpf'] = preg_replace("/[^0-9]/", '', $attributes['cpf']);
         $attributes['telefone'] = preg_replace("/[^0-9]/", '', $attributes['telefone']);
         $attributes['cep'] = preg_replace("/[^0-9]/", '', $attributes['cep']);
-        $attributes['uf'] = preg_replace("/[^0-9]/", '', $attributes['uf']);
-        $attributes['municipio'] = preg_replace("/[^0-9]/", '', $attributes['municipio']);
+        $attributes['municipio_id'] = preg_replace("/[^0-9]/", '', $attributes['municipio_id']);
 
         $this->replace($attributes);
 
@@ -42,8 +41,7 @@ class UsersDadosRequest extends Request {
             'data_nascimento' => 'required|date_format:Y-m-d|before:tomorrow',
             'telefone' => 'min:10|max:11',
             'cep' => 'required|size:8',
-            'uf' => 'required|size:2',
-            'municipio' => 'required|size:5',
+            'municipio_id' => 'required|size:7',
             'logradouro' => 'required|max:255',
             'numero' => 'required|max:16',
             'bairro' => 'required|max:255',

@@ -91,26 +91,47 @@
                                     <i class="material-icons prefix">location_on</i>
                                     <input id="cepInput" name="cep" type="text" class="cep" required
                                            value="{{ old('cep') ? old('cep') : $user->cep }}"
-                                           onchange="setCep(this.value, '#userForm')">
+                                           onchange="setCep(this.value)">
                                     <label for="cepInput">CEP *</label>
                                 </div>
 
                                 <div class="col s12 m2">
                                     <label for="ufInput">UF *</label>
                                     <select id="ufInput" name="uf_id" class="browser-default uf" required
-                                            onchange="setUf(this.value, null, '#userForm')">
-                                        <option value=""></option>
+                                            onchange="setUf(this.value)">
+                                        <option value="">--</option>
                                         @foreach($ufs as $uf)
-                                            <option value="{{$uf->if}}">{{$uf->nome}}</option>
+                                            @if((old('uf_id') && old('uf_id') == $uf->id) || (isset($user->municipio) && $user->municipio->uf_id == $uf->id))
+                                                <option value="{{$uf->id}}" selected>
+                                                    {{$uf->sigla}}
+                                                </option>
+                                            @else
+                                                <option value="{{$uf->id}}">
+                                                    {{$uf->sigla}}
+                                                </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col s12 m6">
                                     <label for="municipioInput">Munic&iacute;pio *</label>
-                                    <select id="municipioInput" name="municipio" class="browser-default municipio"
+                                    <select id="municipioInput" name="municipio_id" class="browser-default municipio"
                                             required>
-                                        <option value=""></option>
+                                        <option value="">--</option>
+                                        @if($municipios)
+                                            @foreach($municipios as $municipio)
+                                                @if((old('municipio_id') && old('municipio_id') == $municipio->id) || (isset($user->municipio) && $user->municipio->id == $municipio->id))
+                                                    <option value="{{$municipio->id}}" selected>
+                                                        {{$municipio->nome}}
+                                                    </option>
+                                                @else
+                                                    <option value="{{$municipio->id}}">
+                                                        {{$municipio->nome}}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
 
@@ -196,22 +217,13 @@
 
 @section('scripts')
 
-    @include('layouts.angular')
     <script>
-        var urlGetMunicipio = "{{ url('/ufs/:uf/municipios/:municipio') }}";
+        var urlGetMunicipio = "{{ url('/municipios/:municipio') }}";
         var urlListarMunicipios = "{{ url('/ufs/:uf/municipios') }}";
+        var urlConsultarCep = "{{ env('URL_CONSULTAR_CEP') }}";
     </script>
-    <script src="{{ asset('js/enderecos.js') }}"></script>
 
-    <script>
-        $(document).ready(function () {
-            setUf(
-                    '{{ old('uf') ? old('uf') : $user->uf }}',
-                    '{{ old('municipio') ? old('municipio') : $user->municipio }}',
-                    '#userForm'
-            );
-        });
-    </script>
+    <script src="{{ asset('js/enderecos.js') }}"></script>
 
     <script src="{{ asset('lib/dropify/js/dropify.min.js') }}"></script>
 

@@ -97,8 +97,8 @@ class EstatisticasService implements EstatisticasServiceInterface {
 	private function getGetOutrosBairrosQuantidade($notInClause) {
 		return DB::table('users')
 			->select(DB::raw('count(*) as quantidade'))
-			->whereNotIn(DB::raw('concat(municipio, bairro)'), $notInClause)
-			->groupBy(['municipio', 'bairro'])
+			->whereNotIn(DB::raw('concat(municipio_id, bairro)'), $notInClause)
+			->groupBy(['municipio_id', 'bairro'])
 			->get();
 	}
 

@@ -1,142 +1,97 @@
-var ufs = [
-    {id: "11", nome: "ROND\u00d4NIA", sigla: "RO"},
-    {id: "12", nome: "ACRE", sigla: "AC"},
-    {id: "13", nome: "AMAZONAS", sigla: "AM"},
-    {id: "14", nome: "RORAIMA", sigla: "RR"},
-    {id: "15", nome: "PAR\u00c1", sigla: "PA"},
-    {id: "16", nome: "AMAP\u00c1", sigla: "AP"},
-    {id: "17", nome: "TOCANTINS", sigla: "TO"},
-    {id: "21", nome: "MARANH\u00c3O", sigla: "MA"},
-    {id: "22", nome: "PIAU\u00cd", sigla: "PI"},
-    {id: "23", nome: "CEAR\u00c1", sigla: "CE"},
-    {id: "24", nome: "RIO GRANDE DO NORTE", sigla: "RN"},
-    {id: "25", nome: "PARA\u00cdBA", sigla: "PB"},
-    {id: "26", nome: "PERNAMBUCO", sigla: "PE"},
-    {id: "27", nome: "ALAGOAS", sigla: "AL"},
-    {id: "28", nome: "SERGIPE", sigla: "SE"},
-    {id: "29", nome: "BAHIA", sigla: "BA"},
-    {id: "31", nome: "MINAS GERAIS", sigla: "MG"},
-    {id: "32", nome: "ESP\u00cdRITO SANTO", sigla: "ES"},
-    {id: "33", nome: "RIO DE JANEIRO", sigla: "RJ"},
-    {id: "35", nome: "S\u00c3O PAULO", sigla: "SP"},
-    {id: "41", nome: "PARAN\u00c1", sigla: "PR"},
-    {id: "42", nome: "SANTA CATARINA", sigla: "SC"},
-    {id: "43", nome: "RIO GRANDE DO SUL", sigla: "RS"},
-    {id: "50", nome: "MATO GROSSO DO SUL", sigla: "MS"},
-    {id: "51", nome: "MATO GROSSO", sigla: "MT"},
-    {id: "52", nome: "GOI\u00c1S", sigla: "GO"},
-    {id: "53", nome: "DISTRITO FEDERAL", sigla: "DF"}
-];
+var setUfBusy = function (busy) {
+	$('.uf').prop('disabled', busy);
+	$('.municipio').prop('disabled', busy);
+};
 
-var initUfs = function (form, ufDefault) {
+var setCepBusy = function (busy) {
+	setUfBusy(busy);
+	$('.cep').prop('disabled', busy);
+	$('.logradouro').prop('disabled', busy);
+	$('.numero').prop('disabled', busy);
+	$('.bairro').prop('disabled', busy);
+	$('.complemento').prop('disabled', busy);
+};
 
-    $(form + ' .uf').empty().append('<option selected value=""> -- </option>');
+var resetUf = function () {
+	$('.uf').val('');
+	$('.municipio').empty().append('<option selected value=""> -- </option>');
+};
 
-    for (i = 0; i < ufs.length; i++)
-        $(form + ' .uf').append($('<option>', {
-            value: ufs[i].id,
-            text: ufs[i].sigla,
-            selected: (ufs[i].id == ufDefault)
-        }));
+var resetCep = function () {
+	resetUf();
+	$('.cep').val('');
+	$('.logradouro').val('');
+	$('.numero').val('');
+	$('.bairro').val('');
+	$('.complemento').val('');
+	setCepBusy(false);
+};
+
+var setUf = function (uf, municipio) {
+
+	var url = urlListarMunicipios.replace(':uf', uf);
+
+	setUfBusy(true);
+
+	$.getJSON(url, function (data) {
+
+		$('.municipio').empty().append(
+			'<option selected value=""> -- </option>'
+		);
+
+		$.each(data, function () {
+
+			$('.municipio').append(
+				$('<option>', {
+					value: this.id,
+					text: this.nome,
+					selected: municipio == this.id
+				})
+			);
+
+		});
+
+		setUfBusy(false);
+	});
 
 };
 
-var initMunicipios = function (municipios, form, municipioDefault) {
+var setCep = function (cep) {
 
-    $(form + ' .municipio').empty().append('<option selected value=""> -- </option>');
+	var cep = cep.replace(/\D/g, '');
 
-    if (municipios)
-        for (i = 0; i < municipios.length; i++)
-            $(form + ' .municipio').append($('<option>', {
-                value: municipios[i].id,
-                text: municipios[i].nome,
-                selected: (municipios[i].id == municipioDefault)
-            }));
+	if (cep != "") {
 
-};
+		var cepRegex = /^[0-9]{8}$/;
 
-var resetUf = function (form) {
-    initUfs(form, null);
-    initMunicipios(null, form, null);
-};
+		if (cepRegex.test(cep)) {
 
-var setUfBusy = function (busy, form) {
-    $(form + ' .uf').prop('disabled', busy);
-    $(form + ' .municipio').prop('disabled', busy);
-};
+			var url = urlConsultarCep.replace(':cep', cep);
 
-var setUf = function (uf, municipio, form) {
-    if (!uf)
-        resetUf(form);
+			setCepBusy(true);
 
-    else {
-        setUfBusy(true, form);
+			$.getJSON(url, function (dados) {
+				if (!("erro" in dados)) {
+					$(".logradouro").val(dados.logradouro);
+					$(".bairro").val(dados.bairro);
+					$(".complemento").val(dados.complemento);
 
-        enderecosService.listarMunicipios(uf, function (municipios) {
-            if (municipios.erro) {
-                showMessage(getMessage('error', 2, [uf]));
-                resetUf(form);
-            }
+					var uf = dados.ibge.substring(0, 2);
 
-            else {
-                initUfs(form, uf);
-                initMunicipios(municipios, form, municipio);
-            }
-            setUfBusy(false, form);
-        }, function (error) {
-            showMessage(getMessage('error', 2, [uf]));
-            resetUf(form);
-            setUfBusy(false, form);
-        });
-    }
-};
+					$(".uf").val(uf);
+					setUf(uf, dados.ibge);
 
-var resetCep = function (form) {
-    resetUf(form);
-    $(form + ' .cep').val('');
-    $(form + ' .logradouro').val('');
-    $(form + ' .numero').val('');
-    $(form + ' .bairro').val('');
-    $(form + ' .complemento').val('');
-};
-
-var setCepBusy = function (busy, form) {
-    setUfBusy(busy, form);
-    $(form + ' .cep').prop('disabled', busy);
-    $(form + ' .logradouro').prop('disabled', busy);
-    $(form + ' .numero').prop('disabled', busy);
-    $(form + ' .bairro').prop('disabled', busy);
-    $(form + ' .complemento').prop('disabled', busy);
-};
-
-var setCep = function (cep, form) {
-    cep = cep.replace(/\D/g, '');
-
-    if (!cep)
-        resetCep(form);
-
-    else {
-        setCepBusy(true, form);
-
-        enderecosService.consultarCep(cep, function (endereco) {
-            if (endereco.erro) {
-                showMessage(getMessage('error', 9));
-                resetCep(form);
-            }
-
-            else {
-                $(form + ' .logradouro').val(endereco.logradouro);
-                $(form + ' .bairro').val(endereco.bairro);
-                $(form + ' .complemento').val(endereco.complemento);
-
-                setUf(enderecosService.getUfId(endereco.ibge), enderecosService.getMunicipioId(endereco.ibge), form);
-            }
-            setCepBusy(false, form);
-        }, function (error) {
-            showMessage(getMessage('error', 1, [cep]));
-            resetCep(form);
-            setCepBusy(false, form);
-        });
-
-    }
+					setCepBusy(false);
+				} else {
+					resetCep();
+					showMessage("CEP não encontrado.");
+				}
+			});
+		} else {
+			resetCep();
+			showMessage("CEP em formato inválido.");
+		}
+	} else {
+		resetCep();
+	}
 };
