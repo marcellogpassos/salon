@@ -1,5 +1,8 @@
 var detalharUsuario = function (modal, id) {
-	$.getJSON(urlRecuperarUsuario.replace('{id}', id), function (data) {
+
+	var url = urlRecuperarUsuario.replace(':id', id);
+
+	$.getJSON(url, function (data) {
 		$(modal + ' .nome').html(data.name + " " + data.surname);
 
 		if (data.cpf) {

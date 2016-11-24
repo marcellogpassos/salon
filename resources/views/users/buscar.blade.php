@@ -261,10 +261,8 @@
 
     <script src="{{ asset('lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"></script>
 
-    @include('layouts.angular')
-
     <script>
-        var urlRecuperarUsuario = '{{ url('/users/{id}') }}';
+        var urlRecuperarUsuario = '{{ url('/users/:id') }}';
     </script>
 
     <script src="{{ asset('js/detalharUsuario.js') }}"></script>
