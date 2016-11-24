@@ -46,7 +46,7 @@ class UsersDadosRequest extends Request {
             'numero' => 'required|max:16',
             'bairro' => 'required|max:255',
             'complemento' => 'max:255',
-            'foto' => 'image|size:2000|dimensions:min_width=100,min_height=100,max_width=2048,max_height=2048'
+            'foto' => 'image|dimensions:min_width=100,min_height=100,max_width=2048,max_height=2048'
         ];
     }
 }

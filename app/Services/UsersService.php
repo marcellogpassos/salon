@@ -19,48 +19,81 @@ use App\Repositories\UsersRepository as Users;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class UsersService implements UsersServiceInterface {
 
-    protected $users;
+	protected $users;
 
-    public function __construct(Users $repository) {
-        $this->users = $repository;
-    }
+	public function __construct(Users $repository) {
+		$this->users = $repository;
+	}
 
-    public function buscar($criterios) {
-        if (filtroFornecido($criterios, 'email'))
-            $this->users->pushCriteria(new BuscarPorEmail($criterios['email']));
-        else if (filtroFornecido($criterios, 'cpf', 11))
-            $this->users->pushCriteria(new BuscarPorCPF($criterios['cpf']));
-        else if (filtroFornecido($criterios, 'id'))
-            return $this->users->findWhere(['id' => $criterios['id']], true);
-        else {
-            if (filtroFornecido($criterios, 'nome_sobrenome'))
-                $this->users->pushCriteria(new BuscarPorNomeSobrenome($criterios['nome_sobrenome']));
-            if (filtroFornecido($criterios, 'sexo'))
-                $this->users->pushCriteria(new BuscarPorSexo($criterios['sexo']));
-            if (filtroFornecido($criterios, 'telefone'))
-                $this->users->pushCriteria(new BuscarPorTelefone($criterios['telefone']));
-        }
-        return $this->users->pushCriteria(new OrdenarPorNomeSobrenome())->paginate();
-    }
+	public function buscar($criterios) {
+		if (filtroFornecido($criterios, 'email'))
+			$this->users->pushCriteria(new BuscarPorEmail($criterios['email']));
+		else if (filtroFornecido($criterios, 'cpf', 11))
+			$this->users->pushCriteria(new BuscarPorCPF($criterios['cpf']));
+		else if (filtroFornecido($criterios, 'id'))
+			return $this->users->findWhere(['id' => $criterios['id']], true);
+		else {
+			if (filtroFornecido($criterios, 'nome_sobrenome'))
+				$this->users->pushCriteria(new BuscarPorNomeSobrenome($criterios['nome_sobrenome']));
+			if (filtroFornecido($criterios, 'sexo'))
+				$this->users->pushCriteria(new BuscarPorSexo($criterios['sexo']));
+			if (filtroFornecido($criterios, 'telefone'))
+				$this->users->pushCriteria(new BuscarPorTelefone($criterios['telefone']));
+		}
+		return $this->users->pushCriteria(new OrdenarPorNomeSobrenome())->paginate();
+	}
 
-    public function atualizarPropriosDados(array $attributes) {
-        $id = Auth::user()->id;
-        return $this->users->updateRich($attributes, $id);
-    }
+	public function atualizarDados($id, array $attributes) {
+		return $this->users->updateRich($attributes, $id);
+	}
 
-    public function getUser($id) {
-        return $this->users->find($id);
-    }
+	public function salvarFoto($foto) {
+		$dirName = $this->getDirName();
+		$fileName = $this->getFileName($foto->getClientOriginalExtension());
+		$file = $foto->move($dirName, $fileName);
+		$filePath = $file->getPath() . '/' . $file->getFilename();
+		return $filePath;
+	}
 
-    public function sincronizarPapeis($userId, array $roles) {
-        return $this->users->sincronizarPapeis($userId, $roles);
-    }
+	public function deletarFoto($filename) {
+		File::delete($filename);
+	}
 
-    public function listarFuncionarios() {
-        return $this->users->listarFuncionarios();
-    }
+	public function atualizarFoto($user, $foto) {
+		$fotoAnterior = $user->foto;
+
+		$filename = $this->salvarFoto($foto);
+		$user->foto = $filename;
+		$user->save();
+
+		if ($fotoAnterior)
+			$this->deletarFoto($fotoAnterior);
+
+		return $user;
+	}
+
+	private function getDirName() {
+		return env('USER_FOTO_BASE_DIR') . md5(time() % 97);
+	}
+
+	private function getFileName($extension) {
+		return md5(uniqid(rand(), true)) . '.' . $extension;
+	}
+
+	public function getUser($id) {
+		return $this->users->find($id);
+	}
+
+	public function sincronizarPapeis($userId, array $roles) {
+		return $this->users->sincronizarPapeis($userId, $roles);
+	}
+
+	public function listarFuncionarios() {
+		return $this->users->listarFuncionarios();
+	}
 
 }

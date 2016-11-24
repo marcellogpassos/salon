@@ -13,6 +13,7 @@ var detalharUsuario = function (modal, id) {
 			$(modal + ' .sexo').html(data.sexo == 'F' ? 'Feminino' : (data.sexo == 'M' ? 'Masculino' : ''));
 			$(modal + ' .dataNascimento').html(formatarDataNascimento(data.data_nascimento));
 			$(modal + ' .telefone').html(formatarTelefone(data.telefone));
+			$(modal + ' .email').html(formatarTelefone(data.email));
 
 			$(modal + ' .logradouro').html(data.logradouro);
 			$(modal + ' .numero').html(data.numero);
@@ -21,6 +22,13 @@ var detalharUsuario = function (modal, id) {
 			$(modal + ' .municipio').html(data.municipio.nome);
 			$(modal + ' .uf').html(data.municipio.uf.sigla);
 			$(modal + ' .complemento').html(data.complemento);
+			if (data.foto)
+				$(modal + ' .foto').attr('src', urlPublic + '/' + data.foto);
+			else {
+				var foto = (data.sexo == 'M') ? '/img/user-male-icon.png' : '/img/user-female-icon.png';
+				$(modal + ' .foto').attr('src', urlPublic + foto);
+			}
+
 		} else {
 			$(modal + ' .nao-cadastrado').show();
 			$(modal + ' .dados').hide();

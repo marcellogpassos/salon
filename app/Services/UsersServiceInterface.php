@@ -13,7 +13,13 @@ interface UsersServiceInterface {
 
 	public function buscar($criterios);
 
-	public function atualizarPropriosDados(array $attributes);
+	public function atualizarDados($id, array $attributes);
+
+	public function salvarFoto($foto);
+
+	public function deletarFoto($filename);
+
+	public function atualizarFoto($user, $foto);
 
 	public function getUser($id);
 

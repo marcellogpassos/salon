@@ -56,7 +56,10 @@ class UsersController extends Controller {
 	}
 
 	public function editarDadosUsuario(UsersDadosRequest $request) {
-		$sucesso = $this->usersService->atualizarPropriosDados($request->all());
+		$user = Auth::user();
+		$sucesso = $this->usersService->atualizarDados($user->id, $request->all());
+		if($request->hasFile('foto') && $request->file('foto')->isValid())
+			$this->usersService->atualizarFoto($user, $request->file('foto'));
 		if ($sucesso)
 			showMessage('success', 0);
 		else

@@ -1,4 +1,3 @@
-
 @extends('layouts.appm')
 
 @section('title')
@@ -218,37 +217,34 @@
                                     <p>Dados do usu&aacute;rio n&atilde;o fornecidos!</p>
                                 </div>
                             </div>
-
-                            <div class="col s12 m6 dados">
+                            <div class="col s12 m4">
+                                <p><img class="foto" src="" height="100%" width="100%" align="middle"></p>
+                            </div>
+                            <div class="col s12 m8 dados">
                                 <p><strong>CPF:</strong>&nbsp;&nbsp;<span class="cpf"></span></p>
-                                <p><strong>Sexo:</strong>&nbsp;&nbsp;<span class="sexo"></span></p>
-                                <p>
+                                <p><strong>Sexo:</strong>&nbsp;&nbsp;<span class="sexo"></span>&nbsp;&nbsp;
                                     <strong>Data de nascimento:</strong>&nbsp;&nbsp;<span class="dataNascimento"></span>
                                 </p>
+                                <br>
                                 <p><strong>Telefone:</strong>&nbsp;&nbsp;<span class="telefone"></span></p>
-                            </div>
-                            <div class="col s12 m6 dados">
+                                <p><strong>E-mail:</strong>&nbsp;&nbsp;<span class="email"></span></p>
+                                <br>
                                 <p><strong>Endere&ccedil;o:</strong></p>
                                 <p>
                                     <span class="logradouro"></span>,&nbsp;
                                     <span class="numero"></span>.&nbsp;
                                     <span class="bairro"></span>
-                                </p>
-                                <p>
-                                    <span class="cep"></span>.&nbsp;
                                     <span class="municipio"></span>&nbsp;-&nbsp;
                                     <span class="uf"></span>
                                 </p>
                                 <p>
+                                    <span class="cep"></span>.&nbsp;
                                     <span class="complemento"></span>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
                 </div>
             </div>
         @endif
@@ -263,6 +259,7 @@
 
     <script>
         var urlRecuperarUsuario = '{{ url('/users/:id') }}';
+        var urlPublic = '{{ url('/') }}';
     </script>
 
     <script src="{{ asset('js/detalharUsuario.js') }}"></script>
