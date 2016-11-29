@@ -51,13 +51,13 @@
 
                                 <div class="input-field col s12 m3">
                                     <i class="material-icons prefix">date_range</i>
-                                    <input id="dataInicialInput" name="data_inicial" class="data" type="text">
+                                    <input id="dataInicialInput" name="data_inicial" class="data data-passada" type="text">
                                     <label for="dataInicialInput">Data inicial</label>
                                 </div>
 
                                 <div class="input-field col s12 m3">
                                     <i class="material-icons prefix">date_range</i>
-                                    <input id="dataFinalInput" name="data_final" class="data" type="text">
+                                    <input id="dataFinalInput" name="data_final" class="data data-passada" type="text">
                                     <label for="dataFinalInput">Data final</label>
                                 </div>
 

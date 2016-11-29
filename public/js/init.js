@@ -17,7 +17,6 @@ $(document).ready(function () {
 		format: 'dd/mm/yyyy',
 		formatSubmit: 'yyyy-mm-dd',
 		hiddenName: true,
-		max: new Date(),
 		selectMonths: true,
 		selectYears: 120,
 		monthsFull: meses,

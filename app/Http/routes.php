@@ -24,6 +24,8 @@ Route::get('/teste', function () {
 	return null;
 });
 
+Route::get('agendamentos/', 'AgendamentosController@index');
+
 Route::get('compras/buscarItem', 'ComprasController@buscarItem');
 Route::get('compras/buscarCliente', 'ComprasController@buscarCliente');
 Route::get('compras/buscar', 'ComprasController@buscarCompras');
@@ -63,7 +65,6 @@ Route::post('users/{id}/registrarCompra', 'ComprasController@registrarCompra');
 Route::get('users/{id}', 'UsersController@recuperarUsuario');
 
 Route::get('estatisticas/', 'EstatisticasController@mostrarEstatisticas');
-Route::get('estatisticas/teste', 'EstatisticasController@teste');
 
 Route::get('ufs/{uf}/municipios', 'EnderecosController@listarMunicipios');
 Route::get('municipios/{municipio}', 'EnderecosController@getMunicipio');

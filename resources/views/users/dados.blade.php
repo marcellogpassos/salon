@@ -78,7 +78,7 @@
 
                             <div class="input-field col s12 m4">
                                 <i class="material-icons prefix">date_range</i>
-                                <input id="nascimentoInput" name="data_nascimento" class="data" required
+                                <input id="nascimentoInput" name="data_nascimento" class="data data-passada" required
                                        value="{{ $user->data_nascimento ? dateToBrFormat($user->data_nascimento) : '' }}"
                                        type="text">
                                 <label for="nascimentoInput">Data de nascimento *</label>
