@@ -1,5 +1,14 @@
 @extends('layouts.appm')
 
+@section('styles')
+
+    <link href="{{ asset('lib/pickadate/compressed/themes/default.css') }}" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+    <link href="{{ asset('lib/pickadate/compressed/themes/default.time.css') }}" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+
+@endsection
+
 @section('title')
     Agendamentos
 @endsection
@@ -39,23 +48,40 @@
 
                                 <div class="row">
 
-                                    <div class="input-field col s12 offset-m2 m4">
-                                        <input id="tipoServicoInput" name="tipo_servico" required type="text">
-                                        <label for="tipoServicoInput">Tipo de Servi&ccedil;o *</label>
+                                    <div class="col s12 offset-m2 m4">
+                                        <label for="categoriaServicoInput">Categoria de Servi&ccedil;o *</label>
+                                        <select id="categoriaServicoInput" name="categoria_servico" required
+                                                class="browser-default categorias-servico"
+                                                onchange="setCategoriaServico(this.value)">
+                                            <option value="" selected> --</option>
+                                            @foreach($categoriasServicos as $categoria)
+                                                <option value="{{$categoria->id}}">{{$categoria->descricao}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
-                                    <div class="input-field col s12 m4">
-                                        <input id="servicoInput" name="servico" required type="text">
+                                    <div class="col s12 m4">
+
                                         <label for="servicoInput">Servi&ccedil;o *</label>
+                                        <select id="servicoInput" name="servico" class="browser-default servicos"
+                                                onchange="setServico(this.value)" required disabled>
+                                            <option value="" selected> --</option>
+                                        </select>
+
                                     </div>
 
                                 </div>
 
                                 <div class="row">
 
-                                    <div class="input-field col s12 offset-m2 m8">
-                                        <input id="profissionalInput" name="profissional" required type="text">
-                                        <label for="profissionalInput">Profissional *</label>
+                                    <div class="col s12 offset-m2 m8">
+
+                                        <label for="profissionalInput">Profissional (Opcional)</label>
+                                        <select id="profissionalInput" class="browser-default profissionais"
+                                                name="profissional" disabled>
+                                            <option value="" selected> --</option>
+                                        </select>
+
                                     </div>
 
                                 </div>
@@ -106,5 +132,16 @@
         </div>
 
     </div>
+
+@endsection
+
+@section('scripts')
+
+    <script type="text/javascript">
+        var urlListarServicosPorCategoria = '{{ url('categoriasServicos/:categoria/servicos') }}';
+        var urlProfissionaisPorServico = '{{ url('servicos/:servico/profissionais') }}';
+    </script>
+
+    <script src="{{ asset('js/agendamentos.js') }}"></script>
 
 @endsection

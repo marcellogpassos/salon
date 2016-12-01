@@ -29,30 +29,35 @@ var resetCep = function () {
 
 var setUf = function (uf, municipio) {
 
-	var url = urlListarMunicipios.replace(':uf', uf);
+	if(uf) {
 
-	setUfBusy(true);
+		var url = urlListarMunicipios.replace(':uf', uf);
 
-	$.getJSON(url, function (data) {
+		setUfBusy(true);
 
-		$('.municipio').empty().append(
-			'<option selected value=""> -- </option>'
-		);
+		$.getJSON(url, function (data) {
 
-		$.each(data, function () {
-
-			$('.municipio').append(
-				$('<option>', {
-					value: this.id,
-					text: this.nome,
-					selected: municipio == this.id
-				})
+			$('.municipio').empty().append(
+				'<option selected value=""> -- </option>'
 			);
 
+			$.each(data, function () {
+
+				$('.municipio').append(
+					$('<option>', {
+						value: this.id,
+						text: this.nome,
+						selected: municipio == this.id
+					})
+				);
+
+			});
+
+			setUfBusy(false);
 		});
 
-		setUfBusy(false);
-	});
+	} else
+		resetUf();
 
 };
 

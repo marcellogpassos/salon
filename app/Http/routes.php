@@ -26,6 +26,8 @@ Route::get('/teste', function () {
 
 Route::get('agendamentos/', 'AgendamentosController@index');
 
+Route::get('categoriasServicos/{id}/servicos', 'ServicosController@listarServicosPorCategoria');
+
 Route::get('compras/buscarItem', 'ComprasController@buscarItem');
 Route::get('compras/buscarCliente', 'ComprasController@buscarCliente');
 Route::get('compras/buscar', 'ComprasController@buscarCompras');
@@ -54,6 +56,7 @@ Route::post('servicos/cadastrar', 'ServicosController@cadastrarServico');
 Route::get('servicos/{id}/editar', 'ServicosController@mostrarFormEditarServico');
 Route::post('servicos/{id}/editar', 'ServicosController@editarServico');
 Route::get('servicos/{id}/excluir', 'ServicosController@excluirServico');
+Route::get('servicos/{id}/profissionais', 'ServicosController@listarProfissionaisPorServico');
 
 Route::get('users/buscar', 'UsersController@mostrarUsuariosEncontrados');
 Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
