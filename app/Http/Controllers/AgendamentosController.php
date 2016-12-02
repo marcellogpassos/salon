@@ -17,8 +17,11 @@ class AgendamentosController extends Controller {
     }
 
     public function index() {
+        $categoriasServicos = $this->categoriasServicosService->listarTodos();
+        $agendamentos = [];
         return view('agendamentos.index')
-            ->with('categoriasServicos', $this->categoriasServicosService->listarTodos());
+            ->with('categoriasServicos', $categoriasServicos)
+            ->with('agendamentos', $agendamentos);
     }
 
 }

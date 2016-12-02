@@ -21,7 +21,7 @@
 
         <div class="row">
 
-            <div class="col m8 s12">
+            <div class="col m8 s12 {{count($agendamentos) ? '' : 'offset-m2'}}">
                 <div class="card white">
 
                     <h4 class="card-title">Novo Agendamento</h4>
@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="col m4 s12">
+            <div class="col m4 s12 {{count($agendamentos) ? '' : 'hiddendiv'}}">
                 <div class="card white">
 
                     <h4 class="card-title">Agendamentos Futuros</h4>
