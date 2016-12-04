@@ -49,13 +49,16 @@ $(document).ready(function () {
 
     $('input.data-futura').pickadate(dataFuturaConfig);
 
-    $('input.hora').pickatime({
-        format: 'HH:i',
-
+    $('input.hora').timepicker({
+        timeFormat: 'H:mm',
         interval: 30,
-
-        min: [8, 0],
-        max: [18, 0]
+        minTime: '8:00',
+        maxTime: '18:00',
+        //defaultTime: '10:00',
+        startTime: '8:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
     });
 
     $('select').material_select();

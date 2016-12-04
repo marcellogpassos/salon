@@ -25,6 +25,7 @@ Route::get('/teste', function () {
 });
 
 Route::get('agendamentos/', 'AgendamentosController@index');
+Route::post('agendamentos/', 'AgendamentosController@agendar');
 
 Route::get('categoriasServicos/{id}/servicos', 'ServicosController@listarServicosPorCategoria');
 

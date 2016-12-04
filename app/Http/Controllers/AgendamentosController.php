@@ -2,26 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AgendamentosServiceInterface;
 use App\Services\CategoriasServicosServiceInterface;
-use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Http\Requests\AgendamentoRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AgendamentosController extends Controller {
 
-    protected $categoriasServicosService;
+	protected $categoriasServicosService;
 
-    public function __construct(CategoriasServicosServiceInterface $categoriasServicosService) {
-        $this->categoriasServicosService = $categoriasServicosService;
-        $this->middleware('auth');
-    }
+	protected $agendamentosService;
 
-    public function index() {
-        $categoriasServicos = $this->categoriasServicosService->listarTodos();
-        $agendamentos = [];
-        return view('agendamentos.index')
-            ->with('categoriasServicos', $categoriasServicos)
-            ->with('agendamentos', $agendamentos);
-    }
+	public function __construct(CategoriasServicosServiceInterface $categoriasServicosService,
+								AgendamentosServiceInterface $agendamentosService) {
+		$this->categoriasServicosService = $categoriasServicosService;
+		$this->agendamentosService = $agendamentosService;
+		$this->middleware('auth');
+	}
+
+	public function index() {
+		$user = Auth::user();
+		$categoriasServicos = $this->categoriasServicosService->listarTodos();
+		$agendamentos = $this->agendamentosService->listarAgendamentosPorUsuario($user->id);
+		dd($agendamentos);
+		return view('agendamentos.index')
+			->with('categoriasServicos', $categoriasServicos)
+			->with('agendamentos', $agendamentos);
+	}
+
+	public function agendar(AgendamentoRequest $request) {
+		dd($request->all());
+	}
 
 }

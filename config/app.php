@@ -156,6 +156,8 @@ return [
 		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
 
+		Collective\Html\HtmlServiceProvider::class,
+
 		App\Providers\UsersServiceProvider::class,
 		App\Providers\RolesServiceProvider::class,
 		App\Providers\MarcasProdutosServiceProvider::class,
@@ -168,7 +170,7 @@ return [
 		App\Providers\ItensVendaServiceProvider::class,
 		App\Providers\ComprasServiceProvider::class,
 		App\Providers\EstatisticasServiceProvider::class,
-		Collective\Html\HtmlServiceProvider::class
+		App\Providers\AgendamentosServiceProvider::class,
 
 	],
 

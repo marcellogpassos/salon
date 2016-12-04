@@ -108,7 +108,7 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
         return $this->model->where($attribute, '=', $value)->get($columns);
     }
 
-    public function findWhere($where, $paginate = false, $perPage = 0, $columns = ['*'], $or = false) {
+    public function     findWhere($where, $paginate = false, $perPage = 0, $columns = ['*'], $or = false) {
         $this->applyCriteria();
         $model = $this->model;
         foreach ($where as $field => $value) {

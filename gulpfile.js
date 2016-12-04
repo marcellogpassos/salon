@@ -39,4 +39,9 @@ gulp.task('default', function () {
     gulp.src(src_dir + "pickadate/lib/**")
         .pipe(gulp.dest(dst_dir + "pickadate"));
 
+    gulp.src(src_dir + "jquery-timepicker-wvega/jquery.timepicker.js")
+        .pipe(gulp.dest(dst_dir + "jquery-timepicker-wvega"));
+    gulp.src(src_dir + "jquery-timepicker-wvega/jquery.timepicker.css")
+        .pipe(gulp.dest(dst_dir + "jquery-timepicker-wvega"));
+
 });

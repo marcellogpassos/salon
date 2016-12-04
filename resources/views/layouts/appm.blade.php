@@ -23,6 +23,9 @@
     <link href="{{ asset('lib/pickadate/compressed/themes/default.time.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection"/>
 
+    <link href="{{ asset('lib/jquery-timepicker-wvega/jquery.timepicker.css') }}" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+
     @yield('styles')
 
     <!--  Scripts-->
@@ -50,6 +53,8 @@
 <script src="{{ asset('lib/pickadate/compressed/picker.js') }}"></script>
 <script src="{{ asset('lib/pickadate/compressed/picker.time.js') }}"></script>
 <script src="{{ asset('lib/pickadate/compressed/translations/pt_BR.js') }}"></script>
+
+<script src="{{ asset('lib/jquery-timepicker-wvega/jquery.timepicker.js') }}"></script>
 
 <script src="{{ asset('js/messages.js') }}"></script>
 <script src="{{ asset('js/util.js') }}"></script>
