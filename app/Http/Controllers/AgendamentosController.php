@@ -24,11 +24,9 @@ class AgendamentosController extends Controller {
 	public function index() {
 		$user = Auth::user();
 		$categoriasServicos = $this->categoriasServicosService->listarTodos();
-		$agendamentos = $this->agendamentosService->listarAgendamentosPorUsuario($user->id);
-		dd($agendamentos);
 		return view('agendamentos.index')
 			->with('categoriasServicos', $categoriasServicos)
-			->with('agendamentos', $agendamentos);
+			->with('agendamentos', $user->agendamentos);
 	}
 
 	public function agendar(AgendamentoRequest $request) {

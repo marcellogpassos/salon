@@ -28,6 +28,10 @@ class User extends Authenticatable {
         return $this->belongsToMany('App\Servico');
     }
 
+    public function agendamentos() {
+        return $this->hasMany('App\Agendamento', 'cliente_id');
+    }
+
     public function possuiRole($roleProcurado) {
         foreach ($this->roles as $role)
             if ($role->id == $roleProcurado->id)
