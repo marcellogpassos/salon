@@ -33,6 +33,7 @@ return [
         'Serviço {0} alterado com sucesso!',                                                                            // 9
         'Serviço {0} deletado com sucesso!',                                                                            // 10
         'Compra registrada com sucesso! Código de validação: "{0}".',                                                   // 11
+        'Serviço agendado com sucesso!'                                                                                 // 12
     ],
 
     'warning' => [

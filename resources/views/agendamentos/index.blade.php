@@ -70,7 +70,7 @@
                                             <label for="servicoInput">Servi&ccedil;o *</label>
                                             <select id="servicoInput" name="servico_id" class="browser-default servicos"
                                                     onchange="setServico(this.value)" required disabled>
-                                                <option value="" selected> Escolha uma categoria </option>
+                                                <option value="" selected> Escolha uma categoria</option>
                                             </select>
 
                                         </div>
@@ -84,7 +84,7 @@
                                             <label for="profissionalInput">Profissional (Opcional)</label>
                                             <select id="profissionalInput" class="browser-default profissionais"
                                                     name="profissional_id" disabled>
-                                                <option value="" selected> Escolha um servi&ccedil;o </option>
+                                                <option value="" selected> Escolha um servi&ccedil;o</option>
                                             </select>
 
                                         </div>
@@ -119,9 +119,52 @@
 
                     <div class="card-content gray-text text-darken-4">
                         <div class="row">
-                            <div class="col s12">
+                            @foreach($agendamentos as $agendamento)
+                                <div class="col s12">
+                                    @if($agendamento->status == 'C')
+                                        <div class="card green lighten-5">
+                                    @elseif($agendamento->status == 'N')
+                                        <div class="card red lighten-5">
+                                    @else
+                                        <div class="card grey lighten-4">
+                                    @endif
+                                        <div class="card-content black-text">
+                                            <span class="card-title">
+                                                {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora)}}
+                                            </span>
+                                            <p>
+                                                <strong>Servi&ccedil;o:</strong>
+                                                {{ $agendamento->servico->descricao }}
+                                            </p>
 
-                            </div>
+                                            <p>
+                                                <strong>Profissional:</strong>
+                                                @if($agendamento->profissional_id)
+                                                    {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
+                                                @else
+                                                    - -
+                                                @endif
+                                            </p>
+
+                                            <p>
+                                                <strong>Status:</strong>
+                                                @if($agendamento->status == 'C')
+                                                    Confirmado
+                                                @elseif($agendamento->status == 'N')
+                                                    Negado
+                                                @else
+                                                    Aguardando confirmação
+                                                @endif
+                                            </p>
+
+                                            <div class="card-action">
+                                                <a href="#">Cancelar Agendamento</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 

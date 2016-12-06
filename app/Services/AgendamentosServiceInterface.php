@@ -13,8 +13,8 @@ interface AgendamentosServiceInterface {
 
 	public function listarTodos();
 
-	public function listarAgendamentosPorUsuario($userId);
+	public function listarAgendamentosPorUsuario($clienteId);
 
-	public function cadastrarAgendamento();
+	public function cadastrarAgendamento($clienteId, array $atributos);
 
 }

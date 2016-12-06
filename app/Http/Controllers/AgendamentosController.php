@@ -10,27 +10,30 @@ use Illuminate\Support\Facades\Auth;
 
 class AgendamentosController extends Controller {
 
-	protected $categoriasServicosService;
+    protected $categoriasServicosService;
 
-	protected $agendamentosService;
+    protected $agendamentosService;
 
-	public function __construct(CategoriasServicosServiceInterface $categoriasServicosService,
-								AgendamentosServiceInterface $agendamentosService) {
-		$this->categoriasServicosService = $categoriasServicosService;
-		$this->agendamentosService = $agendamentosService;
-		$this->middleware('auth');
-	}
+    public function __construct(CategoriasServicosServiceInterface $categoriasServicosService,
+                                AgendamentosServiceInterface $agendamentosService) {
+        $this->categoriasServicosService = $categoriasServicosService;
+        $this->agendamentosService = $agendamentosService;
+        $this->middleware('auth');
+    }
 
-	public function index() {
-		$user = Auth::user();
-		$categoriasServicos = $this->categoriasServicosService->listarTodos();
-		return view('agendamentos.index')
-			->with('categoriasServicos', $categoriasServicos)
-			->with('agendamentos', $user->agendamentos);
-	}
+    public function index() {
+        $user = Auth::user();
+        $categoriasServicos = $this->categoriasServicosService->listarTodos();
+        return view('agendamentos.index')
+            ->with('categoriasServicos', $categoriasServicos)
+            ->with('agendamentos', $user->agendamentos);
+    }
 
-	public function agendar(AgendamentoRequest $request) {
-		dd($request->all());
-	}
+    public function agendar(AgendamentoRequest $request) {
+        $cliente = Auth::user();;
+        $this->agendamentosService->cadastrarAgendamento($cliente->id, $request->all());
+        showMessage('success', 12);
+        return redirect('/agendamentos');
+    }
 
 }
