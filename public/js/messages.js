@@ -46,29 +46,6 @@ var Messages = {
     ],
 };
 
-var getMessage = function (type, id, args) {
-    var messagesScope = null;
-
-    switch (type) {
-        case 'error':
-            messagesScope = Messages.error; break;
-        case 'information':
-            messagesScope = Messages.information; break;
-        case 'success':
-            messagesScope = Messages.success; break;
-        case 'warning':
-            messagesScope = Messages.warning; break;
-        default:
-            return null;
-    }
-
-    if (!args)
-        return messagesScope[id];
-
-    else
-        return format(messagesScope[id], args);
-};
-
 var showMessage = function (message) {
     Materialize.toast(message, 4000);
 };

@@ -25,7 +25,7 @@ $('.cpf').change(function () {
     var cpf = $(this).val().replace(/\D/g, '');
 
     if (!validarCpf(cpf)) {
-        showMessage(getMessage('error', 3));
+        showMessage(Messages.error[3]);
         $(this).val('');
     }
 });
