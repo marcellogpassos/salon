@@ -171,6 +171,15 @@ p.dl strong {
     margin-right: 8px !important;
 }
 
+.card .card-content p.detalhe-agendamento {
+    margin: 4px 0;
+}
+
+.card .card-content.agendamentos {
+    height: 600px;
+    overflow-y: scroll;
+}
+
 i.fa.fa-percent.material-icons.prefix {
     font-size: 1.5rem;
 }

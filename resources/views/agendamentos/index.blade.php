@@ -117,81 +117,89 @@
 
                     <h4 class="card-title">Agendamentos Futuros</h4>
 
-                    <div class="card-content gray-text text-darken-4">
+                    <div class="card-content gray-text text-darken-4 agendamentos">
                         <div class="row">
+
                             @foreach($agendamentos as $agendamento)
                                 <div class="col s12">
                                     @if($agendamento->status == 'C')
                                         <div class="card green lighten-5">
-                                    @elseif($agendamento->status == 'N')
-                                        <div class="card red lighten-5">
-                                    @else
-                                        <div class="card grey lighten-4">
-                                    @endif
-                                        <div class="card-content black-text">
-                                            <span class="card-title">
-                                                {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora)}}
-                                            </span>
-                                            <p>
-                                                <strong>Servi&ccedil;o:</strong>
-                                                {{ $agendamento->servico->descricao }}
-                                            </p>
+                                            @elseif($agendamento->status == 'N')
+                                                <div class="card red lighten-5">
+                                                    @else
+                                                        <div class="card grey lighten-4">
+                                                            @endif
 
-                                            <p>
-                                                <strong>Profissional:</strong>
-                                                @if($agendamento->profissional_id)
-                                                    {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
-                                                @else
-                                                    - -
-                                                @endif
-                                            </p>
+                                                            <div class="card-content black-text">
 
-                                            <p>
-                                                <strong>Status:</strong>
-                                                @if($agendamento->status == 'C')
-                                                    Confirmado
-                                                @elseif($agendamento->status == 'N')
-                                                    Negado
-                                                @else
-                                                    Aguardando confirmação
-                                                @endif
-                                            </p>
+                                    <span class="card-title">
+                                        {{ $agendamento->servico->descricao }}
+                                    </span>
 
-                                            <div class="card-action">
-                                                <a href="#">Cancelar Agendamento</a>
-                                            </div>
+                                                                <p class="detalhe-agendamento">
+                                                                    <strong>Data e hora:</strong>
+                                                                    {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora) }}
+                                                                </p>
 
+                                                                <p class="detalhe-agendamento">
+                                                                    <strong>Profissional:</strong>
+                                                                    @if($agendamento->profissional_id)
+                                                                        {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
+                                                                    @else
+                                                                        - -
+                                                                    @endif
+                                                                </p>
+
+                                                                <p class="detalhe-agendamento">
+                                                                    <strong>Status:</strong>
+                                                                    @if($agendamento->status == 'C')
+                                                                        Confirmado
+                                                                    @elseif($agendamento->status == 'N')
+                                                                        Negado
+                                                                    @else
+                                                                        Aguardando confirmação
+                                                                    @endif
+                                                                </p>
+
+                                                                @if($agendamento->status == 'N' && $agendamento->justificativa)
+                                                                    <p class="detalhe-agendamento">
+                                                                        <strong>Justificativa:</strong>
+                                                                        {{$agendamento->justificativa}}
+                                                                    </p>
+                                                                @endif
+
+                                                                <div class="row">
+                                                                    <div class="col s12">
+
+                                                                        <a class="btn btn-block primary" href="#">
+                                                                            Cancelar Agendamento </a>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                @endforeach
                                         </div>
-                                    </div>
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
 
-                    <div class="card-action">
-                        <div class="row">
-                            <div class="col s12">
-
-                            </div>
                         </div>
                     </div>
 
                 </div>
+
             </div>
 
-        </div>
+            @endsection
 
-    </div>
+            @section('scripts')
 
-@endsection
+                <script type="text/javascript">
+                    var urlListarServicosPorCategoria = '{{ url('categoriasServicos/:categoria/servicos') }}';
+                    var urlProfissionaisPorServico = '{{ url('servicos/:servico/profissionais') }}';
+                </script>
 
-@section('scripts')
-
-    <script type="text/javascript">
-        var urlListarServicosPorCategoria = '{{ url('categoriasServicos/:categoria/servicos') }}';
-        var urlProfissionaisPorServico = '{{ url('servicos/:servico/profissionais') }}';
-    </script>
-
-    <script src="{{ asset('js/agendamentos.js') }}"></script>
+                <script src="{{ asset('js/agendamentos.js') }}"></script>
 
 @endsection
