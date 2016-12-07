@@ -26,10 +26,10 @@ var Messages = {
         "É necessário fornecer pelo menos um campo.",                                                                   // 17
         "A data inicial deve ser anterior à data final.",                                                               // 18
         "O valor mínimo deve ser menor que o valor máximo.",                                                            // 19
-        "O código deve conter 6 caracteres apenas letras e números."                                                    // 20
+        "O código deve conter 6 caracteres apenas letras e números.",                                                   // 20
     ],
     information: [
-        "Um link para resetar a senha foi enviado para: {0}."                                                            // 0
+        "Um link para resetar a senha foi enviado para: {0}.",                                                          // 0
     ],
     success: [
         "Usuário cadastrado com sucesso: {0}!",                                                                         // 0
@@ -39,7 +39,7 @@ var Messages = {
         "Quantidade alterada!",                                                                                         // 4
     ],
     warning: [
-        "Item já adicionado."                                                                                           // 0
+        "Item já adicionado.",                                                                                          // 0
     ],
     confirmation: [
         "Deseja realmente cancelar o agendamento do serviço?",                                                          // 0
@@ -67,7 +67,7 @@ var getMessage = function (type, id, args) {
 
     else
         return format(messagesScope[id], args);
-}
+};
 
 var showMessage = function (message) {
     Materialize.toast(message, 4000);
