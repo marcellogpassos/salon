@@ -19,15 +19,15 @@ var campos = [
 function validateForm() {
     return (
         validarNenhumCampoFornecido(campos, function () {
-            showMessage('É necessário fornecer pelo menos um campo!');
+            showMessage(Messages.error[17]);
         }) &&
         validarPrecedenciaDatas(form['data_inicial'].value, form['data_final'].value, function () {
-            showMessage('A data inicial deve ser anterior à data final!');
+            showMessage(Messages.error[18]);
             $('#dataInicialInput').val('');
             $('#dataFinalInput').val('');
         }) &&
         validarRangeValores(form['valor_minimo'].value, form['valor_maximo'].value, function () {
-            showMessage('O valor mínimo deve ser menor que o valor máximo!');
+            showMessage(Messages.error[19]);
             $('#valorMinimoInput').val('');
             $('#valorMaximoInput').val('');
         })
@@ -108,7 +108,7 @@ $(codigoValidacaoInput).change(function () {
     var codigoFornecido = $(codigoValidacaoInput).val();
     if (!validarCodigo(codigoFornecido)) {
         $(codigoValidacaoInput).val('');
-        showMessage('O código deve conter 6 caracteres apenas letras e números');
+        showMessage(Messages.error[20]);
     } else
         $(codigoValidacaoInput).val(codigoFornecido.toUpperCase());
 });

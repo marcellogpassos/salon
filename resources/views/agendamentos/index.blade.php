@@ -209,7 +209,7 @@
     <script type="application/javascript">
 
         $('.cancelamento-agendamento').submit(function (event) {
-            return confirm('Deseja realmente cancelar o agendamento do serviço?');
+            return confirm(Messages.confirmation[0]);
         });
 
         $('.hora').change(function () {
@@ -218,7 +218,7 @@
             if (hora)
                 this.val(hora);
             else {
-                showMessage('Hora inválida!');
+                showMessage(Messages.error[10]);
                 this.value = ''
             }
         });

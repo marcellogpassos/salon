@@ -35,7 +35,7 @@ var descontoReais = 0;
 
 adicionarItemButton.on('click', function () {
     if (getItemIndex(itemSelecionado.id) != -1) {
-        showMessage('Item já adicionado!');
+        showMessage(Messages.warning[0]);
         buscarItemEstadoInicial();
         return;
     }
@@ -46,7 +46,7 @@ adicionarItemButton.on('click', function () {
     atualizarListaItens();
     resetDesconto();
     resetValorPago();
-    showMessage('Item adicionado!');
+    showMessage(Messages.success[2]);
     buscarItemEstadoInicial();
 });
 
@@ -179,7 +179,7 @@ var removerItem = function (item) {
     atualizarListaItens();
     resetDesconto();
     resetValorPago();
-    showMessage('Item removido!');
+    showMessage(Messages.success[3]);
     buscarItemEstadoInicial();
 };
 
@@ -209,14 +209,14 @@ var setDescontoReais = function (desconto) {
 
 var setQuantidade = function (itemId, novaQuantidade) {
     var itemAlterado = itens[getItemIndex(itemId)];
-    if (novaQuantidade > 0 && (novaQuantidade < itemAlterado.item.quantidadeDisponivel || itemAlterado.item.tipoItem == 'S')) {
+    if (novaQuantidade > 0 && (novaQuantidade <= itemAlterado.item.quantidadeDisponivel || itemAlterado.item.tipoItem == 'S')) {
         itemAlterado.quantidade = novaQuantidade;
         atualizarListaItens();
         resetDesconto();
         resetValorPago();
-        showMessage('Quantidade alterada!');
+        showMessage(Messages.success[4]);
     } else {
-        showMessage('A quantidade deve estar entre 0 e ' + itemAlterado.item.quantidadeDisponivel + '!');
+        showMessage(format(Messages.error[16], [itemAlterado.item.quantidadeDisponivel]));
         $('#quantidade' + itemAlterado.item.id).val('1');
     }
 };
@@ -233,7 +233,7 @@ var setValorPago = function (valor) {
 
 var validarForm = function () {
     if (itens.length < 1) {
-        showMessage('Nenhum item adicionado!');
+        showMessage(Messages.error[13]);
         return false;
     } else
         return true;
@@ -242,7 +242,7 @@ var validarForm = function () {
 var validarDesconto = function (desconto, valorTotal) {
     if (desconto > 0 && desconto < valorTotal)
         return true;
-    showMessage('O desconto concedido é inválido!');
+    showMessage(Messages.error[14]);
     resetDesconto();
     descontoReaisInput.focus();
     return false;
@@ -251,7 +251,7 @@ var validarDesconto = function (desconto, valorTotal) {
 var validarValorPago = function (valorPago, valorFinal) {
     if (valorPago >= valorFinal)
         return true;
-    showMessage('O valor pago deve ser maior que o valor final!');
+    showMessage(Messages.error[15]);
     resetValorPago();
     valorPagoInput.focus();
     return false;
