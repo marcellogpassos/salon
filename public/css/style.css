@@ -177,7 +177,7 @@ p.dl strong {
 
 .card .card-content.agendamentos {
     height: 600px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 i.fa.fa-percent.material-icons.prefix {

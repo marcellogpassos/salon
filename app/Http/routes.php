@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-	return view('welcome');
+    return view('welcome');
 });
 
 Route::auth();
@@ -21,9 +21,10 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/teste', function () {
-	return null;
+    return null;
 });
 
+Route::delete('agendamentos/{id}', 'AgendamentosController@cancelarAgendamento');
 Route::get('agendamentos/', 'AgendamentosController@index');
 Route::post('agendamentos/', 'AgendamentosController@agendar');
 

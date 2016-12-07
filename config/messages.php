@@ -14,6 +14,7 @@ return [
         'Falha ao tentar cadastrar o serviço {0}.',                                                                     // 6
         'Falha ao tentar alterar o servico {0}.',                                                                       // 7
         'Não foi possível excluir o serviço {0}.',                                                                      // 8
+        'Não foi possível cancelar o agendamento do serviço - agendamento não encontrado!',                             // 9
     ],
 
     'information' => [
@@ -33,7 +34,8 @@ return [
         'Serviço {0} alterado com sucesso!',                                                                            // 9
         'Serviço {0} deletado com sucesso!',                                                                            // 10
         'Compra registrada com sucesso! Código de validação: "{0}".',                                                   // 11
-        'Serviço agendado com sucesso!'                                                                                 // 12
+        'Serviço agendado com sucesso!',                                                                                // 12
+        'Agendamento cancelado com sucesso!',                                                                           // 13
     ],
 
     'warning' => [

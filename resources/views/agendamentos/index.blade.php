@@ -122,84 +122,107 @@
 
                             @foreach($agendamentos as $agendamento)
                                 <div class="col s12">
-                                    @if($agendamento->status == 'C')
-                                        <div class="card green lighten-5">
-                                            @elseif($agendamento->status == 'N')
-                                                <div class="card red lighten-5">
-                                                    @else
-                                                        <div class="card grey lighten-4">
-                                                            @endif
 
-                                                            <div class="card-content black-text">
+                                    <div class="card{{ $agendamento->status == 'C' ? ' green lighten-5' :
+                                                    ($agendamento->status == 'N' ? ' red lighten-5' : ' grey lighten-4')}}">
 
-                                    <span class="card-title">
-                                        {{ $agendamento->servico->descricao }}
-                                    </span>
+                                        <div class="card-content black-text">
 
-                                                                <p class="detalhe-agendamento">
-                                                                    <strong>Data e hora:</strong>
-                                                                    {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora) }}
-                                                                </p>
+                                        <span class="card-title">
+                                            {{ $agendamento->servico->descricao }}
+                                        </span>
 
-                                                                <p class="detalhe-agendamento">
-                                                                    <strong>Profissional:</strong>
-                                                                    @if($agendamento->profissional_id)
-                                                                        {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
-                                                                    @else
-                                                                        - -
-                                                                    @endif
-                                                                </p>
+                                            <p class="detalhe-agendamento">
+                                                <strong>Data e hora:</strong>
+                                                {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora) }}
+                                            </p>
 
-                                                                <p class="detalhe-agendamento">
-                                                                    <strong>Status:</strong>
-                                                                    @if($agendamento->status == 'C')
-                                                                        Confirmado
-                                                                    @elseif($agendamento->status == 'N')
-                                                                        Negado
-                                                                    @else
-                                                                        Aguardando confirmação
-                                                                    @endif
-                                                                </p>
+                                            <p class="detalhe-agendamento">
+                                                <strong>Profissional:</strong>
+                                                @if($agendamento->profissional_id)
+                                                    {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
+                                                @else
+                                                    - -
+                                                @endif
+                                            </p>
 
-                                                                @if($agendamento->status == 'N' && $agendamento->justificativa)
-                                                                    <p class="detalhe-agendamento">
-                                                                        <strong>Justificativa:</strong>
-                                                                        {{$agendamento->justificativa}}
-                                                                    </p>
-                                                                @endif
+                                            <p class="detalhe-agendamento">
+                                                <strong>Status:</strong>
+                                                @if($agendamento->status == 'C')
+                                                    Confirmado
+                                                @elseif($agendamento->status == 'N')
+                                                    Negado
+                                                @else
+                                                    Aguardando confirmação
+                                                @endif
+                                            </p>
 
-                                                                <div class="row">
-                                                                    <div class="col s12">
+                                            @if($agendamento->status == 'N' && $agendamento->justificativa)
+                                                <p class="detalhe-agendamento">
+                                                    <strong>Justificativa:</strong>
+                                                    {{$agendamento->justificativa}}
+                                                </p>
+                                            @endif
 
-                                                                        <a class="btn btn-block primary" href="#">
-                                                                            Cancelar Agendamento </a>
+                                            {{ Form::open([
+                                                'method' => 'DELETE',
+                                                'url' => '/agendamentos/' . $agendamento->id,
+                                                'class' => 'cancelamento-agendamento']) }}
 
-                                                                    </div>
-                                                                </div>
+                                            <div class="row">
+                                                <div class="col s12">
 
-                                                            </div>
-                                                        </div>
+                                                    <button type="submit" class="btn btn-block primary">
+                                                        Cancelar Agendamento
+                                                    </button>
+
                                                 </div>
-                                                @endforeach
-                                        </div>
-                                </div>
+                                            </div>
 
+                                            {{ Form::close() }}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
                 </div>
-
             </div>
 
-            @endsection
+        </div>
 
-            @section('scripts')
+    </div>
 
-                <script type="text/javascript">
-                    var urlListarServicosPorCategoria = '{{ url('categoriasServicos/:categoria/servicos') }}';
-                    var urlProfissionaisPorServico = '{{ url('servicos/:servico/profissionais') }}';
-                </script>
+@endsection
 
-                <script src="{{ asset('js/agendamentos.js') }}"></script>
+@section('scripts')
+
+    <script type="text/javascript">
+        var urlListarServicosPorCategoria = '{{ url('categoriasServicos/:categoria/servicos') }}';
+        var urlProfissionaisPorServico = '{{ url('servicos/:servico/profissionais') }}';
+    </script>
+
+    <script src="{{ asset('js/agendamentos.js') }}"></script>
+
+    <script type="application/javascript">
+
+        $('.cancelamento-agendamento').submit(function (event) {
+            return confirm('Deseja realmente cancelar o agendamento do serviço?');
+        });
+
+        $('.hora').change(function () {
+            var valorInserido = this.value;
+            var hora = formatarHoraMinuto(valorInserido);
+            if (hora)
+                this.val(hora);
+            else {
+                showMessage('Hora inválida!');
+                this.value = ''
+            }
+        });
+
+    </script>
 
 @endsection
