@@ -68,3 +68,32 @@ var setServico = function (servico) {
     else
         $('.profissionais').prop('disabled', true);
 };
+
+var cancelarAgendamento = function (agendamentoId) {
+    var url = urlCancelarAgendamento.replace(':id', agendamentoId);
+    $('#formCancelarAgendamento').attr('action', url);
+    $('#confirmarCancelarAgendamento').openModal();
+};
+
+$('#modalCancelar').click(function () {
+    $('#confirmarCancelarAgendamento').closeModal({
+        complete: function () {
+            $('#formCancelarAgendamento').removeAttr('action');
+        }
+    });
+});
+
+$('#modalConfirmar').click(function () {
+    $('#formCancelarAgendamento').submit();
+});
+
+$('.hora').change(function () {
+    var valorInserido = this.value;
+    var hora = formatarHoraMinuto(valorInserido);
+    if (hora)
+        this.val(hora);
+    else {
+        showMessage(Messages.error[10]);
+        this.value = ''
+    }
+});

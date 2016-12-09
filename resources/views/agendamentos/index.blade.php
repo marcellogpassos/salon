@@ -164,22 +164,17 @@
                                                 </p>
                                             @endif
 
-                                            {{ Form::open([
-                                                'method' => 'DELETE',
-                                                'url' => '/agendamentos/' . $agendamento->id,
-                                                'class' => 'cancelamento-agendamento']) }}
-
                                             <div class="row">
                                                 <div class="col s12">
 
-                                                    <button type="submit" class="btn btn-block primary">
+                                                    <a class="waves-effect waves-light btn btn-block primary"
+                                                       href="#confirmarCancelarAgendamento"
+                                                       onclick="cancelarAgendamento({{ $agendamento->id }})">
                                                         Cancelar Agendamento
-                                                    </button>
+                                                    </a>
 
                                                 </div>
                                             </div>
-
-                                            {{ Form::close() }}
 
                                         </div>
                                     </div>
@@ -195,6 +190,24 @@
 
     </div>
 
+    <div id="confirmarCancelarAgendamento" class="modal modal-close">
+        <div class="modal-content">
+            <p>Deseja realmente cancelar o agendamento?</p>
+        </div>
+        <div class="modal-footer">
+            <a id="modalCancelar" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">
+                Cancelar
+            </a>
+            <a id="modalConfirmar" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">
+                Confirmar
+            </a>
+        </div>
+    </div>
+
+    {{ Form::open([ 'id' => 'formCancelarAgendamento', 'method' => 'DELETE' ]) }}
+
+    {{ Form::close() }}
+
 @endsection
 
 @section('scripts')
@@ -202,27 +215,9 @@
     <script type="text/javascript">
         var urlListarServicosPorCategoria = '{{ url('categoriasServicos/:categoria/servicos') }}';
         var urlProfissionaisPorServico = '{{ url('servicos/:servico/profissionais') }}';
+        var urlCancelarAgendamento = '{{ url('/agendamentos/:id') }}';
     </script>
 
     <script src="{{ asset('js/agendamentos.js') }}"></script>
-
-    <script type="application/javascript">
-
-        $('.cancelamento-agendamento').submit(function (event) {
-            return confirm(Messages.confirmation[0]);
-        });
-
-        $('.hora').change(function () {
-            var valorInserido = this.value;
-            var hora = formatarHoraMinuto(valorInserido);
-            if (hora)
-                this.val(hora);
-            else {
-                showMessage(Messages.error[10]);
-                this.value = ''
-            }
-        });
-
-    </script>
 
 @endsection
