@@ -197,6 +197,33 @@ i.fa.fa-percent.material-icons.prefix {
     max-height: 80%;
 }
 
+.calendario {
+    background-color: #FEFEFE;
+    padding: 24px;
+}
+
+.calendario .fc-header-toolbar h2 {
+    font-size: 20px;
+    padding: 8px;
+    background: #347162;
+    color: #D9E4E1;
+    border-radius: 4px;
+}
+
+.calendario .fc-day-top:not(.fc-today) {
+    background-color: #D9E4E1 !important;
+}
+
+.calendario .fc-today {
+    background-color: #F5D0B9 !important;
+}
+
+.calendario .fc-day-header,
+.calendario .fc-day-header a{
+    background-color: #347162 !important;
+    color: #D9E4E1;
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;

@@ -25,6 +25,7 @@ Route::get('/teste', function () {
 });
 
 Route::delete('agendamentos/{id}', 'AgendamentosController@cancelarAgendamento');
+Route::get('agenda/', 'AgendamentosController@minhaAgenda');
 Route::get('agendamentos/', 'AgendamentosController@index');
 Route::post('agendamentos/', 'AgendamentosController@agendar');
 
