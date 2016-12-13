@@ -181,4 +181,19 @@ return [
 			' INNER JOIN compras comp ON (comp.id = itco.compra_id)' .
 			' INNER JOIN produtos prod ON (prod.id = itco.item_id)' .
 		' WHERE comp.data_compra > ?',
+
+	'agenda' =>
+		'SELECT' .
+			' agen.id as "id",' .
+			' upper(concat(user.name, " - ", serv.descricao)) as "title",' .
+			' concat(agen.data, "T", agen.hora) as "start",' .
+			' concat(agen.data, "T", addtime(agen.hora, serv.duracao)) as "end"' .
+		' FROM' .
+			' blank.agendamentos agen' .
+			' INNER JOIN users user ON (user.id = agen.cliente_id)' .
+			' INNER JOIN servicos serv ON (serv.id = agen.servico_id)' .
+		' WHERE' .
+			' agen.data_cancelamento is null AND' .
+			' agen.status = "C" AND' .
+			' agen.data BETWEEN ? AND ?'
 ];

@@ -19,4 +19,6 @@ interface AgendamentosServiceInterface {
 
 	public function cancelarAgendamento($clienteId, $agendamentoId);
 
+	public function minhaAgenda($start, $end, $profissionalId = null);
+
 }

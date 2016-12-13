@@ -37,4 +37,32 @@
     <script src="{{ asset('lib/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('lib/fullcalendar/locale/pt-br.js') }}"></script>
 
+    <script type="application/javascript">
+        var agenda = {!! json_encode($agenda) !!};
+
+        var todayDate = moment().startOf('day');
+        var YM = todayDate.format('YYYY-MM');
+        var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
+        var TODAY = todayDate.format('YYYY-MM-DD');
+        var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'title',
+                center: 'prev,next today',
+                right: 'month,agendaWeek,agendaDay,listWeek'
+            },
+            allDaySlot: false,
+            slotEventOverlap: false,
+            editable: false,
+            contentHeight: 1000,
+            eventLimit: true, // allow "more" link when too many events
+            navLinks: true,
+            slotDuration: '00:15:00',
+            minTime: '08:00',
+            maxTime: '18:00',
+            events: agenda
+        });
+    </script>
+
 @endsection

@@ -34,8 +34,13 @@ class User extends Authenticatable {
 
     public function possuiRole($roleProcurado) {
         foreach ($this->roles as $role)
-            if ($role->id == $roleProcurado->id)
+            if ($role->id == $roleProcurado)
                 return true;
         return false;
     }
+
+    public function admin() {
+        return $this->possuiRole(Role::ADMIN);
+    }
+
 }

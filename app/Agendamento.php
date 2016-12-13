@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agendamento extends Model {
 
+    const INDETERMINADO = 'I';
+    const CONFIRMADO = 'C';
+    const NEGADO = 'N';
+
     protected $table = 'agendamentos';
 
     protected $fillable = [
