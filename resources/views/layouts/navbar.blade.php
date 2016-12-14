@@ -27,7 +27,7 @@
 
                     <ul id="agendaMenuDropdown" class="dropdown-content">
                         <li><a href="{{ url('/agendamentos') }}">Agendar horário</a></li>
-                        <li><a href="">Minha agenda</a></li>
+                        <li><a href="{{ url('/agenda') }}">Minha agenda</a></li>
                     </ul>
                 </li>
 
@@ -90,7 +90,7 @@
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a href="{{ url('/agendamentos') }}">Agendar horário</a></li>
-                                    <li><a href="">Minha agenda</a></li>
+                                    <li><a href="{{ url('/agenda') }}">Minha agenda</a></li>
                                 </ul>
                             </div>
                         </li>
