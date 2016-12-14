@@ -51,13 +51,31 @@ class AgendamentosController extends Controller {
     }
 
     public function minhaAgenda(Request $request) {
-        $start = ($request->has('mes')) ? '' : new Carbon('first day of this month');
-        $end = ($request->has('mes')) ? '' : new Carbon('last day of this month');
+        $mesAgenda = new Carbon('first day of this month');
+        $current = true;
+
+        if ($request->has('mes'))
+            try {
+                $mesAgenda = new Carbon($request->input('mes'));
+                $current = false;
+            } catch (\Exception $ex) {
+            }
+
+        $mesAnterior = $mesAgenda->copy()->subMonth();
+        $mesSeguinte = $mesAgenda->copy()->addMonth();
+        $fimMesAgenda = $mesAgenda->copy()->endOfMonth();
+
         $agenda = (Auth::user()->admin()) ?
-            $this->agendamentosService->minhaAgenda($start, $end) :
-            $this->agendamentosService->minhaAgenda($start, $end, Auth::user()->id);
+            $this->agendamentosService->minhaAgenda($mesAgenda, $fimMesAgenda) :
+            $this->agendamentosService->minhaAgenda($mesAgenda, $fimMesAgenda, Auth::user()->id);
+
         return view('agendamentos.agenda')
-            ->with('agenda', $agenda);
+            ->with('agenda', $agenda)
+            ->with('minDate', $mesAgenda->timestamp)
+            ->with('maxDate', $fimMesAgenda->timestamp)
+            ->with('mesAnterior', $mesAnterior)
+            ->with('mesSeguinte', $mesSeguinte)
+            ->with('default', ($current ? null : $mesAgenda));
     }
 
 }

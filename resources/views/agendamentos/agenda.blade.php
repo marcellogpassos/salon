@@ -21,7 +21,33 @@
 
             <div class="col s12">
 
-                <div id='calendar' class="calendario"></div>
+                <div class="row">
+                    <div class="col s6">
+                        <a href="{{ url('/agenda?mes=' . $mesAnterior->year . '-' . $mesAnterior->month) }}"
+                           class="btn btn-primary">
+                            <i class="material-icons left">keyboard_arrow_left</i>
+                            {{ traduzirMes( $mesAnterior->format('F \/ Y') ) }}
+                        </a>
+                    </div>
+                    <div class="col s6" style="text-align: right">
+                        <a href="{{ url('/agenda?mes=' . $mesSeguinte->year . '-' . $mesSeguinte->month) }}"
+                           class="btn btn-primary">
+                            {{ traduzirMes( $mesSeguinte->format('F \/ Y') ) }}
+                            <i class="material-icons right">keyboard_arrow_right</i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <h4 class="card-title">Calend&aacute;rio</h4>
+                            <div class="card-content">
+                                <div id='calendar' class="calendario"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
@@ -46,23 +72,17 @@
         var TODAY = todayDate.format('YYYY-MM-DD');
         var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
 
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'title',
-                center: 'prev,next today',
-                right: 'month,agendaWeek,agendaDay,listWeek'
-            },
-            allDaySlot: false,
-            slotEventOverlap: false,
-            editable: false,
-            contentHeight: 1000,
-            eventLimit: true, // allow "more" link when too many events
-            navLinks: true,
-            slotDuration: '00:15:00',
-            minTime: '08:00',
-            maxTime: '18:00',
-            events: agenda
-        });
+        var def = todayDate;
+        var current = true;
+        @if($default)
+            def = '{!! $default !!}';
+            current = false;
+        @endif
+
+        var minDate = '{!! $minDate !!}';
+        var maxDate = '{!! $maxDate !!}';
     </script>
+
+    <script src="{{ asset('js/agenda.js') }}"></script>
 
 @endsection

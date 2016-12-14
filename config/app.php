@@ -52,7 +52,7 @@ return [
 	|
 	*/
 
-	'timezone' => 'America/Fortaleza',
+	'timezone' => 'America/Recife',
 
 	/*
 	|--------------------------------------------------------------------------

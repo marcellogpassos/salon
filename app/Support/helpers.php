@@ -142,6 +142,30 @@ if (!function_exists('itemComprovanteCompra')) {
 
 }
 
+if (!function_exists('traduzirMes')) {
+
+    function traduzirMes($input) {
+        $dicionario = [
+            'JANUARY'   => 'JANEIRO',
+            'FEBRUARY'  => 'FEVEREIRO',
+            'MARCH'     => 'MARÇO',
+            'APRIL'     => 'ABRIL',
+            'MAY'       => 'MAIO',
+            'JUNE'      => 'JUNHO',
+            'JULY'      => 'JULHO',
+            'AUGUST'    => 'AGOSTO',
+            'SEPTEMBER' => 'SETEMBRO',
+            'OCTOBER'   => 'OUTUBRO',
+            'NOVEMBER'  => 'NOVEMBRO',
+            'DEZEMBER'  => 'DEZEMBRO'
+        ];
+        foreach ($dicionario as $key => $value)
+            $input = str_ireplace($key, $value, $input);
+        return $input;
+    }
+
+}
+
 if (!function_exists('tratarInputValoresMonetarios')) {
 
     function tratarInputValoresMonetarios($valorOriginal) {
