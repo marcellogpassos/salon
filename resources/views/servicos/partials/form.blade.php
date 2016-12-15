@@ -36,23 +36,6 @@
         </div>
 
         <div class="input-field col s12 m4">
-            <div class="col s6 right">
-                <input name="masculino" type="checkbox" id="masculinoInput" value="1"
-                        {!! (old('masculino') || (isset($servico->masculino) && $servico->masculino)) ? ' checked' : '' !!}>
-                <label for="masculinoInput">Para homens</label>
-            </div>
-            <div class="col s6 right">
-                <input name="feminino" type="checkbox" id="femininoInput" value="1"
-                        {!! (old('feminino') || (isset($servico->feminino) && $servico->feminino)) ? ' checked' : '' !!}>
-                <label for="femininoInput">Para mulheres</label>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="input-field offset-m2 col s12 m2">
             <i class="material-icons prefix">attach_money</i>
             <input id="valorInput" name="valor" type="text" maxlength="16" class="validate moeda"
                    value="{{ old('valor') ? old('valor') : (isset($servico->itemVenda->valor) ?
@@ -60,14 +43,31 @@
             <label for="valorInput">Valor (R$) *</label>
         </div>
 
-        <div class="input-field col s12 m6">
-            <div class="col s12 m6 center">
+    </div>
+
+    <div class="row">
+
+        <div class="input-field offset-m1 col s12 m5">
+            <div class="col s5">
+                <input name="masculino" type="checkbox" id="masculinoInput" value="1"
+                        {!! (old('masculino') || (isset($servico->masculino) && $servico->masculino)) ? ' checked' : '' !!}>
+                <label for="masculinoInput">Para homens</label>
+            </div>
+            <div class="col s6">
+                <input name="feminino" type="checkbox" id="femininoInput" value="1"
+                        {!! (old('feminino') || (isset($servico->feminino) && $servico->feminino)) ? ' checked' : '' !!}>
+                <label for="femininoInput">Para mulheres</label>
+            </div>
+        </div>
+
+        <div class="input-field col s12 m5">
+            <div class="col s12 m6">
                 <input name="ativo" type="radio" id="ativoInput" value="1"
                         {!! (old('ativo') == '1' || (isset($servico->itemVenda->ativo) && $servico->itemVenda->ativo == '1')) ?
                                   ' checked' : '' !!}>
                 <label for="ativoInput">Servi&ccedil;o ativo</label>
             </div>
-            <div class="col s12 m6 center">
+            <div class="col s12 m6">
                 <input name="ativo" type="radio" id="inativoInput" value="0"
                         {!! (old('ativo') == '0' || (isset($servico->itemVenda->ativo) && $servico->itemVenda->ativo == '0')) ?
                                   ' checked' : '' !!}>

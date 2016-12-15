@@ -10,7 +10,7 @@ $('#calendar').fullCalendar({
     contentHeight: 1000,
     eventLimit: true, // allow "more" link when too many events
     navLinks: true,
-    slotDuration: '00:15:00',
+    slotDuration: '00:05:00',
     minTime: '08:00',
     defaultDate: def,
     viewRender: function () {
