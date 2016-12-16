@@ -37,7 +37,7 @@
 
         <div class="col s12 m3">
             <label for="duracaoInput" class="active">Dura&ccedil;&atilde;o aproximada *</label>
-            <select id="duracaoInput" name="duracao" class="browser-default">
+            <select id="duracaoInput" name="duracao" class="browser-default" required>
                 <option value="" selected></option>
                 <option value="00:15:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '00:15:00') || old('duracao') == '00:15:00') ? ' selected' : '' !!}>
