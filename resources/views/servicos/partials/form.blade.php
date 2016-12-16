@@ -19,7 +19,7 @@
 
     <div class="row">
 
-        <div class="col offset-m2 s12 m4">
+        <div class="col offset-m1 s12 m4">
             <label for="categoriaServicoInput" class="active">Categoria *</label>
             <select id="categoriaServicoInput" name="categoria_id" class="browser-default">
                 <option value="" selected></option>
@@ -35,7 +35,78 @@
             </select>
         </div>
 
-        <div class="input-field col s12 m4">
+        <div class="col s12 m3">
+            <label for="duracaoInput" class="active">Dura&ccedil;&atilde;o aproximada *</label>
+            <select id="duracaoInput" name="duracao" class="browser-default">
+                <option value="" selected></option>
+                <option value="00:15:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '00:15:00') || old('duracao') == '00:15:00') ? ' selected' : '' !!}>
+                    00:15:00
+                </option>
+                <option value="00:30:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '00:30:00') || old('duracao') == '00:30:00') ? ' selected' : '' !!}>
+                    00:30:00
+                </option>
+                <option value="00:45:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '00:45:00') || old('duracao') == '00:45:00') ? ' selected' : '' !!}>
+                    00:45:00
+                </option>
+                <option value="01:00:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '01:00:00') || old('duracao') == '01:00:00') ? ' selected' : '' !!}>
+                    01:00:00
+                </option>
+                <option value="01:15:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '01:15:00') || old('duracao') == '01:15:00') ? ' selected' : '' !!}>
+                    01:15:00
+                </option>
+                <option value="01:30:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '01:30:00') || old('duracao') == '01:30:00') ? ' selected' : '' !!}>
+                    01:30:00
+                </option>
+                <option value="01:45:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '01:45:00') || old('duracao') == '01:45:00') ? ' selected' : '' !!}>
+                    01:45:00
+                </option>
+                <option value="02:00:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '02:00:00') || old('duracao') == '02:00:00') ? ' selected' : '' !!}>
+                    02:00:00
+                </option>
+                <option value="02:15:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '02:15:00') || old('duracao') == '02:15:00') ? ' selected' : '' !!}>
+                    02:15:00
+                </option>
+                <option value="02:30:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '02:30:00') || old('duracao') == '02:30:00') ? ' selected' : '' !!}>
+                    02:30:00
+                </option>
+                <option value="02:45:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '02:45:00') || old('duracao') == '02:45:00') ? ' selected' : '' !!}>
+                    02:45:00
+                </option>
+                <option value="03:00:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '03:00:00') || old('duracao') == '03:00:00') ? ' selected' : '' !!}>
+                    03:00:00
+                </option>
+                <option value="03:15:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '03:15:00') || old('duracao') == '03:15:00') ? ' selected' : '' !!}>
+                    03:15:00
+                </option>
+                <option value="03:30:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '03:30:00') || old('duracao') == '03:30:00') ? ' selected' : '' !!}>
+                    03:30:00
+                </option>
+                <option value="03:45:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '03:45:00') || old('duracao') == '03:45:00') ? ' selected' : '' !!}>
+                    03:45:00
+                </option>
+                <option value="04:00:00"
+                        {!! ((isset($servico->duracao) && $servico->duracao == '04:00:00') || old('duracao') == '04:00:00') ? ' selected' : '' !!}>
+                    04:00:00
+                </option>
+            </select>
+        </div>
+
+        <div class="input-field col s12 m3">
             <i class="material-icons prefix">attach_money</i>
             <input id="valorInput" name="valor" type="text" maxlength="16" class="validate moeda"
                    value="{{ old('valor') ? old('valor') : (isset($servico->itemVenda->valor) ?

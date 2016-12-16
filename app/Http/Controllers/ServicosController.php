@@ -96,19 +96,23 @@ class ServicosController extends Controller {
     }
 
     public function editarServico($id, ServicosRequest $request) {
-        $servicoAttr = $request->only('descricao', 'categoria_id', 'masculino', 'feminino');
+        $servicoAttr = $request->only('descricao', 'categoria_id', 'masculino', 'feminino', 'duracao');
         $itemVendaAttr = $request->only('ativo', 'valor');
-        $funcionariosHabilitadosAttr = $request->input('funcionarios');
         $itemVenda = false;
+
         try {
             $itemVenda = $this->servicosService->editar($id, $servicoAttr, $itemVendaAttr);
         } catch (QueryException $ex) {
         }
-        if ($itemVenda) {
+
+        if ($itemVenda && $request->has('funcionarios'))
+            $this->servicosService->definirFuncionariosHabilitados($itemVenda->id, $request->input('funcionarios'));
+
+        if ($itemVenda)
             showMessage('success', 9, [$itemVenda->servico->descricao]);
-            $this->servicosService->definirFuncionariosHabilitados($itemVenda->id, $funcionariosHabilitadosAttr);
-        } else
+        else
             showMessage('error', 7, [$servicoAttr['descricao']]);
+
         return Redirect::to('/servicos/buscar?id=' . $itemVenda->id);
     }
 

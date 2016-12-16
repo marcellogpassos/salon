@@ -130,7 +130,7 @@
                                             <th data-field="id">C&oacute;d.</th>
                                             <th data-field="descricao">Descri&ccedil;&atilde;o</th>
                                             <th data-field="categoria_id">Categoria</th>
-                                            <th data-field="sexo">Sexo</th>
+                                            <th data-field="duracao">Dura&ccedil;&atilde;o</th>
                                             <th data-field="valor">Valor</th>
                                             <th>Op&ccedil;&otilde;es</th>
                                         </tr>
@@ -143,7 +143,7 @@
                                                 <td>{{$servico->descricao}}</td>
                                                 <td>{{$servico->categoria ? $servico->categoria->descricao : '-'}}</td>
                                                 <td>
-                                                    {{ resolverGeneroServico($servico->masculino, $servico->feminino) }}
+                                                    {{ $servico->duracao }}
                                                 </td>
                                                 <td>{{moneyFormat($servico->itemVenda->valor)}}</td>
                                                 <td>
