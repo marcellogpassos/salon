@@ -41,67 +41,67 @@
                 <option value="" selected></option>
                 <option value="00:15:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '00:15:00') || old('duracao') == '00:15:00') ? ' selected' : '' !!}>
-                    00:15:00
+                    0:15
                 </option>
                 <option value="00:30:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '00:30:00') || old('duracao') == '00:30:00') ? ' selected' : '' !!}>
-                    00:30:00
+                    0:30
                 </option>
                 <option value="00:45:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '00:45:00') || old('duracao') == '00:45:00') ? ' selected' : '' !!}>
-                    00:45:00
+                    0:45
                 </option>
                 <option value="01:00:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '01:00:00') || old('duracao') == '01:00:00') ? ' selected' : '' !!}>
-                    01:00:00
+                    1:00
                 </option>
                 <option value="01:15:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '01:15:00') || old('duracao') == '01:15:00') ? ' selected' : '' !!}>
-                    01:15:00
+                    1:15
                 </option>
                 <option value="01:30:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '01:30:00') || old('duracao') == '01:30:00') ? ' selected' : '' !!}>
-                    01:30:00
+                    1:30
                 </option>
                 <option value="01:45:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '01:45:00') || old('duracao') == '01:45:00') ? ' selected' : '' !!}>
-                    01:45:00
+                    1:45
                 </option>
                 <option value="02:00:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '02:00:00') || old('duracao') == '02:00:00') ? ' selected' : '' !!}>
-                    02:00:00
+                    2:00
                 </option>
                 <option value="02:15:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '02:15:00') || old('duracao') == '02:15:00') ? ' selected' : '' !!}>
-                    02:15:00
+                    2:15
                 </option>
                 <option value="02:30:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '02:30:00') || old('duracao') == '02:30:00') ? ' selected' : '' !!}>
-                    02:30:00
+                    2:30
                 </option>
                 <option value="02:45:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '02:45:00') || old('duracao') == '02:45:00') ? ' selected' : '' !!}>
-                    02:45:00
+                    2:45
                 </option>
                 <option value="03:00:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '03:00:00') || old('duracao') == '03:00:00') ? ' selected' : '' !!}>
-                    03:00:00
+                    3:00
                 </option>
                 <option value="03:15:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '03:15:00') || old('duracao') == '03:15:00') ? ' selected' : '' !!}>
-                    03:15:00
+                    3:15
                 </option>
                 <option value="03:30:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '03:30:00') || old('duracao') == '03:30:00') ? ' selected' : '' !!}>
-                    03:30:00
+                    3:30
                 </option>
                 <option value="03:45:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '03:45:00') || old('duracao') == '03:45:00') ? ' selected' : '' !!}>
-                    03:45:00
+                    3:45
                 </option>
                 <option value="04:00:00"
                         {!! ((isset($servico->duracao) && $servico->duracao == '04:00:00') || old('duracao') == '04:00:00') ? ' selected' : '' !!}>
-                    04:00:00
+                    4:00
                 </option>
             </select>
         </div>
