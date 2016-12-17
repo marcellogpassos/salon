@@ -132,36 +132,62 @@
                                             {{ $agendamento->servico->descricao }}
                                         </span>
 
-                                            <p class="detalhe-agendamento">
-                                                <strong>Data e hora:</strong>
-                                                {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora) }}
-                                            </p>
+                                            <hr>
 
-                                            <p class="detalhe-agendamento">
-                                                <strong>Profissional:</strong>
-                                                @if($agendamento->profissional_id)
-                                                    {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
-                                                @else
-                                                    - -
-                                                @endif
-                                            </p>
+                                            <br>
 
-                                            <p class="detalhe-agendamento">
-                                                <strong>Status:</strong>
-                                                @if($agendamento->status == 'C')
-                                                    Confirmado
-                                                @elseif($agendamento->status == 'N')
-                                                    Negado
-                                                @else
-                                                    Aguardando confirmação
-                                                @endif
-                                            </p>
+                                            <div class="row">
+                                                <div class="col s12">
+
+                                                    <p>
+                                                        <strong>Data e hora:</strong>
+                                                        {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora) }}
+                                                    </p>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col s12">
+
+                                                    <p>
+                                                        <strong>Profissional:</strong>
+                                                        @if($agendamento->profissional_id)
+                                                            {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
+                                                        @else
+                                                            - -
+                                                        @endif
+                                                    </p>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col s12">
+
+                                                    <p>
+                                                        <strong>Status:</strong>
+                                                        @if($agendamento->status == 'C')
+                                                            Confirmado
+                                                        @elseif($agendamento->status == 'N')
+                                                            Negado
+                                                        @else
+                                                            Aguardando confirmação
+                                                        @endif
+                                                    </p>
+
+                                                </div>
+                                            </div>
 
                                             @if($agendamento->status == 'N' && $agendamento->justificativa)
-                                                <p class="detalhe-agendamento">
-                                                    <strong>Justificativa:</strong>
-                                                    {{$agendamento->justificativa}}
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col s12">
+                                                        <p>
+                                                            <strong>Justificativa:</strong>
+                                                            {{$agendamento->justificativa}}
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             @endif
 
                                             <div class="row">

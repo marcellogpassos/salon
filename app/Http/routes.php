@@ -12,21 +12,20 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WellcomeController@wellcome');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
 Route::get('/teste', function () {
-    return null;
+	return null;
 });
 
 Route::delete('agendamentos/{id}', 'AgendamentosController@cancelarAgendamento');
 Route::get('agenda/', 'AgendamentosController@minhaAgenda');
 Route::get('agendamentos/', 'AgendamentosController@index');
+Route::get('agendamentos/pendentes', 'AgendamentosController@agendamentosPendentes');
 Route::post('agendamentos/', 'AgendamentosController@agendar');
 
 Route::get('categoriasServicos/{id}/servicos', 'ServicosController@listarServicosPorCategoria');

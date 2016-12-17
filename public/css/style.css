@@ -179,7 +179,8 @@ p.dl strong {
     margin: 4px 0;
 }
 
-.card .card-content.agendamentos {
+.card .card-content.agendamentos,
+.card .card-content.agendamentos-pendentes {
     height: 600px;
     overflow-y: auto;
 }

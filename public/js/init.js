@@ -76,7 +76,7 @@ $(document).ready(function () {
     catch (err) {
     }
 
-    
+    $('input.char-counter, textarea.char-counter').characterCounter();
 
 });
 

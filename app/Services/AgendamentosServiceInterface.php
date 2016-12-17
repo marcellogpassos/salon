@@ -21,4 +21,6 @@ interface AgendamentosServiceInterface {
 
 	public function minhaAgenda($start, $end, $profissionalId = null);
 
+	public function meusAgendamentosPendentes($start, $end = null, $profissionalId = null);
+
 }
