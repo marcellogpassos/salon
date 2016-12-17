@@ -19,6 +19,7 @@ class ServicosRequest extends ItemVendaRequest {
             'categoria_id' => 'required|exists:categorias_servicos,id',
             'masculino' => 'in:1,0',
             'feminino' => 'in:1,0',
+            'duracao' => 'required|date_format:H:i:s'
         ];
     }
 

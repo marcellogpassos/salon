@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Servico extends Model {
 
 	protected $fillable = [
-		'descricao', 'categoria_id', 'masculino', 'feminino'
+		'descricao', 'categoria_id', 'masculino', 'feminino', 'duracao'
 	];
 
 	public function categoria() {
