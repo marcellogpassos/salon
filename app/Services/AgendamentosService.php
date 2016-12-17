@@ -69,7 +69,8 @@ class AgendamentosService implements AgendamentosServiceInterface {
 	}
 
 	public function meusAgendamentosPendentes($start, $end = null, $profissionalId = null) {
-		$query = Agendamento::where('status', Agendamento::INDETERMINADO)
+		$query = Agendamento::orderBy('data')
+			->where('status', Agendamento::INDETERMINADO)
 			->whereNull('data_cancelamento')
 			->where('data', '>=', $start);
 

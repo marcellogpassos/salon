@@ -88,4 +88,8 @@ class AgendamentosController extends Controller {
 		dd($agendamentosPedentes);
 	}
 
+	public function analisar(Request $request) {
+		dd($request->all());
+	}
+
 }

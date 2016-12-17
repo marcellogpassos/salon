@@ -27,6 +27,7 @@ Route::get('agenda/', 'AgendamentosController@minhaAgenda');
 Route::get('agendamentos/', 'AgendamentosController@index');
 Route::get('agendamentos/pendentes', 'AgendamentosController@agendamentosPendentes');
 Route::post('agendamentos/', 'AgendamentosController@agendar');
+Route::post('agendamentos/analisar', 'AgendamentosController@analisar');
 
 Route::get('categoriasServicos/{id}/servicos', 'ServicosController@listarServicosPorCategoria');
 
