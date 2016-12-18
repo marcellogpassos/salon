@@ -23,4 +23,6 @@ interface AgendamentosServiceInterface {
 
 	public function meusAgendamentosPendentes($start, $end = null, $profissionalId = null);
 
+	public function analisar($agendamentoId, $status, $justificativa = null);
+
 }

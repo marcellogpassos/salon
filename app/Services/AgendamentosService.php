@@ -82,4 +82,12 @@ class AgendamentosService implements AgendamentosServiceInterface {
 
 		return $query->get();
 	}
+
+	public function analisar($agendamentoId, $status, $justificativa = null) {
+		return $this->agendamentosRepository->update([
+			'status' => $status,
+			'justificativa' => $justificativa
+		], $agendamentoId);
+	}
+
 }

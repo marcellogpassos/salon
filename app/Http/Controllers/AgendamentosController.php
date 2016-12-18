@@ -10,6 +10,7 @@ use App\Http\Requests\AgendamentoRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AgendamentosController extends Controller {
 
@@ -89,7 +90,18 @@ class AgendamentosController extends Controller {
 	}
 
 	public function analisar(Request $request) {
-		dd($request->all());
+		$analise = $this->agendamentosService->analisar(
+			$request->input('id'),
+			$request->input('status'),
+			$request->has('justificativa') ? $request->input('justificativa') : null
+		);
+
+		if ($analise)
+			showMessage('success', 14);
+		else
+			showMessage('error', 10);
+
+		return Redirect::to('/');
 	}
 
 }

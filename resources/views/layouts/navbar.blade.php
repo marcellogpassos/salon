@@ -7,6 +7,7 @@
                 <li><a href="{{ url('/login') }}">Entrar</a></li>
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
+                <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ url('/users/buscar') }}">Usu&aacute;rios</a></li>
 
                 <li>
@@ -63,6 +64,7 @@
                 <li><a href="{{ url('/login') }}">Entrar</a></li>
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
+                <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ url('/users/buscar') }}">Usu&aacute;rios</a></li>
 
                 <li class="no-padding">

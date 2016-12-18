@@ -7,6 +7,8 @@
 @section('content')
     <div class="container">
 
+        @include('layouts.messages')
+
         <div class="row">
 
             <div class="col s12 m7">
