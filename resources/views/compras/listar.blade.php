@@ -51,7 +51,8 @@
 
                                 <div class="input-field col s12 m3">
                                     <i class="material-icons prefix">date_range</i>
-                                    <input id="dataInicialInput" name="data_inicial" class="data data-passada" type="text">
+                                    <input id="dataInicialInput" name="data_inicial" class="data data-passada"
+                                           type="text">
                                     <label for="dataInicialInput">Data inicial</label>
                                 </div>
 
@@ -126,11 +127,16 @@
                                         @foreach($comprasEncontradas as $compra)
                                             <tr>
                                                 <td>{{$compra->codigo_validacao}}</td>
-                                                <td>{{
-                                                    isset($compra->cliente) ?
-                                                        ($compra->cliente->name . ' ' . $compra->cliente->surname) :
-                                                        ' - '
-                                                }}</td>
+                                                <td>
+                                                    @if(isset($compra->cliente))
+                                                        <a onclick="detalharUsuario('#datalharUsuarioModal', '{{ $compra->cliente->id }}')"
+                                                           class="special-link">
+                                                            {{ $compra->cliente->name . ' ' . $compra->cliente->surname }}
+                                                        </a>
+                                                    @else
+                                                        --
+                                                    @endif
+                                                </td>
                                                 <td>{{dateToBrFormat($compra->data_compra, true)}}</td>
                                                 <td>{{moneyFormat($compra->valor_total, true)}}</td>
                                                 <td>{{
@@ -176,6 +182,8 @@
             </div>
         </div>
     </div>
+
+    @include('users.partials.detalhar')
 
 @endsection
 

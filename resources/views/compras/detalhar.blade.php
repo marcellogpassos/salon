@@ -22,7 +22,11 @@
                             <div class="col s12 m4 offset-m2">
                                 <p class="dl">
                                     @if(isset($compra->cliente))
-                                        <strong>Cliente:</strong> {{ $compra->cliente->name . ' ' . $compra->cliente->surname }}
+                                        <strong>Cliente:</strong>
+                                        <a onclick="detalharUsuario('#datalharUsuarioModal', '{{ $compra->cliente->id }}')"
+                                           class="special-link">
+                                            {{ $compra->cliente->name . ' ' . $compra->cliente->surname }}
+                                        </a>
                                     @else
                                         <strong>Cliente:</strong> -
                                     @endif
@@ -121,6 +125,8 @@
         </div>
 
     </div>
+
+    @include('users.partials.detalhar')
 
 @endsection
 

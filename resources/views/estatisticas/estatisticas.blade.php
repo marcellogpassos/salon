@@ -117,8 +117,8 @@
                                                             @foreach($clientesMaisFrequentes as $cliente)
                                                                 <tr>
                                                                     <td>
-                                                                        <a href="{{ url('/users/buscar?id=' . $cliente->id) }}"
-                                                                           class="special-link" target="_blank">
+                                                                        <a onclick="detalharUsuario('#datalharUsuarioModal', '{{ $cliente->id }}')"
+                                                                           class="special-link">
                                                                             {{ $cliente->nome }}
                                                                         </a>
                                                                     </td>
@@ -156,8 +156,8 @@
                                                             @foreach($clientesMaisRentaveis as $cliente)
                                                                 <tr>
                                                                     <td>
-                                                                        <a href="{{ url('/users/buscar?id=' . $cliente->id) }}"
-                                                                           class="special-link" target="_blank">
+                                                                        <a onclick="detalharUsuario('#datalharUsuarioModal', '{{ $cliente->id }}')"
+                                                                           class="special-link">
                                                                             {{ $cliente->nome }}
                                                                         </a>
                                                                     </td>
@@ -442,6 +442,8 @@
         </div>
 
     </div>
+
+    @include('users.partials.detalhar')
 
 @endsection
 
