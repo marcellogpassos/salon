@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
-class WellcomeController extends Controller {
+class WelcomeController extends Controller {
 
 	protected $agendamentosService;
 
@@ -18,7 +18,7 @@ class WellcomeController extends Controller {
 		$this->middleware('auth');
 	}
 
-	public function wellcome() {
+	public function welcome() {
 		$user = Auth::user();
 
 		if (!$user)
@@ -30,8 +30,13 @@ class WellcomeController extends Controller {
 			$this->agendamentosService->meusAgendamentosPendentes($hoje->toDateString()) :
 			$this->agendamentosService->meusAgendamentosPendentes($hoje->toDateString(), null, $user->id);
 
+		$agendaDoDia = ($user->admin()) ?
+			$this->agendamentosService->agendaDoDia($hoje->toDateString()) :
+			$this->agendamentosService->agendaDoDia($hoje->toDateString(), null, $user->id);
+
 		return view('welcome')
-			->with('agendamentos', $agendamentosPedentes);
+			->with('agendamentos', $agendamentosPedentes)
+			->with('agendaDoDia', $agendaDoDia);
 	}
 
 }

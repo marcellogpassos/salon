@@ -25,4 +25,6 @@ interface AgendamentosServiceInterface {
 
 	public function analisar($agendamentoId, $status, $justificativa = null);
 
+	public function agendaDoDia($dia, $profissionalId = null);
+
 }

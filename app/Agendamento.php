@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Agendamento extends Model {
@@ -26,6 +27,10 @@ class Agendamento extends Model {
 
     public function profissional() {
         return $this->belongsTo('App\User', 'profissional_id');
+    }
+
+    public function getCarbonDateTime() {
+        return new Carbon($this->data . ' ' . $this->hora);
     }
 
 }

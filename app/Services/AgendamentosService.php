@@ -90,4 +90,16 @@ class AgendamentosService implements AgendamentosServiceInterface {
 		], $agendamentoId);
 	}
 
+	public function agendaDoDia($dia, $profissionalId = null) {
+		$query = Agendamento::orderBy('hora')
+			->where('status', Agendamento::CONFIRMADO)
+			->whereNull('data_cancelamento')
+			->where('data', $dia);
+
+		if ($profissionalId)
+			$query = $query->where('profissional_id', $profissionalId);
+
+		return $query->get();
+	}
+
 }

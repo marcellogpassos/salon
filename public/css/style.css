@@ -180,7 +180,8 @@ p.dl strong {
 }
 
 .card .card-content.agendamentos,
-.card .card-content.agendamentos-pendentes {
+.card .card-content.agendamentos-pendentes,
+.card .card-content.agenda-do-dia {
     height: 600px;
     overflow-y: auto;
 }
@@ -224,7 +225,7 @@ i.fa.fa-percent.material-icons.prefix {
 }
 
 .calendario .fc-day-header,
-.calendario .fc-day-header a{
+.calendario .fc-day-header a {
     background-color: #347162 !important;
     color: #D9E4E1;
 }

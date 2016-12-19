@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'WellcomeController@wellcome');
+Route::get('/', 'WelcomeController@welcome');
 
 Route::auth();
 
