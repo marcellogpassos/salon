@@ -40,16 +40,24 @@
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
                                                     <div class="col s12 offset-m1 m10">
-                                                        <div class="progress clientes-por-sexo">
-                                                            <div class="determinate"
-                                                                 style="width: {{ 100 * $clientesPorSexo[1]->quantidade / ($clientesPorSexo[1]->quantidade + $clientesPorSexo[0]->quantidade) }}%"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col s6 offset-m1 m5">
-                                                        <p>Masculino: {{ $clientesPorSexo[1]->quantidade }}</p>
-                                                    </div>
-                                                    <div class="col s6 m5" style="text-align: right">
-                                                        <p>Feminino: {{ $clientesPorSexo[0]->quantidade }}</p>
+                                                        @if($clientesPorSexo[2]->quantidade)
+                                                            <div class="col estatisticas-sexo feminino"
+                                                                 style="width: {!! floor( 100 * $clientesPorSexo[2]->quantidade / $clientesPorSexo[3]->quantidade ) !!}%">
+                                                                Feminino: {!! $clientesPorSexo[2]->quantidade !!}
+                                                            </div>
+                                                        @endif
+                                                        @if($clientesPorSexo[0]->quantidade)
+                                                            <div class="col estatisticas-sexo nao-informado"
+                                                                 style="width: {!! floor( 100 * $clientesPorSexo[0]->quantidade / $clientesPorSexo[3]->quantidade ) !!}%">
+                                                                N&atilde;o Informado: {!! $clientesPorSexo[0]->quantidade !!}
+                                                            </div>
+                                                        @endif
+                                                        @if($clientesPorSexo[1]->quantidade)
+                                                            <div class="col estatisticas-sexo masculino"
+                                                                 style="width: {!! floor( 100 * $clientesPorSexo[1]->quantidade / $clientesPorSexo[3]->quantidade ) !!}%">
+                                                                Masculino: {!! $clientesPorSexo[1]->quantidade !!}
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -452,10 +460,6 @@
     <script src="{{ asset('lib/chart.js/Chart.bundle.min.js') }}"></script>
 
     <script type="text/javascript" charset="UTF-8">
-        // clientes por sexo
-        var clientesSexoFeminino = {{ $clientesPorSexo[0]->quantidade }};
-        var clientesSexoMasculino = {{ $clientesPorSexo[1]->quantidade }};
-
         // clientes por faixa etaria
         var clientesPorFaixaEtariaLabels = [];
         var clientesPorFaixaEtariaData = [];
@@ -505,7 +509,6 @@
         }
     </script>
 
-    <script type="text/javascript" charset="UTF-8" src="{{ asset('js/estatisticas/clientesPorSexo.js') }}"></script>
     <script type="text/javascript" charset="UTF-8" src="{{ asset('js/estatisticas/clientesPorBairro.js') }}"></script>
     <script type="text/javascript" charset="UTF-8"
             src="{{ asset('js/estatisticas/clientesPorFaixaEtaria.js') }}"></script>

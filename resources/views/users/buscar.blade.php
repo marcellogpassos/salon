@@ -23,7 +23,7 @@
 
                             <div class="row">
 
-                                <div class="input-field col s12 m6">
+                                <div class="input-field col s12 offset-m2 m4">
                                     <input id="nameInput" name="nome_sobrenome" type="text" maxlength="255"
                                            value="{{
 
@@ -35,7 +35,7 @@
                                     <label for="nameInput">Nome ou sobrenome</label>
                                 </div>
 
-                                <div class="input-field col s12 m6">
+                                <div class="input-field col s12 m4">
                                     <i class="material-icons prefix">email</i>
                                     <input id="emailInput" name="email" type="email" maxlength="255" class="validate"
                                            value="{{
@@ -52,7 +52,7 @@
 
                             <div class="row">
 
-                                <div class="input-field horizontal-radio col s12 m4">
+                                <div class="input-field horizontal-radio col s12 offset-m2 m2">
                                     <div>
                                         <spam>
                                             <input name="sexo" type="radio" id="femininoInput" value="F"
@@ -78,7 +78,7 @@
                                     <label class="active">Sexo</label>
                                 </div>
 
-                                <div class="input-field col s12 m4">
+                                <div class="input-field col s12 m3">
                                     <input id="cpfInput" name="cpf" type="text" class="validate cpf"
                                            value="{{
 
@@ -90,7 +90,7 @@
                                     <label for="cpfInput">CPF</label>
                                 </div>
 
-                                <div class="input-field col s12 m4">
+                                <div class="input-field col s12 m3">
                                     <i class="material-icons prefix">phone</i>
                                     <input id="telefoneInput" name="telefone" type="text" class="validate telefone"
                                            value="{{

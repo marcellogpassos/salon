@@ -18,19 +18,35 @@
 
                     <div class="card-content gray-text text-darken-4 agenda-do-dia">
 
-                        <ul>
-                            @foreach($agendaDoDia as $agendamento)
-                                <li>
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <strong>{{ $agendamento->getCarbonDateTime()->format('H:i') }}</strong>&nbsp;&nbsp;-
-                                            {{ $agendamento->servico->descricao }}&nbsp;&nbsp;-
-                                            {{  $agendamento->cliente->name . ' ' . $agendamento->cliente->surname }}
+                        @if(!isset($agendaDoDia) || !count($agendaDoDia))
+                            <div class="row">
+                                <div class="col s12">
+
+                                    <div id="success-alert" class="card card-alert card-alert-information">
+                                        <div class="card-content">
+                                            <p>N&atilde;o h&aacute; servi&ccedil;os agendados para hoje.</p>
                                         </div>
                                     </div>
-                                </li>
-                            @endforeach
-                        </ul>
+
+                                </div>
+                            </div>
+                        @else
+
+                            <ul>
+                                @foreach($agendaDoDia as $agendamento)
+                                    <li>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <strong>{{ $agendamento->getCarbonDateTime()->format('H:i') }}</strong>&nbsp;&nbsp;-
+                                                {{ $agendamento->servico->descricao }}&nbsp;&nbsp;-
+                                                {{  $agendamento->cliente->name . ' ' . $agendamento->cliente->surname }}
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                        @endif
 
                         <br>
                         <hr>

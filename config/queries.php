@@ -115,11 +115,34 @@ return [
 
 	'clientesPorSexo' =>
 		'SELECT' .
-			' user.sexo AS "sexo",' .
+			' "I" AS "sexo",' .
 			' count(user.sexo) AS "quantidade"' .
 		' FROM' .
 			' users user' .
-		' GROUP BY user.sexo',
+		' WHERE' .
+			' user.sexo not in ("M", "F")' .
+		' UNION' .
+		' SELECT' .
+			' "M" AS "sexo",' .
+			' count(user.sexo) AS "quantidade"' .
+		' FROM' .
+			' users user' .
+		' WHERE' .
+			' user.sexo = "M"' .
+		' UNION' .
+		' SELECT' .
+			' "F" AS "sexo",' .
+			' count(user.sexo) AS "quantidade"' .
+		' FROM' .
+			' users user' .
+		' WHERE' .
+			' user.sexo = "F"' .
+		' UNION' .
+		' SELECT' .
+			' "T" AS "sexo",' .
+			' count(user.id) AS "quantidade"' .
+		' FROM' .
+			' users user',
 
 	'clientesPorFaixaEtaria' =>
 		'SELECT' .

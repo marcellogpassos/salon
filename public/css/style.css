@@ -230,6 +230,31 @@ i.fa.fa-percent.material-icons.prefix {
     color: #D9E4E1;
 }
 
+.estatisticas-sexo {
+    border: 1px solid;
+    height: 36px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.estatisticas-sexo.feminino {
+    border-color: rgb(211, 47, 47);
+    color: rgb(211, 47, 47);
+    background-color: rgb(255, 205, 210);
+}
+
+.estatisticas-sexo.masculino {
+    border-color: rgb(48, 63, 159);
+    color: rgb(48, 63, 159);
+    background-color: rgb(197, 202, 233);
+}
+
+.estatisticas-sexo.nao-informado {
+    border-color: rgb(97, 97, 97);
+    color: rgb(97, 97, 97);
+    background-color: rgb(189, 189, 189);
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;
