@@ -55,6 +55,8 @@
 
     </div>
 
+    @include('agendamentos.partials.detalhar')
+
 @endsection
 
 @section('scripts')
@@ -81,6 +83,7 @@
 
         var minDate = '{!! $minDate !!}';
         var maxDate = '{!! $maxDate !!}';
+
     </script>
 
     <script src="{{ asset('js/agenda.js') }}"></script>

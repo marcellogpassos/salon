@@ -30,7 +30,7 @@ $('.cpf').change(function () {
     }
 });
 
-function formatarDataNascimento(input) {
+function formatarData(input) {
     if (!input)
         return null;
 

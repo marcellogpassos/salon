@@ -37,9 +37,12 @@
                                     <li>
                                         <div class="row">
                                             <div class="col s12">
-                                                <strong>{{ $agendamento->getCarbonDateTime()->format('H:i') }}</strong>&nbsp;&nbsp;-
-                                                {{ $agendamento->servico->descricao }}&nbsp;&nbsp;-
-                                                {{  $agendamento->cliente->name . ' ' . $agendamento->cliente->surname }}
+                                                <a onclick="detalharAgendamento('#datalharAgendamentoModal', '{{ $agendamento->id }}')"
+                                                   class="special-link">
+                                                    <strong>{{ $agendamento->getCarbonDateTime()->format('H:i') }}</strong>&nbsp;&nbsp;-
+                                                    {{ $agendamento->servico->descricao }}&nbsp;&nbsp;-
+                                                    {{  $agendamento->cliente->name . ' ' . $agendamento->cliente->surname }}
+                                                </a>
                                             </div>
                                         </div>
                                     </li>
@@ -210,6 +213,8 @@
     </div>
 
     @include('users.partials.detalhar')
+
+    @include('agendamentos.partials.detalhar')
 
 @endsection
 

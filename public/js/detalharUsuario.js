@@ -11,7 +11,7 @@ var detalharUsuario = function (modal, id) {
 
 			$(modal + ' .cpf').html(formatarCPF(data.cpf));
 			$(modal + ' .sexo').html(data.sexo == 'F' ? 'Feminino' : (data.sexo == 'M' ? 'Masculino' : ''));
-			$(modal + ' .dataNascimento').html(formatarDataNascimento(data.data_nascimento));
+			$(modal + ' .dataNascimento').html(formatarData(data.data_nascimento));
 			$(modal + ' .telefone').html(formatarTelefone(data.telefone));
 			$(modal + ' .email').html(formatarTelefone(data.email));
 

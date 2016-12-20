@@ -224,6 +224,11 @@ i.fa.fa-percent.material-icons.prefix {
     background-color: #F5D0B9 !important;
 }
 
+.calendario .fc-event,
+.calendario .fc-list-item{
+    cursor: pointer;
+}
+
 .calendario .fc-day-header,
 .calendario .fc-day-header a {
     background-color: #347162 !important;
@@ -234,7 +239,7 @@ i.fa.fa-percent.material-icons.prefix {
     border: 1px solid;
     height: 36px;
     text-align: center;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 .estatisticas-sexo.feminino {
@@ -247,6 +252,10 @@ i.fa.fa-percent.material-icons.prefix {
     border-color: rgb(48, 63, 159);
     color: rgb(48, 63, 159);
     background-color: rgb(197, 202, 233);
+}
+
+.modal#datalharAgendamentoModal {
+    width: 600px;
 }
 
 .estatisticas-sexo.nao-informado {

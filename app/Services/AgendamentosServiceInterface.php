@@ -11,6 +11,8 @@ namespace App\Services;
 
 interface AgendamentosServiceInterface {
 
+	public function getAgendamento($id);
+
 	public function listarTodos();
 
 	public function listarAgendamentosPorUsuario($clienteId);

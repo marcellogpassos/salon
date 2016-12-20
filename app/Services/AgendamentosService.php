@@ -102,4 +102,8 @@ class AgendamentosService implements AgendamentosServiceInterface {
 		return $query->get();
 	}
 
+	public function getAgendamento($id) {
+		return $this->agendamentosRepository->find($id);
+	}
+
 }

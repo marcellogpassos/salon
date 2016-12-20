@@ -22,12 +22,13 @@ Route::get('/teste', function () {
 	return null;
 });
 
-Route::delete('agendamentos/{id}', 'AgendamentosController@cancelarAgendamento');
 Route::get('agenda/', 'AgendamentosController@minhaAgenda');
-Route::get('agendamentos/', 'AgendamentosController@index');
 Route::get('agendamentos/pendentes', 'AgendamentosController@agendamentosPendentes');
-Route::post('agendamentos/', 'AgendamentosController@agendar');
+Route::get('agendamentos/{id}', 'AgendamentosController@recuperarAgendamento');
+Route::get('agendamentos/', 'AgendamentosController@index');
 Route::post('agendamentos/analisar', 'AgendamentosController@analisar');
+Route::post('agendamentos/', 'AgendamentosController@agendar');
+Route::delete('agendamentos/{id}', 'AgendamentosController@cancelarAgendamento');
 
 Route::get('categoriasServicos/{id}/servicos', 'ServicosController@listarServicosPorCategoria');
 

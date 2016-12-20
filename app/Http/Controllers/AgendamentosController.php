@@ -104,4 +104,12 @@ class AgendamentosController extends Controller {
 		return Redirect::to('/');
 	}
 
+	public function recuperarAgendamento($id) {
+		$agendamento = $this->agendamentosService->getAgendamento($id);
+		$servico = $agendamento->servico;
+		$cliente = $agendamento->cliente;
+		$profissional = $agendamento->profissional;
+		return response()->json($agendamento);
+	}
+
 }
