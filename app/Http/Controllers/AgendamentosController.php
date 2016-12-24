@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Agendamento;
 use App\Repositories\Eloquent\Repository;
 use App\Services\AgendamentosServiceInterface;
 use App\Services\CategoriasServicosServiceInterface;
 
 use App\Http\Requests\AgendamentoRequest;
+use App\Services\UsersServiceInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,10 +20,14 @@ class AgendamentosController extends Controller {
 
 	protected $agendamentosService;
 
+	protected $usersService;
+
 	public function __construct(CategoriasServicosServiceInterface $categoriasServicosService,
-								AgendamentosServiceInterface $agendamentosService) {
+								AgendamentosServiceInterface $agendamentosService,
+								UsersServiceInterface $usersService) {
 		$this->categoriasServicosService = $categoriasServicosService;
 		$this->agendamentosService = $agendamentosService;
+		$this->usersService = $usersService;
 		$this->middleware('auth');
 	}
 

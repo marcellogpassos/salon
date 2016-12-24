@@ -9,6 +9,8 @@
 namespace App\Services;
 
 
+use App\Agendamento;
+
 interface UsersServiceInterface {
 
 	public function buscar($criterios);
@@ -28,5 +30,7 @@ interface UsersServiceInterface {
 	public function sincronizarPapeis($userId, array $roles);
 
 	public function listarFuncionarios();
+
+	public function getInteressadosAgendamento(Agendamento $agendamento);
 
 }

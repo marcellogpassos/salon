@@ -11,15 +11,23 @@ namespace App\Services;
 
 use App\Agendamento;
 use App\Repositories\AgendamentosRepository;
+use App\Role;
+use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class AgendamentosService implements AgendamentosServiceInterface {
 
 	protected $agendamentosRepository;
 
-	public function __construct(AgendamentosRepository $repository) {
+	protected $usersService;
+
+	public function __construct(AgendamentosRepository $repository,
+								UsersServiceInterface $usersService) {
 		$this->agendamentosRepository = $repository;
+		$this->usersService = $usersService;
 	}
 
 	public function listarTodos() {
@@ -36,9 +44,25 @@ class AgendamentosService implements AgendamentosServiceInterface {
 	}
 
 	public function cadastrarAgendamento($clienteId, array $atributos) {
+
 		if (!$atributos['profissional_id'])
 			$atributos = array_except($atributos, ['profissional_id']);
-		return $this->agendamentosRepository->create(array_add($atributos, 'cliente_id', $clienteId));
+
+		$agendamento = $this->agendamentosRepository->create(array_add($atributos, 'cliente_id', $clienteId));
+
+		$this->notificarCliente(
+			$agendamento,
+			getMessage('information', 1),
+			'emails.agendamentos.cliente.cadastro'
+		);
+
+		$this->notificarInteressados(
+			$agendamento,
+			getMessage('information', 2),
+			'emails.agendamentos.interessados.cadastro'
+		);
+
+		return $agendamento;
 	}
 
 	public function cancelarAgendamento($clienteId, $agendamentoId) {
@@ -84,10 +108,18 @@ class AgendamentosService implements AgendamentosServiceInterface {
 	}
 
 	public function analisar($agendamentoId, $status, $justificativa = null) {
-		return $this->agendamentosRepository->update([
-			'status' => $status,
-			'justificativa' => $justificativa
-		], $agendamentoId);
+		$agendamento = Agendamento::findOrFail($agendamentoId);
+		$agendamento->status = $status;
+		$agendamento->justificativa = $justificativa;
+		$agendamento->save();
+
+		$this->notificarCliente(
+			$agendamento,
+			getMessage('information', 3, [Agendamento::getStatusName($agendamento->status)]),
+			'emails.agendamentos.cliente.analise'
+		);
+
+		return $agendamento;
 	}
 
 	public function agendaDoDia($dia, $profissionalId = null) {
@@ -104,6 +136,38 @@ class AgendamentosService implements AgendamentosServiceInterface {
 
 	public function getAgendamento($id) {
 		return $this->agendamentosRepository->find($id);
+	}
+
+	private function notificarCliente(Agendamento $agendamento, $subject, $view) {
+		Mail::send($view,
+			['agendamento' => $agendamento],
+			function ($message) use ($agendamento, $subject) {
+				return $message
+					->to($agendamento->cliente->email)
+					->subject($subject);
+			}
+		);
+	}
+
+	private function notificarInteressados(Agendamento $agendamento, $subject, $view) {
+		$interessados = $this->usersService->getInteressadosAgendamento($agendamento);
+		$emails = $this->getInteressadosEmail($interessados);
+		Mail::send($view,
+			['agendamento' => $agendamento],
+			function ($message) use ($emails, $subject) {
+				return $message
+					->to($emails)
+					->subject($subject);
+			}
+		);
+	}
+
+	private function getInteressadosEmail($interessados) {
+		$emails = [];
+		if ($interessados)
+			foreach ($interessados as $interessado)
+				array_push($emails, $interessado->email);
+		return $emails;
 	}
 
 }

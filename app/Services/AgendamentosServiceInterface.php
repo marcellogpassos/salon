@@ -9,6 +9,8 @@
 namespace App\Services;
 
 
+use App\Agendamento;
+
 interface AgendamentosServiceInterface {
 
 	public function getAgendamento($id);

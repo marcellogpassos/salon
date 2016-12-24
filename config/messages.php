@@ -20,6 +20,9 @@ return [
 
 	'information' => [
 		'Nenhuma compra encontrada!',                                                                                   // 0
+		'Agendamento de Serviço Recebido!',                                                                             // 1
+		'Novo Agendamento de Serviço Recebido!',                                                                        // 2
+		'Agendamento {0}',                                                                                              // 3
 	],
 
 	'success' => [

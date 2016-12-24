@@ -9,6 +9,7 @@
 namespace App\Services;
 
 
+use App\Agendamento;
 use App\Repositories\Criteria\User\BuscarPorCPF;
 use App\Repositories\Criteria\User\BuscarPorEmail;
 use App\Repositories\Criteria\User\BuscarPorNomeSobrenome;
@@ -16,6 +17,7 @@ use App\Repositories\Criteria\User\BuscarPorSexo;
 use App\Repositories\Criteria\User\BuscarPorTelefone;
 use App\Repositories\Criteria\User\OrdenarPorNomeSobrenome;
 use App\Repositories\UsersRepository as Users;
+use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -106,6 +108,21 @@ class UsersService implements UsersServiceInterface {
 
 	public function listarFuncionarios() {
 		return $this->users->listarFuncionarios();
+	}
+
+	public function getInteressadosAgendamento(Agendamento $agendamento) {
+		$interessados = DB::table('users')
+			->select('users.*')
+			->join('role_user', 'users.id', '=', 'role_user.user_id')
+			->where('role_user.role_id', Role::ADMIN);
+		$profissional = null;
+		if (isset($agendamento->profissional))
+			$profissional = DB::table('users')
+				->select('users.*')
+				->where('users.id', $agendamento->profissional->id);
+		if ($profissional)
+			$interessados->union($profissional);
+		return User::hydrate($interessados->get());
 	}
 
 }
