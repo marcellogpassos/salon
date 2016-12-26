@@ -37,7 +37,7 @@ return [
 			' AND (' .
 				' upper(concat(user.name, " ", user.surname)) LIKE concat("%", upper(?), "%")' .
 				' OR' .
-					' user.cpf LIKE concat("%", ?, "%")' .
+					' user.telefone LIKE concat("%", ?, "%")' .
 			' )',
 
 	'clientesMaisRentaveis' =>

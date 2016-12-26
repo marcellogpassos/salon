@@ -71,9 +71,9 @@
                         <div class="row">
 
                             <div class="input-field col s12 m4">
-                                <input id="cpfInput" name="cpf" type="text" class="validate cpf" required
+                                <input id="cpfInput" name="cpf" type="text" class="validate cpf"
                                        value="{{ old('cpf') ? old('cpf') : $user->cpf }}">
-                                <label for="cpfInput">CPF *</label>
+                                <label for="cpfInput">CPF</label>
                             </div>
 
                             <div class="input-field col s12 m4">
@@ -87,8 +87,8 @@
                             <div class="input-field col s12 m4">
                                 <i class="material-icons prefix">phone</i>
                                 <input id="telefoneInput" name="telefone" type="text" class="validate telefone"
-                                       value="{{ old('telefone') ? old('telefone') : $user->telefone }}">
-                                <label for="telefoneInput">Telefone</label>
+                                       value="{{ old('telefone') ? old('telefone') : $user->telefone }}" required>
+                                <label for="telefoneInput">Telefone *</label>
                             </div>
 
                         </div>
@@ -191,13 +191,14 @@
                                     <div class="card-content gray-text text-darken-4">
 
                                         @if($user->foto)
-                                            <input type="file" name="foto" class="dropify" data-max-file-size="2M"
-                                                   data-default-file="{{ url( $user->foto ) }}"/>
+                                            <input data-default-file="{{ url( $user->foto ) }}" type="file" name="foto"
+                                                   data-max-file-size="2M" value="{{ url( $user->foto ) }}"
+                                                   class="dropify"/>
                                         @else
                                             <input type="file" name="foto" class="dropify" data-max-file-size="2M"/>
                                         @endif
 
-                                        <input type="hidden" name="foto_anterior" value="{{ $user->foto }}">
+                                        <input id="fotoApagadaInput" type="hidden" name="foto_apagada" value="0">
 
                                     </div>
                                 </div>
@@ -241,5 +242,11 @@
     <script src="{{ asset('js/enderecos.js') }}"></script>
 
     <script src="{{ asset('lib/dropify/js/dropify.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.dropify-clear').click(function(){
+            $('#fotoApagadaInput').val('1');
+        });
+    </script>
 
 @endsection

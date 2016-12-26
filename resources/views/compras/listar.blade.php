@@ -32,7 +32,7 @@
                                 <div class="input-field col s12 m5">
                                     <input id="clienteInput" class="autocomplete highlight-matching cliente"
                                            maxlength="255" type="text" value="">
-                                    <label for="clienteInput">Nome ou cpf do cliente</label>
+                                    <label for="clienteInput">Nome ou telefone do cliente</label>
                                 </div>
 
                                 <input id="clienteHiddenInput" name="cliente" type="hidden" value="">

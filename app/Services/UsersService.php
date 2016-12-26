@@ -50,6 +50,7 @@ class UsersService implements UsersServiceInterface {
 	}
 
 	public function atualizarDados($id, array $attributes) {
+		$attributes = array_add($attributes, 'dados_atualizados', '1');
 		return $this->users->updateRich($attributes, $id);
 	}
 

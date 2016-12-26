@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Config;
 
 class HomeController extends Controller {
 
-    public function __construct() {
-        $this->middleware('auth');
-    }
+	public function __construct() {
+		$this->middleware('auth');
+	}
 
-    public function index() {
+	public function index() {
 
-        if (Auth::user()->cpf)
-            return view('home')->with('user', Auth::user());
+		if (Auth::user()->dados_atualizados)
+			return view('home')->with('user', Auth::user());
 
-        showMessage('warning', 0);
+		showMessage('warning', 0);
 
-        return redirect()->action('UsersController@mostrarFormEditarDadosUsuario');
+		return redirect()->action('UsersController@mostrarFormEditarDadosUsuario');
 
-    }
+	}
 }

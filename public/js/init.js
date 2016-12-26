@@ -64,7 +64,7 @@ $(document).ready(function () {
     $('select').material_select();
 
     try {
-        $('.dropify').dropify({
+        drEvent = $('.dropify').dropify({
             messages: {
                 default: 'Arraste um arquivo ou clique aqui',
                 replace: 'Arraste um arquivo ou clique para substituir',
