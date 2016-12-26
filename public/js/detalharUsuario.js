@@ -5,7 +5,7 @@ var detalharUsuario = function (modal, id) {
 	$.getJSON(url, function (data) {
 		$(modal + ' .nome').html(data.name + " " + data.surname);
 
-		if (data.cpf) {
+		if (data.dados_atualizados) {
 			$(modal + ' .nao-cadastrado').hide();
 			$(modal + ' .dados').show();
 
@@ -33,6 +33,8 @@ var detalharUsuario = function (modal, id) {
 			$(modal + ' .nao-cadastrado').show();
 			$(modal + ' .dados').hide();
 		}
+
+		$(modal + ' .compras').attr('href', comprasUsuario.replace(':id', data.id));
 
 		$(modal).openModal();
 	});
