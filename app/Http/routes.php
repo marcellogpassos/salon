@@ -75,3 +75,5 @@ Route::get('estatisticas/', 'EstatisticasController@mostrarEstatisticas');
 
 Route::get('ufs/{uf}/municipios', 'EnderecosController@listarMunicipios');
 Route::get('municipios/{municipio}', 'EnderecosController@getMunicipio');
+
+Route::post('mensagens/', 'MensagensController@enviarMensagem');

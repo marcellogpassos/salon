@@ -61,8 +61,6 @@ $(document).ready(function () {
         scrollbar: true
     });
 
-    $('select').material_select();
-
     try {
         drEvent = $('.dropify').dropify({
             messages: {
@@ -77,6 +75,8 @@ $(document).ready(function () {
     }
 
     $('input.char-counter, textarea.char-counter').characterCounter();
+
+    Materialize.updateTextFields();
 
 });
 

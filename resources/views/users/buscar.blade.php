@@ -176,9 +176,31 @@
                                                     </div>
 
                                                     <div class="col s6 m4">
+                                                        <a href=""
+                                                           class="waves-effect waves-light btn btn-large btn-block secondary">
+                                                            <i class="material-icons left">block</i>Bloquear Usu&aacute;rio
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col s6 m4">
                                                         <a href="{{ url('users/' . $us->id . '/registrarCompra') }}"
                                                            class="waves-effect waves-light btn btn-large btn-block secondary">
-                                                            <i class="material-icons left">shopping_cart</i>Caixa
+                                                            <i class="material-icons left">shopping_cart</i>Registrar
+                                                            Compra
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col s6 m4">
+                                                        <a href=""
+                                                           class="waves-effect waves-light btn btn-large btn-block secondary">
+                                                            <i class="material-icons left">access_time</i>Agendar Servi&ccedil;o
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col s6 m4">
+                                                        <a class="waves-effect waves-light btn btn-large btn-block secondary"
+                                                           onclick="enviarMensagem('#enviarMensagemModal', '{{ $us->id }}')">
+                                                            <i class="material-icons left">message</i>Enviar mensagem
                                                         </a>
                                                     </div>
                                                 </div>
@@ -208,6 +230,8 @@
             </div>
 
             @include('users.partials.detalhar')
+
+            @include('users.partials.message')
         @endif
 
     </div>

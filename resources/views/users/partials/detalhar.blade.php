@@ -23,15 +23,15 @@
                             <p><strong>Telefone:</strong>&nbsp;&nbsp;<span class="telefone"></span></p>
                             <p><strong>E-mail:</strong>&nbsp;&nbsp;<span class="email"></span></p>
                             <br>
-                            <p><strong>Endere&ccedil;o:</strong></p>
-                            <p>
+                            <p class="endereco"><strong>Endere&ccedil;o:</strong></p>
+                            <p class="endereco">
                                 <span class="logradouro"></span>,&nbsp;
                                 <span class="numero"></span>.&nbsp;
                                 <span class="bairro"></span>
                                 <span class="municipio"></span>&nbsp;-&nbsp;
                                 <span class="uf"></span>
                             </p>
-                            <p>
+                            <p class="endereco">
                                 <span class="cep"></span>.&nbsp;
                                 <span class="complemento"></span>
                             </p>

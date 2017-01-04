@@ -32,6 +32,14 @@ class User extends Authenticatable {
 		return $this->hasMany('App\Agendamento', 'cliente_id');
 	}
 
+	public function mensagensEnviadas() {
+		return $this->hasMany('App\Mensagem', 'remetente_id');
+	}
+
+	public function mensagensRecebidas() {
+		return $this->hasMany('App\Mensagem', 'destinatario_id');
+	}
+
 	public function possuiRole($roleProcurado) {
 		foreach ($this->roles as $role)
 			if ($role->id == $roleProcurado)

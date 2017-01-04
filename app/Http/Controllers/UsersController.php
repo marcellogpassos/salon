@@ -78,7 +78,8 @@ class UsersController extends Controller {
 	public function recuperarUsuario($id) {
 		$user = $this->usersService->getUser($id);
 		$municipio = $user->municipio;
-		$uf = $user->municipio->uf;
+		if($municipio)
+			$uf = $user->municipio->uf;
 		return response()->json($user);
 	}
 

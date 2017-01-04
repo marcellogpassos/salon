@@ -225,7 +225,7 @@ i.fa.fa-percent.material-icons.prefix {
 }
 
 .calendario .fc-event,
-.calendario .fc-list-item{
+.calendario .fc-list-item {
     cursor: pointer;
 }
 
@@ -254,8 +254,14 @@ i.fa.fa-percent.material-icons.prefix {
     background-color: rgb(197, 202, 233);
 }
 
-.modal#datalharAgendamentoModal {
-    width: 600px;
+.modal#datalharAgendamentoModal,
+.modal#enviarMensagemModal {
+    max-width: 600px;
+}
+
+#enviarMensagemEditor {
+    height: 128px;
+    overflow: auto;
 }
 
 .estatisticas-sexo.nao-informado {

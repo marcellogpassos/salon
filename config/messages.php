@@ -16,6 +16,7 @@ return [
 		'Não foi possível excluir o serviço {0}.',                                                                      // 8
 		'Não foi possível cancelar o agendamento do serviço - agendamento não encontrado.',                             // 9
 		'Não foi possível analisar o agendamento.',                                                                     // 10
+		'Não foi possível enviar a mensagem. Tente novamente mais tarde.',												// 11
 	],
 
 	'information' => [
@@ -41,6 +42,7 @@ return [
 		'Serviço agendado com sucesso!',                                                                                // 12
 		'Agendamento cancelado com sucesso!',                                                                           // 13
 		'Agendamento analisado!',                                                                                       // 14
+		'Mensagem enviada com sucesso para {0}!'																		// 15
 	],
 
 	'warning' => [

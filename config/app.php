@@ -171,6 +171,7 @@ return [
 		App\Providers\ComprasServiceProvider::class,
 		App\Providers\EstatisticasServiceProvider::class,
 		App\Providers\AgendamentosServiceProvider::class,
+		App\Providers\MensagensServiceProvider::class,
 
 	],
 
@@ -217,8 +218,8 @@ return [
 		'URL' => Illuminate\Support\Facades\URL::class,
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View' => Illuminate\Support\Facades\View::class,
-		'Form'=> Collective\Html\FormFacade::class,
-		'HTML'=> Collective\Html\HtmlFacade::class
+		'Form' => Collective\Html\FormFacade::class,
+		'HTML' => Collective\Html\HtmlFacade::class
 
 	],
 

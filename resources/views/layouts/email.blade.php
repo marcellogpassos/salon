@@ -19,6 +19,10 @@
 
             @yield('body')
 
+            <hr>
+
+            <p style="color: #909090">* N&atilde;o &eacute; necess&aacute;rio responder este email.</p>
+
         </td>
         <td>
             <p>&nbsp;</p>
