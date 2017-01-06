@@ -10,9 +10,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-image: url('../img/bkg.png');
-    background-position: 50% 0;
-    background-repeat: repeat-y;
+    background: url('../img/bkg-hexagon.png') repeat 0 0;
 }
 
 main {
