@@ -171,7 +171,7 @@
                                                     <div class="col s6 m4">
                                                         <a href="{{ url('users/' . $us->id . '/papeis') }}"
                                                            class="waves-effect waves-light btn btn-large btn-block secondary">
-                                                            <i class="material-icons left">verified_user</i>Pap&eacute;is
+                                                            <i class="material-icons left">verified_user</i>Dados Profissionais
                                                         </a>
                                                     </div>
 

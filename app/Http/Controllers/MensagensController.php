@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MensagensRequest;
 use App\Services\MensagensServiceInterface;
 use App\Services\UsersServiceInterface;
-use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
 class MensagensController extends Controller {
@@ -20,7 +19,7 @@ class MensagensController extends Controller {
 		$this->usersService = $usersService;
 	}
 
-	public function enviarMensagem(Request $request) {
+	public function enviarMensagem(MensagensRequest $request) {
 		$remetente = Auth::user();
 		$destinatario = $this->usersService->getUser($request->input('destinatario_id'));
 		$assunto = $request->input('assunto');

@@ -107,6 +107,10 @@ class UsersService implements UsersServiceInterface {
 		return $this->users->sincronizarPapeis($userId, $roles);
 	}
 
+	public function atualizarCurriculo($userId, $curriculo) {
+		return $this->users->update(['curriculo' => $curriculo], $userId);
+	}
+
 	public function listarFuncionarios() {
 		return $this->users->listarFuncionarios();
 	}

@@ -71,6 +71,7 @@ class UsersController extends Controller {
 
 	public function editarPapeis($id, Request $request) {
 		$this->usersService->sincronizarPapeis($id, $request->input('roles'));
+		$this->usersService->atualizarCurriculo($id, $request->has('curriculo') ? $request->input('curriculo') : null);
 		showMessage('success', 1);
 		return $this->mostrarFormGerenciarPapeis($id);
 	}
@@ -78,7 +79,7 @@ class UsersController extends Controller {
 	public function recuperarUsuario($id) {
 		$user = $this->usersService->getUser($id);
 		$municipio = $user->municipio;
-		if($municipio)
+		if ($municipio)
 			$uf = $user->municipio->uf;
 		return response()->json($user);
 	}

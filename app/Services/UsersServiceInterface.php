@@ -29,6 +29,8 @@ interface UsersServiceInterface {
 
 	public function sincronizarPapeis($userId, array $roles);
 
+	public function atualizarCurriculo($userId, $curriculo);
+
 	public function listarFuncionarios();
 
 	public function getInteressadosAgendamento(Agendamento $agendamento);
