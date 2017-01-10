@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsersBuscarRequest;
+use App\Http\Requests\UsersStatusRequest;
 use App\Municipio;
 use App\Services\RolesServiceInterface;
 use App\Services\UsersServiceInterface;
@@ -82,6 +83,19 @@ class UsersController extends Controller {
 		if ($municipio)
 			$uf = $user->municipio->uf;
 		return response()->json($user);
+	}
+
+	public function status(UsersStatusRequest $request) {
+		$user = $this->usersService->getUser($request->input('id'));
+		$ativo = $request->input('ativo');
+		$result = $this->usersService->setStatusUsuario($user, $ativo);
+
+		if ($result)
+			showMessage('success', ($ativo) ? 16 : 17, [$user->name . ' ' . $user->surname]);
+		else
+			showMessage('error', ($ativo) ? 12 : 13);
+
+		return redirect('/users/buscar?id=' . $user->id);
 	}
 
 }

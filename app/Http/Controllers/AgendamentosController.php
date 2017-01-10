@@ -42,9 +42,21 @@ class AgendamentosController extends Controller {
 
 	public function agendar(AgendamentoRequest $request) {
 		$cliente = Auth::user();
+
+		if (!$this->validarClienteAtivo($cliente))
+			return redirect('/home');
+
 		$agendamento = $this->agendamentosService->cadastrarAgendamento($cliente->id, $request->all());
+
 		showMessage('success', 12);
 		return redirect('/agendamentos');
+	}
+
+	private function validarClienteAtivo($cliente) {
+		if ($cliente->ativo)
+			return true;
+		showMessage('error', 14);
+		return false;
 	}
 
 	public function cancelarAgendamento($id, Request $request) {

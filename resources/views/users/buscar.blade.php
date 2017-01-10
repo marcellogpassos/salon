@@ -171,16 +171,50 @@
                                                     <div class="col s6 m4">
                                                         <a href="{{ url('users/' . $us->id . '/papeis') }}"
                                                            class="waves-effect waves-light btn btn-large btn-block secondary">
-                                                            <i class="material-icons left">verified_user</i>Dados Profissionais
+                                                            <i class="material-icons left">verified_user</i>Dados
+                                                            Profissionais
                                                         </a>
                                                     </div>
 
-                                                    <div class="col s6 m4">
-                                                        <a href=""
-                                                           class="waves-effect waves-light btn btn-large btn-block secondary">
-                                                            <i class="material-icons left">block</i>Bloquear Usu&aacute;rio
-                                                        </a>
-                                                    </div>
+                                                    @if($us->ativo)
+
+                                                        <form role="form" method="post" action="{{ url('/users/status') }}">
+
+                                                            {!! csrf_field() !!}
+
+                                                            <input type="hidden" name="id" value="{{ $us->id }}">
+
+                                                            <input type="hidden" name="ativo" value="0">
+
+                                                            <div class="col s6 m4">
+                                                                <button class="waves-effect waves-light btn btn-large btn-block secondary"
+                                                                    type="submit">
+                                                                    <i class="material-icons left">block</i>Bloquear Usu&aacute;rio
+                                                                </button>
+                                                            </div>
+
+                                                        </form>
+
+                                                    @else
+
+                                                        <form role="form" method="post" action="{{ url('/users/status') }}">
+
+                                                            {!! csrf_field() !!}
+
+                                                            <input type="hidden" name="id" value="{{ $us->id }}">
+
+                                                            <input type="hidden" name="ativo" value="1">
+
+                                                            <div class="col s6 m4">
+                                                                <button class="waves-effect waves-light btn btn-large btn-block secondary"
+                                                                        type="submit">
+                                                                    <i class="fa fa-unlock left" aria-hidden="true"></i>Desbloquear Usu&aacute;rio
+                                                                </button>
+                                                            </div>
+
+                                                        </form>
+
+                                                    @endif
 
                                                     <div class="col s6 m4">
                                                         <a href="{{ url('users/' . $us->id . '/registrarCompra') }}"

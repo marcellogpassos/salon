@@ -35,4 +35,6 @@ interface UsersServiceInterface {
 
 	public function getInteressadosAgendamento(Agendamento $agendamento);
 
+	public function setStatusUsuario($user, $ativo);
+
 }

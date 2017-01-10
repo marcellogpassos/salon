@@ -62,6 +62,7 @@ Route::post('servicos/{id}/editar', 'ServicosController@editarServico');
 Route::get('servicos/{id}/excluir', 'ServicosController@excluirServico');
 Route::get('servicos/{id}/profissionais', 'ServicosController@listarProfissionaisPorServico');
 
+Route::post('users/status', 'UsersController@status');
 Route::get('users/buscar', 'UsersController@mostrarUsuariosEncontrados');
 Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
 Route::post('users/dados', 'UsersController@editarDadosUsuario');

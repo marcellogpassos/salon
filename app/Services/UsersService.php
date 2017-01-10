@@ -115,6 +115,10 @@ class UsersService implements UsersServiceInterface {
 		return $this->users->listarFuncionarios();
 	}
 
+	public function setStatusUsuario($user, $ativo) {
+		return $this->users->update(['ativo' => $ativo], $user->id);
+	}
+
 	public function getInteressadosAgendamento(Agendamento $agendamento) {
 		$interessados = DB::table('users')
 			->select('users.*')

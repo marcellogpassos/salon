@@ -16,7 +16,10 @@ return [
 		'Não foi possível excluir o serviço {0}.',                                                                      // 8
 		'Não foi possível cancelar o agendamento do serviço - agendamento não encontrado.',                             // 9
 		'Não foi possível analisar o agendamento.',                                                                     // 10
-		'Não foi possível enviar a mensagem. Tente novamente mais tarde.',												// 11
+		'Não foi possível enviar a mensagem. Tente novamente mais tarde.',                                              // 11
+		'Falha ao tentar desbloquear o usuário.',																		// 12
+		'Falha ao tentar bloquear o usuário.',																			// 13
+		'Não foi possível realizar o agendamento - usuário bloqueado.'													// 14
 	],
 
 	'information' => [
@@ -42,7 +45,9 @@ return [
 		'Serviço agendado com sucesso!',                                                                                // 12
 		'Agendamento cancelado com sucesso!',                                                                           // 13
 		'Agendamento analisado!',                                                                                       // 14
-		'Mensagem enviada com sucesso para {0}!'																		// 15
+		'Mensagem enviada com sucesso para {0}!',                                                                       // 15
+		'Usuário desbloqueado - {0}',                                                                                   // 16
+		'Usuário bloqueado - {0}',                                                                                      // 17
 	],
 
 	'warning' => [
