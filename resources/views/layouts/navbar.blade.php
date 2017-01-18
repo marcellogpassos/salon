@@ -52,6 +52,7 @@
 
                     <ul id="userMenuDropdown" class="dropdown-content">
                         <li><a href="{{ url('/users/dados') }}">Meus dados</a></li>
+                        <li><a href="{{ url('/users/excluirConta') }}">Excluir Conta</a></li>
                         <li><a href="{{ url('/logout') }}">Sair</a></li>
                     </ul>
                 </li>
@@ -108,6 +109,7 @@
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a href="{{ url('/users/dados') }}">Meus dados</a></li>
+                                    <li><a href="{{ url('/users/excluirConta') }}">Excluir Conta</a></li>
                                     <li><a href="{{ url('/logout') }}">Sair</a></li>
                                 </ul>
                             </div>
