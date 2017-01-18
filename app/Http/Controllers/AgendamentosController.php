@@ -40,16 +40,23 @@ class AgendamentosController extends Controller {
 			->with('agendamentos', $agendamentos);
 	}
 
+	public function mostrarFormAgendarParaCliente($id) {
+		$cliente = $this->usersService->getUser($id);
+		$categoriasServicos = $this->categoriasServicosService->listarTodos();
+		return view('agendamentos.agendarParaCliente')
+			->with('cliente', $cliente)
+			->with('categoriasServicos', $categoriasServicos);
+	}
+
 	public function agendar(AgendamentoRequest $request) {
 		$cliente = Auth::user();
+		return $this->agendarServico($request, $cliente, '/agendamentos');
+	}
 
-		if (!$this->validarClienteAtivo($cliente))
-			return redirect('/home');
-
-		$agendamento = $this->agendamentosService->cadastrarAgendamento($cliente->id, $request->all());
-
-		showMessage('success', 12);
-		return redirect('/agendamentos');
+	public function agendarParaCliente(AgendamentoRequest $request) {
+		$clienteId = $request->input('id');
+		$cliente = $this->usersService->getUser($clienteId);
+		return $this->agendarServico($request, $cliente, '/users/buscar?id=' . $clienteId);
 	}
 
 	private function validarClienteAtivo($cliente) {
@@ -128,6 +135,16 @@ class AgendamentosController extends Controller {
 		$cliente = $agendamento->cliente;
 		$profissional = $agendamento->profissional;
 		return response()->json($agendamento);
+	}
+
+	public function agendarServico(AgendamentoRequest $request, $cliente, $redirect) {
+		if (!$this->validarClienteAtivo($cliente))
+			return redirect('/home');
+
+		$agendamento = $this->agendamentosService->cadastrarAgendamento($cliente->id, $request->all());
+
+		showMessage('success', 12);
+		return redirect($redirect);
 	}
 
 }

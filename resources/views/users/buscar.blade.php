@@ -178,7 +178,8 @@
 
                                                     @if($us->ativo)
 
-                                                        <form role="form" method="post" action="{{ url('/users/status') }}">
+                                                        <form role="form" method="post"
+                                                              action="{{ url('/users/status') }}">
 
                                                             {!! csrf_field() !!}
 
@@ -188,7 +189,7 @@
 
                                                             <div class="col s6 m4">
                                                                 <button class="waves-effect waves-light btn btn-large btn-block secondary"
-                                                                    type="submit">
+                                                                        type="submit">
                                                                     <i class="material-icons left">block</i>Bloquear Usu&aacute;rio
                                                                 </button>
                                                             </div>
@@ -197,7 +198,8 @@
 
                                                     @else
 
-                                                        <form role="form" method="post" action="{{ url('/users/status') }}">
+                                                        <form role="form" method="post"
+                                                              action="{{ url('/users/status') }}">
 
                                                             {!! csrf_field() !!}
 
@@ -208,7 +210,8 @@
                                                             <div class="col s6 m4">
                                                                 <button class="waves-effect waves-light btn btn-large btn-block secondary"
                                                                         type="submit">
-                                                                    <i class="fa fa-unlock left" aria-hidden="true"></i>Desbloquear Usu&aacute;rio
+                                                                    <i class="fa fa-unlock left" aria-hidden="true"></i>Desbloquear
+                                                                    Usu&aacute;rio
                                                                 </button>
                                                             </div>
 
@@ -225,7 +228,7 @@
                                                     </div>
 
                                                     <div class="col s6 m4">
-                                                        <a href=""
+                                                        <a href="{{ url('users/' . $us->id . '/agendar') }}"
                                                            class="waves-effect waves-light btn btn-large btn-block secondary">
                                                             <i class="material-icons left">access_time</i>Agendar Servi&ccedil;o
                                                         </a>

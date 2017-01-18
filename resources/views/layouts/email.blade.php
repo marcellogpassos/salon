@@ -21,7 +21,7 @@
 
             <hr>
 
-            <p style="color: #909090">* N&atilde;o &eacute; necess&aacute;rio responder este email.</p>
+            <p style="color: #909090">* N&atilde;o &eacute; necess&aacute;rio responder a este email.</p>
 
         </td>
         <td>

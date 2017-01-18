@@ -66,6 +66,8 @@ Route::post('users/status', 'UsersController@status');
 Route::get('users/buscar', 'UsersController@mostrarUsuariosEncontrados');
 Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
 Route::post('users/dados', 'UsersController@editarDadosUsuario');
+Route::get('users/{id}/agendar', 'AgendamentosController@mostrarFormAgendarParaCliente');
+Route::post('users/{id}/agendar', 'AgendamentosController@agendarParaCliente');
 Route::get('users/{id}/papeis', 'UsersController@mostrarFormGerenciarPapeis');
 Route::post('users/{id}/papeis', 'UsersController@editarPapeis');
 Route::get('users/{id}/registrarCompra', 'ComprasController@mostrarFormRegistrarCompra');
