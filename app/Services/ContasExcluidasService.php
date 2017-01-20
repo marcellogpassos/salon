@@ -32,12 +32,14 @@ class ContasExcluidasService implements ContasExcluidasServiceInterface {
             'stars' => $stars,
         ]);
 
-        try {
-            $this->notificarAdministradores($user, $contaExcluida);
-            if ($user->email)
-                $this->notificarCliente($user, $contaExcluida);
-        } catch (\Exception $ex) {
-            Log::error('Envio de email falhou!');
+        if($contaExcluida->id) {
+            try {
+                $this->notificarAdministradores($user, $contaExcluida);
+                if ($user->email)
+                    $this->notificarCliente($user, $contaExcluida);
+            } catch (\Exception $ex) {
+                Log::error('Envio de email falhou!');
+            }
         }
 
         return $contaExcluida;

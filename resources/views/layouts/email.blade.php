@@ -4,8 +4,8 @@
         <td style="width:10%">
             <p>&nbsp;</p>
         </td>
-        <td style="background-color:#c0392b; text-align: center; width:80%">
-            <h1><span style="color:#ffffff"> @yield('title') </span></h1>
+        <td style="background-color:#A34B5B; text-align: center; width:80%">
+            <h1><span style="color:#FAEFF1"> @yield('title') </span></h1>
         </td>
         <td style="width:10%">
             <h1>&nbsp;</h1>
@@ -32,7 +32,7 @@
         <td>
             <p>&nbsp;</p>
         </td>
-        <td style="background-color:#c0392b">
+        <td style="background-color:#A34B5B">
             <p>&nbsp;</p>
         </td>
         <td>
