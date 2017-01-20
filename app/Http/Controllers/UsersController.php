@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersBuscarRequest;
 use App\Http\Requests\UsersStatusRequest;
 use App\Municipio;
+use App\Services\ContasExcluidasServiceInterface;
 use App\Services\RolesServiceInterface;
 use App\Services\UsersServiceInterface;
 use App\Http\Requests\UsersDadosRequest;
@@ -12,15 +13,19 @@ use App\Uf;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller {
 
     protected $usersService;
     protected $rolesService;
+    protected $contasExcluidasService;
 
-    public function __construct(UsersServiceInterface $usersService, RolesServiceInterface $rolesService) {
+    public function __construct(UsersServiceInterface $usersService, RolesServiceInterface $rolesService,
+                                ContasExcluidasServiceInterface $contasExcluidasService) {
         $this->usersService = $usersService;
         $this->rolesService = $rolesService;
+        $this->contasExcluidasService = $contasExcluidasService;
         $this->middleware('auth');
     }
 
@@ -102,6 +107,18 @@ class UsersController extends Controller {
         $user = Auth::user();
         return view('users.excluirConta')
             ->with('user', $user);
+    }
+
+    public function excluirConta(Request $request) {
+        $user = Auth::user();
+        if (!Hash::check($request->input('password'), $user->password)) {
+            showMessage('error', 15);
+            return back()->withInput();
+        } else {
+            $this->contasExcluidasService->cadastrarContaExcluida($user, $request->motivo, $request->stars);
+            $this->usersService->excluirUsuario($user);
+            return redirect('/logout');
+        }
     }
 
 }

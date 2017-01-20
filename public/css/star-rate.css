@@ -1,0 +1,20 @@
+.star-rate {
+    margin-top: 16px;
+}
+
+.star-rate p{
+    text-align: center;
+}
+
+.star {
+    width: 36px;
+    cursor: pointer;
+}
+
+.star.shine {
+    color: gold;
+}
+
+.star:not(.shine) {
+    color: silver;
+}

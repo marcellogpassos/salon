@@ -19,7 +19,8 @@ return [
 		'Não foi possível enviar a mensagem. Tente novamente mais tarde.',                                              // 11
 		'Falha ao tentar desbloquear o usuário.',																		// 12
 		'Falha ao tentar bloquear o usuário.',																			// 13
-		'Não foi possível realizar o agendamento - usuário bloqueado.'													// 14
+		'Não foi possível realizar o agendamento - usuário bloqueado.',													// 14
+		'Senha incorreta!'																								// 15
 	],
 
 	'information' => [
@@ -27,6 +28,8 @@ return [
 		'Agendamento de Serviço Recebido!',                                                                             // 1
 		'Novo Agendamento de Serviço Recebido!',                                                                        // 2
 		'Agendamento {0}',                                                                                              // 3
+		'Nova conta excluida: {0}',																						// 4
+		'Conta excluida :(',																							// 5
 	],
 
 	'success' => [
@@ -48,6 +51,7 @@ return [
 		'Mensagem enviada com sucesso para {0}!',                                                                       // 15
 		'Usuário desbloqueado - {0}',                                                                                   // 16
 		'Usuário bloqueado - {0}',                                                                                      // 17
+		'Conta excluida com sucesso! Até breve.',																		// 18
 	],
 
 	'warning' => [

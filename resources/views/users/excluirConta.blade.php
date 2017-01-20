@@ -14,7 +14,7 @@
 
                 <div class="card white">
 
-                    <h4 class="card-title">Dados do Profissional</h4>
+                    <h4 class="card-title">Excluir Conta</h4>
 
                     <form id="excluirContaForm" class="form-horizontal" method="POST"
                           action="{{ url('/users/excluirConta') }}" role="form">
@@ -25,19 +25,9 @@
 
                             <div class="row">
                                 <div class="input-field col s12 offset-m3 m6">
-                                    <input id="nameInput" name="nome_sobrenome" type="text" readonly
+                                    <input id="nameInput" type="text" readonly
                                            value="{{$user->name . ' ' . $user->surname}}">
                                     <label for="nameInput" class="active">Nome do Usu&aacute;rio</label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s12 offset-m3 m6">
-                                    <textarea id="motivoInput" class="materialize-textarea" type="text" length="2048"
-                                              name="motivo"></textarea>
-                                    <label for="motivoInput">
-                                        Deixe-nos saber o motivo da exclus&atilde;o
-                                    </label>
                                 </div>
                             </div>
 
@@ -50,16 +40,20 @@
 
                             <div class="row">
                                 <div class="input-field col s12 offset-m3 m6">
+                                    <textarea id="motivoInput" class="materialize-textarea" type="text" length="2048"
+                                              name="motivo">{!! old('motivo') ? old('motivo') : '' !!}</textarea>
+                                    <label for="motivoInput">
+                                        Deixe-nos saber o motivo da exclus&atilde;o
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12 offset-m3 m6">
                                     <p class="center-align">Avalie sua experi&ecirc;ncia com o nosso sistema</p>
-                                    <div class="star-rate" style="margin-top: 16px">
-                                        <p style="text-align: center">
-                                            <span><i class="material-icons star star-one">star_border</i></span>
-                                            <span><i class="material-icons star star-two">star_border</i></span>
-                                            <span><i class="material-icons star star-three">star_border</i></span>
-                                            <span><i class="material-icons star star-four">star_border</i></span>
-                                            <span><i class="material-icons star star-five">star_border</i></span>
-                                        </p>
-                                    </div>
+
+                                    @include('partials.starRate')
+
                                 </div>
                             </div>
 
@@ -87,18 +81,10 @@
     </div>
 @endsection
 
+
+
 @section('scripts')
 
-    <script type="text/javascript">
-        var rate = function (stars) {
-            if (stars > 1)
-                rate(stars - 1);
-            shine(stars);
-        }
-
-        var shine = function (stars) {
-            // TODO: implementar!
-        }
-    </script>
+    <script src="{{ asset('js/star-rate.js') }}"></script>
 
 @endsection

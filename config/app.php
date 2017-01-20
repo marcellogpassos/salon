@@ -172,6 +172,7 @@ return [
 		App\Providers\EstatisticasServiceProvider::class,
 		App\Providers\AgendamentosServiceProvider::class,
 		App\Providers\MensagensServiceProvider::class,
+		App\Providers\ContasExcluidasServiceProvider::class,
 
 	],
 

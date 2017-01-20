@@ -134,4 +134,24 @@ class UsersService implements UsersServiceInterface {
 		return User::hydrate($interessados->get());
 	}
 
+	public function getAdministradores() {
+		$administradores = DB::table('users')
+			->select('users.*')
+			->join('role_user', 'users.id', '=', 'role_user.user_id')
+			->where('role_user.role_id', Role::ADMIN);
+		return User::hydrate($administradores->get());
+	}
+
+	public function excluirUsuario($user) {
+		return $this->users->delete($user->id);
+	}
+
+	public function getUsersEmail($users) {
+		$emails = [];
+		if ($users)
+			foreach ($users as $user)
+				array_push($emails, $user->email);
+		return $emails;
+	}
+
 }

@@ -151,7 +151,7 @@ class AgendamentosService implements AgendamentosServiceInterface {
 
 	private function notificarInteressados(Agendamento $agendamento, $subject, $view) {
 		$interessados = $this->usersService->getInteressadosAgendamento($agendamento);
-		$emails = $this->getInteressadosEmail($interessados);
+		$emails = $this->usersService->getUsersEmail($interessados);
 		Mail::send($view,
 			['agendamento' => $agendamento],
 			function ($message) use ($emails, $subject) {
@@ -160,14 +160,6 @@ class AgendamentosService implements AgendamentosServiceInterface {
 					->subject($subject);
 			}
 		);
-	}
-
-	private function getInteressadosEmail($interessados) {
-		$emails = [];
-		if ($interessados)
-			foreach ($interessados as $interessado)
-				array_push($emails, $interessado->email);
-		return $emails;
 	}
 
 }
