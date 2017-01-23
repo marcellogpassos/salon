@@ -5,6 +5,6 @@
     {{--</div>--}}
     {{--</div>--}}
     <div class="container center">
-        <p><strong>Salon Project</strong>&nbsp;© Copyright 2016-2016&nbsp;::&nbsp;Marcello Galdino Passos</p>
+        <p><strong>{{env('APP_NAME')}}</strong>&nbsp;© Copyright 2016&nbsp;-&nbsp;{{ \Carbon\Carbon::today()->year }}&nbsp;::&nbsp;Marcello Galdino Passos</p>
     </div>
 </footer>

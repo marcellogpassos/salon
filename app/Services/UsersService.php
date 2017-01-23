@@ -22,6 +22,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class UsersService implements UsersServiceInterface {
 
@@ -152,6 +153,16 @@ class UsersService implements UsersServiceInterface {
 			foreach ($users as $user)
 				array_push($emails, $user->email);
 		return $emails;
+	}
+
+	public function alterarSenha($user, $novaSenha) {
+		$senhaCript = bcrypt($novaSenha);
+		return $this->users->update(['password' => $senhaCript], $user->id);
+	}
+
+	public function validarSenha($userId, $senha) {
+		$user = $this->users->find($userId);
+		return Hash::check($senha, $user->password);
 	}
 
 }

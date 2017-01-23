@@ -1,7 +1,7 @@
 @extends('layouts.appm')
 
 @section('title')
-    Excluir Conta
+    Alterar Senha
 @endsection
 
 @section('content')
@@ -14,10 +14,10 @@
 
                 <div class="card white">
 
-                    <h4 class="card-title">Excluir Conta</h4>
+                    <h4 class="card-title">Alterar Senha</h4>
 
-                    <form id="excluirContaForm" class="form-horizontal" method="POST"
-                          action="{{ url('/users/excluirConta') }}" role="form">
+                    <form id="alterarSenhaForm" class="form-horizontal" method="POST"
+                          action="{{ url('/users/alterarSenha') }}" role="form">
 
                         {{ csrf_field() }}
 
@@ -33,27 +33,25 @@
 
                             <div class="row">
                                 <div class="input-field col s12 offset-m3 m6">
-                                    <input id="passwordInput" type="password" class="validate" name="password" required>
-                                    <label for="passwordInput">Senha *</label>
+                                    <input id="passwordInput" type="password" class="validate" name="current-password"
+                                           required>
+                                    <label for="passwordInput">Senha atual *</label>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="input-field col s12 offset-m3 m6">
-                                    <textarea id="motivoInput" class="materialize-textarea" type="text" length="2048"
-                                              name="motivo">{!! old('motivo') ? old('motivo') : '' !!}</textarea>
-                                    <label for="motivoInput">
-                                        Deixe-nos saber o motivo da exclus&atilde;o
-                                    </label>
+                                    <input id="passwordInput" type="password" class="validate" name="new-password"
+                                           required>
+                                    <label for="passwordInput">Nova senha *</label>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="input-field col s12 offset-m3 m6">
-                                    <p class="center-align">Avalie sua experi&ecirc;ncia com o nosso sistema</p>
-
-                                    @include('partials.starRate')
-
+                                    <input id="passwordInput" type="password" class="validate"
+                                           name="confirm-new-password" required>
+                                    <label for="passwordInput">Confirme a nova senha *</label>
                                 </div>
                             </div>
 
@@ -63,7 +61,7 @@
                             <div class="row">
                                 <div class="col s12 m4 offset-m4 grid-example">
                                     <button type="submit" class="btn btn-block waves-effect waves-light primary">
-                                        Excluir Conta
+                                        Alterar Senha
                                     </button>
                                 </div>
                             </div>
@@ -85,6 +83,10 @@
 
 @section('scripts')
 
-    <script src="{{ asset('js/starRate.js') }}"></script>
+    <script type="text/javascript">
+        var formSelector = '#alterarSenhaForm';
+    </script>
+
+    <script src="{{ asset('js/confirmarSenhas.js') }}"></script>
 
 @endsection

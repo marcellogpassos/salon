@@ -27,6 +27,7 @@ var Messages = {
         "A data inicial deve ser anterior à data final.",                                                               // 18
         "O valor mínimo deve ser menor que o valor máximo.",                                                            // 19
         "O código deve conter 6 caracteres apenas letras e números.",                                                   // 20
+        "As senhas não conferem.",                                                                                      // 21
     ],
     information: [
         "Um link para resetar a senha foi enviado para: {0}.",                                                          // 0

@@ -10,10 +10,8 @@ use App\Services\RolesServiceInterface;
 use App\Services\UsersServiceInterface;
 use App\Http\Requests\UsersDadosRequest;
 use App\Uf;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller {
 
@@ -111,7 +109,7 @@ class UsersController extends Controller {
 
     public function excluirConta(Request $request) {
         $user = Auth::user();
-        if (!Hash::check($request->input('password'), $user->password)) {
+        if (!$this->usersService->validarSenha($user->id, $request->input('password'))) {
             showMessage('error', 15);
             return back()->withInput();
         } else {
@@ -119,6 +117,35 @@ class UsersController extends Controller {
             $this->usersService->excluirUsuario($user);
             return redirect('/logout');
         }
+    }
+
+    public function mostrarFormAlterarSenha() {
+        $user = Auth::user();
+        return view('users.alterarSenha')
+            ->with('user', $user);
+    }
+
+    public function alterarSenha(Request $request) {
+        $this->validate($request, [
+            'new-password' => 'min:6|max:32|required',
+            'confirm-new-password' => 'same:new-password',
+        ]);
+
+        $user = Auth::user();
+
+        if(!$this->usersService->validarSenha($user->id, $request->input('current-password'))){
+            showMessage('error', 15);
+            return back();
+        } else {
+            if( $this->usersService->alterarSenha($user, $request->input('new-password')) ) {
+                showMessage('success', 19);
+                return redirect('/home');
+            } else {
+                showMessage('error', 16);
+                return back();
+            }
+        }
+
     }
 
 }

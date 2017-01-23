@@ -1,6 +1,6 @@
 <nav role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/home') }}"
-                                          class="brand-logo">{{ env('APP_NAME') }}</a>
+                                          class="brand-logo">{{ env('NOME_ESTABELECIMENTO') }}</a>
         <ul class="right hide-on-med-and-down">
             @if (Auth::guest())
                 <li><a href="{{ url('/home') }}">Home</a></li>
@@ -53,6 +53,7 @@
                     <ul id="userMenuDropdown" class="dropdown-content">
                         <li><a href="{{ url('/users/dados') }}">Meus dados</a></li>
                         <li><a href="{{ url('/users/excluirConta') }}">Excluir Conta</a></li>
+                        <li><a href="{{ url('/users/alterarSenha') }}">Alterar Senha</a></li>
                         <li><a href="{{ url('/logout') }}">Sair</a></li>
                     </ul>
                 </li>
@@ -110,6 +111,7 @@
                                 <ul>
                                     <li><a href="{{ url('/users/dados') }}">Meus dados</a></li>
                                     <li><a href="{{ url('/users/excluirConta') }}">Excluir Conta</a></li>
+                                    <li><a href="{{ url('/users/alterarSenha') }}">Alterar Senha</a></li>
                                     <li><a href="{{ url('/logout') }}">Sair</a></li>
                                 </ul>
                             </div>

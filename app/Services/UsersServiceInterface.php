@@ -43,4 +43,8 @@ interface UsersServiceInterface {
 
     public function getUsersEmail($users);
 
+    public function alterarSenha($user, $novaSenha);
+
+    public function validarSenha($userId, $senha);
+
 }
