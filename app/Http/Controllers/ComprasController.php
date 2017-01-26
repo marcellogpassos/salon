@@ -117,4 +117,8 @@ class ComprasController extends Controller {
 			->with('compra', $compra);
 	}
 
+	public function cancelarCompra($codigoValidacao, Request $request) {
+		return $codigoValidacao;
+	}
+
 }

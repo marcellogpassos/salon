@@ -37,6 +37,7 @@ Route::get('compras/buscarCliente', 'ComprasController@buscarCliente');
 Route::get('compras/buscar', 'ComprasController@buscarCompras');
 Route::get('compras/registrar', 'ComprasController@mostrarFormRegistrarCompraAnonima');
 Route::post('compras/registrar', 'ComprasController@registrarCompraAnonima');
+Route::post('compras/{codigoValidacao}/cancelar', 'ComprasController@cancelarCompra');
 Route::get('compras/{codigoValidacao}/detalhar', 'ComprasController@detalharCompra');
 Route::get('compras/{codigoValidacao}/emitirComprovante', 'ComprasController@emitirComprovanteCompra');
 

@@ -17,6 +17,18 @@
 
                     <h4 class="card-title">Compra finalizada</h4>
 
+                    @if($compra->data_cancelamento)
+                        <div class="row">
+                            <div class="col offset-m1 s10">
+                                <div id="information-alert" class="card card-alert card-alert-information">
+                                    <div class="card-content">
+                                        <p>Compra Cancelada em {{ dateToBrFormat($compra->data_cancelamento) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="card-content gray-text text-darken-4">
                         <div class="row">
                             <div class="col s12 m4 offset-m2">
@@ -110,12 +122,33 @@
 
                     <div class="card-action">
                         <div class="row">
-                            <div class="col s12 m4 offset-m4 grid-example">
+                            <div class="col s12 m4 {{ $compra->data_cancelamento ? ' offset-m4' : ' offset-m2' }}">
                                 <a href="{{ url('compras/' . $compra->codigo_validacao . '/emitirComprovante') }}"
                                    class="waves-effect waves-light btn btn-large btn-block primary" target="_blank">
                                     <i class="material-icons left">print</i>Emitir comprovante
                                 </a>
                             </div>
+
+                            @if(!$compra->data_cancelamento)
+
+                                <form role="form" method="post"
+                                      action="{{ url('compras/' . $compra->codigo_validacao . '/cancelar') }}">
+
+                                    {!! csrf_field() !!}
+
+                                    <input type="hidden" name="cancelar" value="1">
+
+                                    <div class="col s6 m4">
+                                        <button class="waves-effect waves-light btn btn-large btn-block secondary"
+                                                type="submit">
+                                            <i class="material-icons left">delete_forever</i>Cancelar Compra
+                                        </button>
+                                    </div>
+
+                                </form>
+
+                            @endif
+
                         </div>
                     </div>
 
