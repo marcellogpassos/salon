@@ -21,4 +21,6 @@ interface ComprasServiceInterface {
 
 	public function getByCodigoValidacao($codigoValidacao);
 
+	public function cancelarCompra($compra);
+
 }

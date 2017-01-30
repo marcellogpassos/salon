@@ -48,6 +48,8 @@ return [
 		' FROM' .
 			' compras comp' .
 			' INNER JOIN users user ON (comp.cliente_id = user.id)' .
+		' WHERE' .
+			' comp.data_cancelamento is null' .
 		' GROUP BY user.id' .
 		' ORDER BY 3 DESC',
 
@@ -59,6 +61,8 @@ return [
 		' FROM' .
 			' compras comp' .
 			' INNER JOIN users user ON (comp.cliente_id = user.id)' .
+		' WHERE' .
+			' comp.data_cancelamento is null' .
 		' GROUP BY user.id' .
 		' ORDER BY 3 DESC',
 
@@ -71,6 +75,8 @@ return [
 			' compras comp' .
 			' INNER JOIN item_compra itco ON (comp.id = itco.compra_id)' .
 			' INNER JOIN produtos prod ON (itco.item_id = prod.id)' .
+		' WHERE' .
+			' comp.data_cancelamento is null' .
 		' GROUP BY prod.id' .
 		' ORDER BY 3 DESC',
 
@@ -83,6 +89,8 @@ return [
 			' compras comp' .
 			' INNER JOIN item_compra itco ON (comp.id = itco.compra_id)' .
 			' INNER JOIN servicos serv ON (itco.item_id = serv.id)' .
+		' WHERE' .
+			' comp.data_cancelamento is null' .
 		' GROUP BY serv.id' .
 		' ORDER BY 3 DESC',
 
@@ -92,6 +100,8 @@ return [
 			' count(comp.id) AS "frequencia"' .
 		' FROM' .
 			' compras comp' .
+		' WHERE' .
+			' comp.data_cancelamento is null' .
 		' GROUP BY 1' .
 		' ORDER BY 2 DESC',
 
@@ -101,6 +111,8 @@ return [
 			' count(comp.id) AS "frequencia"' .
 		' FROM' .
 			' compras comp' .
+		' WHERE' .
+			' comp.data_cancelamento is null' .
 		' GROUP BY 1' .
 		' ORDER BY 2 DESC',
 
@@ -110,6 +122,8 @@ return [
 			' count(comp.id) AS "frequencia"' .
 		' FROM' .
 			' compras comp' .
+		' WHERE' .
+			' comp.data_cancelamento is null' .
 		' GROUP BY 1' .
 		' ORDER BY 2 DESC',
 
@@ -168,7 +182,8 @@ return [
 		' FROM' .
 			' compras comp' .
 		' WHERE' .
-			' comp.data_compra > ?',
+			' comp.data_compra > ?' .
+			' AND comp.data_cancelamento is null',
 
 	'receita' =>
 		'SELECT' .
@@ -176,7 +191,8 @@ return [
 		' FROM' .
 			' compras comp' .
 		' WHERE' .
-			' comp.data_compra > ?',
+			' comp.data_compra > ?' .
+			' AND comp.data_cancelamento is null',
 
 	'novosClientes' =>
 		'SELECT' .
@@ -194,7 +210,8 @@ return [
 			' INNER JOIN compras comp ON (comp.id = itco.compra_id)' .
 			' INNER JOIN servicos serv ON (serv.id = itco.item_id)' .
 		' WHERE' .
-			' comp.data_compra > ?',
+			' comp.data_compra > ?' .
+			' AND comp.data_cancelamento is null',
 
 	'produtosVendidos' =>
 		'SELECT' .
@@ -203,7 +220,9 @@ return [
 			' item_compra itco' .
 			' INNER JOIN compras comp ON (comp.id = itco.compra_id)' .
 			' INNER JOIN produtos prod ON (prod.id = itco.item_id)' .
-		' WHERE comp.data_compra > ?',
+		' WHERE' .
+			' comp.data_compra > ?' .
+			' AND comp.data_cancelamento is null',
 
 	'agenda' =>
 		'SELECT' .

@@ -11,6 +11,7 @@ namespace App\Services;
 
 use App\Compra;
 use App\Repositories\ComprasRepository;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ComprasService implements ComprasServiceInterface {
@@ -113,4 +114,10 @@ class ComprasService implements ComprasServiceInterface {
 		$compra = $this->comprasRepository->findBy('codigo_validacao', $codigoValidacao);
 		return $compra;
 	}
+
+	public function cancelarCompra($compra) {
+		$dataCancelamento = Carbon::now()->toDayDateTimeString();
+		return $this->comprasRepository->update(['data_cancelamento' => $dataCancelamento], $compra->id);
+	}
+
 }

@@ -118,7 +118,13 @@ class ComprasController extends Controller {
 	}
 
 	public function cancelarCompra($codigoValidacao, Request $request) {
-		return $codigoValidacao;
+		$compra = $this->comprasService->getByCodigoValidacao($codigoValidacao);
+		$result = $this->comprasService->cancelarCompra($compra);
+		if ($result)
+			showMessage('success', 20);
+		else
+			showMessage('error', 17);
+		return back();
 	}
 
 }

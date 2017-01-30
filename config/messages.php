@@ -21,7 +21,8 @@ return [
 		'Falha ao tentar bloquear o usuário.',                                                                          // 13
 		'Não foi possível realizar o agendamento - usuário bloqueado.',                                                 // 14
 		'Senha incorreta!',                                                                                             // 15
-		'Falha ao tentar atualizar a senha. Tente novamente mais tarde.',                                               // 16																// 15
+		'Falha ao tentar atualizar a senha. Tente novamente mais tarde.',                                               // 16															// 15
+		'Falha ao tentar cancelar a compra. Tente novamente mais tarde.',												// 17
 	],
 
 	'information' => [
@@ -54,6 +55,7 @@ return [
 		'Usuário bloqueado - {0}',                                                                                      // 17
 		'Conta excluida com sucesso! Até breve.',                                                                       // 18
 		'Senha alterada com sucesso!',                                                                                  // 19
+		'Compra cancelada!',																							// 20
 	],
 
 	'warning' => [
