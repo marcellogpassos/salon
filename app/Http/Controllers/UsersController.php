@@ -148,4 +148,10 @@ class UsersController extends Controller {
 
     }
 
+    public function mostrarFormCadastrarUsuario() {
+        $ufs = Uf::all();
+        return view('users.cadastrar')
+            ->with('ufs', $ufs);
+    }
+
 }
