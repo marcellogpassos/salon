@@ -43,7 +43,7 @@ class UsersController extends Controller {
 
     public function mostrarFormEditarDadosUsuario() {
         $user = Auth::user();
-        $ufs = Uf::all();
+        $ufs = Uf::orderBy('sigla')->get();
         $municipios = isset($user->municipio) ? Municipio::where('uf_id', $user->municipio->uf_id)->get() : null;
         return view('users.dados')
             ->with('user', $user)
@@ -149,7 +149,7 @@ class UsersController extends Controller {
     }
 
     public function mostrarFormCadastrarUsuario() {
-        $ufs = Uf::all();
+        $ufs = Uf::orderBy('sigla')->get();
         return view('users.cadastrar')
             ->with('ufs', $ufs);
     }
