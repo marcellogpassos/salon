@@ -19,6 +19,7 @@ use App\Repositories\Criteria\User\OrdenarPorNomeSobrenome;
 use App\Repositories\UsersRepository as Users;
 use App\Role;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -163,6 +164,24 @@ class UsersService implements UsersServiceInterface {
 	public function validarSenha($userId, $senha) {
 		$user = $this->users->find($userId);
 		return Hash::check($senha, $user->password);
+	}
+
+	public function cadastrarCliente($dados) {
+		$user = $this->users->create($dados);
+		if ($user->email) {
+			$password = $this->gerarSenha($user);
+			$this->users->update(['password' => $password], $user->id);
+		}
+		return $user;
+	}
+
+	private function gerarSenha($user) {
+		$dataNascimento = Carbon::createFromFormat('Y-m-d', $user->data_nascimento);
+		$ano = str_pad($dataNascimento->year % 100, 2, "0", STR_PAD_LEFT);
+		$mes = str_pad($dataNascimento->month, 2, "0", STR_PAD_LEFT);
+		$dia = str_pad($dataNascimento->day, 2, "0", STR_PAD_LEFT);
+		$plainPassword = $dia . $mes . $ano;
+		return bcrypt($plainPassword);
 	}
 
 }

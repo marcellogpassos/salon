@@ -65,7 +65,8 @@ Route::get('servicos/{id}/profissionais', 'ServicosController@listarProfissionai
 
 Route::post('users/status', 'UsersController@status');
 Route::get('users/buscar', 'UsersController@mostrarUsuariosEncontrados');
-Route::get('users/cadastrar', 'UsersController@mostrarFormCadastrarUsuario');
+Route::get('users/cadastrar', 'UsersController@mostrarFormCadastrarCliente');
+Route::post('users/cadastrar', 'UsersController@cadastrarCliente');
 Route::get('users/dados', 'UsersController@mostrarFormEditarDadosUsuario');
 Route::post('users/dados', 'UsersController@editarDadosUsuario');
 Route::get('users/alterarSenha', 'UsersController@mostrarFormAlterarSenha');

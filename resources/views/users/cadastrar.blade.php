@@ -1,7 +1,7 @@
 @extends('layouts.appm')
 
 @section('title')
-    Cadastrar usu&aacute;rio
+    Cadastrar Cliente
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
 
                 <div class="card white">
 
-                    <h4 class="card-title">Cadastrar usu&aacute;rio</h4>
+                    <h4 class="card-title">Cadastrar Cliente</h4>
 
                     {!! Form::open(
                         array(

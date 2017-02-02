@@ -7,8 +7,15 @@
                 <li><a href="{{ url('/login') }}">Entrar</a></li>
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
-                <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('/users/buscar') }}">Usu&aacute;rios</a></li>
+                <li>
+                    <a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="usuariosMenuDropdown">
+                        Clientes / Usu&aacute;rios <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                    <ul id="usuariosMenuDropdown" class="dropdown-content">
+                        <li><a href="{{ url('/users/buscar') }}">Buscar Clientes / Usu&aacute;rios</a></li>
+                        <li><a href="{{ url('/users/cadastrar') }}">Cadastrar Cliente</a></li>
+                    </ul>
+                </li>
 
                 <li>
                     <a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="comprasMenuDropdown">
@@ -67,7 +74,23 @@
                 <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
             @else
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('/users/buscar') }}">Usu&aacute;rios</a></li>
+
+
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header waves-effect waves-teal">
+                                Clientes / Usu&aacute;rios <i class="material-icons left">arrow_drop_down</i>
+                            </a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{{ url('/users/buscar') }}">Buscar Clientes / Usu&aacute;rios</a></li>
+                                    <li><a href="{{ url('/users/cadastrar') }}">Cadastrar Cliente</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
 
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">

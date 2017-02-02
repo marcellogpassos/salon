@@ -47,4 +47,6 @@ interface UsersServiceInterface {
 
     public function validarSenha($userId, $senha);
 
+    public function cadastrarCliente($dados);
+
 }

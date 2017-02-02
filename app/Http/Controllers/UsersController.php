@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CadastrarClienteRequest;
 use App\Http\Requests\UsersBuscarRequest;
 use App\Http\Requests\UsersStatusRequest;
 use App\Municipio;
@@ -148,10 +149,21 @@ class UsersController extends Controller {
 
     }
 
-    public function mostrarFormCadastrarUsuario() {
+    public function mostrarFormCadastrarCliente() {
         $ufs = Uf::orderBy('sigla')->get();
         return view('users.cadastrar')
             ->with('ufs', $ufs);
+    }
+
+    public function cadastrarCliente(CadastrarClienteRequest $request) {
+        $user = $this->usersService->cadastrarCliente($request->all());
+        if($user){
+            showMessage('success', 21);
+            return redirect('/users/buscar?id=' . $user->id);
+        } else {
+            showMessage('error', 18);
+            return back()->withInput();
+        }
     }
 
 }

@@ -109,10 +109,16 @@
 
                         <div class="card-action">
                             <div class="row">
-                                <div class="col s12 m4 offset-m4 grid-example">
+                                <div class="col s12 m4 offset-m2 grid-example">
                                     <button type="submit" class="btn btn-block waves-effect waves-light primary">
                                         Buscar
                                     </button>
+                                </div>
+
+                                <div class="col s12 m4 grid-example">
+                                    <a href="{{ url('/users/cadastrar') }}" class="btn btn-block waves-effect waves-light secondary">
+                                        Cadastrar Cliente
+                                    </a>
                                 </div>
                             </div>
                         </div>
