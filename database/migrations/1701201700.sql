@@ -40,7 +40,7 @@ CREATE TABLE `agendamentos` (
   KEY `servico_agendamento_idx` (`servico_id`),
   KEY `funcionario_agendamento_idx` (`profissional_id`),
   CONSTRAINT `cliente_agendamento` FOREIGN KEY (`cliente_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `profissional_agendamento` FOREIGN KEY (`profissional_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `profissional_agendamento` FOREIGN KEY (`profissional_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `servico_agendamento` FOREIGN KEY (`servico_id`) REFERENCES `servicos` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

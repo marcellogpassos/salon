@@ -26,22 +26,15 @@ class UsersController extends Controller {
         $this->rolesService = $rolesService;
         $this->contasExcluidasService = $contasExcluidasService;
         $this->middleware('auth');
+        $this->middleware('admin', ['only' => [
+            'mostrarFormCadastrarCliente', 'cadastrarCliente', 'status', 'mostrarFormGerenciarPapeis', 'editarPapeis'
+        ]]);
+        $this->middleware('professional', ['only' => [
+            'mostrarFormBuscarUsuarios', 'mostrarUsuariosEncontrados', 'recuperarUsuario'
+        ]]);
     }
 
-    public function mostrarFormBuscarUsuarios(Request $request) {
-        $userId = $request->input('user');
-        return view('users.buscar');
-    }
-
-    public function mostrarUsuariosEncontrados(UsersBuscarRequest $request) {
-        if (!count($request->all()))
-            return view('users.buscar');
-        $usersEncontrados = $this->usersService->buscar($request->all());
-        return view('users.buscar')
-            ->with('usersEncontrados', $usersEncontrados)
-            ->with('buscaPrevia', $request->all());
-    }
-
+    // @auth
     public function mostrarFormEditarDadosUsuario() {
         $user = Auth::user();
         $ufs = Uf::orderBy('sigla')->get();
@@ -52,14 +45,7 @@ class UsersController extends Controller {
             ->with('municipios', $municipios);
     }
 
-    public function mostrarFormGerenciarPapeis($id) {
-        $user = $this->usersService->getUser($id);
-        $roles = $this->rolesService->listarTodos();
-        return view('users.roles')
-            ->with('user', $user)
-            ->with('roles', $roles);
-    }
-
+    // @auth
     public function editarDadosUsuario(UsersDadosRequest $request) {
         $user = Auth::user();
         $sucesso = $this->usersService->atualizarDados($user->id, $request->all());
@@ -74,13 +60,74 @@ class UsersController extends Controller {
         return redirect('home');
     }
 
-    public function editarPapeis($id, Request $request) {
-        $this->usersService->sincronizarPapeis($id, $request->input('roles'));
-        $this->usersService->atualizarCurriculo($id, $request->has('curriculo') ? $request->input('curriculo') : null);
-        showMessage('success', 1);
-        return $this->mostrarFormGerenciarPapeis($id);
+    // @auth
+    public function mostrarFormExcluirConta() {
+        $user = Auth::user();
+        return view('users.excluirConta')
+            ->with('user', $user);
     }
 
+    // @auth
+    public function excluirConta(Request $request) {
+        $user = Auth::user();
+        if (!$this->usersService->validarSenha($user->id, $request->input('password'))) {
+            showMessage('error', 15);
+            return back()->withInput();
+        } else {
+            $this->contasExcluidasService->cadastrarContaExcluida($user, $request->motivo, $request->stars);
+            $this->usersService->excluirUsuario($user);
+            return redirect('/logout');
+        }
+    }
+
+    // @auth
+    public function mostrarFormAlterarSenha() {
+        $user = Auth::user();
+        return view('users.alterarSenha')
+            ->with('user', $user);
+    }
+
+    // @auth
+    public function alterarSenha(Request $request) {
+        $this->validate($request, [
+            'new-password' => 'min:6|max:32|required',
+            'confirm-new-password' => 'same:new-password',
+        ]);
+
+        $user = Auth::user();
+
+        if (!$this->usersService->validarSenha($user->id, $request->input('current-password'))) {
+            showMessage('error', 15);
+            return back();
+        } else {
+            if ($this->usersService->alterarSenha($user, $request->input('new-password'))) {
+                showMessage('success', 19);
+                return redirect('/home');
+            } else {
+                showMessage('error', 16);
+                return back();
+            }
+        }
+
+    }
+
+    // @auth @professional
+    public function mostrarFormBuscarUsuarios(Request $request) {
+        $userId = $request->input('user');
+        return view('users.buscar');
+    }
+
+    // @auth @professional
+    public function mostrarUsuariosEncontrados(UsersBuscarRequest $request) {
+        if (!count($request->all()))
+            return view('users.buscar');
+        $usersEncontrados = $this->usersService->buscar($request->all());
+        return view('users.buscar')
+            ->with('usersEncontrados', $usersEncontrados)
+            ->with('buscaPrevia', $request->all());
+    }
+
+    // @auth @professional
     public function recuperarUsuario($id) {
         $user = $this->usersService->getUser($id);
         $municipio = $user->municipio;
@@ -89,6 +136,24 @@ class UsersController extends Controller {
         return response()->json($user);
     }
 
+    // @auth @admin
+    public function mostrarFormGerenciarPapeis($id) {
+        $user = $this->usersService->getUser($id);
+        $roles = $this->rolesService->listarTodos();
+        return view('users.roles')
+            ->with('user', $user)
+            ->with('roles', $roles);
+    }
+
+    // @auth @admin
+    public function editarPapeis($id, Request $request) {
+        $this->usersService->sincronizarPapeis($id, $request->input('roles'));
+        $this->usersService->atualizarCurriculo($id, $request->has('curriculo') ? $request->input('curriculo') : null);
+        showMessage('success', 1);
+        return $this->mostrarFormGerenciarPapeis($id);
+    }
+
+    // @auth @admin
     public function status(UsersStatusRequest $request) {
         $user = $this->usersService->getUser($request->input('id'));
         $ativo = $request->input('ativo');
@@ -102,62 +167,17 @@ class UsersController extends Controller {
         return redirect('/users/buscar?id=' . $user->id);
     }
 
-    public function mostrarFormExcluirConta() {
-        $user = Auth::user();
-        return view('users.excluirConta')
-            ->with('user', $user);
-    }
-
-    public function excluirConta(Request $request) {
-        $user = Auth::user();
-        if (!$this->usersService->validarSenha($user->id, $request->input('password'))) {
-            showMessage('error', 15);
-            return back()->withInput();
-        } else {
-            $this->contasExcluidasService->cadastrarContaExcluida($user, $request->motivo, $request->stars);
-            $this->usersService->excluirUsuario($user);
-            return redirect('/logout');
-        }
-    }
-
-    public function mostrarFormAlterarSenha() {
-        $user = Auth::user();
-        return view('users.alterarSenha')
-            ->with('user', $user);
-    }
-
-    public function alterarSenha(Request $request) {
-        $this->validate($request, [
-            'new-password' => 'min:6|max:32|required',
-            'confirm-new-password' => 'same:new-password',
-        ]);
-
-        $user = Auth::user();
-
-        if(!$this->usersService->validarSenha($user->id, $request->input('current-password'))){
-            showMessage('error', 15);
-            return back();
-        } else {
-            if( $this->usersService->alterarSenha($user, $request->input('new-password')) ) {
-                showMessage('success', 19);
-                return redirect('/home');
-            } else {
-                showMessage('error', 16);
-                return back();
-            }
-        }
-
-    }
-
+    // @auth @admin
     public function mostrarFormCadastrarCliente() {
         $ufs = Uf::orderBy('sigla')->get();
         return view('users.cadastrar')
             ->with('ufs', $ufs);
     }
 
+    // @auth @admin
     public function cadastrarCliente(CadastrarClienteRequest $request) {
         $user = $this->usersService->cadastrarCliente($request->all());
-        if($user){
+        if ($user) {
             showMessage('success', 21);
             return redirect('/users/buscar?id=' . $user->id);
         } else {
