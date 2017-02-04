@@ -122,14 +122,14 @@
 
                     <div class="card-action">
                         <div class="row">
-                            <div class="col s12 m4 {{ $compra->data_cancelamento ? ' offset-m4' : ' offset-m2' }}">
+                            <div class="col s12 m4 {{ ($compra->data_cancelamento || !Auth::user()->admin()) ? ' offset-m4' : ' offset-m2' }}">
                                 <a href="{{ url('compras/' . $compra->codigo_validacao . '/emitirComprovante') }}"
                                    class="waves-effect waves-light btn btn-large btn-block primary" target="_blank">
                                     <i class="material-icons left">print</i>Emitir comprovante
                                 </a>
                             </div>
 
-                            @if(!$compra->data_cancelamento)
+                            @if(!$compra->data_cancelamento && Auth::user()->admin())
 
                                 <form role="form" method="post"
                                       action="{{ url('compras/' . $compra->codigo_validacao . '/cancelar') }}">

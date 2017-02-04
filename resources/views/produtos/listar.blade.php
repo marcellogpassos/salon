@@ -36,7 +36,7 @@
                                 </div>
 
                                 <div class="input-field col s12 m6">
-                                    <input id="codigoBarrasInput" name="codigo_barras"  maxlength="13"
+                                    <input id="codigoBarrasInput" name="codigo_barras" maxlength="13"
                                            value="{{
 
                                                 old('codigo_barras') ?
@@ -99,17 +99,20 @@
 
                         <div class="card-action">
                             <div class="row">
-                                <div class="col s12 m4 offset-m2 grid-example">
+                                <div class="col s12 m4 grid-example{{Auth::user()->admin() ? ' offset-m2' : ' offset-m4'}}">
                                     <button type="submit" class="btn btn-block waves-effect waves-light primary">
                                         Buscar
                                     </button>
                                 </div>
-                                <div class="col s12 m4 grid-example">
-                                    <a class="btn btn-block waves-effect waves-light secondary"
-                                       href="{{ url('produtos/cadastrar') }}">
-                                        Cadastrar Produto
-                                    </a>
-                                </div>
+
+                                @if(Auth::user()->admin())
+                                    <div class="col s12 m4 grid-example">
+                                        <a class="btn btn-block waves-effect waves-light secondary"
+                                           href="{{ url('produtos/cadastrar') }}">
+                                            Cadastrar Produto
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
@@ -149,7 +152,9 @@
                                             <th data-field="marca_id">Marca</th>
                                             <th data-field="quantidade">Quant.</th>
                                             <th data-field="valor">Valor</th>
-                                            <th>Op&ccedil;&otilde;es</th>
+                                            @if(Auth::user()->admin())
+                                                <th>Op&ccedil;&otilde;es</th>
+                                            @endif
                                         </tr>
                                         </thead>
 
@@ -169,15 +174,17 @@
                                                 </td>
                                                 <td>{{$produto->quantidade}}</td>
                                                 <td>{{moneyFormat($produto->itemVenda->valor)}}</td>
-                                                <td>
-                                                    <a href="{{ url('produtos/' . $produto->id . '/editar') }}">
-                                                        <i class="material-icons">mode_edit</i>
-                                                    </a>
-                                                    &nbsp;
-                                                    <a href="{{ url('produtos/' . $produto->id . '/excluir') }}">
-                                                        <i class="material-icons">delete</i>
-                                                    </a>
-                                                </td>
+                                                @if(Auth::user()->admin())
+                                                    <td>
+                                                        <a href="{{ url('produtos/' . $produto->id . '/editar') }}">
+                                                            <i class="material-icons">mode_edit</i>
+                                                        </a>
+                                                        &nbsp;
+                                                        <a href="{{ url('produtos/' . $produto->id . '/excluir') }}">
+                                                            <i class="material-icons">delete</i>
+                                                        </a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                         </tbody>

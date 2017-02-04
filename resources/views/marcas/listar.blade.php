@@ -59,24 +59,27 @@
 
                                         <div class="row">
                                             <div class="col s12">
-                                                <div class="col s12 m4 grid-example">
+                                                <div class="col s12 m4 grid-example{{!Auth::user()->admin() ? ' offset-m4' : ''}}">
                                                     <a class="btn btn-block waves-effect waves-light secondary"
                                                        href="{{ url('/produtos/buscar?marca_id=' . $marca->id) }}">
                                                         Ver produtos
                                                     </a>
                                                 </div>
-                                                <div class="col s12 m4 grid-example">
-                                                    <a class="btn btn-block waves-effect waves-light secondary"
-                                                       href="{{ url('/marcas/' . $marca->id . '/editar') }}">
-                                                        Editar
-                                                    </a>
-                                                </div>
-                                                <div class="col s12 m4 grid-example">
-                                                    <a class="btn btn-block waves-effect waves-light secondary"
-                                                       href="{{ url('/marcas/' . $marca->id . '/excluir') }}">
-                                                        Excluir
-                                                    </a>
-                                                </div>
+
+                                                @if(Auth::user()->admin())
+                                                    <div class="col s12 m4 grid-example">
+                                                        <a class="btn btn-block waves-effect waves-light secondary"
+                                                           href="{{ url('/marcas/' . $marca->id . '/editar') }}">
+                                                            Editar
+                                                        </a>
+                                                    </div>
+                                                    <div class="col s12 m4 grid-example">
+                                                        <a class="btn btn-block waves-effect waves-light secondary"
+                                                           href="{{ url('/marcas/' . $marca->id . '/excluir') }}">
+                                                            Excluir
+                                                        </a>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -88,16 +91,20 @@
 
                     </div>
 
-                    <div class="card-action">
-                        <div class="row">
-                            <div class="col s12 m4 offset-m4 grid-example">
-                                <a class="btn btn-block waves-effect waves-light primary"
-                                   href="{{ url('/marcas/cadastrar') }}">
-                                    Cadastrar nova marca
-                                </a>
+                    @if(Auth::user()->admin())
+
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col s12 m4 offset-m4 grid-example">
+                                    <a class="btn btn-block waves-effect waves-light primary"
+                                       href="{{ url('/marcas/cadastrar') }}">
+                                        Cadastrar nova marca
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    @endif
 
                 </div>
             </div>

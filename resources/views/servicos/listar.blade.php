@@ -83,17 +83,21 @@
 
                         <div class="card-action">
                             <div class="row">
-                                <div class="col s12 m4 offset-m2 grid-example">
+                                <div class="col s12 m4 grid-example{{Auth::user()->admin() ? ' offset-m2' : ' offset-m4'}}">
                                     <button type="submit" class="btn btn-block waves-effect waves-light primary">
                                         Buscar
                                     </button>
                                 </div>
-                                <div class="col s12 m4 grid-example">
-                                    <a class="btn btn-block waves-effect waves-light secondary"
-                                       href="{{ url('servicos/cadastrar') }}">
-                                        Cadastrar servi&ccedil;o
-                                    </a>
-                                </div>
+
+                                @if(Auth::user()->admin())
+                                    <div class="col s12 m4 grid-example">
+                                        <a class="btn btn-block waves-effect waves-light secondary"
+                                           href="{{ url('servicos/cadastrar') }}">
+                                            Cadastrar servi&ccedil;o
+                                        </a>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
 
@@ -132,7 +136,9 @@
                                             <th data-field="categoria_id">Categoria</th>
                                             <th data-field="duracao">Dura&ccedil;&atilde;o</th>
                                             <th data-field="valor">Valor</th>
-                                            <th>Op&ccedil;&otilde;es</th>
+                                            @if(Auth::user()->admin())
+                                                <th>Op&ccedil;&otilde;es</th>
+                                            @endif
                                         </tr>
                                         </thead>
 
@@ -146,15 +152,17 @@
                                                     {{ $servico->duracao }}
                                                 </td>
                                                 <td>{{moneyFormat($servico->itemVenda->valor)}}</td>
-                                                <td>
-                                                    <a href="{{ url('servicos/' . $servico->id . '/editar') }}">
-                                                        <i class="material-icons">mode_edit</i>
-                                                    </a>
-                                                    &nbsp;
-                                                    <a href="{{ url('servicos/' . $servico->id . '/excluir') }}">
-                                                        <i class="material-icons">delete</i>
-                                                    </a>
-                                                </td>
+                                                @if(Auth::user()->admin())
+                                                    <td>
+                                                        <a href="{{ url('servicos/' . $servico->id . '/editar') }}">
+                                                            <i class="material-icons">mode_edit</i>
+                                                        </a>
+                                                        &nbsp;
+                                                        <a href="{{ url('servicos/' . $servico->id . '/excluir') }}">
+                                                            <i class="material-icons">delete</i>
+                                                        </a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                         </tbody>

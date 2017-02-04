@@ -25,6 +25,9 @@ class WelcomeController extends Controller {
 		if (!$user)
 			return view('welcome');
 
+		if(!count($user->roles))
+			return redirect('/agendamentos');
+
 		$hoje = Carbon::today();
 
 		$agendamentosPedentes = ($user->admin()) ?

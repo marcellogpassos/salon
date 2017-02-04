@@ -27,10 +27,13 @@ class UsersController extends Controller {
         $this->contasExcluidasService = $contasExcluidasService;
         $this->middleware('auth');
         $this->middleware('admin', ['only' => [
-            'mostrarFormCadastrarCliente', 'cadastrarCliente', 'status', 'mostrarFormGerenciarPapeis', 'editarPapeis'
+            'status', 'mostrarFormGerenciarPapeis', 'editarPapeis'
+        ]]);
+        $this->middleware('cashier', ['only' => [
+            'mostrarFormCadastrarCliente', 'cadastrarCliente'
         ]]);
         $this->middleware('professional', ['only' => [
-            'mostrarFormBuscarUsuarios', 'mostrarUsuariosEncontrados', 'recuperarUsuario'
+            'mostrarFormBuscarUsuarios', 'mostrarUsuariosEncontrados', 'recuperarUsuario',
         ]]);
     }
 

@@ -38,13 +38,17 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col s12 offset-m2 m8">
-                            <a class="btn btn-block btn-primary compras" href="" target="_blank">
-                                Ver compras deste usuário
-                            </a>
+                    @if(Auth::user()->possuiRole(\App\Role::CAIXA) || Auth::user()->admin())
+
+                        <div class="row">
+                            <div class="col s12 offset-m2 m8">
+                                <a class="btn btn-block btn-primary compras" href="" target="_blank">
+                                    Ver compras deste usuário
+                                </a>
+                            </div>
                         </div>
-                    </div>
+
+                    @endif
 
                 </div>
             </div>

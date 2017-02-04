@@ -29,7 +29,9 @@ class AgendamentosController extends Controller {
 		$this->agendamentosService = $agendamentosService;
 		$this->usersService = $usersService;
 		$this->middleware('auth');
-		$this->middleware('professional', ['except' => 'agendar', 'cancelarAgendamento', 'index']);
+		$this->middleware('professional',
+			['only' => 'mostrarFormAgendarParaCliente', 'agendarParaCliente', 'minhaAgenda', 'agendamentosPendentes',
+			'analisar']);
 	}
 
 	// @auth
@@ -42,26 +44,11 @@ class AgendamentosController extends Controller {
 			->with('agendamentos', $agendamentos);
 	}
 
-	// @auth @professional
-	public function mostrarFormAgendarParaCliente($id) {
-		$cliente = $this->usersService->getUser($id);
-		$categoriasServicos = $this->categoriasServicosService->listarTodos();
-		return view('agendamentos.agendarParaCliente')
-			->with('cliente', $cliente)
-			->with('categoriasServicos', $categoriasServicos);
-	}
-
 	// @auth
 	public function agendar(AgendamentoRequest $request) {
 		$cliente = Auth::user();
-		return $this->agendarServico($request, $cliente, '/agendamentos');
-	}
 
-	// @auth @professional
-	public function agendarParaCliente(AgendamentoRequest $request) {
-		$clienteId = $request->input('id');
-		$cliente = $this->usersService->getUser($clienteId);
-		return $this->agendarServico($request, $cliente, '/users/buscar?id=' . $clienteId);
+		return $this->agendarServico($request, $cliente, '/agendamentos');
 	}
 
 	// @auth
@@ -73,6 +60,22 @@ class AgendamentosController extends Controller {
 		else
 			showMessage('error', 9);
 		return redirect('/agendamentos');
+	}
+
+	// @auth @professional
+	public function mostrarFormAgendarParaCliente($id) {
+		$cliente = $this->usersService->getUser($id);
+		$categoriasServicos = $this->categoriasServicosService->listarTodos();
+		return view('agendamentos.agendarParaCliente')
+			->with('cliente', $cliente)
+			->with('categoriasServicos', $categoriasServicos);
+	}
+
+	// @auth @professional
+	public function agendarParaCliente(AgendamentoRequest $request) {
+		$clienteId = $request->input('id');
+		$cliente = $this->usersService->getUser($clienteId);
+		return $this->agendarServico($request, $cliente, '/users/buscar?id=' . $clienteId);
 	}
 
 	// @auth @professional
@@ -112,7 +115,6 @@ class AgendamentosController extends Controller {
 			$this->agendamentosService->meusAgendamentosPendentes($hoje->toDateString()) :
 			$this->agendamentosService->meusAgendamentosPendentes($hoje->toDateString(), null, Auth::user()->id);
 
-		dd($agendamentosPedentes);
 	}
 
 	// @auth @professional
@@ -145,6 +147,7 @@ class AgendamentosController extends Controller {
 			return redirect($redirect);
 
 		$agendamento = $this->agendamentosService->cadastrarAgendamento($cliente->id, $request->all());
+
 		if ($agendamento) {
 			showMessage('success', 12);
 			return redirect($redirect);

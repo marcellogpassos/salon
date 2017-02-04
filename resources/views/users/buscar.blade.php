@@ -109,17 +109,20 @@
 
                         <div class="card-action">
                             <div class="row">
-                                <div class="col s12 m4 offset-m2 grid-example">
+                                <div class="col s12 m4 grid-example{{ Auth::user()->possuiRole(\App\Role::CAIXA) || Auth::user()->admin() ? ' offset-m2 ' : ' offset-m4' }}">
                                     <button type="submit" class="btn btn-block waves-effect waves-light primary">
                                         Buscar
                                     </button>
                                 </div>
 
-                                <div class="col s12 m4 grid-example">
-                                    <a href="{{ url('/users/cadastrar') }}" class="btn btn-block waves-effect waves-light secondary">
-                                        Cadastrar Cliente
-                                    </a>
-                                </div>
+                                @if(Auth::user()->possuiRole(\App\Role::CAIXA) || Auth::user()->admin())
+                                    <div class="col s12 m4 grid-example">
+                                        <a href="{{ url('/users/cadastrar') }}"
+                                           class="btn btn-block waves-effect waves-light secondary">
+                                            Cadastrar Cliente
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <!-- End card action -->
@@ -167,69 +170,11 @@
 
                                             <div class="row">
                                                 <div class="col s12">
+
                                                     <div class="col s6 m4">
                                                         <a class="waves-effect waves-light btn btn-large btn-block secondary"
                                                            onclick="detalharUsuario('#datalharUsuarioModal', '{{ $us->id }}')">
                                                             <i class="material-icons left">search</i>Detalhar
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="col s6 m4">
-                                                        <a href="{{ url('users/' . $us->id . '/papeis') }}"
-                                                           class="waves-effect waves-light btn btn-large btn-block secondary">
-                                                            <i class="material-icons left">verified_user</i>Dados
-                                                            Profissionais
-                                                        </a>
-                                                    </div>
-
-                                                    @if($us->ativo)
-
-                                                        <form role="form" method="post"
-                                                              action="{{ url('/users/status') }}">
-
-                                                            {!! csrf_field() !!}
-
-                                                            <input type="hidden" name="id" value="{{ $us->id }}">
-
-                                                            <input type="hidden" name="ativo" value="0">
-
-                                                            <div class="col s6 m4">
-                                                                <button class="waves-effect waves-light btn btn-large btn-block secondary"
-                                                                        type="submit">
-                                                                    <i class="material-icons left">block</i>Bloquear Usu&aacute;rio
-                                                                </button>
-                                                            </div>
-
-                                                        </form>
-
-                                                    @else
-
-                                                        <form role="form" method="post"
-                                                              action="{{ url('/users/status') }}">
-
-                                                            {!! csrf_field() !!}
-
-                                                            <input type="hidden" name="id" value="{{ $us->id }}">
-
-                                                            <input type="hidden" name="ativo" value="1">
-
-                                                            <div class="col s6 m4">
-                                                                <button class="waves-effect waves-light btn btn-large btn-block secondary"
-                                                                        type="submit">
-                                                                    <i class="fa fa-unlock left" aria-hidden="true"></i>Desbloquear
-                                                                    Usu&aacute;rio
-                                                                </button>
-                                                            </div>
-
-                                                        </form>
-
-                                                    @endif
-
-                                                    <div class="col s6 m4">
-                                                        <a href="{{ url('users/' . $us->id . '/registrarCompra') }}"
-                                                           class="waves-effect waves-light btn btn-large btn-block secondary">
-                                                            <i class="material-icons left">shopping_cart</i>Registrar
-                                                            Compra
                                                         </a>
                                                     </div>
 
@@ -240,12 +185,83 @@
                                                         </a>
                                                     </div>
 
-                                                    <div class="col s6 m4">
-                                                        <a class="waves-effect waves-light btn btn-large btn-block secondary"
-                                                           onclick="enviarMensagem('#enviarMensagemModal', '{{ $us->id }}')">
-                                                            <i class="material-icons left">message</i>Enviar mensagem
-                                                        </a>
-                                                    </div>
+                                                    @if(Auth::user()->possuiRole(\App\Role::CAIXA) || Auth::user()->admin())
+
+                                                        <div class="col s6 m4">
+                                                            <a href="{{ url('users/' . $us->id . '/registrarCompra') }}"
+                                                               class="waves-effect waves-light btn btn-large btn-block secondary">
+                                                                <i class="material-icons left">shopping_cart</i>Registrar
+                                                                Compra
+                                                            </a>
+                                                        </div>
+
+                                                    @endif
+
+                                                    @if(Auth::user()->admin())
+
+                                                        <div class="col s6 m4">
+                                                            <a href="{{ url('users/' . $us->id . '/papeis') }}"
+                                                               class="waves-effect waves-light btn btn-large btn-block secondary">
+                                                                <i class="material-icons left">verified_user</i>Dados
+                                                                Profissionais
+                                                            </a>
+                                                        </div>
+
+                                                        @if($us->ativo)
+
+                                                            <form role="form" method="post"
+                                                                  action="{{ url('/users/status') }}">
+
+                                                                {!! csrf_field() !!}
+
+                                                                <input type="hidden" name="id" value="{{ $us->id }}">
+
+                                                                <input type="hidden" name="ativo" value="0">
+
+                                                                <div class="col s6 m4">
+                                                                    <button class="waves-effect waves-light btn btn-large btn-block secondary"
+                                                                            type="submit">
+                                                                        <i class="material-icons left">block</i>Bloquear
+                                                                        Usu&aacute;rio
+                                                                    </button>
+                                                                </div>
+
+                                                            </form>
+
+                                                        @else
+
+                                                            <form role="form" method="post"
+                                                                  action="{{ url('/users/status') }}">
+
+                                                                {!! csrf_field() !!}
+
+                                                                <input type="hidden" name="id" value="{{ $us->id }}">
+
+                                                                <input type="hidden" name="ativo" value="1">
+
+                                                                <div class="col s6 m4">
+                                                                    <button class="waves-effect waves-light btn btn-large btn-block secondary"
+                                                                            type="submit">
+                                                                        <i class="fa fa-unlock left"
+                                                                           aria-hidden="true"></i>Desbloquear
+                                                                        Usu&aacute;rio
+                                                                    </button>
+                                                                </div>
+
+                                                            </form>
+
+                                                        @endif
+
+                                                        <div class="col s6 m4">
+                                                            <a class="waves-effect waves-light btn btn-large btn-block secondary"
+                                                               onclick="enviarMensagem('#enviarMensagemModal', '{{ $us->id }}')">
+                                                                <i class="material-icons left">message</i>Enviar
+                                                                mensagem
+                                                            </a>
+                                                        </div>
+
+                                                    @endif
+
                                                 </div>
 
                                             </div>

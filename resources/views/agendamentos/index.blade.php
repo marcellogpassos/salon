@@ -21,7 +21,7 @@
 
         <div class="row">
 
-            <div class="col m8 s12 {{count($agendamentos) ? '' : 'offset-m2'}}">
+            <div class="col m8 s12 offset-m2'">
                 <div class="card white">
 
                     <h4 class="card-title">Novo Agendamento</h4>
@@ -112,100 +112,119 @@
                 </div>
             </div>
 
-            <div class="col m4 s12 {{count($agendamentos) ? '' : 'hiddendiv'}}">
+            <div class="col m4 s12">
                 <div class="card white">
 
-                    <h4 class="card-title">Agendamentos Futuros</h4>
+                    <h4 class="card-title">Meus Agendamentos</h4>
 
                     <div class="card-content gray-text text-darken-4 agendamentos">
                         <div class="row">
 
-                            @foreach($agendamentos as $agendamento)
-                                <div class="col s12">
+                            @if(!isset($agendamentos) || !count($agendamentos))
 
-                                    <div class="card{{ $agendamento->status == 'C' ? ' green lighten-5' :
+                                <div class="row">
+                                    <div class="col s12">
+
+                                        <div id="success-alert" class="card card-alert card-alert-success">
+                                            <div class="card-content">
+                                                <p>Nenhum agendamento realizado.</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            @else
+
+                                @foreach($agendamentos as $agendamento)
+                                    <div class="col s12">
+
+                                        <div class="card{{ $agendamento->status == 'C' ? ' green lighten-5' :
                                                     ($agendamento->status == 'N' ? ' red lighten-5' : ' grey lighten-4')}}">
 
-                                        <div class="card-content black-text">
+                                            <div class="card-content black-text">
 
                                         <span class="card-title">
                                             {{ $agendamento->servico->descricao }}
                                         </span>
 
-                                            <hr>
+                                                <hr>
 
-                                            <br>
+                                                <br>
 
-                                            <div class="row">
-                                                <div class="col s12">
-
-                                                    <p>
-                                                        <strong>Data e hora:</strong>
-                                                        {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora) }}
-                                                    </p>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col s12">
-
-                                                    <p>
-                                                        <strong>Profissional:</strong>
-                                                        @if($agendamento->profissional_id)
-                                                            {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
-                                                        @else
-                                                            - -
-                                                        @endif
-                                                    </p>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col s12">
-
-                                                    <p>
-                                                        <strong>Status:</strong>
-                                                        @if($agendamento->status == 'C')
-                                                            Confirmado
-                                                        @elseif($agendamento->status == 'N')
-                                                            Negado
-                                                        @else
-                                                            Aguardando confirmação
-                                                        @endif
-                                                    </p>
-
-                                                </div>
-                                            </div>
-
-                                            @if($agendamento->status == 'N' && $agendamento->justificativa)
                                                 <div class="row">
                                                     <div class="col s12">
+
                                                         <p>
-                                                            <strong>Justificativa:</strong>
-                                                            {{$agendamento->justificativa}}
+                                                            <strong>Data e hora:</strong>
+                                                            {{ dateToBrFormat($agendamento->data) . '  ' . horaMinutoFormat($agendamento->hora) }}
                                                         </p>
+
                                                     </div>
                                                 </div>
-                                            @endif
 
-                                            <div class="row">
-                                                <div class="col s12">
+                                                <div class="row">
+                                                    <div class="col s12">
 
-                                                    <a class="waves-effect waves-light btn btn-block primary"
-                                                       href="#confirmarCancelarAgendamento"
-                                                       onclick="cancelarAgendamento({{ $agendamento->id }})">
-                                                        Cancelar Agendamento
-                                                    </a>
+                                                        <p>
+                                                            <strong>Profissional:</strong>
+                                                            @if($agendamento->profissional_id)
+                                                                {{ $agendamento->profissional->name . ' ' . $agendamento->profissional->surname }}
+                                                            @else
+                                                                - -
+                                                            @endif
+                                                        </p>
 
+                                                    </div>
                                                 </div>
-                                            </div>
 
+                                                <div class="row">
+                                                    <div class="col s12">
+
+                                                        <p>
+                                                            <strong>Status:</strong>
+                                                            @if($agendamento->status == 'C')
+                                                                Confirmado
+                                                            @elseif($agendamento->status == 'N')
+                                                                Negado
+                                                            @else
+                                                                Aguardando confirmação
+                                                            @endif
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+
+                                                @if($agendamento->status == 'N' && $agendamento->justificativa)
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>
+                                                                <strong>Justificativa:</strong>
+                                                                {{$agendamento->justificativa}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                <div class="row">
+                                                    <div class="col s12">
+
+                                                        <a class="waves-effect waves-light btn btn-block primary"
+                                                           href="#confirmarCancelarAgendamento"
+                                                           onclick="cancelarAgendamento({{ $agendamento->id }})">
+                                                            Cancelar Agendamento
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+
+                            @endif
+
                         </div>
                     </div>
 

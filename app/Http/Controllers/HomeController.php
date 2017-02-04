@@ -16,7 +16,7 @@ class HomeController extends Controller {
 	public function index() {
 
 		if (Auth::user()->dados_atualizados)
-			return view('home')->with('user', Auth::user());
+			return redirect('/');
 
 		showMessage('warning', 0);
 
