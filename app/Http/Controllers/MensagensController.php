@@ -17,8 +17,11 @@ class MensagensController extends Controller {
 	public function __construct(MensagensServiceInterface $mensagensService, UsersServiceInterface $usersService) {
 		$this->mensagensService = $mensagensService;
 		$this->usersService = $usersService;
+		$this->middleware('auth');
+		$this->middleware('admin');
 	}
 
+	// @auth @admin
 	public function enviarMensagem(MensagensRequest $request) {
 		$remetente = Auth::user();
 		$destinatario = $this->usersService->getUser($request->input('destinatario_id'));

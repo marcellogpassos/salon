@@ -29,8 +29,15 @@ class ProdutosController extends Controller {
 		$this->marcasProdutosService = $marcasProdutosService;
 		$this->categoriasProdutosService = $categoriasProdutosService;
 		$this->middleware('auth');
+		$this->middleware('admin', ['only' => [
+			'mostrarFormCadastrarProduto', 'cadastrarProduto', 'mostrarFormEditarProduto', 'editarProduto', 'excluirProduto'
+		]]);
+		$this->middleware('professional', ['only' => [
+			'mostrarProdutosEncontrados', 'returnViewProdutosListar'
+		]]);
 	}
 
+	// @auth @professional
 	public function mostrarProdutosEncontrados(ProdutosBuscarRequest $request) {
 		if (buscaPadrao($request->all())) {
 			$produtos = $this->produtosService->listarTodasOrdenarPorDescricao();
@@ -41,6 +48,7 @@ class ProdutosController extends Controller {
 		}
 	}
 
+	// @auth @professional
 	public function returnViewProdutosListar($produtos, $buscaPrevia = null) {
 		return view('produtos.listar')
 			->with('produtosEncontrados', $produtos)
@@ -49,6 +57,7 @@ class ProdutosController extends Controller {
 			->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
 	}
 
+	// @auth @admin
 	public function excluirProduto($id, Request $request) {
 		$produto = $this->produtosService->getById($id);
 		$result = false;
@@ -60,12 +69,14 @@ class ProdutosController extends Controller {
 		return Redirect::to('/produtos/buscar');
 	}
 
+	// @auth @admin
 	public function mostrarFormCadastrarProduto() {
 		return view('produtos.cadastrar')
 			->with('categoriasProdutos', $this->categoriasProdutosService->listarTodos())
 			->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
 	}
 
+	// @auth @admin
 	public function cadastrarProduto(ProdutosRequest $request) {
 		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade', 'codigo_barras');
 		$itemVendaAttr = $request->only('id', 'ativo', 'valor');
@@ -78,6 +89,7 @@ class ProdutosController extends Controller {
 		return Redirect::to('/produtos/buscar?id=' . $produto->id);
 	}
 
+	// @auth @admin
 	public function mostrarFormEditarProduto($id) {
 		$produto = $this->produtosService->getById($id);
 		return view('produtos.editar')
@@ -86,6 +98,7 @@ class ProdutosController extends Controller {
 			->with('marcasProdutos', $this->marcasProdutosService->listarTodasOrdenarPorDescricao());
 	}
 
+	// @auth @admin
 	public function editarProduto($id, ProdutosRequest $request) {
 		$produtoAttr = $request->only('descricao', 'categoria_id', 'marca_id', 'quantidade', 'codigo_barras');
 		$itemVendaAttr = $request->only('ativo', 'valor');

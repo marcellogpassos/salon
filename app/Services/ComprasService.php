@@ -116,7 +116,7 @@ class ComprasService implements ComprasServiceInterface {
 	}
 
 	public function cancelarCompra($compra) {
-		$dataCancelamento = Carbon::now()->toDayDateTimeString();
+		$dataCancelamento = Carbon::now();
 		return $this->comprasRepository->update(['data_cancelamento' => $dataCancelamento], $compra->id);
 	}
 

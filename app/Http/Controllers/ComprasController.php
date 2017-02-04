@@ -35,8 +35,11 @@ class ComprasController extends Controller {
 		$this->formasPagamentoService = $formasPagamentoService;
 		$this->usersService = $usersService;
 		$this->middleware('auth');
+		$this->middleware('cashier', ['except' => ['cancelarCompra']]);
+		$this->middleware('admin', ['only' => ['cancelarCompra']]);
 	}
 
+	// @auth @cashier
 	public function buscarItem(Request $request) {
 		$termo = $request->get('term');
 		$query = Config::get('queries.buscarItem');
@@ -44,6 +47,7 @@ class ComprasController extends Controller {
 		return response()->json($itensEncontrados);
 	}
 
+	// @auth @cashier
 	public function buscarCliente(Request $request) {
 		$termo = $request->get('term');
 		$query = Config::get('queries.buscarCliente');
@@ -51,6 +55,7 @@ class ComprasController extends Controller {
 		return response()->json($clientesEncontrados);
 	}
 
+	// @auth @cashier
 	public function buscarCompras(Requests\RelatorioCompraRequest $request) {
 		if (!count($request->all()))
 			return $this->mostrarComprasEncontradas();
@@ -64,6 +69,7 @@ class ComprasController extends Controller {
 		}
 	}
 
+	// @auth @cashier
 	public function mostrarComprasEncontradas($buscaPrevia = null, $comprasEncontradas = null) {
 		if (!$buscaPrevia)
 			return view('compras.listar');
@@ -77,12 +83,14 @@ class ComprasController extends Controller {
 			->with('comprasEncontradas', $comprasEncontradas);
 	}
 
+	// @auth @cashier
 	public function mostrarFormRegistrarCompra($id) {
 		$cliente = $this->usersService->getUser($id);
 		return $this->mostrarFormRegistrarCompraAnonima()
 			->with('cliente', $cliente);
 	}
 
+	// @auth @cashier
 	public function mostrarFormRegistrarCompraAnonima() {
 		$caixa = Auth::user();
 		$formasPagamento = $this->formasPagamentoService->listarTodos();
@@ -93,6 +101,7 @@ class ComprasController extends Controller {
 			->with('bandeirasCartoes', $bandeirasCartoes);
 	}
 
+	// @auth @cashier
 	public function registrarCompra($id, Request $request) {
 		$cliente = $id ? $this->usersService->getUser($id) : null;
 		$array = $this->comprasService->criarCompra($request->user()->id, $request->all(), $cliente ? $cliente->id : null);
@@ -101,22 +110,26 @@ class ComprasController extends Controller {
 		return Redirect::to('compras/' . $compra->codigo_validacao . '/detalhar');
 	}
 
+	// @auth @cashier
 	public function registrarCompraAnonima(Request $request) {
 		return $this->registrarCompra(null, $request);
 	}
 
+	// @auth @cashier
 	public function emitirComprovanteCompra($codigoValidacao) {
 		$compra = $this->comprasService->getByCodigoValidacao($codigoValidacao);
 		return view('compras.comprovante')
 			->with('compra', $compra);
 	}
 
+	// @auth @cashier
 	public function detalharCompra($codigoValidacao) {
 		$compra = $this->comprasService->getByCodigoValidacao($codigoValidacao);
 		return view('compras.detalhar')
 			->with('compra', $compra);
 	}
 
+	// @auth @admin
 	public function cancelarCompra($codigoValidacao, Request $request) {
 		$compra = $this->comprasService->getByCodigoValidacao($codigoValidacao);
 		$result = $this->comprasService->cancelarCompra($compra);

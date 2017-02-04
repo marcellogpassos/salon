@@ -13,11 +13,13 @@ class EnderecosController extends Controller {
         $this->middleware('auth');
     }
 
+    // @auth
     public function listarMunicipios($uf) {
         $municipios = Municipio::where('uf_id', $uf)->get();
         return response()->json($municipios);
     }
 
+    // @auth
     public function getMunicipio($municipio) {
         $municipio = Municipio::findOrFail($municipio);
         $uf = $municipio->uf;

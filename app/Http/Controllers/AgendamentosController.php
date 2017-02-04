@@ -29,8 +29,10 @@ class AgendamentosController extends Controller {
 		$this->agendamentosService = $agendamentosService;
 		$this->usersService = $usersService;
 		$this->middleware('auth');
+		$this->middleware('professional', ['except' => 'agendar', 'cancelarAgendamento', 'index']);
 	}
 
+	// @auth
 	public function index() {
 		$user = Auth::user();
 		$categoriasServicos = $this->categoriasServicosService->listarTodos();
@@ -40,6 +42,7 @@ class AgendamentosController extends Controller {
 			->with('agendamentos', $agendamentos);
 	}
 
+	// @auth @professional
 	public function mostrarFormAgendarParaCliente($id) {
 		$cliente = $this->usersService->getUser($id);
 		$categoriasServicos = $this->categoriasServicosService->listarTodos();
@@ -48,24 +51,20 @@ class AgendamentosController extends Controller {
 			->with('categoriasServicos', $categoriasServicos);
 	}
 
+	// @auth
 	public function agendar(AgendamentoRequest $request) {
 		$cliente = Auth::user();
 		return $this->agendarServico($request, $cliente, '/agendamentos');
 	}
 
+	// @auth @professional
 	public function agendarParaCliente(AgendamentoRequest $request) {
 		$clienteId = $request->input('id');
 		$cliente = $this->usersService->getUser($clienteId);
 		return $this->agendarServico($request, $cliente, '/users/buscar?id=' . $clienteId);
 	}
 
-	private function validarClienteAtivo($cliente) {
-		if ($cliente->ativo)
-			return true;
-		showMessage('error', 14);
-		return false;
-	}
-
+	// @auth
 	public function cancelarAgendamento($id, Request $request) {
 		$cliente = Auth::user();
 		$sucesso = $this->agendamentosService->cancelarAgendamento($cliente->id, $id);
@@ -76,6 +75,7 @@ class AgendamentosController extends Controller {
 		return redirect('/agendamentos');
 	}
 
+	// @auth @professional
 	public function minhaAgenda(Request $request) {
 		$mesAgenda = new Carbon('first day of this month');
 		$current = true;
@@ -104,6 +104,7 @@ class AgendamentosController extends Controller {
 			->with('default', ($current ? null : $mesAgenda));
 	}
 
+	// @auth @professional
 	public function agendamentosPendentes() {
 		$hoje = Carbon::today();
 
@@ -114,6 +115,7 @@ class AgendamentosController extends Controller {
 		dd($agendamentosPedentes);
 	}
 
+	// @auth @professional
 	public function analisar(Request $request) {
 		$analise = $this->agendamentosService->analisar(
 			$request->input('id'),
@@ -129,6 +131,7 @@ class AgendamentosController extends Controller {
 		return Redirect::to('/');
 	}
 
+	// @auth @professional
 	public function recuperarAgendamento($id) {
 		$agendamento = $this->agendamentosService->getAgendamento($id);
 		$servico = $agendamento->servico;
@@ -137,14 +140,26 @@ class AgendamentosController extends Controller {
 		return response()->json($agendamento);
 	}
 
-	public function agendarServico(AgendamentoRequest $request, $cliente, $redirect) {
+	private function agendarServico(AgendamentoRequest $request, $cliente, $redirect) {
 		if (!$this->validarClienteAtivo($cliente))
-			return redirect('/home');
+			return redirect($redirect);
 
 		$agendamento = $this->agendamentosService->cadastrarAgendamento($cliente->id, $request->all());
+		if ($agendamento) {
+			showMessage('success', 12);
+			return redirect($redirect);
+		} else {
+			showMessage('error', 20);
+			return redirect($redirect);
+		}
 
-		showMessage('success', 12);
-		return redirect($redirect);
+	}
+
+	private function validarClienteAtivo($cliente) {
+		if ($cliente->ativo)
+			return true;
+		showMessage('error', 14);
+		return false;
 	}
 
 }

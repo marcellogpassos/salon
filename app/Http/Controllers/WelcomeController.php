@@ -18,6 +18,7 @@ class WelcomeController extends Controller {
 		$this->middleware('auth');
 	}
 
+	// @auth
 	public function welcome() {
 		$user = Auth::user();
 
@@ -32,7 +33,7 @@ class WelcomeController extends Controller {
 
 		$agendaDoDia = ($user->admin()) ?
 			$this->agendamentosService->agendaDoDia($hoje->toDateString()) :
-			$this->agendamentosService->agendaDoDia($hoje->toDateString(), null, $user->id);
+			$this->agendamentosService->agendaDoDia($hoje->toDateString(), $user->id);
 
 		return view('welcome')
 			->with('agendamentos', $agendamentosPedentes)

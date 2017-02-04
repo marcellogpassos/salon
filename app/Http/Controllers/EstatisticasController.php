@@ -16,8 +16,10 @@ class EstatisticasController extends Controller {
 	public function __construct(EstatisticasServiceInterface $serviceInterface) {
 		$this->estatisticasService = $serviceInterface;
 		$this->middleware('auth');
+		$this->middleware('admin');
 	}
 
+	// @auth @admin
 	public function mostrarEstatisticas() {
 		return view('estatisticas.estatisticas')
 			->with('clientesMaisRentaveis', $this->estatisticasService->clientesMaisRentaveis())
