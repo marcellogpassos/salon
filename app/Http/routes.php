@@ -19,7 +19,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/teste', function () {
-	return null;
+    return null;
 });
 
 Route::get('agenda/', 'AgendamentosController@minhaAgenda');
@@ -87,3 +87,5 @@ Route::get('ufs/{uf}/municipios', 'EnderecosController@listarMunicipios');
 Route::get('municipios/{municipio}', 'EnderecosController@getMunicipio');
 
 Route::post('mensagens/', 'MensagensController@enviarMensagem');
+
+Route::get('index', 'WebsiteController@index');
