@@ -4,5 +4,9 @@
         $('.button-collapse').sideNav();
         $('.parallax').parallax();
 
-    }); // end of document ready
-})(jQuery); // end of jQuery name space
+        $('.scrollspy').scrollSpy({
+            scrollOffset: 64
+        });
+
+    });
+})(jQuery);
