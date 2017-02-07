@@ -9,6 +9,7 @@
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link href="{{ asset('css/materialize/materialize.min.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection"/>
     <link href="{{ asset('css/index.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>

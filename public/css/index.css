@@ -1,6 +1,17 @@
 nav ul a,
 nav .brand-logo {
     color: #444;
+    font-family: 'Cinzel', serif;
+}
+
+nav ul li a.call-to-action {
+    background-color: #444;
+    color: #eee;
+}
+
+nav ul li a.call-to-action:hover {
+    background-color: #545454;
+    color: #dedede;
 }
 
 #sidenav-overlay {
