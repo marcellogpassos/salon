@@ -3,7 +3,7 @@
 
         <div class="row section-title">
             <div class="col s12">
-                <h1 class="center">SOBRE N&Oacute;S</h1>
+                <h1 class="center">UM POUCO SOBRE N&Oacute;S</h1>
                 <hr>
             </div>
         </div>

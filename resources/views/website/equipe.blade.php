@@ -3,7 +3,7 @@
 
         <div class="row section-title">
             <div class="col s12">
-                <h1 class="center">EQUIPE</h1>
+                <h1 class="center">CONHE&Ccedil;A NOSSO TIME DE PROFISSIONAIS</h1>
                 <hr>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <div class="col s12 m3 profissional">
 
                         @include('website.profissional', [
-                            'nome' => 'Pedro Paulo', 'foto' => 'img/index/equipe/profissional3.png',
+                            'nome' => 'João Paulo', 'foto' => 'img/index/equipe/profissional3.png',
                             'curriculo' => 'Sed volutpat, risus et convallis viverra, metus erat accumsan tortor, ut
                              imperdiet sapien magna ac ex. Suspendisse vitae lobortis augue, eu ullamcorper eros. Ut eu
                               mi est.'])

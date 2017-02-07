@@ -8,8 +8,6 @@
                 <li><a href="#sobre">Sobre n&oacute;s</a></li>
                 <li><a href="#servicos">Servi&ccedil;os</a></li>
                 <li><a href="#equipe">Equipe</a></li>
-                <li><a href="#galeria">Galeria</a></li>
-                <li><a href="#horarios">Hor&aacute;rios</a></li>
                 <li><a href="#contato">Contato</a></li>
                 <li><a href="#agende" class="call-to-action">Agende agora!</a></li>
             </ul>
@@ -18,8 +16,6 @@
                 <li><a href="#sobre">Sobre n&oacute;s</a></li>
                 <li><a href="#servicos">Servi&ccedil;os</a></li>
                 <li><a href="#equipe">Equipe</a></li>
-                <li><a href="#galeria">Galeria</a></li>
-                <li><a href="#horarios">Hor&aacute;rios</a></li>
                 <li><a href="#contato">Contato</a></li>
                 <li><a href="#agende" class="call-to-action">Agende agora!</a></li>
             </ul>

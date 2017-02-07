@@ -57,6 +57,8 @@
 
 @include('website.servicos')
 
+@include('website.inscreva')
+
 <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
         <div class="container">
@@ -71,6 +73,8 @@
 </div>
 
 @include('website.equipe')
+
+@include('website.contato')
 
 @include('website.footer')
 

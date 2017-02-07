@@ -4,14 +4,17 @@ nav .brand-logo {
     font-family: 'Cinzel', serif;
 }
 
-a.call-to-action {
+a.call-to-action,
+button.call-to-action {
     background-color: #444 !important;
     color: #eee !important;
     font-family: 'Cinzel', serif !important;
 }
 
 a.call-to-action:hover,
-a.call-to-action:active{
+a.call-to-action:active,
+button.call-to-action:hover,
+button.call-to-action:active {
     background-color: #545454 !important;
     color: #dedede !important;
 }
@@ -26,6 +29,10 @@ p {
 
 .button-collapse {
     color: #26a69a;
+}
+
+.btn-block {
+    width: 100%;
 }
 
 .parallax-container {
@@ -49,12 +56,12 @@ p {
 
 .section .section-title h1 {
     font-family: 'Cinzel', serif;
-    font-size: 2.4rem;
+    font-size: 2rem;
 }
 
 #servicos .section .section-body h2 {
     font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 .section .section-body .descricao {
@@ -79,6 +86,26 @@ p {
 #equipe .profissional .card-title h2{
     font-family: 'Cinzel', serif;
     font-size: 1.2rem;
+}
+
+#inscreva .section {
+    padding: 24px 0;
+}
+
+#inscreva .section .section-title h1 {
+    font-size: 1.6rem;
+}
+
+#inscreva .section .section-body {
+    margin: 24px 0;
+}
+
+#inscreva .section .section-body .row {
+    margin: 0;
+}
+
+#inscreva  button {
+    margin-top: 10px;
 }
 
 hr {

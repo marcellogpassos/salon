@@ -1,6 +1,6 @@
 <div class="card sticky-action">
     <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="{{ asset($foto) }}">
+        <img class="activator" src="{{ asset($foto) }}" alt="{{ $nome }}">
     </div>
     <div class="card-content">
         <span class="card-title activator grey-text text-darken-4 nome">
