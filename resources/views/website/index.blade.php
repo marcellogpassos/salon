@@ -70,6 +70,8 @@
     </div>
 </div>
 
+@include('website.equipe')
+
 @include('website.footer')
 
         <!--  Scripts-->

@@ -75,6 +75,12 @@ p {
     min-height: 100%;
 }
 
+#equipe .profissional .card-title,
+#equipe .profissional .card-title h2{
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+}
+
 hr {
     border: 0;
     height: 1px;
