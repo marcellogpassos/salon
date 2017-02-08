@@ -14,47 +14,19 @@
 
                 <div class="row">
 
-                    <div class="col s12 m3 profissional">
+                    @foreach($equipe as $profissional)
 
-                        @include('website.profissional', [
-                            'nome' => 'José Antônio', 'foto' => 'img/index/equipe/profissional1.png',
-                            'curriculo' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie enim eget
-                             vehicula aliquam. Mauris pretium leo non lorem pellentesque, id tempor tellus eleifend.'])
+                        <div class="col s12 m3 profissional">
 
-                    </div>
-                    <!-- End Profissional 1 -->
+                            @include('website.profissional', [
+                                'nome' => $profissional->name,
+                                'foto' => $profissional->foto,
+                                'curriculo' => $profissional->curriculo])
 
-                    <div class="col s12 m3 profissional">
+                        </div>
 
-                        @include('website.profissional', [
-                            'nome' => 'Maria José', 'foto' => 'img/index/equipe/profissional2.png',
-                            'curriculo' => 'Mauris a ultricies lacus, ultrices vestibulum mi. Donec vitae quam
-                            consectetur, iaculis augue a, sodales massa. Donec dapibus est quis tortor pulvinar, ac
-                             auctor sem tristique.'])
+                    @endforeach
 
-                    </div>
-                    <!-- End Profissional 2 -->
-
-                    <div class="col s12 m3 profissional">
-
-                        @include('website.profissional', [
-                            'nome' => 'João Paulo', 'foto' => 'img/index/equipe/profissional3.png',
-                            'curriculo' => 'Sed volutpat, risus et convallis viverra, metus erat accumsan tortor, ut
-                             imperdiet sapien magna ac ex. Suspendisse vitae lobortis augue, eu ullamcorper eros. Ut eu
-                              mi est.'])
-
-                    </div>
-                    <!-- End Profissional 3 -->
-
-                    <div class="col s12 m3 profissional">
-
-                        @include('website.profissional', [
-                            'nome' => 'Ana Luíza', 'foto' => 'img/index/equipe/profissional4.png',
-                            'curriculo' => 'Curabitur nibh ipsum, posuere vel porttitor eget, cursus vitae leo.
-                             Phasellus euismod leo et ligula rhoncus pretium. Nam pharetra maximus dapibus.'])
-
-                    </div>
-                    <!-- End Profissional 4 -->
                 </div>
 
             </div>

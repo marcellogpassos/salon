@@ -27,9 +27,13 @@
                                 <div class="row servico">
 
                                     @foreach($categoria->servicos as $servico)
-                                        <div class="col s12 m6">
-                                            <p class="light">{{ $servico->descricao }}</p>
-                                        </div>
+
+                                        @if($servico->itemVenda->ativo)
+                                            <div class="col s12 m6">
+                                                <p class="light">{{ $servico->descricao }}</p>
+                                            </div>
+                                        @endif
+
                                     @endforeach
 
                                 </div>
