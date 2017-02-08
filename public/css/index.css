@@ -117,8 +117,20 @@ p {
     font-size: 1.6rem;
 }
 
+#contato .item-contato .row {
+    margin: 0;
+}
+
 #contato .item-contato p {
     line-height: 0.8rem;
+}
+
+#contato .item-contato.telefones p {
+    margin: 0;
+}
+
+#contato .item-contato.redes-sociais h2 {
+    margin-bottom: 12px;
 }
 
 #contato .item-contato i.fa-facebook-official {
@@ -168,8 +180,26 @@ hr {
     font-size: inherit;
 }
 
+input:focus {
+    border-bottom: 1px solid #9e9e9e !important;
+    box-shadow: 0 1px 0 0 #9e9e9e !important;
+}
+
+input:focus+label {
+    color: #9e9e9e !important;
+}
+
 footer.page-footer {
     margin: 0;
+    padding: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer img {
+    vertical-align: middle;
 }
 
 .sf {

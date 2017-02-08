@@ -54,7 +54,7 @@
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
-                <a href="#" class="btn-large waves-effect waves-light call-to-action">Agende um servi&ccedil;o</a>
+                <a href="{{ url('/agendamentos') }}" class="btn-large waves-effect waves-light call-to-action">Agende um servi&ccedil;o</a>
             </div>
         </div>
     </div>

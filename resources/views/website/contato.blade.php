@@ -18,11 +18,11 @@
 
                         <div class="row">
 
-                            <div class="col s12 m5">
+                            <div class="col s12 m6">
 
                                 <hr>
 
-                                <div class="item-contato">
+                                <div class="item-contato endereco">
                                     <div class="key">
                                         <h2>Endere&ccedil;o</h2>
                                     </div>
@@ -34,52 +34,62 @@
 
                                 <hr>
 
-                                <div class="item-contato">
+                                <div class="item-contato telefones">
                                     <div class="key">
                                         <h2>Telefones</h2>
                                     </div>
                                     <div class="value">
-                                        <ul>
-                                            <li class="light">(83) 98765-4321</li>
-                                            <li class="light">(83) 3219-8765</li>
-                                        </ul>
+                                        <div class="row">
+                                            <div class="col s6">
+                                                <p class="light">(83) 98765-4321</p>
+                                            </div>
+                                            <div class="col s6">
+                                                <p class="light">(83) 3219-8765</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <hr>
 
-                                <div class="item-contato">
-                                    <div class="key">
-                                        <h2>E-mail</h2>
+                                <div class="row" style="margin: 0">
+                                    <div class="col s12 m6">
+                                        <div class="item-contato email">
+                                            <div class="key">
+                                                <h2>E-mail</h2>
+                                            </div>
+                                            <div class="value">
+                                                <p class="light">contato@makp.com.br</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="value">
-                                        <p class="light">contato@makp.com.br</p>
+                                    <div class="col s12 m6">
+                                        <div class="item-contato redes-sociais">
+                                            <div class="key">
+                                                <h2>Redes Sociais</h2>
+                                            </div>
+                                            <div class="value">
+                                                <div class="row" style="margin: 0">
+                                                    <div class="col s6 m6 left">
+                                                        <a href="//www.facebook.com" target="_blank">
+                                                            <i class="fa fa-facebook-official fa-2x"
+                                                               aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col s6 m6 right">
+                                                        <a href="//www.instagram.com" target="_blank">
+                                                            <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <hr>
 
-                                {{--<div class="item-contato">--}}
-                                    {{--<div class="key">--}}
-                                        {{--<h2>Redes Sociais</h2>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="value">--}}
-                                        {{--<div class="row">--}}
-                                            {{--<div class="col s6 m2 center">--}}
-                                                {{--<a href="//www.facebook.com" target="_blank">--}}
-                                                    {{--<i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>--}}
-                                                {{--</a>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="col s6 m2 center">--}}
-                                                {{--<a href="//www.instagram.com" target="_blank">--}}
-                                                    {{--<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>--}}
-                                                {{--</a>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-
-                                <div class="item-contato">
+                                <div class="item-contato horarios">
                                     <div class="key">
                                         <h2>Hor&aacute;rios de Funcionamento</h2>
                                     </div>
@@ -97,7 +107,7 @@
 
                             </div>
 
-                            <div class="col s12 m7">
+                            <div class="col s12 m6">
                                 <div id="map" class="card"></div>
                                 <script type="text/javascript">
 
