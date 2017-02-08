@@ -9,7 +9,8 @@
                 <li><a href="#servicos">Servi&ccedil;os</a></li>
                 <li><a href="#equipe">Equipe</a></li>
                 <li><a href="#contato">Contato</a></li>
-                <li><a href="#agende" class="call-to-action">Agende agora!</a></li>
+                <li><a href="#" class="call-to-action">Cadastre-se</a></li>
+                <li><a href="#">Login</a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
@@ -17,7 +18,8 @@
                 <li><a href="#servicos">Servi&ccedil;os</a></li>
                 <li><a href="#equipe">Equipe</a></li>
                 <li><a href="#contato">Contato</a></li>
-                <li><a href="#agende" class="call-to-action">Agende agora!</a></li>
+                <li><a href="#" class="call-to-action">Cadastre-se</a></li>
+                <li><a href="#">Login</a></li>
             </ul>
 
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

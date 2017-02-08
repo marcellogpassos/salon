@@ -13,7 +13,7 @@
             <div class="col s12">
 
                 <div class="row">
-                    <div class="col s12 m4">
+                    <div class="col s12 m4 sf sf-three">
                         <div class="icon-block">
 
                             <div class="center img-rounded">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <div class="col s12 m4">
+                    <div class="col s12 m4 sf sf-four">
                         <div class="icon-block">
 
                             <div class="center img-rounded">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
 
-                    <div class="col s12 m4">
+                    <div class="col s12 m4 sf sf-five">
                         <div class="icon-block">
 
                             <div class="center img-rounded">

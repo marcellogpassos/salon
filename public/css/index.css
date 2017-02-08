@@ -104,8 +104,34 @@ p {
     margin: 0;
 }
 
-#inscreva  button {
+#inscreva button {
     margin-top: 10px;
+}
+
+#contato .item-contato {
+    margin: 20px 0;
+}
+
+#contato .item-contato h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+}
+
+#contato .item-contato p {
+    line-height: 0.8rem;
+}
+
+#contato .item-contato i.fa-facebook-official {
+    color: #1a237e;
+}
+
+#contato .item-contato i.fa-instagram {
+    color: #3e2723;
+}
+
+#contato #map {
+    height: 520px;
+    padding: 8px;
 }
 
 hr {
@@ -144,4 +170,8 @@ hr {
 
 footer.page-footer {
     margin: 0;
+}
+
+.sf {
+    opacity: 0;
 }

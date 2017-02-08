@@ -5,11 +5,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
     <title>MAKP</title>
 
+    <script src="https://use.fontawesome.com/146bb4f1dc.js"></script>
+
     <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link href="{{ asset('css/materialize/materialize.min.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection"/>
     <link href="{{ asset('css/index.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,18 +25,6 @@
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
         <div class="container">
-            <br><br>
-            <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">A modern responsive front-end framework based on Material
-                    Design</h5>
-            </div>
-            <div class="row center">
-                <a href="http://materializecss.com/getting-started.html" id="download-button"
-                   class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
-            </div>
-            <br><br>
-
         </div>
     </div>
     <div class="parallax"><img src="{{ asset('img/index/background1.jpg') }}" alt="Unsplashed background img 1">
@@ -46,8 +37,8 @@
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
-                <h5 class="header col s12 light">A modern responsive front-end framework based on Material
-                    Design</h5>
+                <h5 class="header col s12 light sf sf-two">"Nada faz uma mulher mais bonita do que acreditar que é bonita." -
+                    Sophia Loren</h5>
             </div>
         </div>
     </div>
@@ -63,8 +54,7 @@
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
-                <h5 class="header col s12 light">A modern responsive front-end framework based on Material
-                    Design</h5>
+                <a href="#" class="btn-large waves-effect waves-light call-to-action">Agende um servi&ccedil;o</a>
             </div>
         </div>
     </div>
