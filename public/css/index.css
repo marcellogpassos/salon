@@ -54,14 +54,36 @@ p {
     margin: 64px 0;
 }
 
-.section .section-title h1 {
+.section .section-title h1,
+.modal h1 {
     font-family: 'Cinzel', serif;
     font-size: 2rem;
 }
 
-#servicos .section .section-body h2 {
+#servicos .section .section-body h2,
+.modal h2{
     font-family: 'Cinzel', serif;
     font-size: 1.6rem;
+}
+
+.modal .servico p {
+    margin: 0;
+}
+
+.modal .servico p::before {
+    content: "♦  ";
+}
+
+.modal .categoria-servico {
+    padding-top: 24px;
+}
+
+.modal .categoria-servico-title {
+    margin-bottom: 0;
+}
+
+.modal hr {
+    margin-bottom: 24px;
 }
 
 .section .section-body .descricao {
@@ -127,6 +149,10 @@ p {
 
 #contato .item-contato.telefones p {
     margin: 0;
+}
+
+#contato .email-col {
+    padding: 0;
 }
 
 #contato .item-contato.redes-sociais h2 {

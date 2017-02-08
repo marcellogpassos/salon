@@ -53,7 +53,7 @@
                                 <hr>
 
                                 <div class="row" style="margin: 0">
-                                    <div class="col s12 m6">
+                                    <div class="col s12 m6 email-col">
                                         <div class="item-contato email">
                                             <div class="key">
                                                 <h2>E-mail</h2>

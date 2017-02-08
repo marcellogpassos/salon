@@ -3,6 +3,7 @@
 
         $('.button-collapse').sideNav();
         $('.parallax').parallax();
+        $('.modal').modal();
 
         $('.scrollspy').scrollSpy({
             scrollOffset: 64

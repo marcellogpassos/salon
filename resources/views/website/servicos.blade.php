@@ -71,7 +71,7 @@
 
                 <div class="row">
                     <div class="col s12 m4 offset-m4">
-                        <a class="btn btn-block call-to-action" href="#">CONHE&Ccedil;A TODOS OS SERVI&Ccedil;OS</a>
+                        <a class="btn btn-block call-to-action" href="#modal-servicos">CONHE&Ccedil;A TODOS OS SERVI&Ccedil;OS</a>
                     </div>
                 </div>
 
