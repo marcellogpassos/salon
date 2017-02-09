@@ -45,7 +45,7 @@ class AgendamentosService implements AgendamentosServiceInterface {
 
 	public function cadastrarAgendamento($clienteId, array $atributos) {
 
-		if (!$atributos['profissional_id'])
+		if (isset($atributos['profissional_id']))
 			$atributos = array_except($atributos, ['profissional_id']);
 
 		$agendamento = $this->agendamentosRepository->create(array_add($atributos, 'cliente_id', $clienteId));

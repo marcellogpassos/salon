@@ -27,7 +27,7 @@
         <div class="container">
         </div>
     </div>
-    <div class="parallax"><img src="{{ asset('img/index/background1.jpg') }}" alt="Unsplashed background img 1">
+    <div class="parallax"><img src="{{ asset('img/index/06.jpg') }}" alt="Unsplashed background img 1">
     </div>
 </div>
 
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="parallax"><img src="{{ asset('img/index/background2.jpg') }}" alt="Unsplashed background img 2">
+    <div class="parallax"><img src="{{ asset('img/index/04.jpg') }}" alt="Unsplashed background img 2">
     </div>
 </div>
 
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    <div class="parallax"><img src="{{ asset('img/index/background3.jpg') }}" alt="Unsplashed background img 3">
+    <div class="parallax"><img src="{{ asset('img/index/05.jpg') }}" alt="Unsplashed background img 3">
     </div>
 </div>
 
