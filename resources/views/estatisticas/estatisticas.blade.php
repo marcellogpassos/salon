@@ -35,7 +35,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Clientes por Sexo</h4>
+                                            <h5 class="card-title">Clientes por Sexo</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -70,7 +70,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Clientes por Bairros</h4>
+                                            <h5 class="card-title">Clientes por Bairros</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -89,7 +89,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Clientes por Faixas Et&aacute;rias</h4>
+                                            <h5 class="card-title">Clientes por Faixas Et&aacute;rias</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -108,7 +108,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Clientes mais frequentes</h4>
+                                            <h5 class="card-title">Clientes mais frequentes</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -147,7 +147,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Clientes mais lucrativos</h4>
+                                            <h5 class="card-title">Clientes mais lucrativos</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -191,7 +191,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Servi&ccedil;os mais vendidos</h4>
+                                            <h5 class="card-title">Servi&ccedil;os mais vendidos</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -230,7 +230,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Produtos mais vendidos</h4>
+                                            <h5 class="card-title">Produtos mais vendidos</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -272,7 +272,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Resultados</h4>
+                                            <h5 class="card-title">Resultados</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -403,7 +403,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Movimento semanal</h4>
+                                            <h5 class="card-title">Movimento semanal</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">
@@ -422,7 +422,7 @@
 
                                         <div class="card white">
 
-                                            <h4 class="card-title">Movimento mensal</h4>
+                                            <h5 class="card-title">Movimento mensal</h5>
 
                                             <div class="card-content gray-text text-darken-4">
                                                 <div class="row">

@@ -10,6 +10,7 @@
     <!-- Fonts  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
 
     <script src="https://use.fontawesome.com/46b5b5e60e.js"></script>
 

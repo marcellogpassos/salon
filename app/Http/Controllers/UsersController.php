@@ -153,7 +153,7 @@ class UsersController extends Controller {
         $this->usersService->sincronizarPapeis($id, $request->input('roles'));
         $this->usersService->atualizarCurriculo($id, $request->has('curriculo') ? $request->input('curriculo') : null);
         showMessage('success', 1);
-        return $this->mostrarFormGerenciarPapeis($id);
+        return redirect('/users/buscar?id=' . $id);
     }
 
     // @auth @admin

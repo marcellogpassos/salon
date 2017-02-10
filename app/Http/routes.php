@@ -18,10 +18,6 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/teste', function () {
-    return null;
-});
-
 Route::get('agenda/', 'AgendamentosController@minhaAgenda');
 Route::get('agendamentos/pendentes', 'AgendamentosController@agendamentosPendentes');
 Route::get('agendamentos/{id}', 'AgendamentosController@recuperarAgendamento');

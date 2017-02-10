@@ -1,4 +1,4 @@
-<div class="card sticky-action">
+<div class="card sticky-action brown lighten-5">
     <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="{{ asset($foto) }}" alt="{{ $nome }}">
     </div>

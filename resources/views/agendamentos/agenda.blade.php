@@ -24,14 +24,14 @@
                 <div class="row">
                     <div class="col s6">
                         <a href="{{ url('/agenda?mes=' . $mesAnterior->year . '-' . $mesAnterior->month) }}"
-                           class="btn btn-primary">
+                           class="btn primary">
                             <i class="material-icons left">keyboard_arrow_left</i>
                             {{ traduzirMes( $mesAnterior->format('F \/ Y') ) }}
                         </a>
                     </div>
                     <div class="col s6" style="text-align: right">
                         <a href="{{ url('/agenda?mes=' . $mesSeguinte->year . '-' . $mesSeguinte->month) }}"
-                           class="btn btn-primary">
+                           class="btn primary">
                             {{ traduzirMes( $mesSeguinte->format('F \/ Y') ) }}
                             <i class="material-icons right">keyboard_arrow_right</i>
                         </a>

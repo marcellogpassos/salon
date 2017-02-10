@@ -10,7 +10,6 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: url('../img/bkg-hexagon.png') repeat 0 0;
 }
 
 main {
@@ -18,9 +17,54 @@ main {
     padding-top: 20px;
 }
 
-nav {
-    background-color: #A34B5B !important;
-    color: #EEEEEE;
+nav ul a,
+nav .brand-logo {
+    color: #444;
+    font-family: 'Cinzel', serif;
+}
+
+.dropdown-content li > a {
+    color: #212121;
+}
+
+input:focus {
+    border-bottom: 1px solid #9e9e9e !important;
+    box-shadow: 0 1px 0 0 #9e9e9e !important;
+}
+
+input:focus + label {
+    color: #9e9e9e !important;
+}
+
+input.validate.valid {
+    border-bottom: 1px solid #c8e6c9;
+    box-shadow: 0 1px 0 0 #c8e6c9;
+}
+
+input.validate.invalid {
+    border-bottom: 1px solid #ffcdd2;
+    box-shadow: 0 1px 0 0 #ffcdd2;
+}
+
+.input-field .prefix.active {
+    color: #81868A;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+    background-color: #434343;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after {
+    border: 2px solid #434343;
+}
+
+[type="checkbox"]:checked + label:before {
+    border-right: 2px solid #434343;
+    border-bottom: 2px solid #434343;
+}
+
+.collapsible-header {
+    font-family: 'Cinzel', serif;
 }
 
 .container-lg {
@@ -29,17 +73,16 @@ nav {
 }
 
 footer.page-footer {
-    margin-top: auto;
-    padding-top: 0;
-    background-color: #D1E6C8 !important;
+    margin: 0;
+    padding: 0;
 }
 
-footer.page-footer p {
-    color: #212121;
+footer p {
+    margin: 0;
 }
 
-footer.page-footer .footer-copyright {
-    margin-bottom: 20px;
+footer img {
+    vertical-align: middle;
 }
 
 .col.grid-example {
@@ -48,6 +91,7 @@ footer.page-footer .footer-copyright {
 
 .btn {
     margin-top: 10px;
+    font-family: 'Cinzel', serif;
 }
 
 .btn.btn-block {
@@ -55,18 +99,25 @@ footer.page-footer .footer-copyright {
 }
 
 .btn.primary {
-    background-color: #347162 !important;
-    color: #D9E4E1;
+    background-color: #566169 !important;
+    color: #f5f5f5;
 }
 
+.btn.primary:hover,
 .btn.primary:focus {
-    background-color: #0D4537 !important;
-    color: #D9E4E1;
+    background-color: #6B7378 !important;
+    color: #f5f5f5;
 }
 
 .btn.secondary {
-    background-color: #AD7350 !important;
-    color: #FFF8F4;
+    background-color: #D7CCC8 !important;
+    color: #212121;
+}
+
+.btn.secondary:hover,
+.btn.secondary:focus {
+    background-color: #BBABA5 !important;
+    color: #212121;
 }
 
 a {
@@ -79,9 +130,31 @@ a.special-link {
 }
 
 h4.card-title {
-    background-color: #A34B5B;
-    color: #EEEEEE;
+    background-color: #d7ccc8;
+    color: #212121;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
     padding: 8px 16px;
+}
+
+h5.card-title {
+    background-color: #B9C0B3;
+    color: #212121;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    padding: 0px 16px;
+}
+
+.tabs .tab a {
+    color: #566169;
+}
+
+.tabs .tab a:hover {
+    color: #6B7378;
+}
+
+.tabs .indicator {
+    background-color: #566169;
 }
 
 .horizontal-radio {
@@ -105,8 +178,14 @@ h4.card-title {
     text-align: center;
 }
 
+ul.pagination li:not(.active) a {
+    color: #BBABA5 !important;
+}
+
 .pagination li.active {
     margin-right: 20px;
+    background-color: #566169;
+    color: #f5f5f5;
 }
 
 .itens-encontrados tr.itemInativo {
@@ -127,11 +206,11 @@ h4.card-title {
 }
 
 .funcionarios-habilitados .collapsible-header {
-    background-color: #F4D4DA;
+    background-color: #B9C0B3;
 }
 
 .funcionarios-habilitados .collapsible-body {
-    background-color: #FAEFF1;
+    background-color: #D9DDD5;
 }
 
 .quantidade {
@@ -146,7 +225,7 @@ h4.card-title {
 
 .ui-autocomplete li {
     font-size: 1.2rem;
-    color: #26a69a;
+    color: #566169;
     line-height: 1.5rem;
     padding: 1rem 1rem;
 }
@@ -207,11 +286,12 @@ i.fa.fa-percent.material-icons.prefix {
 }
 
 .calendario .fc-header-toolbar h2 {
-    font-size: 20px;
+    font-size: 1.2rem;
     padding: 8px;
     background: #347162;
     color: #D9E4E1;
     border-radius: 4px;
+    font-family: 'Cinzel', serif;
 }
 
 .calendario .fc-day-top:not(.fc-today) {
@@ -241,15 +321,15 @@ i.fa.fa-percent.material-icons.prefix {
 }
 
 .estatisticas-sexo.feminino {
-    border-color: rgb(211, 47, 47);
-    color: rgb(211, 47, 47);
-    background-color: rgb(255, 205, 210);
+    color: #212121;
+    background-color: #ffcdd2;
+    border-color: #ffcdd2;
 }
 
 .estatisticas-sexo.masculino {
-    border-color: rgb(48, 63, 159);
-    color: rgb(48, 63, 159);
+    color: #212121;
     background-color: rgb(197, 202, 233);
+    border-color: rgb(197, 202, 233);
 }
 
 .modal#datalharAgendamentoModal,

@@ -18,7 +18,7 @@
                 <li><a href="#servicos">Servi&ccedil;os</a></li>
                 <li><a href="#equipe">Equipe</a></li>
                 <li><a href="#contato">Contato</a></li>
-                <li><a href="{{ url('/register') }}" class="call-to-action">Cadastre-se</a></li>
+                <li><a href="{{ url('/registernav') }}" class="call-to-action">Cadastre-se</a></li>
                 <li><a href="{{ url('/login') }}">Login</a></li>
             </ul>
 

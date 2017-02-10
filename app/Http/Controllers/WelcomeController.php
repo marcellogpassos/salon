@@ -15,15 +15,14 @@ class WelcomeController extends Controller {
 
 	public function __construct(AgendamentosServiceInterface $agendamentosService) {
 		$this->agendamentosService = $agendamentosService;
-		$this->middleware('auth');
 	}
 
 	// @auth
 	public function welcome() {
-		$user = Auth::user();
+		if (Auth::guest())
+			return redirect('/index');
 
-		if (!$user)
-			return view('welcome');
+		$user = Auth::user();
 
 		if(!count($user->roles))
 			return redirect('/agendamentos');
