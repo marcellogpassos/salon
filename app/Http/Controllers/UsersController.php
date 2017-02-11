@@ -13,6 +13,7 @@ use App\Http\Requests\UsersDadosRequest;
 use App\Uf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller {
 
@@ -60,7 +61,7 @@ class UsersController extends Controller {
             showMessage('success', 0);
         else
             showMessage('error', 3);
-        return redirect('home');
+        return redirect('/')->with('success', getMessage('success', 0));
     }
 
     // @auth
@@ -105,7 +106,7 @@ class UsersController extends Controller {
         } else {
             if ($this->usersService->alterarSenha($user, $request->input('new-password'))) {
                 showMessage('success', 19);
-                return redirect('/home');
+                return redirect('/');
             } else {
                 showMessage('error', 16);
                 return back();

@@ -27,6 +27,7 @@ var detalharAgendamento = function (modal, id) {
 		if (data.data_cancelamento)
 			$(modal + ' .status').html('Cancelado');
 
-		$(modal).openModal();
+		$(modal).modal();
+		$(modal).modal('open');
 	});
 };

@@ -18,7 +18,8 @@ var enviarMensagem = function (modal, id) {
 			$(modal + ' .usuario-com-email').hide();
 		}
 
-		$(modal).openModal();
+		$(modal).modal();
+		$(modal).modal('open');
 
 		Materialize.updateTextFields();
 

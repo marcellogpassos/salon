@@ -43,10 +43,44 @@
                                             <label for="dataInput">Data *</label>
                                         </div>
 
-                                        <div class="input-field col s12 m4">
-                                            <i class="material-icons prefix">access_time</i>
-                                            <input id="horaInput" name="hora" class="hora" required type="text">
-                                            <label for="horaInput">Hora *</label>
+                                        <div class="col s12 m4">
+                                            <label for="categoriaServicoInput">Hora: *</label>
+                                            <select name="hora" class="browser-default hora" required id="horaInput">
+                                                <option value="" selected> --</option>
+                                                <option value="8:00">8:00 [MANHÃ] </option>
+                                                <option value="8:15">8:15 [MANHÃ] </option>
+                                                <option value="8:30">8:30 [MANHÃ] </option>
+                                                <option value="8:45">8:45 [MANHÃ] </option>
+                                                <option value="9:00">9:00 [MANHÃ] </option>
+                                                <option value="9:15">9:15 [MANHÃ] </option>
+                                                <option value="9:30">9:30 [MANHÃ] </option>
+                                                <option value="9:45">9:45 [MANHÃ] </option>
+                                                <option value="10:00">10:00 [MANHÃ] </option>
+                                                <option value="10:15">10:15 [MANHÃ] </option>
+                                                <option value="10:30">10:30 [MANHÃ] </option>
+                                                <option value="10:45">10:45 [MANHÃ] </option>
+                                                <option value="11:00">11:00 [MANHÃ] </option>
+                                                <option value="11:15">11:15 [MANHÃ] </option>
+                                                <option value="11:30">11:30 [MANHÃ] </option>
+                                                <option value="11:45">11:45 [MANHÃ] </option>
+                                                <option value="14:00">14:00 [TARDE] </option>
+                                                <option value="14:15">14:15 [TARDE] </option>
+                                                <option value="14:30">14:30 [TARDE] </option>
+                                                <option value="14:45">14:45 [TARDE] </option>
+                                                <option value="15:00">15:00 [TARDE] </option>
+                                                <option value="15:15">15:15 [TARDE] </option>
+                                                <option value="15:30">15:30 [TARDE] </option>
+                                                <option value="15:45">15:45 [TARDE] </option>
+                                                <option value="16:00">16:00 [TARDE] </option>
+                                                <option value="16:15">16:15 [TARDE] </option>
+                                                <option value="16:30">16:30 [TARDE] </option>
+                                                <option value="16:45">16:45 [TARDE] </option>
+                                                <option value="17:00">17:00 [TARDE] </option>
+                                                <option value="17:15">17:15 [TARDE] </option>
+                                                <option value="17:30">17:30 [TARDE] </option>
+                                                <option value="17:45">17:45 [TARDE] </option>
+                                                <option value="18:00">18:00 [TARDE] </option>
+                                            </select>
                                         </div>
 
                                     </div>

@@ -129,6 +129,11 @@ a.special-link {
     cursor: pointer;
 }
 
+.card .card-content .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+}
+
 h4.card-title {
     background-color: #d7ccc8;
     color: #212121;
@@ -350,6 +355,11 @@ i.fa.fa-percent.material-icons.prefix {
 
 .collapsible .collapsible-body li {
     overflow-x: auto;
+}
+
+.modal h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
 }
 
 @media all and (min-width: 768px) {

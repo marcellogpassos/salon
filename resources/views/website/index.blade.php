@@ -13,7 +13,7 @@
     <!-- CSS  -->
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-    <link href="{{ asset('css/materialize/materialize.min.css') }}" type="text/css" rel="stylesheet"
+    <link href="{{ asset('lib/materialize/css/materialize.min.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection"/>
     <link href="{{ asset('css/index.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
@@ -71,8 +71,8 @@
 @include('website.modal-servicos')
 
         <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="{{ asset('js/materialize/materialize.min.js') }}"></script>
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="{{ asset('lib/materialize/js/materialize.min.js') }}"></script>
 <script src="{{ asset('js/index.js') }}"></script>
 
 </body>

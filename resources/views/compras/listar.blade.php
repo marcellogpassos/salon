@@ -130,7 +130,7 @@
                                                 <td>
                                                     @if(isset($compra->cliente))
                                                         <a onclick="detalharUsuario('#datalharUsuarioModal', '{{ $compra->cliente->id }}')"
-                                                           class="special-link">
+                                                           class="special-link" >
                                                             {{ $compra->cliente->name . ' ' . $compra->cliente->surname }}
                                                         </a>
                                                     @else

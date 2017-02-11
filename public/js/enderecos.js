@@ -24,6 +24,7 @@ var resetCep = function () {
     $('.numero').val('');
     $('.bairro').val('');
     $('.complemento').val('');
+    $('.endereco-label').removeClass('active');
     setCepBusy(false);
 };
 
@@ -85,6 +86,8 @@ var setCep = function (cep) {
 
                     $(".uf").val(uf);
                     setUf(uf, dados.ibge);
+
+                    $('.endereco-label').addClass('active');
 
                     setCepBusy(false);
                 } else {

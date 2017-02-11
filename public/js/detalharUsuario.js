@@ -41,6 +41,8 @@ var detalharUsuario = function (modal, id) {
 
 		$(modal + ' .compras').attr('href', comprasUsuario.replace(':id', data.id));
 
-		$(modal).openModal();
+		$(modal).modal();
+		$(modal).modal('open');
+
 	});
 };

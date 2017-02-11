@@ -152,14 +152,14 @@
                                        class="validate logradouro"
                                        value="{{ old('logradouro') ? old('logradouro') : $user->logradouro }}"
                                        maxlength="255" required>
-                                <label for="logradouroInput">Logradouro *</label>
+                                <label for="logradouroInput" class="endereco-label">Logradouro *</label>
                             </div>
 
                             <div class="input-field col s12 m4">
                                 <input id="numeroInput" name="numero" type="text" class="validate numero"
                                        value="{{ old('numero') ? old('numero') : $user->numero }}"
                                        maxlength="16" required>
-                                <label for="numeroInput">N&uacute;mero *</label>
+                                <label for="numeroInput" class="endereco-label">N&uacute;mero *</label>
                             </div>
 
                         </div>
@@ -170,7 +170,7 @@
                                 <input id="bairroInput" name="bairro" type="text" class="validate bairro"
                                        value="{{ old('bairro') ? old('bairro') : $user->bairro }}"
                                        maxlength="255" required>
-                                <label for="bairroInput">Bairro *</label>
+                                <label for="bairroInput" class="endereco-label">Bairro *</label>
                             </div>
 
                             <div class="input-field col s12 m6">
@@ -178,7 +178,7 @@
                                        class="validate complemento"
                                        value="{{ old('complemento') ? old('complemento') : $user->complemento }}"
                                        maxlength="255">
-                                <label for="complementoInput">Complemento</label>
+                                <label for="complementoInput" class="endereco-label">Complemento</label>
                             </div>
 
                         </div>

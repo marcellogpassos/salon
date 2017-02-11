@@ -1,8 +1,8 @@
-@if (session('success'))
+@if (session('success') || isset($success))
     <div id="success-alert" class="card card-alert card-alert-success">
         <div class="card-content">
             <a href="#!" class="close" data-dismiss="#success-alert">&times;</a>
-            <p>{{ session('success') }}</p>
+            <p>{{ isset($success) ? $success : session('success') }}</p>
         </div>
     </div>
 @endif

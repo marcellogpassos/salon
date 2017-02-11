@@ -106,7 +106,7 @@ var atualizarListaItens = function () {
         var removerItem = '<span class="remover">(<a class="special-link" onclick="removerItem('
             + itens[i].item.id + ')">Remover item</a>)</span>';
         var colItem = '<td>' + descricaoItem + removerItem + '</td>';
-        var colValorUnitario = '<td>' + itens[i].item.valor.formatMoney(2, ',', '.') + '</td>';
+        var colValorUnitario = '<td>' + formatMoney(itens[i].item.valor, 2, ',', '.') + '</td>';
         var colQuantidade = '<td><div class="input-field"><input class="validate quantidade" type="number" ' +
             'onchange="setQuantidade(' + itens[i].item.id + ', this.value)" value="' + itens[i].quantidade
             + '" min="1" max="' + itens[i].item.quantidadeDisponivel + '" id="quantidade' + itens[i].item.id +

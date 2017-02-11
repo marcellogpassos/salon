@@ -50,4 +50,7 @@ gulp.task('default', function () {
 	gulp.src(src_dir + "moment/min/*")
 		.pipe(gulp.dest(dst_dir + "moment"));
 
+	gulp.src(src_dir + "materialize/dist/**")
+		.pipe(gulp.dest(dst_dir + "materialize"));
+
 });

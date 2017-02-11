@@ -72,7 +72,8 @@ var setServico = function (servico) {
 var cancelarAgendamento = function (agendamentoId) {
     var url = urlCancelarAgendamento.replace(':id', agendamentoId);
     $('#formCancelarAgendamento').attr('action', url);
-    $('#confirmarCancelarAgendamento').openModal();
+    $('#confirmarCancelarAgendamento').modal();
+    $('#confirmarCancelarAgendamento').modal('open');
 };
 
 $('#modalCancelar').click(function () {
