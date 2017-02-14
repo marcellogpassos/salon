@@ -4,7 +4,7 @@
             <div class="row" style="margin-bottom: 0">
                 <div class="col s6">
                     <p class="light descricao">
-                        MAKP &copy; 2016&nbsp;-&nbsp;{{ \Carbon\Carbon::today()->year }}
+                        Copyright &copy;  {{ \Carbon\Carbon::today()->year }} - Makp, Todos os direitos reservados
                     </p>
                 </div>
                 <div class="col s6">
