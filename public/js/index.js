@@ -1,7 +1,7 @@
 (function($){
     $(function(){
 
-        $('.button-collapse').sideNav();
+        $('.button-collapse').sideNav({draggable: true});
         $('.parallax').parallax();
         $('.modal').modal();
 
