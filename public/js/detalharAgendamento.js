@@ -27,6 +27,9 @@ var detalharAgendamento = function (modal, id) {
 		if (data.data_cancelamento)
 			$(modal + ' .status').html('Cancelado');
 
+		var urlRegCompra = urlRegistrarCompra.replace(':id', data.cliente.id);
+		$(modal + ' .registrarCompra').attr('href', urlRegCompra);
+
 		$(modal).modal();
 		$(modal).modal('open');
 	});

@@ -13,11 +13,17 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col s12">
+                <a class="btn btn-block primary registrarCompra" href="" target="_blank">Registrar Compra</a>
+            </div>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript">
     var urlRecuperarAgendamento = '{!! url('/agendamentos/:id') !!}';
+    var urlRegistrarCompra = '{!! url('/users/:id/registrarCompra') !!}';
 </script>
 
 <script src="{{ asset('js/detalharAgendamento.js') }}"></script>

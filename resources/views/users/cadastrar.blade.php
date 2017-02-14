@@ -169,7 +169,7 @@
                             <div class="card-content">
                                 <p style="text-align: center">A senha inicial para o cliente ser&aacute; a sua data de
                                     nascimento no formato:
-                                    "ddMMyyyy".</p>
+                                    "ddMMyy".</p>
                                 <p style="text-align: center">(Exemplo: se a data de nascimento for 04/05/1990, a senha
                                     será "040590")</p>
                             </div>

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UsersService implements UsersServiceInterface {
 
@@ -171,8 +172,21 @@ class UsersService implements UsersServiceInterface {
 		if ($user->email) {
 			$password = $this->gerarSenha($user);
 			$this->users->update(['password' => $password], $user->id);
+
+			$this->notificarCliente($user, getMessage('success', 21), 'emails.cadastrarUsuario.cadastro');
 		}
 		return $user;
+	}
+
+	private function notificarCliente(User $user, $subject, $view) {
+		Mail::send($view,
+			['user' => $user],
+			function ($message) use ($user, $subject) {
+				return $message
+					->to($user->email)
+					->subject($subject);
+			}
+		);
 	}
 
 	private function gerarSenha($user) {
