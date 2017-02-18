@@ -223,7 +223,7 @@
                                                             @elseif($agendamento->status == 'N')
                                                                 Negado
                                                             @else
-                                                                Aguardando confirmação
+                                                                Aguardando confirma&ccedil;&atilde;o
                                                             @endif
                                                         </p>
 
