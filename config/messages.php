@@ -63,7 +63,7 @@ return [
 	],
 
 	'warning' => [
-		'Forneça os seus dados antes de utilizar o sistema!',                                                           // 0
+		'Atualize seus dados antes de utilizar o sistema!',                                                             // 0
 	],
 
 ];

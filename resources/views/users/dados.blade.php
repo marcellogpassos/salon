@@ -14,6 +14,13 @@
 
         @include('layouts.messages')
 
+        <div id="warning-alert" class="card card-alert card-alert-warning">
+            <div class="card-content">
+                <a href="#!" class="close" data-dismiss="#warning-alert">&times;</a>
+                <p>{{ getMessage('warning', 0) }}</p>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col s12">
 

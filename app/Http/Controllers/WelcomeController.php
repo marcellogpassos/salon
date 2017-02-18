@@ -24,6 +24,9 @@ class WelcomeController extends Controller {
 
 		$user = Auth::user();
 
+		if(!$user->dados_atualizados)
+			return redirect()->action('UsersController@mostrarFormEditarDadosUsuario');
+
 		if(!count($user->roles))
 			return redirect('/agendamentos');
 

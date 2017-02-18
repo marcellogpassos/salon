@@ -58,6 +58,53 @@
                             <div class="row">
 
                                 <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">phone</i>
+                                    <input id="telefoneInput" name="telefone" type="text" class="validate telefone"
+                                        value="{{ old('telefone') }}">
+                                    <label for="telefoneInput">Telefone *</label>
+                                </div>
+
+                                <div class="input-field horizontal-radio col s12 m6">
+                                    <div>
+                                        <spam>
+                                            <input name="sexo" type="radio" id="femininoInput" value="F"
+                                                    {!! (old('sexo') == 'F') ? ' checked' : '' !!}>
+                                            <label for="femininoInput">Feminino</label>
+                                        </spam>
+                                        <spam>
+                                            <input name="sexo" type="radio" id="masculinoInput" value="M"
+                                                    {!! (old('sexo') == 'M') ? ' checked' : '' !!}>
+                                            <label for="masculinoInput">Masculino</label>
+                                        </spam>
+                                    </div>
+                                    <label class="active">Sexo *</label>
+                                </div>
+
+                            </div>
+
+                            @if ($errors->has('telefone'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('telefone') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($errors->has('sexo'))
+                                <div id="card-alert" class="card red lighten-5">
+                                    <div class="card-content red-text">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('sexo') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row">
+
+                                <div class="input-field col s12 m6">
                                     <input id="emailInput" name="email" type="email" required maxlength="255"
                                            class="validate" value="{{ old('email') }}">
                                     <label for="emailInput">E-mail</label>
