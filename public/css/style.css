@@ -269,13 +269,6 @@ p.dl strong {
     margin: 4px 0;
 }
 
-.card .card-content.agendamentos,
-.card .card-content.agendamentos-pendentes,
-.card .card-content.agenda-do-dia {
-    height: 600px;
-    overflow-y: auto;
-}
-
 i.fa.fa-percent.material-icons.prefix {
     font-size: 1.5rem;
 }
@@ -374,5 +367,12 @@ i.fa.fa-percent.material-icons.prefix {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;
         margin-top: 6px;
+    }
+
+    .card .card-content.agendamentos,
+    .card .card-content.agendamentos-pendentes,
+    .card .card-content.agenda-do-dia {
+        height: 600px;
+        overflow-y: auto;
     }
 }
