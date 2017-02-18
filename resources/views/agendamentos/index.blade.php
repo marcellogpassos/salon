@@ -30,7 +30,7 @@
 
                         {{ csrf_field() }}
 
-                        <div class="card-content gray-text text-darken-4">
+                        <div class="card-content gray-text text-darken-4 agendamentos">
                             <div class="row">
                                 <div class="col s12">
 
@@ -127,9 +127,9 @@
 
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card-action">
+                            <br><br>
+
                             <div class="row">
                                 <div class="col s12 m4 offset-m4 grid-example">
 
@@ -139,6 +139,7 @@
 
                                 </div>
                             </div>
+
                         </div>
 
                     </form>
