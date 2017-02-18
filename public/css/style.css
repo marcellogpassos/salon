@@ -23,6 +23,14 @@ nav .brand-logo {
     font-family: 'Cinzel', serif;
 }
 
+nav a.button-collapse {
+    color: #444;
+}
+
+#sidenav-overlay {
+    z-index: 996;
+}
+
 .dropdown-content li > a {
     color: #212121;
 }

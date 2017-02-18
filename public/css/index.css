@@ -20,7 +20,7 @@ button.call-to-action:active {
 }
 
 #sidenav-overlay {
-    left: 300px;
+    z-index: 996;
 }
 
 p {
