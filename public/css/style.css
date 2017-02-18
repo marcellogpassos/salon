@@ -363,6 +363,10 @@ i.fa.fa-percent.material-icons.prefix {
     font-size: 1.8rem;
 }
 
+ul.tabs {
+    overflow-x: hidden;
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;
