@@ -14,12 +14,16 @@
 
         @include('layouts.messages')
 
-        <div id="warning-alert" class="card card-alert card-alert-warning">
-            <div class="card-content">
-                <a href="#!" class="close" data-dismiss="#warning-alert">&times;</a>
-                <p>{{ getMessage('warning', 0) }}</p>
+        @if(!$user->dados_atualizados)
+
+            <div id="warning-alert" class="card card-alert card-alert-warning">
+                <div class="card-content">
+                    <a href="#!" class="close" data-dismiss="#warning-alert">&times;</a>
+                    <p>{{ getMessage('warning', 0) }}</p>
+                </div>
             </div>
-        </div>
+
+        @endif
 
         <div class="row">
             <div class="col s12">
@@ -251,7 +255,7 @@
     <script src="{{ asset('lib/dropify/js/dropify.min.js') }}"></script>
 
     <script type="text/javascript">
-        $('.dropify-clear').click(function(){
+        $('.dropify-clear').click(function () {
             $('#fotoApagadaInput').val('1');
         });
     </script>

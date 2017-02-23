@@ -78,12 +78,14 @@ class EstatisticasService implements EstatisticasServiceInterface {
 		$bairros = $this->getResult('queries.clientesPorBairro', $limit);
 		$notInClause = $this->getNotInClause($bairros);
 		$outrosBairrosQuantidade = $this->getGetOutrosBairrosQuantidade($notInClause);
-		$outrosBairros = (object)[
-			'municipio' => ' - ',
-			'bairro' => 'Outros',
-			'quantidade' => $outrosBairrosQuantidade[0]->quantidade
-		];
-		array_push($bairros, $outrosBairros);
+		if (count($outrosBairrosQuantidade)) {
+			$outrosBairros = (object)[
+				'municipio' => ' - ',
+				'bairro' => 'Outros',
+				'quantidade' => $outrosBairrosQuantidade[0]->quantidade
+			];
+			array_push($bairros, $outrosBairros);
+		}
 		return $bairros;
 	}
 
