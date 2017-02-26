@@ -1,14 +1,22 @@
+@font-face {
+    font-family: Saloon;
+    src: url('../fonts/Saloon%20Girl%20Fill.ttf');
+    font-weight:400;
+}
+
 nav ul a,
 nav .brand-logo {
     color: #444;
-    font-family: 'Cinzel', serif;
+    font-family: 'Saloon', serif;
+    font-size: 20px;
 }
 
 a.call-to-action,
 button.call-to-action {
     background-color: #444 !important;
     color: #eee !important;
-    font-family: 'Cinzel', serif !important;
+    font-family: 'Saloon', serif !important;
+    font-size: 20px;
 }
 
 a.call-to-action:hover,
@@ -56,13 +64,13 @@ p {
 
 .section .section-title h1,
 .modal h1 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Saloon', serif;
     font-size: 2rem;
 }
 
 #servicos .section .section-body h2,
 .modal h2{
-    font-family: 'Cinzel', serif;
+    font-family: 'Saloon', serif;
     font-size: 1.6rem;
 }
 
@@ -106,7 +114,7 @@ p {
 
 #equipe .profissional .card-title,
 #equipe .profissional .card-title h2{
-    font-family: 'Cinzel', serif;
+    font-family: 'Saloon', serif;
     font-size: 1.2rem;
 }
 
@@ -135,7 +143,7 @@ p {
 }
 
 #contato .item-contato h2 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Saloon', serif;
     font-size: 1.6rem;
 }
 

@@ -10,7 +10,14 @@
         <!-- End section title -->
 
         <div class="row section-body sf sf-one">
-            <div class="col s12">
+            <div class="col s12 m6">
+
+                <img class="materialboxed" data-caption="Barbearia Club Man" width="360"
+                     src="{{ asset('/img/index/12.jpg') }}">
+
+            </div>
+
+            <div class="col s12 m6">
 
                 <p class="light descricao">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet tellus quis ipsum sagittis
@@ -30,11 +37,11 @@
         <!-- End section body -->
 
         {{--<div class="row section-footer">--}}
-            {{--<div class="col s12">--}}
+        {{--<div class="col s12">--}}
 
-            {{--</div>--}}
         {{--</div>--}}
-        <!-- End section footer -->
+        {{--</div>--}}
+                <!-- End section footer -->
 
     </div>
 </div>

@@ -3,7 +3,7 @@
 
         <div class="row section-title">
             <div class="col s12">
-                <h1 class="center">SERVI&Ccedil;OS EM DESTAQUE</h1>
+                <h1 class="center">O QUE OFERECEMOS</h1>
                 <hr>
             </div>
         </div>
@@ -17,15 +17,15 @@
                         <div class="icon-block">
 
                             <div class="center img-rounded">
-                                <img src="{{ asset('img/index/servicos/hair.png') }}" alt="Serviços para seus cabelos">
+                                <img src="{{ asset('img/index/servicos/barbearia.jpg') }}" alt="Serviços para seus cabelos">
                             </div>
 
-                            <h2 class="center">Para seus Cabelos</h2>
+                            <h2 class="center">Barbearia</h2>
 
-                            <p class="descricao light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet
-                                tellus quis ipsum sagittis bibendum ac quis nunc. Nullam facilisis neque mauris, eget
-                                consequat lorem maximus in. Vestibulum ante ipsum primis in faucibus orci luctus et
-                                ultrices posuere cubilia Curae; Aenean scelerisque at ante eu finibus.</p>
+                            <p class="descricao light">Contamos com uma equipe de profissionais extremamente
+                                qualificada, especializada em cortes de cabelo masculino, barba e outros tratamentos de
+                                beleza para o homem moderno. Todos os procedimentos são realizados com rapidez, higiene
+                                e segurança.</p>
                         </div>
                     </div>
 
@@ -33,15 +33,15 @@
                         <div class="icon-block">
 
                             <div class="center img-rounded">
-                                <img src="{{ asset('img/index/servicos/body.png') }}" alt="Serviços para seu corpo">
+                                <img src="{{ asset('img/index/servicos/entretenimento.jpg') }}" alt="Serviços para seu corpo">
                             </div>
 
-                            <h2 class="center">Para seu Corpo</h2>
+                            <h2 class="center">Entretenimento</h2>
 
-                            <p class="descricao light">Ut convallis, eros eu viverra pretium, massa urna vulputate quam, a
-                                convallis libero enim quis mi. Nullam finibus, ligula vitae condimentum faucibus, odio
-                                erat facilisis neque, et porttitor lectus urna quis leo. Vivamus quis molestie sem.
-                                Donec varius semper enim, a placerat elit consequat at.</p>
+                            <p class="descricao light">A espera por sua vez na nossa barbearia não será nada entediante.
+                                Aproveite os jogos de sinuca, xadrez, dama e fliperama na nossa barbearia, que aliás, é
+                                também um ótimo lugar para reencontrar grandes amigos e provar da nossa carta de
+                                bebidas.</p>
                         </div>
                     </div>
 
@@ -49,15 +49,15 @@
                         <div class="icon-block">
 
                             <div class="center img-rounded">
-                                <img src="{{ asset('img/index/servicos/facial.png') }}" alt="Serviços para seu Rosto">
+                                <img src="{{ asset('img/index/servicos/loja.jpg') }}" alt="Serviços para seu Rosto">
                             </div>
 
-                            <h2 class="center">Para seu Rosto</h2>
+                            <h2 class="center">Loja</h2>
 
-                            <p class="descricao light">Integer lacus nulla, tincidunt at erat feugiat, luctus ullamcorper tortor.
-                                Nam ullamcorper vitae eros nec viverra. Suspendisse imperdiet facilisis pretium. Sed vel
-                                molestie massa. Nullam vulputate, enim ac congue porta, odio ante tincidunt orci, ac
-                                mollis ipsum felis tincidunt justo.</p>
+                            <p class="descricao light">Conheça também a nossa loja! Temos produtos de utilidade geral,
+                                camisetas, bebidas, produtos de beleza, e muitas outras comodidades. Tudo isso
+                                disponível para você a um valor justo e sem precisar sair do nosso
+                                estabelecimento.</p>
                         </div>
                     </div>
                 </div>

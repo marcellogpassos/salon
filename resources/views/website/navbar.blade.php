@@ -2,7 +2,9 @@
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
 
-            <a id="logo-container" href="{{ url('/index') }}" class="brand-logo">MAKP</a>
+            <a id="logo-container" href="{{ url('/index') }}" class="brand-logo">
+                <img src="{{ asset('/img/index/brand-logo.png') }}" width="140px">
+            </a>
 
             <ul class="right hide-on-med-and-down">
                 <li><a href="#sobre">Sobre n&oacute;s</a></li>

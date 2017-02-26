@@ -27,8 +27,8 @@
                                         <h2>Endere&ccedil;o</h2>
                                     </div>
                                     <div class="value">
-                                        <p class="light">Av. Epitácio Pessoa, 1234. Bairro dos Estados</p>
-                                        <p class="light">58030-001. João Pessoa - PB. Sala 1000.</p>
+                                        <p class="light">Rua Comerciante Alfredo Ferreira da Rocha, 781. Mangabeira</p>
+                                        <p class="light">58055-540. João Pessoa - PB</p>
                                     </div>
                                 </div>
 
@@ -41,10 +41,10 @@
                                     <div class="value">
                                         <div class="row">
                                             <div class="col s6">
-                                                <p class="light">(83) 98765-4321</p>
+                                                <p class="light">(83) 3231-2540</p>
                                             </div>
                                             <div class="col s6">
-                                                <p class="light">(83) 3219-8765</p>
+                                                <p class="light">(83) 99940-5021</p>
                                             </div>
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@
                                                 <h2>E-mail</h2>
                                             </div>
                                             <div class="value">
-                                                <p class="light">contato@makp.com.br</p>
+                                                <p class="light">moises44barbeiro@gmail.com</p>
                                             </div>
                                         </div>
                                     </div>
@@ -71,13 +71,13 @@
                                             <div class="value">
                                                 <div class="row" style="margin: 0">
                                                     <div class="col s6 m6 left">
-                                                        <a href="//www.facebook.com" target="_blank">
+                                                        <a href="//www.facebook.com/clubman2017/" target="_blank">
                                                             <i class="fa fa-facebook-official fa-2x"
                                                                aria-hidden="true"></i>
                                                         </a>
                                                     </div>
                                                     <div class="col s6 m6 right">
-                                                        <a href="//www.instagram.com" target="_blank">
+                                                        <a href="//www.instagram.com/barbearia_clubman2017/" target="_blank">
                                                             <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
                                                         </a>
                                                     </div>
@@ -114,7 +114,7 @@
                                     var map;
                                     function initMap() {
 
-                                        var myLatLng = {lat: -7.1195404, lng: -34.8480169};
+                                        var myLatLng = {lat: -7.1693648, lng: -34.8422861};
 
                                         var map = new google.maps.Map(document.getElementById('map'), {
                                             zoom: 16,
@@ -131,7 +131,7 @@
 
                                 </script>
                                 <script async defer
-                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0OIJmXg-BWg6nPJKmXJvghK3pbOD7aYc&callback=initMap">
+                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZOTIYBYP_QBWrdGduhPvVgbLJ23Q_xEc&callback=initMap">
                                 </script>
                             </div>
 

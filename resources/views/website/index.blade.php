@@ -27,7 +27,7 @@
         <div class="container">
         </div>
     </div>
-    <div class="parallax"><img src="{{ asset('img/index/06.jpg') }}" alt="Unsplashed background img 1">
+    <div class="parallax"><img src="{{ asset('img/index/09.jpg') }}" alt="Unsplashed background img 1">
     </div>
 </div>
 
@@ -37,12 +37,13 @@
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
-                <h5 class="header col s12 light sf sf-two">"Nada faz uma mulher mais bonita do que acreditar que é bonita." -
-                    Sophia Loren</h5>
+                <h5 class="header col s12 light sf sf-two grey-text text-lighten-5">
+                    "Being a barber is about taking care of the people." - Anthony Hamilton
+                </h5>
             </div>
         </div>
     </div>
-    <div class="parallax"><img src="{{ asset('img/index/04.jpg') }}" alt="Unsplashed background img 2">
+    <div class="parallax"><img src="{{ asset('img/index/07.jpg') }}" alt="Unsplashed background img 2">
     </div>
 </div>
 
@@ -58,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div class="parallax"><img src="{{ asset('img/index/05.jpg') }}" alt="Unsplashed background img 3">
+    <div class="parallax"><img src="{{ asset('img/index/11.png') }}" alt="Unsplashed background img 3">
     </div>
 </div>
 

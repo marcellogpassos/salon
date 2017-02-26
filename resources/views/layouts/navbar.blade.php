@@ -2,7 +2,9 @@
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
 
-            <a id="logo-container" href="{{ url('/') }}" class="brand-logo">{{ env('NOME_ESTABELECIMENTO') }}</a>
+            <a id="logo-container" href="{{ url('/') }}" class="brand-logo">
+                <img src="{{ asset('/img/index/brand-logo.png') }}" width="140px">
+            </a>
 
             <ul class="right hide-on-med-and-down">
                 @if (Auth::guest())
@@ -168,7 +170,7 @@
                         <li class="no-padding">
                             <ul class="collapsible collapsible-accordion">
                                 <li>
-                                    <a class="collapsible-header waves-effect waves-teal">
+                                    <a class="collapsible-header waves-effect waves-gray">
                                         Agendamentos <i class="material-icons left">arrow_drop_down</i>
                                     </a>
                                     <div class="collapsible-body">
@@ -187,7 +189,7 @@
                     <li class="no-padding">
                         <ul class="collapsible collapsible-accordion">
                             <li>
-                                <a class="collapsible-header waves-effect waves-teal">
+                                <a class="collapsible-header waves-effect waves-brown">
                                     {{ Auth::user()->name }} <i class="material-icons left">arrow_drop_down</i>
                                 </a>
                                 <div class="collapsible-body">
