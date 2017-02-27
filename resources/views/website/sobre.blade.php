@@ -12,7 +12,7 @@
         <div class="row section-body sf sf-one">
             <div class="col s12 m6">
 
-                <img class="materialboxed" data-caption="Barbearia Club Man" width="360"
+                <img class="materialboxed" data-caption="Barbearia Club Man" width="100%"
                      src="{{ asset('/img/index/12.jpg') }}">
 
             </div>

@@ -11,6 +11,10 @@ nav .brand-logo {
     font-size: 20px;
 }
 
+nav .brand-logo img {
+    width: 140px !important;
+}
+
 a.call-to-action,
 button.call-to-action {
     background-color: #444 !important;
@@ -200,9 +204,19 @@ hr {
     }
 }
 
+@media only screen and (max-width: 768px) {
+    nav .brand-logo img {
+        width: 120px !important;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     #index-banner .section {
         top: 0;
+    }
+
+    nav .brand-logo img {
+        width: 120px !important;
     }
 }
 

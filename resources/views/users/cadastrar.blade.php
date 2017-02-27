@@ -91,11 +91,11 @@
                                 <i class="material-icons prefix">location_on</i>
                                 <input id="cepInput" name="cep" value="{{ old('cep') }}" onchange="setCep(this.value)"
                                        class="cep" type="text">
-                                <label for="cepInput">CEP *</label>
+                                <label for="cepInput">CEP</label>
                             </div>
 
                             <div class="col s12 m2">
-                                <label for="ufInput">UF *</label>
+                                <label for="ufInput">UF</label>
                                 <select id="ufInput" name="uf_id" class="browser-default uf"
                                         onchange="setUf(this.value)">
                                     <option value="">--</option>
@@ -114,7 +114,7 @@
                             </div>
 
                             <div class="col s12 m6">
-                                <label for="municipioInput">Munic&iacute;pio *</label>
+                                <label for="municipioInput">Munic&iacute;pio</label>
                                 <select id="municipioInput" name="municipio_id" class="browser-default municipio">
                                     <option value="">--</option>
                                 </select>
@@ -127,13 +127,13 @@
                             <div class="input-field col s12 m8">
                                 <input id="logradouroInput" name="logradouro" class="validate logradouro"
                                        value="{{ old('logradouro') }}" maxlength="255" type="text">
-                                <label for="logradouroInput" class="endereco-label">Logradouro *</label>
+                                <label for="logradouroInput" class="endereco-label">Logradouro</label>
                             </div>
 
                             <div class="input-field col s12 m4">
                                 <input id="numeroInput" name="numero" type="text" class="validate numero"
                                        value="{{ old('numero') }}" maxlength="16">
-                                <label for="numeroInput" class="endereco-label">N&uacute;mero *</label>
+                                <label for="numeroInput" class="endereco-label">N&uacute;mero</label>
                             </div>
 
                         </div>
@@ -143,7 +143,7 @@
                             <div class="input-field col s12 m6">
                                 <input id="bairroInput" name="bairro" type="text" class="validate bairro"
                                        value="{{ old('bairro') }}" maxlength="255">
-                                <label for="bairroInput" class="endereco-label">Bairro *</label>
+                                <label for="bairroInput" class="endereco-label">Bairro</label>
                             </div>
 
                             <div class="input-field col s12 m6">

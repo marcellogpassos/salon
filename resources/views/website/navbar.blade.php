@@ -3,7 +3,7 @@
         <div class="nav-wrapper container">
 
             <a id="logo-container" href="{{ url('/index') }}" class="brand-logo">
-                <img src="{{ asset('/img/index/brand-logo.png') }}" width="140px">
+                <img src="{{ asset('/img/index/brand-logo.png') }}">
             </a>
 
             <ul class="right hide-on-med-and-down">

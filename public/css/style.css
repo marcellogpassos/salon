@@ -34,6 +34,10 @@ nav a.button-collapse {
     color: #444;
 }
 
+nav .brand-logo img {
+    width: 140px !important;
+}
+
 #sidenav-overlay {
     z-index: 996;
 }
@@ -385,5 +389,11 @@ ul.tabs {
     .card .card-content.agenda-do-dia {
         height: 480px;
         overflow-y: auto;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    nav .brand-logo img {
+        width: 120px !important;
     }
 }

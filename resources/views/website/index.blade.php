@@ -6,7 +6,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
-    <title>MAKP</title>
+    <title>Barbearia Club Man</title>
+
+    @include('partials.favicon')
+
+    <meta name="Description"
+          content="A Barbearia Club Man, a barbearia do homem moderno, &eacute; localizada no bairro de Mangabeira. Oferece servi&ccedil;os de barba e cabelo, est&eacute;tica masculina, jogos de sinuca, xadrez, damas e fliperama e camisetas, cervejas artesanais e outros produtos &uacute;teis.">
+    <meta name="Keywords"
+          content="barbearia, homem, moderno, mangabeira, jo&atilde;o pessoa, jogos, sinuca, cerveja, camisetas">
 
     <script src="https://use.fontawesome.com/146bb4f1dc.js"></script>
 
@@ -55,7 +62,8 @@
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
-                <a href="{{ url('/agendamentos') }}" class="btn-large waves-effect waves-light call-to-action">Agende um hor&aacute;rio</a>
+                <a href="{{ url('/agendamentos') }}" class="btn-large waves-effect waves-light call-to-action">Agende um
+                    hor&aacute;rio</a>
             </div>
         </div>
     </div>
@@ -75,6 +83,23 @@
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="{{ asset('lib/materialize/js/materialize.min.js') }}"></script>
 <script src="{{ asset('js/index.js') }}"></script>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-92641563-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 
 </body>
 </html>
