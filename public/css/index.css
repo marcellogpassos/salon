@@ -83,7 +83,8 @@ p {
 }
 
 .modal .servico p::before {
-    content: "♦  ";
+    content: url('../img/index/mini-mustache.png');
+    margin-right: 8px;
 }
 
 .modal .categoria-servico {
