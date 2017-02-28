@@ -74,6 +74,10 @@ buscarItemInput.autocomplete({
     }
 });
 
+buscarItemInput.blur( function() {
+    $("#autocomplete-loader").hide();
+});
+
 tipoDescontoInput.on('change', function () {
     var tipoDescontoSelecionado = $('.tipo-desconto:checked');
     if (tipoDescontoSelecionado.val() == 'P') {
