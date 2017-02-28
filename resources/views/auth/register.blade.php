@@ -106,7 +106,7 @@
 
                                 <div class="input-field col s12 m6">
                                     <input id="emailInput" name="email" type="email" required maxlength="255"
-                                           class="validate" value="{{ old('email') }}">
+                                           class="validate" value="{{ (old('email') ? old('email') : (isset($email) ? $email : "" )) }}">
                                     <label for="emailInput">E-mail</label>
                                 </div>
 

@@ -13,11 +13,11 @@
 
             <div class="row section-body">
 
-                <form role="form" class="col s12 m8 offset-m2">
+                <form role="form" class="col s12 m8 offset-m2" action="{{ url('/inscreva') }}" method="get">
                     <div class="row">
                         <div class="input-field col s12 m8">
-                            <input id="email" type="email" class="validate">
-                            <label for="email" data-error="Email no formato 'nome@email.com'">E-mail</label>
+                            <input id="email" type="email" class="validate" name="email">
+                            <label for="email" data-error="Email deve estar no formato 'nome@email.com'">E-mail</label>
                         </div>
                         <div class="input-field col s12 m4">
                             <button type="submit" class="btn btn-block call-to-action">Enviar</button>
