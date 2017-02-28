@@ -72,13 +72,19 @@
 
                                             </div>
 
+                                            <div id="autocomplete-loader" class="row" style="display: none">
+                                                <div class="col s12 m6 offset-m3" style="text-align: center">
+                                                    <img src="{{ asset('img/loading.gif') }}">
+                                                </div>
+                                            </div>
+
                                             <div class="row">
                                                 <div class="col s12">
                                                     <table class="responsive-table">
                                                         <thead>
                                                         <tr>
                                                             <th data-field="id">Item</th>
-                                                            <th data-field="price">Valor unitário</th>
+                                                            <th data-field="price">Valor unit&aacute;rio</th>
                                                             <th data-field="name">Quantidade</th>
                                                             <th data-field="price">Valor total</th>
                                                         </tr>

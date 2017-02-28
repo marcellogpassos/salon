@@ -65,6 +65,12 @@ buscarItemInput.autocomplete({
     change: function (event, ui) {
         if (!ui.item)
             buscarItemEstadoInicial();
+    },
+    search : function(){
+        $("#autocomplete-loader").show();
+    },
+    open : function(){
+        $("#autocomplete-loader").hide();
     }
 });
 
