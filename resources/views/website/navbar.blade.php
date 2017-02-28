@@ -1,5 +1,5 @@
 <div class="navbar-fixed">
-    <nav class="white" role="navigation">
+    <nav class="grey darken-4" role="navigation">
         <div class="nav-wrapper container">
 
             <a id="logo-container" href="{{ url('/index') }}" class="brand-logo">

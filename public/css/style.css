@@ -25,17 +25,17 @@ main {
 
 nav ul a,
 nav .brand-logo {
-    color: #444;
+    color: #fafafa;
     font-family: 'Saloon', serif;
     font-size: 20px;
 }
 
 nav a.button-collapse {
-    color: #444;
+    color: #fafafa;
 }
 
 nav .brand-logo img {
-    width: 140px !important;
+    width: 152px !important;
 }
 
 #sidenav-overlay {
@@ -389,11 +389,5 @@ ul.tabs {
     .card .card-content.agenda-do-dia {
         height: 480px;
         overflow-y: auto;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    nav .brand-logo img {
-        width: 120px !important;
     }
 }

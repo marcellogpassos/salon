@@ -6,19 +6,19 @@
 
 nav ul a,
 nav .brand-logo {
-    color: #444;
+    color: #fafafa;
     font-family: 'Saloon', serif;
     font-size: 20px;
 }
 
 nav .brand-logo img {
-    width: 140px !important;
+    width: 152px !important;
 }
 
 a.call-to-action,
 button.call-to-action {
-    background-color: #444 !important;
-    color: #eee !important;
+    background-color: #fafafa !important;
+    color: #212121 !important;
     font-family: 'Saloon', serif !important;
     font-size: 20px;
 }
@@ -27,8 +27,8 @@ a.call-to-action:hover,
 a.call-to-action:active,
 button.call-to-action:hover,
 button.call-to-action:active {
-    background-color: #545454 !important;
-    color: #dedede !important;
+    background-color: #dedede !important;
+    color: #545454 !important;
 }
 
 #sidenav-overlay {
@@ -205,19 +205,9 @@ hr {
     }
 }
 
-@media only screen and (max-width: 768px) {
-    nav .brand-logo img {
-        width: 120px !important;
-    }
-}
-
 @media only screen and (max-width: 600px) {
     #index-banner .section {
         top: 0;
-    }
-
-    nav .brand-logo img {
-        width: 120px !important;
     }
 }
 
