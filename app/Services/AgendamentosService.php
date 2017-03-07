@@ -50,11 +50,12 @@ class AgendamentosService implements AgendamentosServiceInterface {
 
 		$agendamento = $this->agendamentosRepository->create(array_add($atributos, 'cliente_id', $clienteId));
 
-		$this->notificarCliente(
-			$agendamento,
-			getMessage('information', 1),
-			'emails.agendamentos.cliente.cadastro'
-		);
+		if ($agendamento->cliente->email)
+			$this->notificarCliente(
+				$agendamento,
+				getMessage('information', 1),
+				'emails.agendamentos.cliente.cadastro'
+			);
 
 		$this->notificarInteressados(
 			$agendamento,
@@ -113,11 +114,12 @@ class AgendamentosService implements AgendamentosServiceInterface {
 		$agendamento->justificativa = $justificativa;
 		$agendamento->save();
 
-		$this->notificarCliente(
-			$agendamento,
-			getMessage('information', 3, [Agendamento::getStatusName($agendamento->status)]),
-			'emails.agendamentos.cliente.analise'
-		);
+		if ($agendamento->cliente->email)
+			$this->notificarCliente(
+				$agendamento,
+				getMessage('information', 3, [Agendamento::getStatusName($agendamento->status)]),
+				'emails.agendamentos.cliente.analise'
+			);
 
 		return $agendamento;
 	}
