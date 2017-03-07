@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    <div class="parallax"><img src="{{ asset('img/index/11.png') }}" alt="Unsplashed background img 3">
+    <div class="parallax"><img src="{{ asset('img/index/11.jpg') }}" alt="Unsplashed background img 3">
     </div>
 </div>
 
