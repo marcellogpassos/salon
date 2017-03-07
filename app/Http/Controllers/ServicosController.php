@@ -85,7 +85,7 @@ class ServicosController extends Controller {
 	public function cadastrarServico(ServicosRequest $request) {
 		$servicoAttr = $request->only('descricao', 'categoria_id', 'masculino', 'feminino');
 		$itemVendaAttr = $request->only('id', 'ativo', 'valor');
-		$funcionariosHabilitadosAttr = $request->input('funcionarios');
+		$funcionariosHabilitadosAttr = $request->input('funcionarios') ? $request->input('funcionarios') : [];
 		$servico = false;
 		try {
 			$servico = $this->servicosService->cadastrar($servicoAttr, $itemVendaAttr);
@@ -113,14 +113,14 @@ class ServicosController extends Controller {
 		$servicoAttr = $request->only('descricao', 'categoria_id', 'masculino', 'feminino', 'duracao');
 		$itemVendaAttr = $request->only('ativo', 'valor');
 		$itemVenda = false;
-
+		$funcionariosHabilitadosAttr = $request->input('funcionarios') ? $request->input('funcionarios') : [];
 		try {
 			$itemVenda = $this->servicosService->editar($id, $servicoAttr, $itemVendaAttr);
 		} catch (QueryException $ex) {
 		}
 
 		if ($itemVenda && $request->has('funcionarios'))
-			$this->servicosService->definirFuncionariosHabilitados($itemVenda->id, $request->input('funcionarios'));
+			$this->servicosService->definirFuncionariosHabilitados($itemVenda->id, $funcionariosHabilitadosAttr);
 
 		if ($itemVenda)
 			showMessage('success', 9, [$itemVenda->servico->descricao]);
