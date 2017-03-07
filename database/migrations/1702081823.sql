@@ -674,7 +674,6 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `cpf_UNIQUE` (`cpf`),
   UNIQUE KEY `foto_UNIQUE` (`foto`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `municipio_user_idx` (`municipio_id`),
