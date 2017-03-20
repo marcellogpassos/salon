@@ -14,8 +14,6 @@ class AgendamentoRequest extends Request {
 		return [
 			'data' => 'required|date|after:yesterday',
 			'hora' => 'required|date_format:H:i',
-			'servico_id' => 'required|exists:servicos,id',
-			'profissional_id' => 'exists:users,id',
 		];
 	}
 }

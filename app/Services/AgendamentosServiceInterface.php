@@ -21,6 +21,8 @@ interface AgendamentosServiceInterface {
 
 	public function cadastrarAgendamento($clienteId, array $atributos);
 
+	public function cadastrarMultiplosAgendamento($agendamentos);
+
 	public function cancelarAgendamento($clienteId, $agendamentoId);
 
 	public function minhaAgenda($start, $end, $profissionalId = null);

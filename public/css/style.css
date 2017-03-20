@@ -137,6 +137,10 @@ a.special-link {
     cursor: pointer;
 }
 
+#servico-row i {
+    cursor: pointer;
+}
+
 .card .card-content .card-title {
     font-family: 'Cinzel', serif;
     font-size: 1.2rem;
@@ -367,13 +371,22 @@ ul.tabs {
     overflow-x: hidden;
 }
 
+div .card-content.agendamentos {
+    height: 734px;
+    overflow-y: scroll;
+}
+
+div .card-content.servicos-adicionados {
+    height: 377px;
+    overflow-y: scroll;
+}
+
 @media all and (min-width: 768px) {
     .usuarios-encontrados .usuario-encontrado .chip {
         float: right;
         margin-top: 6px;
     }
 
-    .card .card-content.agendamentos,
     .card .card-content.agendamentos-pendentes,
     .card .card-content.agenda-do-dia {
         height: 480px;

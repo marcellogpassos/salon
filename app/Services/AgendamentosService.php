@@ -66,6 +66,38 @@ class AgendamentosService implements AgendamentosServiceInterface {
 		return $agendamento;
 	}
 
+	public function cadastrarMultiplosAgendamento($agendamentos) {
+		$result = Agendamento::insert($agendamentos);
+
+		if($result) {
+
+			$cliente = $this->usersService->getUser($agendamentos[0]['cliente_id']);
+
+			if ($cliente->email)
+				$this->notificarClienteAgendamento(
+					$cliente,
+					$agendamentos,
+					getMessage('information', 1),
+					'emails.agendamentos.cliente.notificacao'
+				);
+
+		}
+
+		return $result;
+	}
+
+	private function notificarClienteAgendamento($cliente, $agendamentos, $subject, $view) {
+		Mail::send($view,
+			['cliente' => $cliente, 'agendamentos' => $agendamentos],
+			function ($message) use ($cliente, $agendamentos, $subject) {
+
+				return $message
+					->to($cliente->email)
+					->subject($subject);
+			}
+		);
+	}
+
 	public function cancelarAgendamento($clienteId, $agendamentoId) {
 		$agendamento = Agendamento::where('cliente_id', $clienteId)
 			->where('id', $agendamentoId)

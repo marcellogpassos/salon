@@ -31,7 +31,7 @@ class AgendamentosController extends Controller {
 		$this->middleware('auth');
 		$this->middleware('professional',
 			['only' => 'mostrarFormAgendarParaCliente', 'agendarParaCliente', 'minhaAgenda', 'agendamentosPendentes',
-			'analisar']);
+				'analisar']);
 	}
 
 	// @auth
@@ -142,13 +142,30 @@ class AgendamentosController extends Controller {
 		return response()->json($agendamento);
 	}
 
+	private function getServicosArray($input, $clienteId) {
+		$agendamentos = [];
+		foreach ($input['servicos'] as $key => $value) {
+			$agendamento = [
+				'cliente_id' => $clienteId,
+				'servico_id' => $value,
+				'profissional_id' => $input['profissionais'][$key] ? $input['profissionais'][$key] : null,
+				'data' => $input['data'],
+				'hora' => $input['hora']
+			];
+			array_push($agendamentos, $agendamento);
+		}
+		return $agendamentos;
+	}
+
 	private function agendarServico(AgendamentoRequest $request, $cliente, $redirect) {
 		if (!$this->validarClienteAtivo($cliente))
 			return redirect($redirect);
 
-		$agendamento = $this->agendamentosService->cadastrarAgendamento($cliente->id, $request->all());
+		$agendamentos = $this->getServicosArray($request->all(), $cliente->id);
 
-		if ($agendamento) {
+		$result = $this->agendamentosService->cadastrarMultiplosAgendamento($agendamentos);
+
+		if ($result) {
 			showMessage('success', 12);
 			return redirect($redirect);
 		} else {
