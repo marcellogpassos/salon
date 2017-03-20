@@ -675,7 +675,6 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `foto_UNIQUE` (`foto`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `municipio_user_idx` (`municipio_id`),
   CONSTRAINT `municipio_user` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=409 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
