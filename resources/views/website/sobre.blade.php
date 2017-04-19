@@ -20,16 +20,13 @@
             <div class="col s12 m6">
 
                 <p class="light descricao">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet tellus quis ipsum sagittis
-                    bibendum ac quis nunc. Nullam facilisis neque mauris, eget consequat lorem maximus in. Vestibulum
-                    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean scelerisque at
-                    ante eu finibus. Vivamus eget purus mollis, rhoncus quam eget, luctus nisl. Aliquam vitae nisi sed
-                    arcu mollis malesuada. Mauris vehicula tincidunt ligula et euismod. Sed placerat turpis nec
-                    efficitur vehicula. Suspendisse porta sodales molestie. Sed gravida massa non ante ullamcorper, id
-                    accumsan sapien pretium. Phasellus placerat risus justo, vitae semper nisi convallis vel. Cras
-                    elementum nibh pellentesque, dictum lacus in, lacinia ante. Morbi tempor tempor mollis. Sed sagittis
-                    tincidunt erat, a consequat tortor aliquam at. Cras eros justo, pretium a imperdiet sed, sagittis eu
-                    erat. Curabitur bibendum porta nunc non iaculis.
+                    A Barbearia Club Man nasceu no dia 14 de janeiro de 2017 para atender ao p&#250;blico masculino
+                    proporcionando o cuidado da beleza e fazer com que os clientes se sintam cada dia melhores. Hoje os
+                    homens tem se cuidado mais a cada dia. Na Barbearia Club Man proporcionamos os servi&#231;os com
+                    excel&#234;ncia, com profissionais capacitados, um ambiente climatizado, conex&#227;o wi-fi, jogos
+                    de sinuca, tot&#243;, xadrez, damas, baralho, domin&#243; e fliperama totalmente gr&#225;tis para os
+                    clientes. Al&#233;m de tudo, o pre&#231;o &#233; acess&#237;vel que cabe no bolso de todos. Venha
+                    nos visitar e agende um hor&#225;rio atrav&#233;s do nosso site!
                 </p>
 
             </div>
